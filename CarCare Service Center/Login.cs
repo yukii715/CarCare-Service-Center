@@ -16,5 +16,11 @@ namespace CarCare_Service_Center
         {
             InitializeComponent();
         }
+
+        private void llbRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmRegister frmRegister = new frmRegister();
+            frmRegister.ShowDialog();
+        }
     }
 }

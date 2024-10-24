@@ -83,6 +83,7 @@
             // 
             // llbRegister
             // 
+            this.llbRegister.ActiveLinkColor = System.Drawing.Color.Purple;
             this.llbRegister.AutoSize = true;
             this.llbRegister.Font = new System.Drawing.Font("Comic Sans MS", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.llbRegister.Location = new System.Drawing.Point(222, 314);
@@ -91,6 +92,7 @@
             this.llbRegister.TabIndex = 5;
             this.llbRegister.TabStop = true;
             this.llbRegister.Text = "Don\'t have an account? Register now!";
+            this.llbRegister.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbRegister_LinkClicked);
             // 
             // frmLogin
             // 
