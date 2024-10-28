@@ -57,7 +57,6 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.database1DataSet1 = new CarCare_Service_Center.Database1DataSet();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnStartTask = new System.Windows.Forms.Button();
             this.tabMechanic.SuspendLayout();
@@ -67,7 +66,6 @@
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMechanic
@@ -326,11 +324,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Task";
             // 
-            // database1DataSet1
-            // 
-            this.database1DataSet1.DataSetName = "Database1DataSet";
-            this.database1DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(30, 39);
@@ -368,7 +361,6 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -396,7 +388,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox1;
-        private Database1DataSet database1DataSet1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnStartTask;
     }
