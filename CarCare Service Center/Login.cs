@@ -92,9 +92,9 @@ namespace CarCare_Service_Center
                     switch (GetRole(txtUsername.Text))
                     {
                         case "Admin":
-                            frmCustomerMain frmCustomerMain = new frmCustomerMain();
+                            frmMechanicMain frmMechanicMain = new frmMechanicMain();
                             this.Hide();
-                            frmCustomerMain.ShowDialog();
+                            frmMechanicMain.ShowDialog();
                             this.Close();
                             break;
                         case "Receptionist":
