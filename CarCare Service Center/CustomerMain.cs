@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Appearance;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,7 +18,12 @@ namespace CarCare_Service_Center
             InitializeComponent();
 
         }
-        
+
+
+        private void frmCustomerMain_Load(object sender, EventArgs e)
+        {
+            tabCustomer.DrawItem += Draw_Item.tabControlAdjustment;
+        }
     }
 
 }
