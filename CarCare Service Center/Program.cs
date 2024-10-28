@@ -17,7 +17,7 @@ namespace CarCare_Service_Center
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMechanicMain());
+            Application.Run(new frmLogin());
         }
     }
 }
