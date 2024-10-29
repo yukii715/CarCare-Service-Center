@@ -45,9 +45,10 @@
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(556, 709);
+            this.btnAdd.Location = new System.Drawing.Point(417, 510);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(140, 57);
+            this.btnAdd.Size = new System.Drawing.Size(105, 41);
             this.btnAdd.TabIndex = 35;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -55,9 +56,10 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(82, 709);
+            this.btnCancel.Location = new System.Drawing.Point(62, 510);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(140, 57);
+            this.btnCancel.Size = new System.Drawing.Size(105, 41);
             this.btnCancel.TabIndex = 34;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -66,9 +68,10 @@
             // txtSalaryEntry
             // 
             this.txtSalaryEntry.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSalaryEntry.Location = new System.Drawing.Point(339, 570);
+            this.txtSalaryEntry.Location = new System.Drawing.Point(254, 410);
+            this.txtSalaryEntry.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtSalaryEntry.Name = "txtSalaryEntry";
-            this.txtSalaryEntry.Size = new System.Drawing.Size(408, 48);
+            this.txtSalaryEntry.Size = new System.Drawing.Size(307, 38);
             this.txtSalaryEntry.TabIndex = 33;
             // 
             // cmbRoleSelection
@@ -79,18 +82,20 @@
             this.cmbRoleSelection.Items.AddRange(new object[] {
             "Mechanic",
             "Receptionist"});
-            this.cmbRoleSelection.Location = new System.Drawing.Point(339, 450);
+            this.cmbRoleSelection.Location = new System.Drawing.Point(254, 324);
+            this.cmbRoleSelection.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbRoleSelection.Name = "cmbRoleSelection";
-            this.cmbRoleSelection.Size = new System.Drawing.Size(408, 48);
+            this.cmbRoleSelection.Size = new System.Drawing.Size(307, 38);
             this.cmbRoleSelection.TabIndex = 32;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(100, 573);
+            this.label5.Location = new System.Drawing.Point(75, 413);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(122, 40);
+            this.label5.Size = new System.Drawing.Size(91, 30);
             this.label5.TabIndex = 31;
             this.label5.Text = "Salary: ";
             // 
@@ -98,9 +103,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(100, 453);
+            this.label4.Location = new System.Drawing.Point(75, 326);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 40);
+            this.label4.Size = new System.Drawing.Size(57, 30);
             this.label4.TabIndex = 30;
             this.label4.Text = "Role";
             // 
@@ -108,9 +114,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(100, 333);
+            this.label3.Location = new System.Drawing.Point(75, 240);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 40);
+            this.label3.Size = new System.Drawing.Size(81, 30);
             this.label3.TabIndex = 29;
             this.label3.Text = "Email: ";
             // 
@@ -118,9 +125,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(100, 213);
+            this.label2.Location = new System.Drawing.Point(75, 153);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 40);
+            this.label2.Size = new System.Drawing.Size(78, 30);
             this.label2.TabIndex = 28;
             this.label2.Text = "Name:";
             // 
@@ -128,45 +136,47 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(100, 93);
+            this.label1.Location = new System.Drawing.Point(75, 67);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 40);
+            this.label1.Size = new System.Drawing.Size(113, 30);
             this.label1.TabIndex = 27;
             this.label1.Text = "Staff ID:";
             // 
             // txtStaffEmail
             // 
             this.txtStaffEmail.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStaffEmail.Location = new System.Drawing.Point(339, 330);
+            this.txtStaffEmail.Location = new System.Drawing.Point(254, 238);
+            this.txtStaffEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtStaffEmail.Name = "txtStaffEmail";
-            this.txtStaffEmail.Size = new System.Drawing.Size(408, 48);
+            this.txtStaffEmail.Size = new System.Drawing.Size(307, 38);
             this.txtStaffEmail.TabIndex = 36;
-            this.txtStaffEmail.Text = "abc123@example.com";
             // 
             // txtStaffName
             // 
             this.txtStaffName.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStaffName.Location = new System.Drawing.Point(339, 210);
+            this.txtStaffName.Location = new System.Drawing.Point(254, 151);
+            this.txtStaffName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtStaffName.Name = "txtStaffName";
-            this.txtStaffName.Size = new System.Drawing.Size(408, 48);
+            this.txtStaffName.Size = new System.Drawing.Size(307, 38);
             this.txtStaffName.TabIndex = 37;
-            this.txtStaffName.Text = "Name";
             // 
             // lblStaffID
             // 
             this.lblStaffID.AutoSize = true;
             this.lblStaffID.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStaffID.Location = new System.Drawing.Point(332, 93);
+            this.lblStaffID.Location = new System.Drawing.Point(249, 67);
+            this.lblStaffID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblStaffID.Name = "lblStaffID";
-            this.lblStaffID.Size = new System.Drawing.Size(217, 40);
+            this.lblStaffID.Size = new System.Drawing.Size(163, 30);
             this.lblStaffID.TabIndex = 38;
             this.lblStaffID.Text = "Auto Generate";
             // 
             // StaffInsertion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 808);
+            this.ClientSize = new System.Drawing.Size(600, 582);
             this.Controls.Add(this.lblStaffID);
             this.Controls.Add(this.txtStaffName);
             this.Controls.Add(this.txtStaffEmail);
@@ -179,6 +189,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "StaffInsertion";
             this.Text = "StaffInsertion";
             this.ResumeLayout(false);

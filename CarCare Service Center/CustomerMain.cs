@@ -24,6 +24,7 @@ namespace CarCare_Service_Center
         {
             tabCustomer.DrawItem += Draw_Item.tabControlAdjustment;
         }
+   
     }
 
 }

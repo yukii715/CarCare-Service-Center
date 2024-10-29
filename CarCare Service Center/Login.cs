@@ -92,22 +92,26 @@ namespace CarCare_Service_Center
                     switch (GetRole(txtUsername.Text))
                     {
                         case "Admin":
-                            frmMechanicMain frmMechanicMain = new frmMechanicMain();
-                            this.Hide();
-                            frmMechanicMain.ShowDialog();
-                            this.Close();
+                            frmAdminMain frmAdminMain = new frmAdminMain();
+                            Hide();
+                            frmAdminMain.ShowDialog();
+                            Close();
                             break;
                         case "Receptionist":
 
-                            this.Close();
+                            Close();
                             break;
                         case "Mechanic":
-
-                            this.Close();
+                            frmMechanicMain frmMechanicMain = new frmMechanicMain();
+                            Hide();
+                            frmMechanicMain.ShowDialog();
+                            Close();
                             break;
                         case "Customer":
-
-                            this.Close();
+                            frmCustomerMain frmCustomerMain = new frmCustomerMain();
+                            Close();
+                            frmCustomerMain.ShowDialog();
+                            Close();
                             break;
                     }
                 }

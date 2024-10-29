@@ -32,20 +32,27 @@ namespace CarCare_Service_Center
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustomerMain));
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabCustomer = new System.Windows.Forms.TabControl();
             this.Home = new System.Windows.Forms.TabPage();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lstAppointment = new System.Windows.Forms.ListBox();
+            this.crtServiceUsed = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Search = new System.Windows.Forms.TabPage();
             this.Appointment = new System.Windows.Forms.TabPage();
             this.History = new System.Windows.Forms.TabPage();
             this.Profile = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbYear = new System.Windows.Forms.ComboBox();
             this.tabCustomer.SuspendLayout();
             this.Home.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.crtServiceUsed)).BeginInit();
             this.SuspendLayout();
             // 
             // tabCustomer
@@ -68,40 +75,68 @@ namespace CarCare_Service_Center
             // 
             // Home
             // 
-            this.Home.Controls.Add(this.listBox1);
-            this.Home.Controls.Add(this.chart1);
+            this.Home.BackColor = System.Drawing.Color.Transparent;
+            this.Home.Controls.Add(this.cmbYear);
+            this.Home.Controls.Add(this.label3);
+            this.Home.Controls.Add(this.label2);
+            this.Home.Controls.Add(this.label1);
+            this.Home.Controls.Add(this.pictureBox1);
+            this.Home.Controls.Add(this.lstAppointment);
+            this.Home.Controls.Add(this.crtServiceUsed);
+            this.Home.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Home.Location = new System.Drawing.Point(84, 4);
             this.Home.Name = "Home";
             this.Home.Padding = new System.Windows.Forms.Padding(3);
             this.Home.Size = new System.Drawing.Size(1094, 740);
             this.Home.TabIndex = 0;
             this.Home.Text = "Home";
-            this.Home.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // label1
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 18;
-            this.listBox1.Location = new System.Drawing.Point(638, 274);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(368, 328);
-            this.listBox1.TabIndex = 1;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Ink Free", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(360, 225);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(462, 34);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Welcome to CarCare Service Center";
             // 
-            // chart1
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(474, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(223, 210);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lstAppointment
+            // 
+            this.lstAppointment.FormattingEnabled = true;
+            this.lstAppointment.ItemHeight = 18;
+            this.lstAppointment.Location = new System.Drawing.Point(656, 327);
+            this.lstAppointment.Name = "lstAppointment";
+            this.lstAppointment.ScrollAlwaysVisible = true;
+            this.lstAppointment.Size = new System.Drawing.Size(338, 328);
+            this.lstAppointment.TabIndex = 1;
+            // 
+            // crtServiceUsed
             // 
             chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
+            this.crtServiceUsed.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
-            this.chart1.Location = new System.Drawing.Point(112, 274);
-            this.chart1.Name = "chart1";
+            this.crtServiceUsed.Legends.Add(legend3);
+            this.crtServiceUsed.Location = new System.Drawing.Point(100, 327);
+            this.crtServiceUsed.Name = "crtServiceUsed";
             series3.ChartArea = "ChartArea1";
             series3.Legend = "Legend1";
             series3.Name = "Series1";
-            this.chart1.Series.Add(series3);
-            this.chart1.Size = new System.Drawing.Size(440, 324);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            this.crtServiceUsed.Series.Add(series3);
+            this.crtServiceUsed.Size = new System.Drawing.Size(440, 324);
+            this.crtServiceUsed.TabIndex = 0;
+            this.crtServiceUsed.Text = "chart1";
             // 
             // Search
             // 
@@ -140,6 +175,34 @@ namespace CarCare_Service_Center
             this.Profile.Text = "Profile";
             this.Profile.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(96, 288);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(121, 24);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Service Used";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(652, 288);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(114, 24);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Appointment";
+            // 
+            // cmbYear
+            // 
+            this.cmbYear.FormattingEnabled = true;
+            this.cmbYear.Location = new System.Drawing.Point(240, 289);
+            this.cmbYear.Name = "cmbYear";
+            this.cmbYear.Size = new System.Drawing.Size(108, 26);
+            this.cmbYear.TabIndex = 6;
+            // 
             // frmCustomerMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -151,7 +214,9 @@ namespace CarCare_Service_Center
             this.Load += new System.EventHandler(this.frmCustomerMain_Load);
             this.tabCustomer.ResumeLayout(false);
             this.Home.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.Home.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.crtServiceUsed)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -164,8 +229,13 @@ namespace CarCare_Service_Center
         private TabPage Appointment;
         private TabPage History;
         private TabPage Profile;
-        private ListBox listBox1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private ListBox lstAppointment;
+        private System.Windows.Forms.DataVisualization.Charting.Chart crtServiceUsed;
+        private Label label1;
+        private PictureBox pictureBox1;
+        private Label label2;
+        private ComboBox cmbYear;
+        private Label label3;
     }
 }
 

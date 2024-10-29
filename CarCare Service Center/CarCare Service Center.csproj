@@ -64,10 +64,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminMain.cs">
+    <Compile Include="Admin\AdminMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminMain.Designer.cs">
+    <Compile Include="Admin\AdminMain.Designer.cs">
       <DependentUpon>AdminMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin.cs" />
@@ -102,37 +102,37 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
-    <Compile Include="ServiceDetails.cs">
+    <Compile Include="Admin\ServiceDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ServiceDetails.Designer.cs">
+    <Compile Include="Admin\ServiceDetails.Designer.cs">
       <DependentUpon>ServiceDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="StaffDeletion.cs">
+    <Compile Include="Admin\StaffDeletion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StaffDeletion.Designer.cs">
+    <Compile Include="Admin\StaffDeletion.Designer.cs">
       <DependentUpon>StaffDeletion.cs</DependentUpon>
     </Compile>
-    <Compile Include="StaffDetailConfiguration.cs">
+    <Compile Include="Admin\StaffDetailConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StaffDetailConfiguration.Designer.cs">
+    <Compile Include="Admin\StaffDetailConfiguration.Designer.cs">
       <DependentUpon>StaffDetailConfiguration.cs</DependentUpon>
     </Compile>
-    <Compile Include="StaffDetails.cs">
+    <Compile Include="Admin\StaffDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StaffDetails.Designer.cs">
+    <Compile Include="Admin\StaffDetails.Designer.cs">
       <DependentUpon>StaffDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="StaffInsertion.cs">
+    <Compile Include="Admin\StaffInsertion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StaffInsertion.Designer.cs">
+    <Compile Include="Admin\StaffInsertion.Designer.cs">
       <DependentUpon>StaffInsertion.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AdminMain.resx">
+    <EmbeddedResource Include="Admin\AdminMain.resx">
       <DependentUpon>AdminMain.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Users.cs" />
@@ -157,19 +157,19 @@
     <EmbeddedResource Include="Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ServiceDetails.resx">
+    <EmbeddedResource Include="Admin\ServiceDetails.resx">
       <DependentUpon>ServiceDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StaffDeletion.resx">
+    <EmbeddedResource Include="Admin\StaffDeletion.resx">
       <DependentUpon>StaffDeletion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StaffDetailConfiguration.resx">
+    <EmbeddedResource Include="Admin\StaffDetailConfiguration.resx">
       <DependentUpon>StaffDetailConfiguration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StaffDetails.resx">
+    <EmbeddedResource Include="Admin\StaffDetails.resx">
       <DependentUpon>StaffDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StaffInsertion.resx">
+    <EmbeddedResource Include="Admin\StaffInsertion.resx">
       <DependentUpon>StaffInsertion.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -196,6 +196,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database1.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Database1_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>Database1.mdf</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Customer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

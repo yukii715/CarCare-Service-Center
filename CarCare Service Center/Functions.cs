@@ -128,12 +128,12 @@ namespace Functions
     }
     public static class General_Operation
     {
-        public static void AddUser(string ID, string username, string email, string password, string role = null)
+        public static void AddUser(string ID, string username, string email, string password, string role = null, string salary = null)
         {
 
             // Define the SQL query to insert a new user
             string query1 = "INSERT INTO RegisteredUsers (RegisterID, Username, Email, Password) VALUES (@RegisterID, @Username, @Email, @Password)";
-            string query2 = "INSERT INTO Users (UserID, Username, Email, Password, Role, IsDeleted) VALUES (@UserID, @Username, @Email, @Password, @Role, 0)";
+            string query2 = "INSERT INTO Users (UserID, Username, Email, Password, Role, IsDeleted, Salary) VALUES (@UserID, @Username, @Email, @Password, @Role, 0, @Salary)";
 
             if (role == null)
             {
@@ -165,6 +165,7 @@ namespace Functions
                     command.Parameters.AddWithValue("@Email", email);
                     command.Parameters.AddWithValue("@Password", password);
                     command.Parameters.AddWithValue("@Role", role);
+                    command.Parameters.AddWithValue("@Salary",salary);
 
                     connection.Open();
 
