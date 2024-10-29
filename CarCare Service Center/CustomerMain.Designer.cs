@@ -44,8 +44,6 @@ namespace CarCare_Service_Center
             this.Appointment = new System.Windows.Forms.TabPage();
             this.History = new System.Windows.Forms.TabPage();
             this.Profile = new System.Windows.Forms.TabPage();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabCustomer.SuspendLayout();
             this.Home.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -153,22 +151,6 @@ namespace CarCare_Service_Center
             this.Profile.TabIndex = 4;
             this.Profile.Text = "Profile";
             this.Profile.UseVisualStyleBackColor = true;
-            // 
-            // chart1
-            // 
-            chartArea6.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chart1.Legends.Add(legend6);
-            this.chart1.Location = new System.Drawing.Point(66, 305);
-            this.chart1.Name = "chart1";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.chart1.Series.Add(series6);
-            this.chart1.Size = new System.Drawing.Size(499, 316);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
             // 
             // listBox1
             // 
