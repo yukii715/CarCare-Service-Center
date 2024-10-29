@@ -136,7 +136,7 @@
       <DependentUpon>AdminMain.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Users.cs" />
-    <EmbeddedResource Include="CustomerMain.resx">
+    <EmbeddedResource Include="Customer\CustomerMain.resx">
       <DependentUpon>CustomerMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
