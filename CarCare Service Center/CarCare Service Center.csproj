@@ -73,10 +73,10 @@
     <Compile Include="Admin.cs" />
     <Compile Include="Appearance.cs" />
     <Compile Include="Customer.cs" />
-    <Compile Include="CustomerMain.cs">
+    <Compile Include="Customer\CustomerMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomerMain.Designer.cs">
+    <Compile Include="Customer\CustomerMain.Designer.cs">
       <DependentUpon>CustomerMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Functions.cs" />
@@ -205,9 +205,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Customer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
