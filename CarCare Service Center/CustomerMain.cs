@@ -17,7 +17,13 @@ namespace CarCare_Service_Center
             InitializeComponent();
 
         }
-        
+
+
+        private void frmCustomerMain_Load(object sender, EventArgs e)
+        {
+            tabCustomer.DrawItem += Draw_Item.tabControlAdjustment;
+        }
+
     }
 
 }

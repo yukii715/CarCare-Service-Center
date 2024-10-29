@@ -32,11 +32,14 @@ namespace CarCare_Service_Center
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabCustomer = new System.Windows.Forms.TabControl();
             this.Home = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Search = new System.Windows.Forms.TabPage();
             this.Appointment = new System.Windows.Forms.TabPage();
             this.History = new System.Windows.Forms.TabPage();
@@ -69,6 +72,7 @@ namespace CarCare_Service_Center
             // 
             // Home
             // 
+            this.Home.Controls.Add(this.label1);
             this.Home.Controls.Add(this.listBox1);
             this.Home.Controls.Add(this.chart1);
             this.Home.Location = new System.Drawing.Point(84, 4);
@@ -78,6 +82,40 @@ namespace CarCare_Service_Center
             this.Home.TabIndex = 0;
             this.Home.Text = "Home";
             this.Home.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(405, 111);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(305, 18);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Welcome to CarCare Service Center";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 18;
+            this.listBox1.Location = new System.Drawing.Point(638, 274);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(368, 328);
+            this.listBox1.TabIndex = 1;
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(112, 274);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(440, 324);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
             // 
             // Search
             // 
@@ -151,6 +189,7 @@ namespace CarCare_Service_Center
             this.Text = "CarCare Service Center";
             this.tabCustomer.ResumeLayout(false);
             this.Home.ResumeLayout(false);
+            this.Home.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
@@ -166,6 +205,7 @@ namespace CarCare_Service_Center
         private TabPage Profile;
         private ListBox listBox1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private Label label1;
     }
 }
 
