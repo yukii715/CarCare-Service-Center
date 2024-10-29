@@ -57,6 +57,7 @@
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.AutoSize = true;
             this.panel1.Controls.Add(this.btnClose);
             this.panel1.Controls.Add(this.btnDelete);
