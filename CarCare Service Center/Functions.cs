@@ -149,7 +149,7 @@ namespace Functions
 
                     connection.Open();
 
-                    // Execute the command
+                    // Execute the command without returning any results
                     command.ExecuteNonQuery();
                 }
             }

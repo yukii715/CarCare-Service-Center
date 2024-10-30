@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Functions;
+using Users;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace CarCare_Service_Center
@@ -71,6 +72,23 @@ namespace CarCare_Service_Center
             }
             return role;
         }
+        private string GetID(string username_or_email)
+        {
+            string UserID;
+            string query = "SELECT UserID FROM Users WHERE (Username = @Identifier OR Email = @Identifier) AND IsDeleted = 0";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Identifier", username_or_email);
+
+                connection.Open(); // Open the connection to the database
+
+                // Execute the query and retrieve the role
+                object result = command.ExecuteScalar(); // Return the result from the query
+                UserID = result.ToString(); // Convert the result to string 
+            }
+            return UserID;
+        }
         private void llbRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             frmRegister frmRegister = new frmRegister();
@@ -89,6 +107,8 @@ namespace CarCare_Service_Center
                 if (IsUsernameOrEmailExisted(txtUsername.Text))
                 if (IsPasswordCorrect(txtUsername.Text, txtPassword.Text))
                 {
+                    User user = new User();
+                    user.UserID = GetID(txtUsername.Text);
                     switch (GetRole(txtUsername.Text))
                     {
                         case "Admin":
