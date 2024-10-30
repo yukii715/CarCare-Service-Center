@@ -16,15 +16,14 @@ namespace CarCare_Service_Center
         public frmCustomerMain()
         {
             InitializeComponent();
-
+            Place_Holder.SetPlaceHolder(txtSearch, "Search...");
         }
-
 
         private void frmCustomerMain_Load(object sender, EventArgs e)
         {
             tabCustomer.DrawItem += Draw_Item.tabControlAdjustment;
         }
-   
+
     }
 
 }
