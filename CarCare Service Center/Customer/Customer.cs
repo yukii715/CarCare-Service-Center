@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Users
 {
-    public class Receptionist : Users
+    public class Customer : User
     {
     }
 }

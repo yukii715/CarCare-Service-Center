@@ -42,7 +42,7 @@ namespace CarCare_Service_Center
         {
             StaffDetails formStaffDetails = new StaffDetails();
             formStaffDetails.Show();
-            
+
         }
 
         private void btnStaffDelete_Click(object sender, EventArgs e)

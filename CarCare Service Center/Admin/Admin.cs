@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Users
 {
-    public class Admin : Users
+    public class Admin : User
     {
     }
 }

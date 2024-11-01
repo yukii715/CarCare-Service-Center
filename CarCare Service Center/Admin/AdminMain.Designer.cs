@@ -49,7 +49,7 @@ namespace CarCare_Service_Center
             this.cmbRoleSelection = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabServices = new System.Windows.Forms.TabPage();
             this.btnServiceAdd = new System.Windows.Forms.Button();
             this.btnServiceDelete = new System.Windows.Forms.Button();
             this.btnServiceDetails = new System.Windows.Forms.Button();
@@ -64,13 +64,14 @@ namespace CarCare_Service_Center
             this.cmbServiceTypeSelection = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabFeedback = new System.Windows.Forms.TabPage();
+            this.tabReport = new System.Windows.Forms.TabPage();
+            this.tabProfile = new System.Windows.Forms.TabPage();
             this.tabAdmin.SuspendLayout();
             this.tabStaffAccount.SuspendLayout();
             this.panelStaffData.SuspendLayout();
             this.panelStaffAttribute.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabServices.SuspendLayout();
             this.panelServiceData.SuspendLayout();
             this.panelServiceAttribute.SuspendLayout();
             this.SuspendLayout();
@@ -80,9 +81,10 @@ namespace CarCare_Service_Center
             this.tabAdmin.Alignment = System.Windows.Forms.TabAlignment.Left;
             this.tabAdmin.Controls.Add(this.tabPage1);
             this.tabAdmin.Controls.Add(this.tabStaffAccount);
-            this.tabAdmin.Controls.Add(this.tabPage3);
-            this.tabAdmin.Controls.Add(this.tabPage4);
-            this.tabAdmin.Controls.Add(this.tabPage5);
+            this.tabAdmin.Controls.Add(this.tabServices);
+            this.tabAdmin.Controls.Add(this.tabFeedback);
+            this.tabAdmin.Controls.Add(this.tabReport);
+            this.tabAdmin.Controls.Add(this.tabProfile);
             this.tabAdmin.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabAdmin.ItemSize = new System.Drawing.Size(50, 80);
             this.tabAdmin.Location = new System.Drawing.Point(1, 2);
@@ -139,7 +141,7 @@ namespace CarCare_Service_Center
             this.tlpStaffData.ColumnCount = 3;
             this.tlpStaffData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.59679F));
             this.tlpStaffData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.40321F));
-            this.tlpStaffData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 299F));
+            this.tlpStaffData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
             this.tlpStaffData.Location = new System.Drawing.Point(36, 3);
             this.tlpStaffData.Name = "tlpStaffData";
             this.tlpStaffData.RowCount = 7;
@@ -304,24 +306,24 @@ namespace CarCare_Service_Center
             this.label1.TabIndex = 0;
             this.label1.Text = "Role: ";
             // 
-            // tabPage3
+            // tabServices
             // 
-            this.tabPage3.Controls.Add(this.btnServiceAdd);
-            this.tabPage3.Controls.Add(this.btnServiceDelete);
-            this.tabPage3.Controls.Add(this.btnServiceDetails);
-            this.tabPage3.Controls.Add(this.panelServiceData);
-            this.tabPage3.Controls.Add(this.panelServiceAttribute);
-            this.tabPage3.Controls.Add(this.btnServiceSearch);
-            this.tabPage3.Controls.Add(this.txtServiceSearch);
-            this.tabPage3.Controls.Add(this.cmbServiceTypeSelection);
-            this.tabPage3.Controls.Add(this.label7);
-            this.tabPage3.Controls.Add(this.label6);
-            this.tabPage3.Location = new System.Drawing.Point(84, 4);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1357, 853);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Services";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabServices.Controls.Add(this.btnServiceAdd);
+            this.tabServices.Controls.Add(this.btnServiceDelete);
+            this.tabServices.Controls.Add(this.btnServiceDetails);
+            this.tabServices.Controls.Add(this.panelServiceData);
+            this.tabServices.Controls.Add(this.panelServiceAttribute);
+            this.tabServices.Controls.Add(this.btnServiceSearch);
+            this.tabServices.Controls.Add(this.txtServiceSearch);
+            this.tabServices.Controls.Add(this.cmbServiceTypeSelection);
+            this.tabServices.Controls.Add(this.label7);
+            this.tabServices.Controls.Add(this.label6);
+            this.tabServices.Location = new System.Drawing.Point(84, 4);
+            this.tabServices.Name = "tabServices";
+            this.tabServices.Size = new System.Drawing.Size(1357, 853);
+            this.tabServices.TabIndex = 2;
+            this.tabServices.Text = "Services";
+            this.tabServices.UseVisualStyleBackColor = true;
             // 
             // btnServiceAdd
             // 
@@ -489,23 +491,32 @@ namespace CarCare_Service_Center
             this.label6.TabIndex = 1;
             this.label6.Text = "Service:";
             // 
-            // tabPage4
+            // tabFeedback
             // 
-            this.tabPage4.Location = new System.Drawing.Point(84, 4);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1357, 853);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Feedback";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabFeedback.Location = new System.Drawing.Point(84, 4);
+            this.tabFeedback.Name = "tabFeedback";
+            this.tabFeedback.Size = new System.Drawing.Size(1357, 853);
+            this.tabFeedback.TabIndex = 3;
+            this.tabFeedback.Text = "Feedback";
+            this.tabFeedback.UseVisualStyleBackColor = true;
             // 
-            // tabPage5
+            // tabReport
             // 
-            this.tabPage5.Location = new System.Drawing.Point(84, 4);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1357, 853);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Report";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.tabReport.Location = new System.Drawing.Point(84, 4);
+            this.tabReport.Name = "tabReport";
+            this.tabReport.Size = new System.Drawing.Size(1357, 853);
+            this.tabReport.TabIndex = 4;
+            this.tabReport.Text = "Report";
+            this.tabReport.UseVisualStyleBackColor = true;
+            // 
+            // tabProfile
+            // 
+            this.tabProfile.Location = new System.Drawing.Point(84, 4);
+            this.tabProfile.Name = "tabProfile";
+            this.tabProfile.Size = new System.Drawing.Size(1357, 853);
+            this.tabProfile.TabIndex = 5;
+            this.tabProfile.Text = "Profile";
+            this.tabProfile.UseVisualStyleBackColor = true;
             // 
             // frmAdminMain
             // 
@@ -522,8 +533,8 @@ namespace CarCare_Service_Center
             this.panelStaffData.ResumeLayout(false);
             this.panelStaffAttribute.ResumeLayout(false);
             this.panelStaffAttribute.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabServices.ResumeLayout(false);
+            this.tabServices.PerformLayout();
             this.panelServiceData.ResumeLayout(false);
             this.panelServiceAttribute.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -543,9 +554,9 @@ namespace CarCare_Service_Center
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabServices;
+        private System.Windows.Forms.TabPage tabFeedback;
+        private System.Windows.Forms.TabPage tabReport;
         private System.Windows.Forms.Panel panelStaffAttribute;
         private System.Windows.Forms.Button btnStaffAdd;
         private System.Windows.Forms.Button btnStaffDelete;
@@ -568,5 +579,6 @@ namespace CarCare_Service_Center
         private Button btnServiceSortServiceType;
         private Button btnServiceSortName;
         private Button btnServiceSortID;
+        private TabPage tabProfile;
     }
 }
