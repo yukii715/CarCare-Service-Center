@@ -8,5 +8,13 @@ namespace Users
 {
     public class Receptionist : User
     {
+        public Receptionist(User user)
+        {
+            UserID = user.UserID;
+            Username = user.Username;
+            Email = user.Email;
+            Password = user.Password;
+            Role = user.Role;
+        }
     }
 }

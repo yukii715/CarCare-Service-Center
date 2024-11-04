@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblStaffEmail = new System.Windows.Forms.Label();
-            this.lblStaffName = new System.Windows.Forms.Label();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.lblStaffID = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,28 +39,28 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.cmbRoleSelection = new System.Windows.Forms.ComboBox();
-            this.txtSalaryEntry = new System.Windows.Forms.TextBox();
+            this.txtSalary = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // lblStaffEmail
+            // lblEmail
             // 
-            this.lblStaffEmail.AutoSize = true;
-            this.lblStaffEmail.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStaffEmail.Location = new System.Drawing.Point(332, 333);
-            this.lblStaffEmail.Name = "lblStaffEmail";
-            this.lblStaffEmail.Size = new System.Drawing.Size(28, 40);
-            this.lblStaffEmail.TabIndex = 22;
-            this.lblStaffEmail.Text = "-";
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.Location = new System.Drawing.Point(332, 333);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(28, 40);
+            this.lblEmail.TabIndex = 22;
+            this.lblEmail.Text = "-";
             // 
-            // lblStaffName
+            // lblName
             // 
-            this.lblStaffName.AutoSize = true;
-            this.lblStaffName.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStaffName.Location = new System.Drawing.Point(332, 213);
-            this.lblStaffName.Name = "lblStaffName";
-            this.lblStaffName.Size = new System.Drawing.Size(28, 40);
-            this.lblStaffName.TabIndex = 21;
-            this.lblStaffName.Text = "-";
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(332, 213);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(28, 40);
+            this.lblName.TabIndex = 21;
+            this.lblName.Text = "-";
             // 
             // lblStaffID
             // 
@@ -157,25 +157,25 @@
             this.cmbRoleSelection.Size = new System.Drawing.Size(408, 48);
             this.cmbRoleSelection.TabIndex = 33;
             // 
-            // txtSalaryEntry
+            // txtSalary
             // 
-            this.txtSalaryEntry.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSalaryEntry.Location = new System.Drawing.Point(339, 570);
-            this.txtSalaryEntry.Name = "txtSalaryEntry";
-            this.txtSalaryEntry.Size = new System.Drawing.Size(408, 48);
-            this.txtSalaryEntry.TabIndex = 34;
+            this.txtSalary.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSalary.Location = new System.Drawing.Point(339, 570);
+            this.txtSalary.Name = "txtSalary";
+            this.txtSalary.Size = new System.Drawing.Size(408, 48);
+            this.txtSalary.TabIndex = 34;
             // 
             // StaffDetailConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 808);
-            this.Controls.Add(this.txtSalaryEntry);
+            this.Controls.Add(this.txtSalary);
             this.Controls.Add(this.cmbRoleSelection);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.lblStaffEmail);
-            this.Controls.Add(this.lblStaffName);
+            this.Controls.Add(this.lblEmail);
+            this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblStaffID);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -183,15 +183,15 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "StaffDetailConfiguration";
-            this.Text = "StaffDetailConfiguration";
+            this.Text = "CarCare Service Centre - Staff Details Edit";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label lblStaffEmail;
-        private System.Windows.Forms.Label lblStaffName;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblStaffID;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -201,6 +201,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.ComboBox cmbRoleSelection;
-        private System.Windows.Forms.TextBox txtSalaryEntry;
+        private System.Windows.Forms.TextBox txtSalary;
     }
 }

@@ -33,10 +33,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.lblStaffSalary = new System.Windows.Forms.Label();
-            this.lblStaffRole = new System.Windows.Forms.Label();
-            this.lblStaffEmail = new System.Windows.Forms.Label();
-            this.lblStaffName = new System.Windows.Forms.Label();
+            this.lblSalary = new System.Windows.Forms.Label();
+            this.lblRole = new System.Windows.Forms.Label();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.lblStaffID = new System.Windows.Forms.Label();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -93,45 +93,45 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Salary: ";
             // 
-            // lblStaffSalary
+            // lblSalary
             // 
-            this.lblStaffSalary.AutoSize = true;
-            this.lblStaffSalary.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStaffSalary.Location = new System.Drawing.Point(332, 573);
-            this.lblStaffSalary.Name = "lblStaffSalary";
-            this.lblStaffSalary.Size = new System.Drawing.Size(28, 40);
-            this.lblStaffSalary.TabIndex = 9;
-            this.lblStaffSalary.Text = "-";
+            this.lblSalary.AutoSize = true;
+            this.lblSalary.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSalary.Location = new System.Drawing.Point(332, 573);
+            this.lblSalary.Name = "lblSalary";
+            this.lblSalary.Size = new System.Drawing.Size(28, 40);
+            this.lblSalary.TabIndex = 9;
+            this.lblSalary.Text = "-";
             // 
-            // lblStaffRole
+            // lblRole
             // 
-            this.lblStaffRole.AutoSize = true;
-            this.lblStaffRole.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStaffRole.Location = new System.Drawing.Point(332, 453);
-            this.lblStaffRole.Name = "lblStaffRole";
-            this.lblStaffRole.Size = new System.Drawing.Size(28, 40);
-            this.lblStaffRole.TabIndex = 8;
-            this.lblStaffRole.Text = "-";
+            this.lblRole.AutoSize = true;
+            this.lblRole.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRole.Location = new System.Drawing.Point(332, 453);
+            this.lblRole.Name = "lblRole";
+            this.lblRole.Size = new System.Drawing.Size(28, 40);
+            this.lblRole.TabIndex = 8;
+            this.lblRole.Text = "-";
             // 
-            // lblStaffEmail
+            // lblEmail
             // 
-            this.lblStaffEmail.AutoSize = true;
-            this.lblStaffEmail.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStaffEmail.Location = new System.Drawing.Point(332, 333);
-            this.lblStaffEmail.Name = "lblStaffEmail";
-            this.lblStaffEmail.Size = new System.Drawing.Size(28, 40);
-            this.lblStaffEmail.TabIndex = 7;
-            this.lblStaffEmail.Text = "-";
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.Location = new System.Drawing.Point(332, 333);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(28, 40);
+            this.lblEmail.TabIndex = 7;
+            this.lblEmail.Text = "-";
             // 
-            // lblStaffName
+            // lblName
             // 
-            this.lblStaffName.AutoSize = true;
-            this.lblStaffName.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStaffName.Location = new System.Drawing.Point(332, 213);
-            this.lblStaffName.Name = "lblStaffName";
-            this.lblStaffName.Size = new System.Drawing.Size(28, 40);
-            this.lblStaffName.TabIndex = 6;
-            this.lblStaffName.Text = "-";
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(332, 213);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(28, 40);
+            this.lblName.TabIndex = 6;
+            this.lblName.Text = "-";
             // 
             // lblStaffID
             // 
@@ -184,10 +184,10 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.lblStaffSalary);
-            this.Controls.Add(this.lblStaffRole);
-            this.Controls.Add(this.lblStaffEmail);
-            this.Controls.Add(this.lblStaffName);
+            this.Controls.Add(this.lblSalary);
+            this.Controls.Add(this.lblRole);
+            this.Controls.Add(this.lblEmail);
+            this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblStaffID);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -195,7 +195,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "StaffDetails";
-            this.Text = "StaffDetails";
+            this.Text = "CarCare Service Centre - Staff Details";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,10 +208,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblStaffSalary;
-        private System.Windows.Forms.Label lblStaffRole;
-        private System.Windows.Forms.Label lblStaffEmail;
-        private System.Windows.Forms.Label lblStaffName;
+        private System.Windows.Forms.Label lblSalary;
+        private System.Windows.Forms.Label lblRole;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblStaffID;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;

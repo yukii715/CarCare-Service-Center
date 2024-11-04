@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Collections;
 using CarCare_Service_Center;
+using System.Reflection;
 
 namespace Functions
 {
@@ -24,6 +25,13 @@ namespace Functions
             if (value.Length > max || value.Length < min)
                 return true;
             else
+                return false;
+        }
+        public static bool IsUsernameInvalid(string username)
+        {
+            if (IsItBlank(username) || IsLengthInvalid(username, 3, 20) || username.Contains(" "))
+                return true;
+            else 
                 return false;
         }
         public static bool IsEmailInvalid(string email)
@@ -128,7 +136,7 @@ namespace Functions
     }
     public static class General_Operation
     {
-        public static void AddUser(string ID, string username, string email, string password, string role = null, string salary = null)
+        public static void AddUser(string ID, string username, string email, string password, string role = null, int salary = 0)
         {
 
             // Define the SQL query to insert a new user
@@ -174,6 +182,44 @@ namespace Functions
                 }
             }
         }
+    }
+    public static class Database
+    {
+        public static List<T> FetchData<T>(string query) where T : new()
+        {
+            List<T> resultList = new List<T>();
 
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Create an instance of the generic type T
+                        T instance = new T();
+
+                        // Populate the properties of T from the reader
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            string columnName = reader.GetName(i);
+                            PropertyInfo property = typeof(T).GetProperty(columnName);
+
+                            if (property != null && reader[columnName] != DBNull.Value)
+                            {
+                                // Set the property value
+                                property.SetValue(instance, reader[columnName]);
+                            }
+                        }
+
+                        resultList.Add(instance);
+                    }
+                }
+            }
+
+            return resultList;
+        }
     }
 }

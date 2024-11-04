@@ -61,13 +61,16 @@ namespace CarCare_Service_Center
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.Profile = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.btnChangeUserName = new System.Windows.Forms.Button();
-            this.btnChangeEmail = new System.Windows.Forms.Button();
+            this.lblAdminEmail = new System.Windows.Forms.Label();
+            this.lblAdminName = new System.Windows.Forms.Label();
+            this.lblAdminID = new System.Windows.Forms.Label();
             this.btnChangePassword = new System.Windows.Forms.Button();
+            this.btnChangeEmail = new System.Windows.Forms.Button();
+            this.btnChangeUserName = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.tabCustomer.SuspendLayout();
             this.Home.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -365,13 +368,16 @@ namespace CarCare_Service_Center
             // 
             // Profile
             // 
+            this.Profile.Controls.Add(this.lblAdminEmail);
+            this.Profile.Controls.Add(this.lblAdminName);
+            this.Profile.Controls.Add(this.lblAdminID);
             this.Profile.Controls.Add(this.btnChangePassword);
             this.Profile.Controls.Add(this.btnChangeEmail);
             this.Profile.Controls.Add(this.btnChangeUserName);
-            this.Profile.Controls.Add(this.label12);
-            this.Profile.Controls.Add(this.label11);
-            this.Profile.Controls.Add(this.label10);
-            this.Profile.Controls.Add(this.label9);
+            this.Profile.Controls.Add(this.label13);
+            this.Profile.Controls.Add(this.label14);
+            this.Profile.Controls.Add(this.label15);
+            this.Profile.Controls.Add(this.label16);
             this.Profile.Location = new System.Drawing.Point(84, 4);
             this.Profile.Name = "Profile";
             this.Profile.Size = new System.Drawing.Size(1094, 740);
@@ -379,78 +385,105 @@ namespace CarCare_Service_Center
             this.Profile.Text = "Profile";
             this.Profile.UseVisualStyleBackColor = true;
             // 
-            // label9
+            // lblAdminEmail
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Ink Free", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(436, 27);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(148, 54);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "Profile";
+            this.lblAdminEmail.AutoSize = true;
+            this.lblAdminEmail.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdminEmail.Location = new System.Drawing.Point(372, 351);
+            this.lblAdminEmail.Name = "lblAdminEmail";
+            this.lblAdminEmail.Size = new System.Drawing.Size(0, 34);
+            this.lblAdminEmail.TabIndex = 32;
             // 
-            // label10
+            // lblAdminName
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(278, 166);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(113, 34);
-            this.label10.TabIndex = 7;
-            this.label10.Text = "UserID:";
+            this.lblAdminName.AutoSize = true;
+            this.lblAdminName.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdminName.Location = new System.Drawing.Point(372, 277);
+            this.lblAdminName.Name = "lblAdminName";
+            this.lblAdminName.Size = new System.Drawing.Size(0, 34);
+            this.lblAdminName.TabIndex = 31;
             // 
-            // label11
+            // lblAdminID
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(278, 240);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(171, 34);
-            this.label11.TabIndex = 8;
-            this.label11.Text = "User Name:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(278, 314);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(96, 34);
-            this.label12.TabIndex = 9;
-            this.label12.Text = "Email:";
-            // 
-            // btnChangeUserName
-            // 
-            this.btnChangeUserName.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnChangeUserName.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangeUserName.Location = new System.Drawing.Point(95, 528);
-            this.btnChangeUserName.Name = "btnChangeUserName";
-            this.btnChangeUserName.Size = new System.Drawing.Size(208, 52);
-            this.btnChangeUserName.TabIndex = 10;
-            this.btnChangeUserName.Text = "Change User Name";
-            this.btnChangeUserName.UseVisualStyleBackColor = true;
-            // 
-            // btnChangeEmail
-            // 
-            this.btnChangeEmail.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnChangeEmail.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangeEmail.Location = new System.Drawing.Point(394, 528);
-            this.btnChangeEmail.Name = "btnChangeEmail";
-            this.btnChangeEmail.Size = new System.Drawing.Size(208, 52);
-            this.btnChangeEmail.TabIndex = 11;
-            this.btnChangeEmail.Text = "Change Email";
-            this.btnChangeEmail.UseVisualStyleBackColor = true;
+            this.lblAdminID.AutoSize = true;
+            this.lblAdminID.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdminID.Location = new System.Drawing.Point(372, 203);
+            this.lblAdminID.Name = "lblAdminID";
+            this.lblAdminID.Size = new System.Drawing.Size(0, 34);
+            this.lblAdminID.TabIndex = 30;
             // 
             // btnChangePassword
             // 
             this.btnChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnChangePassword.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangePassword.Location = new System.Drawing.Point(693, 528);
+            this.btnChangePassword.Location = new System.Drawing.Point(723, 559);
             this.btnChangePassword.Name = "btnChangePassword";
             this.btnChangePassword.Size = new System.Drawing.Size(208, 52);
-            this.btnChangePassword.TabIndex = 12;
+            this.btnChangePassword.TabIndex = 29;
             this.btnChangePassword.Text = "Change Password";
             this.btnChangePassword.UseVisualStyleBackColor = true;
+            // 
+            // btnChangeEmail
+            // 
+            this.btnChangeEmail.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnChangeEmail.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeEmail.Location = new System.Drawing.Point(410, 559);
+            this.btnChangeEmail.Name = "btnChangeEmail";
+            this.btnChangeEmail.Size = new System.Drawing.Size(208, 52);
+            this.btnChangeEmail.TabIndex = 28;
+            this.btnChangeEmail.Text = "Change Email";
+            this.btnChangeEmail.UseVisualStyleBackColor = true;
+            // 
+            // btnChangeUserName
+            // 
+            this.btnChangeUserName.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnChangeUserName.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeUserName.Location = new System.Drawing.Point(97, 559);
+            this.btnChangeUserName.Name = "btnChangeUserName";
+            this.btnChangeUserName.Size = new System.Drawing.Size(208, 52);
+            this.btnChangeUserName.TabIndex = 27;
+            this.btnChangeUserName.Text = "Change User Name";
+            this.btnChangeUserName.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(161, 351);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(96, 34);
+            this.label13.TabIndex = 26;
+            this.label13.Text = "Email:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(161, 277);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(171, 34);
+            this.label14.TabIndex = 25;
+            this.label14.Text = "User Name:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(161, 203);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(113, 34);
+            this.label15.TabIndex = 24;
+            this.label15.Text = "UserID:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Ink Free", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(451, 64);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(148, 54);
+            this.label16.TabIndex = 23;
+            this.label16.Text = "Profile";
             // 
             // frmCustomerMain
             // 
@@ -513,13 +546,16 @@ namespace CarCare_Service_Center
         private Panel panel3;
         private Label label8;
         private PictureBox pictureBox4;
-        private Label label9;
-        private Label label12;
-        private Label label11;
-        private Label label10;
-        private Button btnChangeUserName;
+        private Label lblAdminEmail;
+        private Label lblAdminName;
+        private Label lblAdminID;
         private Button btnChangePassword;
         private Button btnChangeEmail;
+        private Button btnChangeUserName;
+        private Label label13;
+        private Label label14;
+        private Label label15;
+        private Label label16;
     }
 }
 

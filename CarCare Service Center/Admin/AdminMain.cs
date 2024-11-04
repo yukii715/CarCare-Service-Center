@@ -8,14 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Appearance;
+using Users;
 
 namespace CarCare_Service_Center
 {
     public partial class frmAdminMain : Form
     {
-        public frmAdminMain()
+        private Admin admin;
+        public frmAdminMain(Admin ad)
         {
             InitializeComponent();
+            admin = ad;
+            lblAdminID.Text = admin.UserID;
+            lblAdminName.Text = admin.Username;
+            lblAdminEmail.Text = admin.Email;
         }
 
         private void frmAdminMain_Load(object sender, EventArgs e)
@@ -81,6 +87,18 @@ namespace CarCare_Service_Center
         {
             ServiceDetails formServiceDetails = new ServiceDetails();
             formServiceDetails.Show();
+        }
+
+        private void btnServiceDelete_Click(object sender, EventArgs e)
+        {
+            ServiceDeletion formServiceDeletion = new ServiceDeletion();
+            formServiceDeletion.Show();
+        }
+
+        private void btnServiceAdd_Click(object sender, EventArgs e)
+        {
+            ServiceInsertion formServiceInsertion = new ServiceInsertion();
+            formServiceInsertion.Show();
         }
     }
 }

@@ -8,14 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Users;
 
 namespace CarCare_Service_Center
 {
     public partial class frmCustomerMain : Form
     {
-        public frmCustomerMain()
+        private Customer customer;
+        public frmCustomerMain(Customer cus)
         {
             InitializeComponent();
+            customer = cus;
             Place_Holder.SetPlaceHolder(txtSearch, "Search...");
         }
 

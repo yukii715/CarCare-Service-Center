@@ -1,6 +1,6 @@
 ﻿namespace CarCare_Service_Center
 {
-    partial class StaffDeletion
+    partial class ServiceDeletion
     {
         /// <summary>
         /// Required designer variable.
@@ -36,45 +36,45 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(52, 51);
+            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(64, 53);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(906, 40);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Are you sure to remove this Staff from CarCare Service Centre?";
+            this.label1.Size = new System.Drawing.Size(858, 38);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Are you sure to remove this service from CarCare Service Centre?";
             // 
             // btnYes
             // 
-            this.btnYes.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnYes.Location = new System.Drawing.Point(150, 161);
+            this.btnYes.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnYes.Location = new System.Drawing.Point(107, 154);
             this.btnYes.Name = "btnYes";
-            this.btnYes.Size = new System.Drawing.Size(209, 59);
-            this.btnYes.TabIndex = 1;
+            this.btnYes.Size = new System.Drawing.Size(167, 58);
+            this.btnYes.TabIndex = 18;
             this.btnYes.Text = "Yes";
             this.btnYes.UseVisualStyleBackColor = true;
             this.btnYes.Click += new System.EventHandler(this.btnYes_Click);
             // 
             // btnNo
             // 
-            this.btnNo.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNo.Location = new System.Drawing.Point(645, 161);
+            this.btnNo.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNo.Location = new System.Drawing.Point(614, 154);
             this.btnNo.Name = "btnNo";
-            this.btnNo.Size = new System.Drawing.Size(209, 59);
-            this.btnNo.TabIndex = 2;
+            this.btnNo.Size = new System.Drawing.Size(167, 58);
+            this.btnNo.TabIndex = 19;
             this.btnNo.Text = "No";
             this.btnNo.UseVisualStyleBackColor = true;
             this.btnNo.Click += new System.EventHandler(this.btnNo_Click);
             // 
-            // StaffDeletion
+            // ServiceDeletion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1037, 311);
+            this.ClientSize = new System.Drawing.Size(981, 260);
             this.Controls.Add(this.btnNo);
             this.Controls.Add(this.btnYes);
             this.Controls.Add(this.label1);
-            this.Name = "StaffDeletion";
-            this.Text = "Staff Account Deletion";
+            this.Name = "ServiceDeletion";
+            this.Text = "Service Deletion";
             this.ResumeLayout(false);
             this.PerformLayout();
 

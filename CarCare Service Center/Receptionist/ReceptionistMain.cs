@@ -11,28 +11,25 @@ using Users;
 
 namespace CarCare_Service_Center
 {
-    public partial class frmMechanicMain : Form
+    public partial class frmReceptionistMain : Form
     {
-        private Mechanic Mechanic;
-        public frmMechanicMain(Mechanic mec)
+        private Receptionist receptionist;
+        public frmReceptionistMain(Receptionist rec)
         {
             InitializeComponent();
-            Mechanic = mec;
-            sessionStartTime = DateTime.Now;
-            timer1.Start();
-
+            receptionist = rec;
         }
-        private DateTime sessionStartTime;
-        private void tabMechanic_DrawItem(Object sender, DrawItemEventArgs e)
+
+        private void tabReceptionist_DrawItem(object sender, DrawItemEventArgs e)
         {
             Graphics g = e.Graphics;
             Brush _textBrush;
 
             // Get the item from the collection.
-            TabPage _tabPage = tabMechanic.TabPages[e.Index];
+            TabPage _tabPage = tabReceptionist.TabPages[e.Index];
 
             // Get the real bounds for the tab rectangle.
-            Rectangle _tabBounds = tabMechanic.GetTabRect(e.Index);
+            Rectangle _tabBounds = tabReceptionist.GetTabRect(e.Index);
 
             if (e.State == DrawItemState.Selected)
             {
@@ -57,29 +54,15 @@ namespace CarCare_Service_Center
             g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
 
-
-        private void tabPage1_Click(object sender, EventArgs e)
+        private void btnRequests_Click(object sender, EventArgs e)
         {
-         
-        }
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            lbltime.Text = DateTime.Now.ToString("HH:mm:ss");
-            TimeSpan sessionDuration = DateTime.Now - sessionStartTime;
-            lblCurrenttime.Text = sessionDuration.ToString(@"hh\:mm\:ss");
-
-
+            CustomerRequests openForm = new CustomerRequests();
+            openForm.Show();
         }
 
-        private void taskList_SelectedIndexChanged(object sender, EventArgs e)
+        private void frmReceptionistMain_Load(object sender, EventArgs e)
         {
-            if (taskList.SelectedIndex >= 0)
-            {
-                string selectedItem = taskList.SelectedItem.ToString();
-                textBox1.Text = selectedItem;
-
-                tabMechanic.SelectedIndex = 2;
-            }
+            Console.WriteLine(DateTime.Now);
         }
     }
 }

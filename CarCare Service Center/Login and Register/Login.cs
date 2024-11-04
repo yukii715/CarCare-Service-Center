@@ -54,24 +54,6 @@ namespace CarCare_Service_Center
                 return count == 1; // Returns true if the password is correct for the user or email
             }
         }
-
-        private string GetRole(string username_or_email)
-        {
-            string role;
-            string query = "SELECT Role FROM Users WHERE (Username = @Identifier OR Email = @Identifier) AND IsDeleted = 0";
-            using (SqlConnection connection = new SqlConnection(Program.connectionString))
-            {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Identifier", username_or_email); 
-
-                connection.Open(); // Open the connection to the database
-
-                // Execute the query and retrieve the role
-                object result = command.ExecuteScalar(); // Return the result from the query
-                role = result.ToString(); // Convert the result to string 
-            }
-            return role;
-        }
         private string GetID(string username_or_email)
         {
             string UserID;
@@ -107,28 +89,37 @@ namespace CarCare_Service_Center
                 if (IsUsernameOrEmailExisted(txtUsername.Text))
                 if (IsPasswordCorrect(txtUsername.Text, txtPassword.Text))
                 {
-                    User user = new User();
-                    user.UserID = GetID(txtUsername.Text);
-                    switch (GetRole(txtUsername.Text))
+                    User user = new User()
                     {
+                        UserID = GetID(txtUsername.Text)
+                    };
+                    user.GetUserInfo(user.UserID);
+                    switch (user.Role)
+                    { 
                         case "Admin":
-                            frmAdminMain frmAdminMain = new frmAdminMain();
+                            Admin admin = new Admin(user);
+                            frmAdminMain frmAdminMain = new frmAdminMain(admin);
                             Hide();
                             frmAdminMain.ShowDialog();
                             Close();
                             break;
                         case "Receptionist":
-
+                            Receptionist receptionist = new Receptionist(user);
+                            frmReceptionistMain frmReceptionistMain = new frmReceptionistMain(receptionist);
+                            Hide();
+                            frmReceptionistMain.ShowDialog();
                             Close();
                             break;
                         case "Mechanic":
-                            frmMechanicMain frmMechanicMain = new frmMechanicMain();
+                            Mechanic mechanic = new Mechanic(user);
+                            frmMechanicMain frmMechanicMain = new frmMechanicMain(mechanic);
                             Hide();
                             frmMechanicMain.ShowDialog();
                             Close();
                             break;
                         case "Customer":
-                            frmCustomerMain frmCustomerMain = new frmCustomerMain();
+                            Customer customer = new Customer(user);
+                            frmCustomerMain frmCustomerMain = new frmCustomerMain(customer);
                             Close();
                             frmCustomerMain.ShowDialog();
                             Close();
