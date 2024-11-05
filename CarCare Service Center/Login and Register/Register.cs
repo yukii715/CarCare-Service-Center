@@ -9,6 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Users;
 
 namespace CarCare_Service_Center
 {
@@ -34,7 +35,7 @@ namespace CarCare_Service_Center
             else
             {
                 string registerID = ID_Generator.RegisterID();
-                General_Operation.AddUser(registerID, txtUsername.Text, txtEmail.Text, txtPassword.Text);
+                RegisteredUser.Add(registerID, txtUsername.Text, txtEmail.Text, txtPassword.Text);
                 MessageBox.Show("Register Successfully!");
                 txtUsername.Clear();
                 txtEmail.Clear();

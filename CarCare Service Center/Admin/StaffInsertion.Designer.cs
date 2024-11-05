@@ -105,9 +105,9 @@
             this.label4.Location = new System.Drawing.Point(71, 231);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 30);
+            this.label4.Size = new System.Drawing.Size(64, 30);
             this.label4.TabIndex = 30;
-            this.label4.Text = "Role";
+            this.label4.Text = "Role:";
             // 
             // label3
             // 

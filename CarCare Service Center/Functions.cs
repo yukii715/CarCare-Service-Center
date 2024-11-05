@@ -134,55 +134,7 @@ namespace Functions
         }
 
     }
-    public static class General_Operation
-    {
-        public static void AddUser(string ID, string username, string email, string password, string role = null, int salary = 0)
-        {
-
-            // Define the SQL query to insert a new user
-            string query1 = "INSERT INTO RegisteredUsers (RegisterID, Username, Email, Password) VALUES (@RegisterID, @Username, @Email, @Password)";
-            string query2 = "INSERT INTO Users (UserID, Username, Email, Password, Role, IsDeleted, Salary) VALUES (@UserID, @Username, @Email, @Password, @Role, 0, @Salary)";
-
-            if (role == null)
-            {
-                using (SqlConnection connection = new SqlConnection(Program.connectionString))
-                {
-                    SqlCommand command = new SqlCommand(query1, connection);
-
-                    // Add parameters to avoid SQL injection
-                    command.Parameters.AddWithValue("@RegisterID", ID);
-                    command.Parameters.AddWithValue("@Username", username);
-                    command.Parameters.AddWithValue("@Email", email);
-                    command.Parameters.AddWithValue("@Password", password);
-
-                    connection.Open();
-
-                    // Execute the command without returning any results
-                    command.ExecuteNonQuery();
-                }
-            }
-            else
-            {
-                using (SqlConnection connection = new SqlConnection(Program.connectionString))
-                {
-                    SqlCommand command = new SqlCommand(query2, connection);
-
-                    // Add parameters to avoid SQL injection
-                    command.Parameters.AddWithValue("@UserID", ID);
-                    command.Parameters.AddWithValue("@Username", username);
-                    command.Parameters.AddWithValue("@Email", email);
-                    command.Parameters.AddWithValue("@Password", password);
-                    command.Parameters.AddWithValue("@Role", role);
-                    command.Parameters.AddWithValue("@Salary",salary);
-
-                    connection.Open();
-
-                    // Execute the command
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-    }
+    
     public static class Database
     {
         public static List<T> FetchData<T>(string query) where T : new()
@@ -204,9 +156,13 @@ namespace Functions
                         // Populate the properties of T from the reader
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
-                            string columnName = reader.GetName(i);
+                            // Get column name 
+                            string columnName = reader.GetName(i); 
+                            // Get value of each coloum in variable property
                             PropertyInfo property = typeof(T).GetProperty(columnName);
 
+                            /* If the column name not found in the class property or the value in database is zero,
+                               ignore them */
                             if (property != null && reader[columnName] != DBNull.Value)
                             {
                                 // Set the property value

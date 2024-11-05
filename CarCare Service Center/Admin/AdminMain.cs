@@ -59,7 +59,7 @@ namespace CarCare_Service_Center
 
         private void btnStaffAdd_Click(object sender, EventArgs e)
         {
-            StaffInsertion formStaffInsertion = new StaffInsertion();
+            StaffInsertion formStaffInsertion = new StaffInsertion(admin);
             formStaffInsertion.Show();
         }
 

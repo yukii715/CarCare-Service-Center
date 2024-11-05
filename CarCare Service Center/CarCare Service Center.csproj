@@ -215,6 +215,9 @@
     <EmbeddedResource Include="Admin\StaffInsertion.resx">
       <DependentUpon>StaffInsertion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Receptionist\CustomerRequests.resx">
+      <DependentUpon>CustomerRequests.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Receptionist\ReceptionistMain.resx">
       <DependentUpon>ReceptionistMain.cs</DependentUpon>
     </EmbeddedResource>

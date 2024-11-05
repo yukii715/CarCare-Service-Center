@@ -8,14 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Functions;
+using Users;
 
 namespace CarCare_Service_Center
 {
     public partial class StaffInsertion : Form
     {
-        public StaffInsertion()
+        private Admin admin;
+        public StaffInsertion(Admin ad)
         {
             InitializeComponent();
+            admin = ad;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -41,7 +44,8 @@ namespace CarCare_Service_Center
                 MessageBox.Show("Invalid Salary");
             else
             {
-                General_Operation.AddUser(userid,username,email,password,role,salary);
+                User.Add(userid,username,email,password,role);
+                admin.assign_staff_salary(userid, salary);
                 MessageBox.Show($"Staff added, Password is {password}");
             }
         }

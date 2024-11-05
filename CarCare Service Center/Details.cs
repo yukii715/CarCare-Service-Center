@@ -80,9 +80,4 @@ namespace CarCare_Service_Center
 
         }
     }
-    public class MechanicTasks
-    {
-        public string UserID { get; set; }
-        public string AppointmentID { get; set; }
-    }
 }

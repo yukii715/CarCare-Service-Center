@@ -16,5 +16,10 @@ namespace Users
             Password = user.Password;
             Role = user.Role;
         }
+        public class MechanicTasks
+        {
+            public string UserID { get; set; }
+            public string AppointmentID { get; set; }
+        }
     }
 }
