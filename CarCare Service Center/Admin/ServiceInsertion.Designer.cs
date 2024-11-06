@@ -30,6 +30,7 @@ namespace CarCare_Service_Center
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServiceInsertion));
             this.btnCreate = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnNewType = new System.Windows.Forms.Button();
@@ -170,7 +171,7 @@ namespace CarCare_Service_Center
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.67327F));
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.32674F));
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
-            this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 161F));
+            this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
             this.tlpPrice.Controls.Add(this.btnAddPrice, 0, 1);
             this.tlpPrice.Controls.Add(this.txtPriceDescription, 2, 0);
             this.tlpPrice.Controls.Add(this.txtPriceAmount, 1, 0);
@@ -182,7 +183,7 @@ namespace CarCare_Service_Center
             this.tlpPrice.RowCount = 2;
             this.tlpPrice.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tlpPrice.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tlpPrice.Size = new System.Drawing.Size(666, 110);
+            this.tlpPrice.Size = new System.Drawing.Size(667, 110);
             this.tlpPrice.TabIndex = 16;
             // 
             // btnAddPrice
@@ -274,6 +275,7 @@ namespace CarCare_Service_Center
             // picService
             // 
             this.picService.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.picService.Image = ((System.Drawing.Image)(resources.GetObject("picService.Image")));
             this.picService.Location = new System.Drawing.Point(460, 22);
             this.picService.Margin = new System.Windows.Forms.Padding(2);
             this.picService.Name = "picService";
@@ -376,7 +378,6 @@ namespace CarCare_Service_Center
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ServiceInsertion";
             this.Text = "CarCare Service Centre - Add Service Details";
-            this.Load += new System.EventHandler(this.ServiceInsertion_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tlpPrice.ResumeLayout(false);

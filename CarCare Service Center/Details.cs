@@ -22,6 +22,10 @@ namespace CarCare_Service_Center
             string pattern = @"^[A-Z]{3}$";
             return Regex.IsMatch(serviceTypePrefix, pattern);
         }
+        public void Add()
+        {
+
+        }
         public class ServicePrice
         {
             public string ServiceID { get; set; }
@@ -31,7 +35,7 @@ namespace CarCare_Service_Center
             public class ServiceOrder
         {
             public string ServiceOrderID { get; set; }
-            public string UserID { get; set; }
+            public string ApointmentID { get; set; }
             public string VehicleNumber { get; set; }
             public string CompletionStatus { get; set; }
             public string ArrivalDate { get; set; }
@@ -72,8 +76,12 @@ namespace CarCare_Service_Center
         public string AppointmentDate { get; set; }
         public string AppointmentTime { get; set; }
         public string VehicleNumber { get ; set; }
-        public string ServiceID { get; set; }
         public string Status { get; set; }
+        public class Services
+        {
+            public string AppointmentID { get; set; }
+            public string ServiceID { get; set; }
+        }
     }
     public class Parts
     {

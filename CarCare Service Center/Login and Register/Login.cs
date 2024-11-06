@@ -79,12 +79,12 @@ namespace CarCare_Service_Center
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (Validation.IsItBlank(txtUsername.Text) && Validation.IsItBlank(txtPassword.Text))
-                MessageBox.Show("Please enter your username and password");
-            else if (Validation.IsItBlank(txtUsername.Text))
-                MessageBox.Show("Please enter your username");
-            else if (Validation.IsItBlank(txtPassword.Text))
-                MessageBox.Show("Please enter your password");
+            if (string.IsNullOrEmpty(txtUsername.Text) && string.IsNullOrEmpty(txtPassword.Text))
+                MessageBox.Show("Please enter your username and password","Reminder", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            else if (string.IsNullOrEmpty(txtUsername.Text))
+                MessageBox.Show("Please enter your username", "Reminder", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            else if (string.IsNullOrEmpty(txtPassword.Text))
+                MessageBox.Show("Please enter your password", "Reminder", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             else
                 if (IsUsernameOrEmailExisted(txtUsername.Text))
                 if (IsPasswordCorrect(txtUsername.Text, txtPassword.Text))

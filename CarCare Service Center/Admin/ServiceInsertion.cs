@@ -19,7 +19,9 @@ namespace CarCare_Service_Center
         private Label lblNewType;
         private TextBox txtNewType;
         private TextBox txtTypePrefix;
-        private Image UploadImageIcon;
+        private bool ImageUpload = false;
+
+
         public ServiceInsertion()
         {
             InitializeComponent();
@@ -65,7 +67,7 @@ namespace CarCare_Service_Center
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            if (Validation.IsItBlank(cmbServiceType.Text))
+            if (string.IsNullOrEmpty(cmbServiceType.Text))
             {
                 if (txtNewType == null)
                 {
@@ -73,11 +75,16 @@ namespace CarCare_Service_Center
                     return;
                 }
 
-                if (Validation.IsItBlank(txtNewType.Text) || !Services.IsServiceTypePrefixValid(txtTypePrefix.Text))
+                if (string.IsNullOrWhiteSpace(txtNewType.Text) || !Services.IsServiceTypePrefixValid(txtTypePrefix.Text))
                 {
                     MessageBox.Show("Invalid Service Type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+            }
+            if (string.IsNullOrWhiteSpace(txtServiceName.Text))
+            {
+                MessageBox.Show("Please enter the service name", "Service Name Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
             if (txtServiceName.TextLength > 50)
             {
@@ -86,38 +93,41 @@ namespace CarCare_Service_Center
             }
 
             List<Services.ServicePrice> prices = new List<Services.ServicePrice>();
+
             for (int row = 0; row < rowCount - 1; row++) // Last row is add button
             {
-                if (tlpPrice.GetControlFromPosition(1, row) is TextBox txtPrice && float.TryParse(txtPrice.Text, out float price))
+                if (tlpPrice.GetControlFromPosition(1, row) is TextBox txtPrice &&
+                    float.TryParse(txtPrice.Text, out float price) &&
+                    tlpPrice.GetControlFromPosition(2, row) is TextBox txtPriceDescription &&
+                    !Validation.IsLengthInvalid(txtPriceDescription.Text, 1, 20))
                 {
-                    if (tlpPrice.GetControlFromPosition(2, row) is TextBox txtPriceDescription && !Validation.IsLengthInvalid(txtPriceDescription.Text, 1, 20))
-                        prices.Add(new Services.ServicePrice { Price = price, Description = txtPriceDescription.Text});
+                    prices.Add(new Services.ServicePrice { Price = price, Description = txtPriceDescription.Text });
                 }
                 else
                 {
-                    MessageBox.Show($"Invalid Price", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Invalid Price or Description", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
 
-            if (!int.TryParse(txtTime.Text, out int EstimatedTime) || txtTime.TextLength > 3)
+            if (!int.TryParse(txtTime.Text, out int EstimatedTime) || EstimatedTime < 1 || EstimatedTime > 999)
             {
                 MessageBox.Show("Invalid Estimated Time", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (Validation.IsItBlank(txtDescription.Text))
+            if (string.IsNullOrWhiteSpace(txtDescription.Text))
             {
                 MessageBox.Show("Please enter the Description!","Description Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            if (Validation.IsItBlank(txtBriefing.Text))
+            if (string.IsNullOrWhiteSpace(txtBriefing.Text))
             {
                 MessageBox.Show("Please enter the Briefing!", "Briefing Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            if (picService.Image == UploadImageIcon)
+            if (!ImageUpload)
             {
-                MessageBox.Show("Please enter upload the service image", "Service Image Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Please upload the service image", "Service Image Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             MessageBox.Show("Successfully created!");
@@ -213,19 +223,13 @@ namespace CarCare_Service_Center
                 {
                     // Load the selected image into the PictureBox
                     picService.Image = System.Drawing.Image.FromFile(fileImage.FileName);
+                    ImageUpload = true;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error loading image: " + ex.Message);
                 }
             }
-        }
-
-        private void ServiceInsertion_Load(object sender, EventArgs e)
-        {
-            string icon_path = "Image Upload Icon.png";
-            picService.ImageLocation = icon_path;
-            UploadImageIcon = Image.FromFile(icon_path);
         }
     }
 }

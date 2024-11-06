@@ -16,10 +16,6 @@ namespace Functions
 {
     public static class Validation
     {
-        public static bool IsItBlank(string value)
-        {
-            return string.IsNullOrWhiteSpace(value); // Check if it is null, empty or contains only white space
-        }
         public static bool IsLengthInvalid(string value, int min, int max)
         {
             if (value.Length > max || value.Length < min)
@@ -29,14 +25,14 @@ namespace Functions
         }
         public static bool IsUsernameInvalid(string username)
         {
-            if (IsItBlank(username) || IsLengthInvalid(username, 3, 20) || username.Contains(" "))
+            if (string.IsNullOrEmpty(username) || IsLengthInvalid(username, 3, 20) || username.Contains(" "))
                 return true;
             else 
                 return false;
         }
         public static bool IsEmailInvalid(string email)
         {
-            if (IsItBlank(email))
+            if (string.IsNullOrWhiteSpace(email))
                 return true;
             else if (email.Length > 50)
                 return true;

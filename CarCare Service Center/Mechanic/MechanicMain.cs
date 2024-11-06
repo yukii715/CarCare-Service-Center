@@ -9,14 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Appearance;
+using Users;
 
 namespace CarCare_Service_Center
 {
     public partial class frmMechanicMain : Form
     {
-        public frmMechanicMain()
+        private Mechanic mechanic;
+        public frmMechanicMain(Mechanic mec)
         {
             InitializeComponent();
+            mechanic = mec;
             sessionStartTime = DateTime.Now;
             timer1.Start();
             btnBack.Click += btnBack_Click;
