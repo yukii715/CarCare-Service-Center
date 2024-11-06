@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CarCare_Service_Center
@@ -12,12 +13,22 @@ namespace CarCare_Service_Center
         public string ServiceID { get; set; }
         public string ServiceType { get; set; }
         public string ServiceName { get; set; }
-        public float Price { get; set; }
         public string EstimatedTime { get; set; }
         public string Description { get; set; }
         public string Briefing {  get; set; }
         public string Image {  get; set; }
-        public class ServiceOrder
+        public static bool IsServiceTypePrefixValid(string serviceTypePrefix)
+        {
+            string pattern = @"^[A-Z]{3}$";
+            return Regex.IsMatch(serviceTypePrefix, pattern);
+        }
+        public class ServicePrice
+        {
+            public string ServiceID { get; set; }
+            public float Price { get; set; }
+            public string Description { get; set; }
+        }
+            public class ServiceOrder
         {
             public string ServiceOrderID { get; set; }
             public string UserID { get; set; }
@@ -30,6 +41,7 @@ namespace CarCare_Service_Center
             public float TotalPrice { get; set; }
             public string PaymentMethod { get; set; }
             public string Feedback { get; set; }
+            public int Rating { get; set; }
             public class ServiceEntry
             {
                 public string ServiceEntryID { get; set; }

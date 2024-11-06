@@ -1,4 +1,6 @@
-﻿namespace CarCare_Service_Center
+﻿
+using Appearance;
+namespace CarCare_Service_Center
 {
     partial class frmMechanicMain
     {
@@ -52,13 +54,28 @@
             this.taskList = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnStartTask = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnShortages = new System.Windows.Forms.Button();
+            this.btnRequest = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.roleProfileChange = new System.Windows.Forms.Label();
+            this.mailProfileChange = new System.Windows.Forms.Label();
+            this.idProfileChange = new System.Windows.Forms.Label();
+            this.nameProfileChange = new System.Windows.Forms.Label();
+            this.btnProfile = new System.Windows.Forms.Button();
+            this.roleProfile = new System.Windows.Forms.Label();
+            this.mailProfile = new System.Windows.Forms.Label();
+            this.idProfile = new System.Windows.Forms.Label();
+            this.nameProfile = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnStartTask = new System.Windows.Forms.Button();
             this.tabMechanic.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -66,6 +83,9 @@
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMechanic
@@ -85,7 +105,6 @@
             this.tabMechanic.Size = new System.Drawing.Size(1181, 826);
             this.tabMechanic.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabMechanic.TabIndex = 0;
-            this.tabMechanic.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabMechanic_DrawItem);
             // 
             // tabPage1
             // 
@@ -105,7 +124,6 @@
             this.tabPage1.Size = new System.Drawing.Size(1093, 818);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Home";
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // btnLogOut
             // 
@@ -270,6 +288,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.PapayaWhip;
+            this.tabPage3.Controls.Add(this.btnBack);
             this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Controls.Add(this.label6);
             this.tabPage3.Location = new System.Drawing.Point(84, 4);
@@ -278,38 +297,15 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Service Progress";
             // 
-            // label6
+            // btnBack
             // 
-            this.label6.Font = new System.Drawing.Font("Comic Sans MS", 28F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(107, 7);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(857, 93);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Service Progress";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.BackColor = System.Drawing.Color.PapayaWhip;
-            this.tabPage4.Location = new System.Drawing.Point(84, 4);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1093, 818);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Inventory ";
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.BackColor = System.Drawing.Color.PapayaWhip;
-            this.tabPage5.Location = new System.Drawing.Point(84, 4);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1093, 818);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Profile";
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.btnBack.Location = new System.Drawing.Point(21, 753);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(121, 47);
+            this.btnBack.TabIndex = 3;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // groupBox1
             // 
@@ -324,6 +320,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Task";
             // 
+            // btnStartTask
+            // 
+            this.btnStartTask.Location = new System.Drawing.Point(733, 581);
+            this.btnStartTask.Name = "btnStartTask";
+            this.btnStartTask.Size = new System.Drawing.Size(210, 47);
+            this.btnStartTask.TabIndex = 2;
+            this.btnStartTask.Text = "Start Task";
+            this.btnStartTask.UseVisualStyleBackColor = true;
+            this.btnStartTask.Click += new System.EventHandler(this.btnStartTask_Click);
+            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(30, 39);
@@ -333,14 +339,200 @@
             this.textBox1.Size = new System.Drawing.Size(924, 603);
             this.textBox1.TabIndex = 0;
             // 
-            // btnStartTask
+            // label6
             // 
-            this.btnStartTask.Location = new System.Drawing.Point(733, 581);
-            this.btnStartTask.Name = "btnStartTask";
-            this.btnStartTask.Size = new System.Drawing.Size(210, 47);
-            this.btnStartTask.TabIndex = 2;
-            this.btnStartTask.Text = "Start Task";
-            this.btnStartTask.UseVisualStyleBackColor = true;
+            this.label6.Font = new System.Drawing.Font("Comic Sans MS", 28F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(107, 7);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(857, 93);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Service Progress";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.BackColor = System.Drawing.Color.PapayaWhip;
+            this.tabPage4.Controls.Add(this.btnShortages);
+            this.tabPage4.Controls.Add(this.btnRequest);
+            this.tabPage4.Controls.Add(this.label8);
+            this.tabPage4.Location = new System.Drawing.Point(84, 4);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1093, 818);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Inventory ";
+            // 
+            // btnShortages
+            // 
+            this.btnShortages.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShortages.Location = new System.Drawing.Point(363, 436);
+            this.btnShortages.Name = "btnShortages";
+            this.btnShortages.Size = new System.Drawing.Size(303, 146);
+            this.btnShortages.TabIndex = 11;
+            this.btnShortages.Text = "Shortages";
+            this.btnShortages.UseVisualStyleBackColor = true;
+            this.btnShortages.Click += new System.EventHandler(this.btnShortages_Click);
+            // 
+            // btnRequest
+            // 
+            this.btnRequest.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRequest.Location = new System.Drawing.Point(363, 206);
+            this.btnRequest.Name = "btnRequest";
+            this.btnRequest.Size = new System.Drawing.Size(303, 146);
+            this.btnRequest.TabIndex = 9;
+            this.btnRequest.Text = "Request";
+            this.btnRequest.UseVisualStyleBackColor = true;
+            this.btnRequest.Click += new System.EventHandler(this.btnRequest_Click);
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Comic Sans MS", 28F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(89, 42);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(857, 93);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Inventory";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.BackColor = System.Drawing.Color.PapayaWhip;
+            this.tabPage5.Controls.Add(this.pictureBox3);
+            this.tabPage5.Controls.Add(this.roleProfileChange);
+            this.tabPage5.Controls.Add(this.mailProfileChange);
+            this.tabPage5.Controls.Add(this.idProfileChange);
+            this.tabPage5.Controls.Add(this.nameProfileChange);
+            this.tabPage5.Controls.Add(this.btnProfile);
+            this.tabPage5.Controls.Add(this.roleProfile);
+            this.tabPage5.Controls.Add(this.mailProfile);
+            this.tabPage5.Controls.Add(this.idProfile);
+            this.tabPage5.Controls.Add(this.nameProfile);
+            this.tabPage5.Controls.Add(this.label7);
+            this.tabPage5.Location = new System.Drawing.Point(84, 4);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1093, 818);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Profile";
+            this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox3.ErrorImage = null;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.InitialImage = null;
+            this.pictureBox3.Location = new System.Drawing.Point(256, 531);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(152, 146);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 15;
+            this.pictureBox3.TabStop = false;
+            // 
+            // roleProfileChange
+            // 
+            this.roleProfileChange.AutoSize = true;
+            this.roleProfileChange.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roleProfileChange.Location = new System.Drawing.Point(430, 393);
+            this.roleProfileChange.Name = "roleProfileChange";
+            this.roleProfileChange.Size = new System.Drawing.Size(229, 60);
+            this.roleProfileChange.TabIndex = 13;
+            this.roleProfileChange.Text = "Mechanic";
+            // 
+            // mailProfileChange
+            // 
+            this.mailProfileChange.AutoSize = true;
+            this.mailProfileChange.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mailProfileChange.Location = new System.Drawing.Point(430, 305);
+            this.mailProfileChange.Name = "mailProfileChange";
+            this.mailProfileChange.Size = new System.Drawing.Size(372, 60);
+            this.mailProfileChange.TabIndex = 12;
+            this.mailProfileChange.Text = "ming@mail.com";
+            // 
+            // idProfileChange
+            // 
+            this.idProfileChange.AutoSize = true;
+            this.idProfileChange.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.idProfileChange.Location = new System.Drawing.Point(430, 225);
+            this.idProfileChange.Name = "idProfileChange";
+            this.idProfileChange.Size = new System.Drawing.Size(181, 60);
+            this.idProfileChange.TabIndex = 11;
+            this.idProfileChange.Text = "020202";
+            // 
+            // nameProfileChange
+            // 
+            this.nameProfileChange.AutoSize = true;
+            this.nameProfileChange.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameProfileChange.Location = new System.Drawing.Point(430, 143);
+            this.nameProfileChange.Name = "nameProfileChange";
+            this.nameProfileChange.Size = new System.Drawing.Size(343, 60);
+            this.nameProfileChange.TabIndex = 10;
+            this.nameProfileChange.Text = "Liew Jun Ming";
+            // 
+            // btnProfile
+            // 
+            this.btnProfile.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProfile.Location = new System.Drawing.Point(421, 531);
+            this.btnProfile.Name = "btnProfile";
+            this.btnProfile.Size = new System.Drawing.Size(303, 146);
+            this.btnProfile.TabIndex = 8;
+            this.btnProfile.Text = "Edit Profile";
+            this.btnProfile.UseVisualStyleBackColor = true;
+            this.btnProfile.Click += new System.EventHandler(this.btnProfile_Click);
+            // 
+            // roleProfile
+            // 
+            this.roleProfile.AutoSize = true;
+            this.roleProfile.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roleProfile.Location = new System.Drawing.Point(261, 393);
+            this.roleProfile.Name = "roleProfile";
+            this.roleProfile.Size = new System.Drawing.Size(163, 60);
+            this.roleProfile.TabIndex = 7;
+            this.roleProfile.Text = "Role : ";
+            // 
+            // mailProfile
+            // 
+            this.mailProfile.AutoSize = true;
+            this.mailProfile.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mailProfile.Location = new System.Drawing.Point(262, 305);
+            this.mailProfile.Name = "mailProfile";
+            this.mailProfile.Size = new System.Drawing.Size(162, 60);
+            this.mailProfile.TabIndex = 6;
+            this.mailProfile.Text = "Mail : ";
+            // 
+            // idProfile
+            // 
+            this.idProfile.AutoSize = true;
+            this.idProfile.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.idProfile.Location = new System.Drawing.Point(301, 225);
+            this.idProfile.Name = "idProfile";
+            this.idProfile.Size = new System.Drawing.Size(107, 60);
+            this.idProfile.TabIndex = 5;
+            this.idProfile.Text = "ID :";
+            // 
+            // nameProfile
+            // 
+            this.nameProfile.AutoSize = true;
+            this.nameProfile.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameProfile.Location = new System.Drawing.Point(235, 143);
+            this.nameProfile.Name = "nameProfile";
+            this.nameProfile.Size = new System.Drawing.Size(189, 60);
+            this.nameProfile.TabIndex = 4;
+            this.nameProfile.Text = "Name : ";
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Comic Sans MS", 28F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(80, -4);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(912, 121);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Profile";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmMechanicMain
             // 
@@ -352,6 +544,7 @@
             this.Name = "frmMechanicMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mechanic";
+            this.Load += new System.EventHandler(this.frmMechanicMain_Load);
             this.tabMechanic.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -361,6 +554,10 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -390,5 +587,20 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnStartTask;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label idProfileChange;
+        private System.Windows.Forms.Label nameProfileChange;
+        private System.Windows.Forms.Button btnProfile;
+        private System.Windows.Forms.Label roleProfile;
+        private System.Windows.Forms.Label mailProfile;
+        private System.Windows.Forms.Label idProfile;
+        private System.Windows.Forms.Label nameProfile;
+        private System.Windows.Forms.Label roleProfileChange;
+        private System.Windows.Forms.Label mailProfileChange;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnShortages;
+        private System.Windows.Forms.Button btnRequest;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,61 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Users;
+using Appearance;
 
 namespace CarCare_Service_Center
 {
     public partial class frmMechanicMain : Form
     {
-        private Mechanic Mechanic;
-        public frmMechanicMain(Mechanic mec)
+        public frmMechanicMain()
         {
             InitializeComponent();
-            Mechanic = mec;
             sessionStartTime = DateTime.Now;
             timer1.Start();
+            btnBack.Click += btnBack_Click;
 
         }
         private DateTime sessionStartTime;
-        private void tabMechanic_DrawItem(Object sender, DrawItemEventArgs e)
-        {
-            Graphics g = e.Graphics;
-            Brush _textBrush;
-
-            // Get the item from the collection.
-            TabPage _tabPage = tabMechanic.TabPages[e.Index];
-
-            // Get the real bounds for the tab rectangle.
-            Rectangle _tabBounds = tabMechanic.GetTabRect(e.Index);
-
-            if (e.State == DrawItemState.Selected)
-            {
-
-                // Draw a different background color, and don't paint a focus rectangle.
-                _textBrush = new SolidBrush(Color.Blue);
-                g.FillRectangle(Brushes.LightGray, e.Bounds);
-            }
-            else
-            {
-                _textBrush = new SolidBrush(e.ForeColor);
-                e.DrawBackground();
-            }
-
-            // Use our own font.
-            Font _tabFont = new Font("Arial", 10.0f, FontStyle.Bold, GraphicsUnit.Pixel);
-
-            // Draw string. Center the text.
-            StringFormat _stringFlags = new StringFormat();
-            _stringFlags.Alignment = StringAlignment.Center;
-            _stringFlags.LineAlignment = StringAlignment.Center;
-            g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
-        }
 
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-         
-        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             lbltime.Text = DateTime.Now.ToString("HH:mm:ss");
@@ -80,6 +44,72 @@ namespace CarCare_Service_Center
 
                 tabMechanic.SelectedIndex = 2;
             }
+            if (taskList.SelectedIndex != 1)
+            {
+                textBox1.Text = taskList.SelectedItem.ToString();
+                tabMechanic.SelectedTab = tabPage3;
+            }
+        }
+        public void SwitchToTab2()
+        {
+            tabMechanic.SelectedIndex = 1;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            tabMechanic.SelectedTab = tabPage2;
+            textBox1.Clear();
+
+        }
+
+        private void btnStartTask_Click(object sender, EventArgs e)
+        {
+            foreach (var item in taskList.Items)
+            {
+                if (textBox1.Text == item.ToString())
+                {
+                    Progress progressform = new Progress();
+                    progressform.ShowDialog();
+                    return;
+                }
+
+            }
+            MessageBox.Show($"Please Select a valid task from the list to start the task.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnProfile_Click(object sender, EventArgs e)
+        {
+            EditProfile editprofileform = new EditProfile(this);
+            editprofileform.ShowDialog();
+        }
+        public void updateProfile(string name, string mail)
+        {
+            nameProfileChange.Text = name;
+            mailProfileChange.Text = mail;
+        }
+
+        private void tabPage5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRequest_Click(object sender, EventArgs e)
+        {
+            Request requestform = new Request();
+            requestform.ShowDialog();
+        }
+
+
+
+        private void btnShortages_Click(object sender, EventArgs e)
+        {
+            Shortages shortagesform = new Shortages();
+            shortagesform.ShowDialog();
+        }
+
+        private void frmMechanicMain_Load(object sender, EventArgs e)
+        {
+            tabMechanic.DrawItem += Draw_Item.tabControlAdjustment;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace CarCare_Service_Center
+﻿using System.Drawing;
+
+namespace CarCare_Service_Center
 {
     partial class ServiceInsertion
     {
@@ -38,11 +40,11 @@
             this.txtServiceName = new System.Windows.Forms.TextBox();
             this.tlpPrice = new System.Windows.Forms.TableLayoutPanel();
             this.btnAddPrice = new System.Windows.Forms.Button();
-            this.txtMode = new System.Windows.Forms.TextBox();
+            this.txtPriceDescription = new System.Windows.Forms.TextBox();
             this.txtPriceAmount = new System.Windows.Forms.TextBox();
             this.lblPriceCurrency = new System.Windows.Forms.Label();
             this.pnlBriefing = new System.Windows.Forms.Panel();
-            this.txtShortDescription = new System.Windows.Forms.TextBox();
+            this.txtBriefing = new System.Windows.Forms.TextBox();
             this.btnImage = new System.Windows.Forms.Button();
             this.picService = new System.Windows.Forms.PictureBox();
             this.lblDescriptionTitle = new System.Windows.Forms.Label();
@@ -62,8 +64,8 @@
             // btnCreate
             // 
             this.btnCreate.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreate.Location = new System.Drawing.Point(635, 572);
-            this.btnCreate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCreate.Location = new System.Drawing.Point(637, 572);
+            this.btnCreate.Margin = new System.Windows.Forms.Padding(2);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(150, 51);
             this.btnCreate.TabIndex = 26;
@@ -90,16 +92,16 @@
             this.panel1.Controls.Add(this.lblServiceType);
             this.panel1.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(5, 11);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(836, 504);
+            this.panel1.Size = new System.Drawing.Size(849, 504);
             this.panel1.TabIndex = 24;
             // 
             // btnNewType
             // 
             this.btnNewType.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewType.Location = new System.Drawing.Point(604, 20);
-            this.btnNewType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNewType.Margin = new System.Windows.Forms.Padding(2);
             this.btnNewType.Name = "btnNewType";
             this.btnNewType.Size = new System.Drawing.Size(119, 36);
             this.btnNewType.TabIndex = 27;
@@ -112,20 +114,8 @@
             this.cmbServiceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbServiceType.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbServiceType.FormattingEnabled = true;
-            this.cmbServiceType.Items.AddRange(new object[] {
-            "",
-            "Basic Maintenance Services",
-            "Vehicle Diagnostics",
-            "Advanced Repair Services",
-            "Tire Services",
-            "Car Detailing Services",
-            "AC and Heating Services",
-            "Performance Enhancements",
-            "Safety Checks",
-            "Fleet Services",
-            "Specialized Services"});
             this.cmbServiceType.Location = new System.Drawing.Point(197, 20);
-            this.cmbServiceType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbServiceType.Margin = new System.Windows.Forms.Padding(2);
             this.cmbServiceType.Name = "cmbServiceType";
             this.cmbServiceType.Size = new System.Drawing.Size(391, 36);
             this.cmbServiceType.TabIndex = 40;
@@ -134,10 +124,11 @@
             // 
             this.txtDescription.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescription.Location = new System.Drawing.Point(22, 460);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(2);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(730, 155);
+            this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDescription.Size = new System.Drawing.Size(730, 230);
             this.txtDescription.TabIndex = 20;
             this.txtDescription.Text = "\r\n";
             // 
@@ -145,7 +136,7 @@
             // 
             this.txtTime.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTime.Location = new System.Drawing.Point(202, 348);
-            this.txtTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTime.Margin = new System.Windows.Forms.Padding(2);
             this.txtTime.Name = "txtTime";
             this.txtTime.Size = new System.Drawing.Size(92, 36);
             this.txtTime.TabIndex = 19;
@@ -166,7 +157,7 @@
             // 
             this.txtServiceName.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtServiceName.Location = new System.Drawing.Point(197, 90);
-            this.txtServiceName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtServiceName.Margin = new System.Windows.Forms.Padding(2);
             this.txtServiceName.Name = "txtServiceName";
             this.txtServiceName.Size = new System.Drawing.Size(391, 36);
             this.txtServiceName.TabIndex = 17;
@@ -179,19 +170,19 @@
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.67327F));
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.32674F));
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
-            this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 161F));
             this.tlpPrice.Controls.Add(this.btnAddPrice, 0, 1);
-            this.tlpPrice.Controls.Add(this.txtMode, 2, 0);
+            this.tlpPrice.Controls.Add(this.txtPriceDescription, 2, 0);
             this.tlpPrice.Controls.Add(this.txtPriceAmount, 1, 0);
             this.tlpPrice.Controls.Add(this.lblPriceCurrency, 0, 0);
             this.tlpPrice.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tlpPrice.Location = new System.Drawing.Point(103, 162);
-            this.tlpPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpPrice.Location = new System.Drawing.Point(151, 173);
+            this.tlpPrice.Margin = new System.Windows.Forms.Padding(2);
             this.tlpPrice.Name = "tlpPrice";
             this.tlpPrice.RowCount = 2;
-            this.tlpPrice.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.tlpPrice.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.tlpPrice.Size = new System.Drawing.Size(655, 95);
+            this.tlpPrice.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tlpPrice.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tlpPrice.Size = new System.Drawing.Size(666, 110);
             this.tlpPrice.TabIndex = 16;
             // 
             // btnAddPrice
@@ -199,31 +190,31 @@
             this.btnAddPrice.AutoSize = true;
             this.btnAddPrice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAddPrice.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddPrice.Location = new System.Drawing.Point(2, 46);
-            this.btnAddPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddPrice.Location = new System.Drawing.Point(2, 47);
+            this.btnAddPrice.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddPrice.Name = "btnAddPrice";
-            this.btnAddPrice.Size = new System.Drawing.Size(89, 47);
+            this.btnAddPrice.Size = new System.Drawing.Size(89, 61);
             this.btnAddPrice.TabIndex = 29;
             this.btnAddPrice.Text = "Add";
             this.btnAddPrice.UseVisualStyleBackColor = true;
             this.btnAddPrice.Click += new System.EventHandler(this.btnAddPrice_Click);
             // 
-            // txtMode
+            // txtPriceDescription
             // 
-            this.txtMode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtMode.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMode.Location = new System.Drawing.Point(288, 2);
-            this.txtMode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtMode.Name = "txtMode";
-            this.txtMode.Size = new System.Drawing.Size(214, 36);
-            this.txtMode.TabIndex = 25;
+            this.txtPriceDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPriceDescription.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPriceDescription.Location = new System.Drawing.Point(288, 2);
+            this.txtPriceDescription.Margin = new System.Windows.Forms.Padding(2);
+            this.txtPriceDescription.Name = "txtPriceDescription";
+            this.txtPriceDescription.Size = new System.Drawing.Size(214, 36);
+            this.txtPriceDescription.TabIndex = 25;
             // 
             // txtPriceAmount
             // 
             this.txtPriceAmount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPriceAmount.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPriceAmount.Location = new System.Drawing.Point(95, 2);
-            this.txtPriceAmount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPriceAmount.Margin = new System.Windows.Forms.Padding(2);
             this.txtPriceAmount.Name = "txtPriceAmount";
             this.txtPriceAmount.Size = new System.Drawing.Size(189, 36);
             this.txtPriceAmount.TabIndex = 23;
@@ -237,39 +228,41 @@
             this.lblPriceCurrency.Location = new System.Drawing.Point(2, 0);
             this.lblPriceCurrency.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPriceCurrency.Name = "lblPriceCurrency";
-            this.lblPriceCurrency.Size = new System.Drawing.Size(89, 44);
+            this.lblPriceCurrency.Size = new System.Drawing.Size(89, 45);
             this.lblPriceCurrency.TabIndex = 17;
             this.lblPriceCurrency.Text = "RM";
+            this.lblPriceCurrency.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pnlBriefing
             // 
             this.pnlBriefing.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pnlBriefing.Controls.Add(this.txtShortDescription);
+            this.pnlBriefing.Controls.Add(this.txtBriefing);
             this.pnlBriefing.Controls.Add(this.btnImage);
             this.pnlBriefing.Controls.Add(this.picService);
-            this.pnlBriefing.Location = new System.Drawing.Point(22, 707);
-            this.pnlBriefing.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlBriefing.Location = new System.Drawing.Point(23, 776);
+            this.pnlBriefing.Margin = new System.Windows.Forms.Padding(2);
             this.pnlBriefing.Name = "pnlBriefing";
             this.pnlBriefing.Size = new System.Drawing.Size(772, 292);
             this.pnlBriefing.TabIndex = 15;
             // 
-            // txtShortDescription
+            // txtBriefing
             // 
-            this.txtShortDescription.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtShortDescription.Location = new System.Drawing.Point(26, 39);
-            this.txtShortDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtShortDescription.Multiline = true;
-            this.txtShortDescription.Name = "txtShortDescription";
-            this.txtShortDescription.Size = new System.Drawing.Size(391, 175);
-            this.txtShortDescription.TabIndex = 21;
-            this.txtShortDescription.TabStop = false;
-            this.txtShortDescription.Text = "\r\n";
+            this.txtBriefing.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBriefing.Location = new System.Drawing.Point(26, 39);
+            this.txtBriefing.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBriefing.Multiline = true;
+            this.txtBriefing.Name = "txtBriefing";
+            this.txtBriefing.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtBriefing.Size = new System.Drawing.Size(391, 175);
+            this.txtBriefing.TabIndex = 21;
+            this.txtBriefing.TabStop = false;
+            this.txtBriefing.Text = "\r\n";
             // 
             // btnImage
             // 
             this.btnImage.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImage.Location = new System.Drawing.Point(532, 237);
-            this.btnImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnImage.Margin = new System.Windows.Forms.Padding(2);
             this.btnImage.Name = "btnImage";
             this.btnImage.Size = new System.Drawing.Size(152, 37);
             this.btnImage.TabIndex = 24;
@@ -282,10 +275,10 @@
             // 
             this.picService.BackColor = System.Drawing.SystemColors.ControlLight;
             this.picService.Location = new System.Drawing.Point(460, 22);
-            this.picService.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picService.Margin = new System.Windows.Forms.Padding(2);
             this.picService.Name = "picService";
             this.picService.Size = new System.Drawing.Size(269, 191);
-            this.picService.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picService.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picService.TabIndex = 18;
             this.picService.TabStop = false;
             // 
@@ -304,7 +297,7 @@
             // 
             this.lblBriefing.AutoSize = true;
             this.lblBriefing.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBriefing.Location = new System.Drawing.Point(16, 659);
+            this.lblBriefing.Location = new System.Drawing.Point(17, 728);
             this.lblBriefing.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBriefing.Name = "lblBriefing";
             this.lblBriefing.Size = new System.Drawing.Size(92, 29);
@@ -324,14 +317,13 @@
             // 
             // lblPrice
             // 
-            this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(16, 162);
+            this.lblPrice.Location = new System.Drawing.Point(16, 173);
             this.lblPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(68, 29);
+            this.lblPrice.Size = new System.Drawing.Size(131, 67);
             this.lblPrice.TabIndex = 5;
-            this.lblPrice.Text = "Price:";
+            this.lblPrice.Text = "Price and Description:";
             // 
             // lblServiceName
             // 
@@ -358,8 +350,8 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(28, 572);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Location = new System.Drawing.Point(97, 572);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(150, 51);
             this.btnCancel.TabIndex = 25;
@@ -377,13 +369,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 670);
+            this.ClientSize = new System.Drawing.Size(857, 658);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCancel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ServiceInsertion";
             this.Text = "CarCare Service Centre - Add Service Details";
+            this.Load += new System.EventHandler(this.ServiceInsertion_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tlpPrice.ResumeLayout(false);
@@ -404,11 +397,11 @@
         private System.Windows.Forms.Label lblTimeMins;
         private System.Windows.Forms.TextBox txtServiceName;
         private System.Windows.Forms.TableLayoutPanel tlpPrice;
-        private System.Windows.Forms.TextBox txtMode;
+        private System.Windows.Forms.TextBox txtPriceDescription;
         private System.Windows.Forms.TextBox txtPriceAmount;
         private System.Windows.Forms.Label lblPriceCurrency;
         private System.Windows.Forms.Panel pnlBriefing;
-        private System.Windows.Forms.TextBox txtShortDescription;
+        private System.Windows.Forms.TextBox txtBriefing;
         private System.Windows.Forms.Button btnImage;
         private System.Windows.Forms.PictureBox picService;
         private System.Windows.Forms.Label lblDescriptionTitle;

@@ -69,7 +69,6 @@ namespace CarCare_Service_Center
                         tblCustomerRequests.Controls.Remove(control);
                         control.Dispose();
                     }
-                    tblCustomerRequests.RowStyles.RemoveAt(i);
                     tblCustomerRequests.RowCount--;
                 }
             }
@@ -91,7 +90,6 @@ namespace CarCare_Service_Center
                         tblCustomerRequests.Controls.Remove(control);
                         control.Dispose();
                     }
-                    tblCustomerRequests.RowStyles.RemoveAt(i);
                     tblCustomerRequests.RowCount--;
                 }
             }

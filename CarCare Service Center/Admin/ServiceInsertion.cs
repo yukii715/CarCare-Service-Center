@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Functions;
+using Users;
 
 namespace CarCare_Service_Center
 {
     public partial class ServiceInsertion : Form
     {
+        private Label lblNewType;
+        private TextBox txtNewType;
+        private TextBox txtTypePrefix;
+        private Image UploadImageIcon;
         public ServiceInsertion()
         {
             InitializeComponent();
@@ -19,15 +27,26 @@ namespace CarCare_Service_Center
 
         private void btnNewType_Click(object sender, EventArgs e)
         {
-            TextBox txtNewType = new TextBox
+            lblNewType = new Label
             {
-                Name = "txtNewType",
-                Location = new Point(cmbServiceType.Location.X, cmbServiceType.Location.Y + 40),
-                Multiline = true,
-                AutoSize = true,
-                Size = new Size(cmbServiceType.Width, cmbServiceType.Height),
+                Text = "Name and Prefix:",
+                Font = new System.Drawing.Font("Comic Sans MS", 8F, System.Drawing.FontStyle.Regular),
+                TextAlign = ContentAlignment.MiddleLeft,
+                Location = new Point(lblServiceType.Location.X, lblServiceType.Location.X + 40)
             };
+            txtNewType = new TextBox
+            {
+                Location = new Point(cmbServiceType.Location.X, cmbServiceType.Location.Y + 40),
+                Size = new Size(cmbServiceType.Width, cmbServiceType.Height)
+            };
+            txtTypePrefix = new TextBox
+            {
+                Location = new Point(btnNewType.Location.X, btnNewType.Location.Y + 40),
+                Size = new Size(btnNewType.Width, btnNewType.Height)
+            };
+            panel1.Controls.Add(lblNewType);
             panel1.Controls.Add(txtNewType);
+            panel1.Controls.Add(txtTypePrefix);
 
             foreach (Control ctrl in panel1.Controls)
             {
@@ -46,102 +65,128 @@ namespace CarCare_Service_Center
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
+            if (Validation.IsItBlank(cmbServiceType.Text))
+            {
+                if (txtNewType == null)
+                {
+                    MessageBox.Show("Please select a service type", "Service Type Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
+                if (Validation.IsItBlank(txtNewType.Text) || !Services.IsServiceTypePrefixValid(txtTypePrefix.Text))
+                {
+                    MessageBox.Show("Invalid Service Type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            if (txtServiceName.TextLength > 50)
+            {
+                MessageBox.Show("Invalid Service Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            List<Services.ServicePrice> prices = new List<Services.ServicePrice>();
+            for (int row = 0; row < rowCount - 1; row++) // Last row is add button
+            {
+                if (tlpPrice.GetControlFromPosition(1, row) is TextBox txtPrice && float.TryParse(txtPrice.Text, out float price))
+                {
+                    if (tlpPrice.GetControlFromPosition(2, row) is TextBox txtPriceDescription && !Validation.IsLengthInvalid(txtPriceDescription.Text, 1, 20))
+                        prices.Add(new Services.ServicePrice { Price = price, Description = txtPriceDescription.Text});
+                }
+                else
+                {
+                    MessageBox.Show($"Invalid Price", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            if (!int.TryParse(txtTime.Text, out int EstimatedTime) || txtTime.TextLength > 3)
+            {
+                MessageBox.Show("Invalid Estimated Time", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (Validation.IsItBlank(txtDescription.Text))
+            {
+                MessageBox.Show("Please enter the Description!","Description Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (Validation.IsItBlank(txtBriefing.Text))
+            {
+                MessageBox.Show("Please enter the Briefing!", "Briefing Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (picService.Image == UploadImageIcon)
+            {
+                MessageBox.Show("Please enter upload the service image", "Service Image Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            MessageBox.Show("Successfully created!");
         }
-        int rowCount = 2; // 记录当前行数，从1开始，因为第一行已经存在
-        int targetRow = 1; // 假设你想在第二行上方添加新行
 
+        int rowCount = 2; // Initial number of rows in tlpPrice
         private void btnAddPrice_Click(object sender, EventArgs e)
         {
-            // 增加行数
+            // Adding row when button clicked
             rowCount++;
-            int rowIndex = rowCount - 1;
-            int rowCopy = rowCount - 2;
+            // Botttom row is add button
+            int rowIndex = rowCount - 1; // Start with 1
+            int rowCopy = rowCount - 2;  // Row of others control
 
-            // 添加一行到 TableLayoutPanel
+            // Add new row
             tlpPrice.RowCount = rowCount;
-            tlpPrice.RowStyles.Add(new RowStyle(SizeType.Absolute, 38f)); // 插入新行样式
+            float rowheight = tlpPrice.GetRowHeights()[0];
+            tlpPrice.RowStyles.Add(new RowStyle(SizeType.Absolute, rowheight)); // New row styles
 
 
-            // 移动目标行
+            // Move the add button
             tlpPrice.Controls.Remove(btnAddPrice);
-            tlpPrice.Controls.Add(btnAddPrice, 0, targetRow + 1); // 移动到下一行
+            tlpPrice.Controls.Add(btnAddPrice, 0, rowIndex);
 
-            // 创建控件并添加到新行
-            Label lblPriceCurrency = new Label
-            {
-                Name = "lblPriceCurrency" + rowIndex,
-                Text = "RM",
-                AutoSize = true,
-            };
+            // Add new control to new line
+            Label lblPriceCurrency = new Label { Text = "RM" , AutoSize = true};
             tlpPrice.Controls.Add(lblPriceCurrency, 0, rowCopy);
             lblPriceCurrency.Dock = DockStyle.Fill;
             lblPriceCurrency.TextAlign = ContentAlignment.MiddleLeft;
 
-            TextBox txtPriceAmount = new TextBox
-            {
-                Name = "txtPriceAmount" + rowIndex,
-                AutoSize = true
-            };
+            TextBox txtPriceAmount = new TextBox();
             tlpPrice.Controls.Add(txtPriceAmount, 1, rowCopy);
             txtPriceAmount.Dock = DockStyle.Fill;
 
-            TextBox txtMode = new TextBox
-            {
-                Name = "txtMode" + rowIndex,
-                AutoSize = true
-            };
-            tlpPrice.Controls.Add(txtMode, 2, rowCopy);
-            txtMode.Dock = DockStyle.Fill;
+            TextBox txtPriceDescription = new TextBox();
+            tlpPrice.Controls.Add(txtPriceDescription, 2, rowCopy);
+            txtPriceDescription.Dock = DockStyle.Fill;
 
-            Button btnRemovePrice = new Button
-            {
-                Name = "btnRemovePrice" + rowIndex,
-                AutoSize = true,
-                Text = "Remove"
-            };
+            Button btnRemovePrice = new Button {Text = "Remove"};
             tlpPrice.Controls.Add(btnRemovePrice, 3, rowCopy);
-            btnRemovePrice.Dock = DockStyle.Fill;
-            btnRemovePrice.Click += Button_Click;
-
-            targetRow++;
+            txtPriceDescription.Dock = DockStyle.Fill;
+            btnRemovePrice.Click += btnRemove_Click;
 
             foreach (Control ctrl in panel1.Controls)
             {
                 if (ctrl.Top > tlpPrice.Bottom)
                 {
-                    ctrl.Top += tlpPrice.GetRowHeights()[0];
+                    ctrl.Top += tlpPrice.GetRowHeights()[rowIndex];
                 }
             }
         }
 
-
-        // Shared event handler for all buttons
-        private void Button_Click(object sender, EventArgs e)
+        private void btnRemove_Click(object sender, EventArgs e)
         {
-            Button clickedButton = sender as Button; // Cast the sender to a Button
-            if (clickedButton != null)
+            // Cast the sender to a Button
+            if (sender is Button clickedButton)
             {
                 var btnSelected = tlpPrice.GetPositionFromControl(clickedButton);
                 int removeRow = btnSelected.Row;
-                for (int i = 0; i < tlpPrice.ColumnCount; i++)
+                foreach (Control control in tlpPrice.Controls.OfType<Control>().Where(c => tlpPrice.GetRow(c) == removeRow).ToList())
                 {
-                    Control toRemoveControl = tlpPrice.GetControlFromPosition(i, removeRow);
-                    if (toRemoveControl != null)
-                    {
-                        tlpPrice.Controls.Remove(toRemoveControl);
-                    }
+                    tlpPrice.Controls.Remove(control);
+                    control.Dispose();
                 }
-                for (int i = rowCount; i > removeRow; i--)
+                for (int row = removeRow + 1; row < tlpPrice.RowCount; row++)
                 {
-                    for (int j = 0; j < tlpPrice.ColumnCount; j++)
+                    foreach (Control control in tlpPrice.Controls.OfType<Control>().Where(c => tlpPrice.GetRow(c) == row).ToList())
                     {
-                        Control toRemoveControl = tlpPrice.GetControlFromPosition(j, i);
-                        if (toRemoveControl != null)
-                        {
-                            tlpPrice.Controls.Remove(toRemoveControl);
-                            tlpPrice.Controls.Add(toRemoveControl, j, i - 1); // 移动到下一行
-                        }
+                        tlpPrice.SetRow(control, row - 1); // Move the control up by one row
                     }
                 }
 
@@ -149,12 +194,13 @@ namespace CarCare_Service_Center
                 {
                     if (ctrl.Top > tlpPrice.Bottom)
                     {
-                        ctrl.Top -= tlpPrice.GetRowHeights()[0];
+                        ctrl.Top -= tlpPrice.GetRowHeights()[rowCount - 1];
                     }
                 }
-                rowCount--;
-                targetRow--;
+
+                tlpPrice.RowStyles.RemoveAt(removeRow);
                 tlpPrice.RowCount--;
+                rowCount--;
             }
         }
 
@@ -173,6 +219,13 @@ namespace CarCare_Service_Center
                     MessageBox.Show("Error loading image: " + ex.Message);
                 }
             }
+        }
+
+        private void ServiceInsertion_Load(object sender, EventArgs e)
+        {
+            string icon_path = "Image Upload Icon.png";
+            picService.ImageLocation = icon_path;
+            UploadImageIcon = Image.FromFile(icon_path);
         }
     }
 }
