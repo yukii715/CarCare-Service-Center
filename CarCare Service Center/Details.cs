@@ -87,10 +87,8 @@ namespace CarCare_Service_Center
             public DateTime Date { get; set; }
             public DateTime ArrivalTime { get; set; }
             public DateTime StartTime {  get; set; }
-            public DateTime EndTime { get; set; }
-            public DateTime CollectionTime { get; set; }
-            public string InitialStatus { get; set; }
-            public string CompletionStatus { get; set; }
+            public DateTime EndDateTime { get; set; }
+            public DateTime CollectionDateTime { get; set; }
             public string Remark { get; set; }
             public string TotalPrice { get; set; }
             public string Feedback { get; set; }
@@ -101,6 +99,8 @@ namespace CarCare_Service_Center
                 public string ServiceOrderID { get; set; }
                 public string ServiceID { get; set; }
                 public string Price { get; set; }
+                public string InitialStatus { get; set; }
+                public string CompletionStatus { get; set; }
                 public class ServiceParts
                 {
                     public string ServiceEntryID { get; set; }
