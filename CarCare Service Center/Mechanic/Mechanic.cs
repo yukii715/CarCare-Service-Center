@@ -20,6 +20,8 @@ namespace Users
         {
             public string UserID { get; set; }
             public string AppointmentID { get; set; }
+            public string CustomerName { get; set; }
+            public DateTime DateTime {  get; set; }
         }
     }
 }
