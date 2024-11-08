@@ -1,10 +1,14 @@
 ﻿using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace CarCare_Service_Center
 {
@@ -16,7 +20,7 @@ namespace CarCare_Service_Center
         public string EstimatedTime { get; set; }
         public string Description { get; set; }
         public string Briefing {  get; set; }
-        public string Image {  get; set; }
+        public byte[] ImageData {  get; set; }
         public static bool IsServiceTypePrefixValid(string serviceTypePrefix)
         {
             string pattern = @"^[A-Z]{3}$";
@@ -24,26 +28,71 @@ namespace CarCare_Service_Center
         }
         public void Add()
         {
+            string query = "INSERT INTO Services (ServiceID, ServiceType, ServiceName, EstimatedTime, Description, Briefing, ImageData, IsDeleted) " +
+                           "VALUES (@ServiceID, @ServiceType, @ServiceName, @EstimatedTime, @Description, @Briefing, @ImageData, 0)";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
 
+                // Add parameters to avoid SQL injection
+                command.Parameters.AddWithValue("@ServiceID", ServiceID);
+                command.Parameters.AddWithValue("@ServiceType", ServiceType);
+                command.Parameters.AddWithValue("@ServiceName", ServiceName);
+                command.Parameters.AddWithValue("@EstimatedTime", EstimatedTime);
+                command.Parameters.AddWithValue("@Description", Description);
+                command.Parameters.AddWithValue("@Briefing", Briefing);
+                command.Parameters.Add("@ImageData", SqlDbType.VarBinary).Value = ImageData;
+
+                connection.Open();
+
+                // Execute the command
+                command.ExecuteNonQuery();
+            }
         }
         public class ServicePrice
         {
             public string ServiceID { get; set; }
-            public float Price { get; set; }
+            public string Price { get; set; }
             public string Description { get; set; }
+            public void Add()
+            {
+                string query = "INSERT INTO ServicePrice (ServiceID, Price, Description) VALUES (@ServiceID, @Price, @Description)";
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    SqlParameter price = new SqlParameter("@Price", SqlDbType.Decimal)
+                    {
+                        Precision = 10,  // Total number of digits
+                        Scale = 2,       // Number of decimal places
+                        Value = Price
+                    };
+
+                    // Add parameters to avoid SQL injection
+                    command.Parameters.AddWithValue("@ServiceID", ServiceID);
+                    command.Parameters.Add(price);
+                    command.Parameters.AddWithValue("@Description", Description);
+
+                    connection.Open();
+
+                    // Execute the command
+                    command.ExecuteNonQuery();
+                }
+            }
         }
             public class ServiceOrder
         {
             public string ServiceOrderID { get; set; }
             public string ApointmentID { get; set; }
-            public string VehicleNumber { get; set; }
+            public DateTime Date { get; set; }
+            public DateTime ArrivalTime { get; set; }
+            public DateTime StartTime {  get; set; }
+            public DateTime EndTime { get; set; }
+            public DateTime CollectionTime { get; set; }
+            public string InitialStatus { get; set; }
             public string CompletionStatus { get; set; }
-            public string ArrivalDate { get; set; }
-            public string ArrivalTime { get; set; }
-            public string CollectionDate { get; set; }
-            public string CollectionTime { get; set; }
-            public float TotalPrice { get; set; }
-            public string PaymentMethod { get; set; }
+            public string Remark { get; set; }
+            public string TotalPrice { get; set; }
             public string Feedback { get; set; }
             public int Rating { get; set; }
             public class ServiceEntry
@@ -51,10 +100,6 @@ namespace CarCare_Service_Center
                 public string ServiceEntryID { get; set; }
                 public string ServiceOrderID { get; set; }
                 public string ServiceID { get; set; }
-                public string StartDate{ get; set; }
-                public string StartTime { get; set; }
-                public string EndDate{ get; set; }
-                public string EndTime { get; set; }
                 public string Price { get; set; }
                 public class ServiceParts
                 {
@@ -71,10 +116,8 @@ namespace CarCare_Service_Center
     {
         public string AppointmentID { get; set; }
         public string UserID { get; set; }
-        public string MakingDate { get; set; }
-        public string MakingTime { get; set; }
-        public string AppointmentDate { get; set; }
-        public string AppointmentTime { get; set; }
+        public DateTime MakingDateTime { get; set; }
+        public DateTime AppointmentDateTime { get; set; }
         public string VehicleNumber { get ; set; }
         public string Status { get; set; }
         public class Services
@@ -89,12 +132,12 @@ namespace CarCare_Service_Center
         public string PartType { get; set; }
         public string PartName { get; set; }
         public int Stock {  get; set; }
-        public float SellPrice { get; set; }
+        public string SellPrice { get; set; }
         public string Status {  get; set; }
         public class Purchases
         {
             public string PartID { get; set; }
-            public float UnitPrice { get; set; }
+            public string UnitPrice { get; set; }
             public int Quantity { get; set; }
             public string Supplier {  get; set; }
 

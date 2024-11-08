@@ -66,7 +66,7 @@
             // 
             this.btnApply.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnApply.Location = new System.Drawing.Point(635, 564);
-            this.btnApply.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnApply.Margin = new System.Windows.Forms.Padding(2);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(150, 51);
             this.btnApply.TabIndex = 23;
@@ -91,7 +91,7 @@
             this.panel1.Controls.Add(this.lblServiceName);
             this.panel1.Controls.Add(this.lblServiceType);
             this.panel1.Location = new System.Drawing.Point(5, 1);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(836, 515);
             this.panel1.TabIndex = 20;
@@ -100,7 +100,7 @@
             // 
             this.txtDescription.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescription.Location = new System.Drawing.Point(23, 510);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(2);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(730, 155);
@@ -111,7 +111,7 @@
             // 
             this.txtTime.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTime.Location = new System.Drawing.Point(204, 398);
-            this.txtTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTime.Margin = new System.Windows.Forms.Padding(2);
             this.txtTime.Name = "txtTime";
             this.txtTime.Size = new System.Drawing.Size(92, 36);
             this.txtTime.TabIndex = 19;
@@ -132,7 +132,7 @@
             // 
             this.txtServiceName.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtServiceName.Location = new System.Drawing.Point(199, 161);
-            this.txtServiceName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtServiceName.Margin = new System.Windows.Forms.Padding(2);
             this.txtServiceName.Name = "txtServiceName";
             this.txtServiceName.Size = new System.Drawing.Size(391, 36);
             this.txtServiceName.TabIndex = 17;
@@ -144,7 +144,7 @@
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.67327F));
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.32674F));
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
-            this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
             this.tlpPrice.Controls.Add(this.btnAddPrice, 0, 2);
             this.tlpPrice.Controls.Add(this.button2, 3, 1);
             this.tlpPrice.Controls.Add(this.btnRemovePrice, 3, 0);
@@ -155,7 +155,7 @@
             this.tlpPrice.Controls.Add(this.label4, 0, 1);
             this.tlpPrice.Controls.Add(this.lblPriceCurrency, 0, 0);
             this.tlpPrice.Location = new System.Drawing.Point(104, 233);
-            this.tlpPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpPrice.Margin = new System.Windows.Forms.Padding(2);
             this.tlpPrice.Name = "tlpPrice";
             this.tlpPrice.RowCount = 3;
             this.tlpPrice.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -168,7 +168,7 @@
             // 
             this.btnAddPrice.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPrice.Location = new System.Drawing.Point(2, 80);
-            this.btnAddPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddPrice.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddPrice.Name = "btnAddPrice";
             this.btnAddPrice.Size = new System.Drawing.Size(92, 35);
             this.btnAddPrice.TabIndex = 28;
@@ -178,8 +178,8 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(514, 41);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(513, 41);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(118, 35);
             this.button2.TabIndex = 27;
@@ -189,8 +189,8 @@
             // btnRemovePrice
             // 
             this.btnRemovePrice.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemovePrice.Location = new System.Drawing.Point(514, 2);
-            this.btnRemovePrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRemovePrice.Location = new System.Drawing.Point(513, 2);
+            this.btnRemovePrice.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemovePrice.Name = "btnRemovePrice";
             this.btnRemovePrice.Size = new System.Drawing.Size(118, 35);
             this.btnRemovePrice.TabIndex = 24;
@@ -201,8 +201,8 @@
             // 
             this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox4.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(296, 41);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox4.Location = new System.Drawing.Point(295, 41);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(214, 36);
             this.textBox4.TabIndex = 26;
@@ -212,8 +212,8 @@
             // 
             this.txtMode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtMode.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMode.Location = new System.Drawing.Point(296, 2);
-            this.txtMode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMode.Location = new System.Drawing.Point(295, 2);
+            this.txtMode.Margin = new System.Windows.Forms.Padding(2);
             this.txtMode.Name = "txtMode";
             this.txtMode.Size = new System.Drawing.Size(214, 36);
             this.txtMode.TabIndex = 25;
@@ -224,9 +224,9 @@
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox2.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(98, 41);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(194, 36);
+            this.textBox2.Size = new System.Drawing.Size(193, 36);
             this.textBox2.TabIndex = 24;
             this.textBox2.Text = "80.00";
             // 
@@ -234,9 +234,9 @@
             // 
             this.txtPriceAmount.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPriceAmount.Location = new System.Drawing.Point(98, 2);
-            this.txtPriceAmount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPriceAmount.Margin = new System.Windows.Forms.Padding(2);
             this.txtPriceAmount.Name = "txtPriceAmount";
-            this.txtPriceAmount.Size = new System.Drawing.Size(194, 36);
+            this.txtPriceAmount.Size = new System.Drawing.Size(193, 36);
             this.txtPriceAmount.TabIndex = 23;
             this.txtPriceAmount.TabStop = false;
             this.txtPriceAmount.Text = "50.00\r\n";
@@ -274,7 +274,7 @@
             this.pnlBriefing.Controls.Add(this.btnChangeImage);
             this.pnlBriefing.Controls.Add(this.picService);
             this.pnlBriefing.Location = new System.Drawing.Point(23, 757);
-            this.pnlBriefing.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlBriefing.Margin = new System.Windows.Forms.Padding(2);
             this.pnlBriefing.Name = "pnlBriefing";
             this.pnlBriefing.Size = new System.Drawing.Size(772, 292);
             this.pnlBriefing.TabIndex = 15;
@@ -283,7 +283,7 @@
             // 
             this.txtBriefDescription.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBriefDescription.Location = new System.Drawing.Point(26, 39);
-            this.txtBriefDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBriefDescription.Margin = new System.Windows.Forms.Padding(2);
             this.txtBriefDescription.Multiline = true;
             this.txtBriefDescription.Name = "txtBriefDescription";
             this.txtBriefDescription.Size = new System.Drawing.Size(391, 175);
@@ -295,7 +295,7 @@
             // 
             this.btnChangeImage.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChangeImage.Location = new System.Drawing.Point(532, 237);
-            this.btnChangeImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnChangeImage.Margin = new System.Windows.Forms.Padding(2);
             this.btnChangeImage.Name = "btnChangeImage";
             this.btnChangeImage.Size = new System.Drawing.Size(128, 37);
             this.btnChangeImage.TabIndex = 24;
@@ -308,7 +308,7 @@
             // 
             this.picService.BackColor = System.Drawing.SystemColors.ControlLight;
             this.picService.Location = new System.Drawing.Point(460, 22);
-            this.picService.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picService.Margin = new System.Windows.Forms.Padding(2);
             this.picService.Name = "picService";
             this.picService.Size = new System.Drawing.Size(269, 191);
             this.picService.TabIndex = 18;
@@ -395,7 +395,7 @@
             // 
             this.btnCancel.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(28, 564);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(150, 51);
             this.btnCancel.TabIndex = 21;
@@ -411,7 +411,7 @@
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCancel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ServiceDetailConfiguration";
             this.Text = "arCare Service Centre - Service Details Edit";
             this.panel1.ResumeLayout(false);

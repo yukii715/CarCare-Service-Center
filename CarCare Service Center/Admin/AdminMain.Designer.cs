@@ -83,6 +83,9 @@ namespace CarCare_Service_Center
             this.tabFeedback = new System.Windows.Forms.TabPage();
             this.tabReport = new System.Windows.Forms.TabPage();
             this.tabProfile = new System.Windows.Forms.TabPage();
+            this.lblAdminEmail = new System.Windows.Forms.Label();
+            this.lblAdminName = new System.Windows.Forms.Label();
+            this.lblAdminID = new System.Windows.Forms.Label();
             this.btnChangePassword = new System.Windows.Forms.Button();
             this.btnChangeEmail = new System.Windows.Forms.Button();
             this.btnChangeUserName = new System.Windows.Forms.Button();
@@ -90,9 +93,6 @@ namespace CarCare_Service_Center
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.lblAdminID = new System.Windows.Forms.Label();
-            this.lblAdminName = new System.Windows.Forms.Label();
-            this.lblAdminEmail = new System.Windows.Forms.Label();
             this.tabAdmin.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
@@ -380,7 +380,7 @@ namespace CarCare_Service_Center
             this.tlpStaffAccountData.ColumnCount = 3;
             this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.59679F));
             this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.40321F));
-            this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 231F));
+            this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 232F));
             this.tlpStaffAccountData.Location = new System.Drawing.Point(27, 2);
             this.tlpStaffAccountData.Margin = new System.Windows.Forms.Padding(2);
             this.tlpStaffAccountData.Name = "tlpStaffAccountData";
@@ -585,7 +585,7 @@ namespace CarCare_Service_Center
             this.tlpServiceSortButtons.ColumnCount = 3;
             this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.75248F));
             this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.24753F));
-            this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 381F));
+            this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 382F));
             this.tlpServiceSortButtons.Controls.Add(this.btnServiceSortType, 2, 0);
             this.tlpServiceSortButtons.Controls.Add(this.btnServiceSortID, 0, 0);
             this.tlpServiceSortButtons.Controls.Add(this.btnServiceSortName, 1, 0);
@@ -601,10 +601,10 @@ namespace CarCare_Service_Center
             // 
             this.btnServiceSortType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnServiceSortType.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnServiceSortType.Location = new System.Drawing.Point(454, 2);
+            this.btnServiceSortType.Location = new System.Drawing.Point(453, 2);
             this.btnServiceSortType.Margin = new System.Windows.Forms.Padding(2);
             this.btnServiceSortType.Name = "btnServiceSortType";
-            this.btnServiceSortType.Size = new System.Drawing.Size(378, 44);
+            this.btnServiceSortType.Size = new System.Drawing.Size(379, 44);
             this.btnServiceSortType.TabIndex = 21;
             this.btnServiceSortType.Text = "Service Type";
             this.btnServiceSortType.UseVisualStyleBackColor = true;
@@ -616,7 +616,7 @@ namespace CarCare_Service_Center
             this.btnServiceSortID.Location = new System.Drawing.Point(2, 2);
             this.btnServiceSortID.Margin = new System.Windows.Forms.Padding(2);
             this.btnServiceSortID.Name = "btnServiceSortID";
-            this.btnServiceSortID.Size = new System.Drawing.Size(108, 44);
+            this.btnServiceSortID.Size = new System.Drawing.Size(107, 44);
             this.btnServiceSortID.TabIndex = 20;
             this.btnServiceSortID.Text = "ID";
             this.btnServiceSortID.UseVisualStyleBackColor = true;
@@ -625,7 +625,7 @@ namespace CarCare_Service_Center
             // 
             this.btnServiceSortName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnServiceSortName.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnServiceSortName.Location = new System.Drawing.Point(114, 2);
+            this.btnServiceSortName.Location = new System.Drawing.Point(113, 2);
             this.btnServiceSortName.Margin = new System.Windows.Forms.Padding(2);
             this.btnServiceSortName.Name = "btnServiceSortName";
             this.btnServiceSortName.Size = new System.Drawing.Size(336, 44);
@@ -683,20 +683,20 @@ namespace CarCare_Service_Center
             // 
             this.tlpServiceData.ColumnCount = 3;
             this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.75248F));
-            this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.24753F));
-            this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 381F));
+            this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.24752F));
+            this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 382F));
             this.tlpServiceData.Location = new System.Drawing.Point(16, 2);
             this.tlpServiceData.Margin = new System.Windows.Forms.Padding(2);
             this.tlpServiceData.Name = "tlpServiceData";
-            this.tlpServiceData.RowCount = 7;
-            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.57265F));
-            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.42735F));
-            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
-            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 14F));
-            this.tlpServiceData.Size = new System.Drawing.Size(834, 297);
+            this.tlpServiceData.RowCount = 1;
+            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpServiceData.Size = new System.Drawing.Size(834, 46);
             this.tlpServiceData.TabIndex = 14;
             // 
             // btnServiceSearch
@@ -726,18 +726,6 @@ namespace CarCare_Service_Center
             this.cmbServiceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbServiceType.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbServiceType.FormattingEnabled = true;
-            this.cmbServiceType.Items.AddRange(new object[] {
-            "All",
-            "Basic Maintenance Services",
-            "Vehicle Diagnostics",
-            "Advanced Repair Services",
-            "Tire Services",
-            "Car Detailing Services",
-            "AC and Heating Services",
-            "Performance Enhancements",
-            "Safety Checks",
-            "Fleet Services",
-            "Specialized Services"});
             this.cmbServiceType.Location = new System.Drawing.Point(194, 77);
             this.cmbServiceType.Margin = new System.Windows.Forms.Padding(2);
             this.cmbServiceType.Name = "cmbServiceType";
@@ -805,6 +793,33 @@ namespace CarCare_Service_Center
             this.tabProfile.TabIndex = 5;
             this.tabProfile.Text = "Profile";
             this.tabProfile.UseVisualStyleBackColor = true;
+            // 
+            // lblAdminEmail
+            // 
+            this.lblAdminEmail.AutoSize = true;
+            this.lblAdminEmail.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdminEmail.Location = new System.Drawing.Point(306, 323);
+            this.lblAdminEmail.Name = "lblAdminEmail";
+            this.lblAdminEmail.Size = new System.Drawing.Size(0, 34);
+            this.lblAdminEmail.TabIndex = 22;
+            // 
+            // lblAdminName
+            // 
+            this.lblAdminName.AutoSize = true;
+            this.lblAdminName.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdminName.Location = new System.Drawing.Point(306, 249);
+            this.lblAdminName.Name = "lblAdminName";
+            this.lblAdminName.Size = new System.Drawing.Size(0, 34);
+            this.lblAdminName.TabIndex = 21;
+            // 
+            // lblAdminID
+            // 
+            this.lblAdminID.AutoSize = true;
+            this.lblAdminID.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdminID.Location = new System.Drawing.Point(306, 175);
+            this.lblAdminID.Name = "lblAdminID";
+            this.lblAdminID.Size = new System.Drawing.Size(0, 34);
+            this.lblAdminID.TabIndex = 20;
             // 
             // btnChangePassword
             // 
@@ -878,33 +893,6 @@ namespace CarCare_Service_Center
             this.label16.Size = new System.Drawing.Size(148, 54);
             this.label16.TabIndex = 13;
             this.label16.Text = "Profile";
-            // 
-            // lblAdminID
-            // 
-            this.lblAdminID.AutoSize = true;
-            this.lblAdminID.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdminID.Location = new System.Drawing.Point(306, 175);
-            this.lblAdminID.Name = "lblAdminID";
-            this.lblAdminID.Size = new System.Drawing.Size(0, 34);
-            this.lblAdminID.TabIndex = 20;
-            // 
-            // lblAdminName
-            // 
-            this.lblAdminName.AutoSize = true;
-            this.lblAdminName.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdminName.Location = new System.Drawing.Point(306, 249);
-            this.lblAdminName.Name = "lblAdminName";
-            this.lblAdminName.Size = new System.Drawing.Size(0, 34);
-            this.lblAdminName.TabIndex = 21;
-            // 
-            // lblAdminEmail
-            // 
-            this.lblAdminEmail.AutoSize = true;
-            this.lblAdminEmail.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdminEmail.Location = new System.Drawing.Point(306, 323);
-            this.lblAdminEmail.Name = "lblAdminEmail";
-            this.lblAdminEmail.Size = new System.Drawing.Size(0, 34);
-            this.lblAdminEmail.TabIndex = 22;
             // 
             // frmAdminMain
             // 

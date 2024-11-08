@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Functions;
 using Users;
 
+
 namespace CarCare_Service_Center
 {
     public partial class ServiceInsertion : Form
@@ -62,25 +63,30 @@ namespace CarCare_Service_Center
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(cmbServiceType.Text))
-            {
-                if (txtNewType == null)
-                {
-                    MessageBox.Show("Please select a service type", "Service Type Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+            string service_type;
+            string selectedServiceType = cmbServiceType.Text;
+            string newServiceType = txtNewType?.Text;
+            string typePrefix = txtTypePrefix?.Text;
 
-                if (string.IsNullOrWhiteSpace(txtNewType.Text) || !Services.IsServiceTypePrefixValid(txtTypePrefix.Text))
-                {
-                    MessageBox.Show("Invalid Service Type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            if (string.IsNullOrEmpty(selectedServiceType) &&
+                (string.IsNullOrWhiteSpace(newServiceType) || !Services.IsServiceTypePrefixValid(typePrefix)))
+            {
+                MessageBox.Show(
+                    string.IsNullOrEmpty(newServiceType) ? "Please select a service type" : "Invalid Service Type",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation
+                );
+                return;
             }
+
+            service_type = string.IsNullOrEmpty(selectedServiceType) ? newServiceType : selectedServiceType;
+
             if (string.IsNullOrWhiteSpace(txtServiceName.Text))
             {
                 MessageBox.Show("Please enter the service name", "Service Name Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -92,16 +98,16 @@ namespace CarCare_Service_Center
                 return;
             }
 
-            List<Services.ServicePrice> prices = new List<Services.ServicePrice>();
+            var prices = new List<Services.ServicePrice>();
 
             for (int row = 0; row < rowCount - 1; row++) // Last row is add button
             {
                 if (tlpPrice.GetControlFromPosition(1, row) is TextBox txtPrice &&
-                    float.TryParse(txtPrice.Text, out float price) &&
+                    float.TryParse(txtPrice.Text, out float price) && price > 0 && 
                     tlpPrice.GetControlFromPosition(2, row) is TextBox txtPriceDescription &&
                     !Validation.IsLengthInvalid(txtPriceDescription.Text, 1, 20))
                 {
-                    prices.Add(new Services.ServicePrice { Price = price, Description = txtPriceDescription.Text });
+                    prices.Add(new Services.ServicePrice { Price = price.ToString("0.00"), Description = txtPriceDescription.Text });
                 }
                 else
                 {
@@ -110,7 +116,7 @@ namespace CarCare_Service_Center
                 }
             }
 
-            if (!int.TryParse(txtTime.Text, out int EstimatedTime) || EstimatedTime < 1 || EstimatedTime > 999)
+            if (!int.TryParse(txtTime.Text, out int estimated_time) || estimated_time < 1 || estimated_time > 999)
             {
                 MessageBox.Show("Invalid Estimated Time", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -130,7 +136,34 @@ namespace CarCare_Service_Center
                 MessageBox.Show("Please upload the service image", "Service Image Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+            Services service = new Services
+            {
+                ServiceID = ID_Generator.ServiceID(service_type, txtTypePrefix.Text),
+                ServiceType = service_type,
+                ServiceName = txtServiceName.Text,
+                EstimatedTime = estimated_time.ToString(),
+                Description = txtDescription.Text,
+                Briefing = txtBriefing.Text,
+                ImageData = IMG.ToByteArray(picService.Image)
+            };
+
+            // Save service into database
+            service.Add();
+
+            foreach (var price in prices)
+            {
+                Services.ServicePrice servicePrice = new Services.ServicePrice
+                {
+                    ServiceID = service.ServiceID,
+                    Price = price.Price,
+                    Description = price.Description
+                };
+
+                // Save each price record
+                servicePrice.Add();
+            }
             MessageBox.Show("Successfully created!");
+            Close();
         }
 
         int rowCount = 2; // Initial number of rows in tlpPrice
@@ -230,6 +263,12 @@ namespace CarCare_Service_Center
                     MessageBox.Show("Error loading image: " + ex.Message);
                 }
             }
+        }
+
+        private void ServiceInsertion_Load(object sender, EventArgs e)
+        {
+            string query = "SELECT ServiceType FROM Services";
+            Database.LoadIntoComboBox(cmbServiceType, query, "ServiceType");
         }
     }
 }

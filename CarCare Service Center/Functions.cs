@@ -11,6 +11,8 @@ using System.Threading;
 using System.Collections;
 using CarCare_Service_Center;
 using System.Reflection;
+using System.Drawing;
+using System.IO;
 
 namespace Functions
 {
@@ -75,7 +77,6 @@ namespace Functions
     }
     public static class ID_Generator
     {
-
         public static string RegisterID()
         {
             string query = "SELECT COUNT(*) FROM RegisteredUsers";
@@ -88,8 +89,9 @@ namespace Functions
                 int count = (int)command.ExecuteScalar();
                 registerID = $"R{(count + 1):D7}"; // Zero-padded to 7 digits
             }
-            return registerID;
+            return registerID; 
         }
+
         public static string UserID(string role)
         {
             string query_Customer = "SELECT COUNT(*) FROM Users WHERE Role = 'Customer'";
@@ -128,9 +130,41 @@ namespace Functions
             }
             return UserID;
         }
+        public static string ServiceID(string serviceType, string prefix)
+        {
+            string query = "SELECT COUNT(*) FROM Services WHERE ServiceType = @ServiceType";
+            string ServiceID;
 
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ServiceType", serviceType);
+                connection.Open();
+                int count = (int)command.ExecuteScalar();
+                ServiceID = prefix + (count + 1).ToString("D3"); // Zero-padded to 3 digits
+            }
+            return ServiceID;
+        }
     }
-    
+
+    public static class IMG
+    {
+         public static byte[] ToByteArray(Image image)
+        {
+            using (var ms = new MemoryStream())
+            {
+                image.Save(ms, image.RawFormat); // Save image into the memory stream
+                return ms.ToArray();
+            }
+        }
+        public static Image ConvertByByteArray(byte[] image)
+        {
+            using (var ms = new MemoryStream(image)) // Create memory stream from byte array image
+            {
+                return Image.FromStream(ms); // Create an image object from the data in the stream
+            }
+        }
+    }
     public static class Database
     {
         public static List<T> FetchData<T>(string query) where T : new()
@@ -172,6 +206,23 @@ namespace Functions
             }
 
             return resultList;
+        }
+        public static void LoadIntoComboBox(ComboBox comboBox, string query, string item)
+        {
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Add each item to the ComboBox
+                        comboBox.Items.Add(reader[item].ToString());
+                    }
+                }
+            }
         }
     }
 }
