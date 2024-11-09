@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Functions;
 using Users;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace CarCare_Service_Center
 {
@@ -24,7 +23,8 @@ namespace CarCare_Service_Center
         private bool IsUsernameOrEmailExisted(string username_or_email)
         {
             // Combined query to check both username and email
-            string query = "SELECT COUNT(*) FROM Users WHERE (Username = @Identifier OR Email = @Identifier) AND IsDeleted = 0";
+            string query = "SELECT COUNT(*) FROM Users WHERE (Username COLLATE Latin1_General_BIN = @Identifier " +
+                           "OR Email COLLATE Latin1_General_BIN = @Identifier) AND IsDeleted = 0";
 
             using (SqlConnection connection = new SqlConnection(Program.connectionString))
             {
@@ -40,7 +40,9 @@ namespace CarCare_Service_Center
 
         private bool IsPasswordCorrect(string username_or_email, string password)
         {
-            string query = "SELECT COUNT(*) FROM Users WHERE (Username = @Identifier OR Email = @Identifier) AND Password = @Password AND IsDeleted = 0";
+            string query = "SELECT COUNT(*) FROM Users WHERE (Username COLLATE Latin1_General_BIN = @Identifier " +
+                           "OR Email COLLATE Latin1_General_BIN = @Identifier) AND Password COLLATE Latin1_General_BIN = @Password " +
+                           "AND IsDeleted = 0";
 
             using (SqlConnection connection = new SqlConnection(Program.connectionString))
             {
@@ -120,7 +122,7 @@ namespace CarCare_Service_Center
                         case "Customer":
                             Customer customer = new Customer(user);
                             frmCustomerMain frmCustomerMain = new frmCustomerMain(customer);
-                            Close();
+                            Hide();
                             frmCustomerMain.ShowDialog();
                             Close();
                             break;
@@ -130,6 +132,15 @@ namespace CarCare_Service_Center
                     MessageBox.Show("Incorrect password, please try again");
             else
                 MessageBox.Show("Username doesn't exist");
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogin_Click(sender, e);
+                e.SuppressKeyPress = true;
+            }
         }
     }
 }

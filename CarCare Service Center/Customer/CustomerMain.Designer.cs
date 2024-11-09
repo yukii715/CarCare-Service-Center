@@ -71,6 +71,12 @@ namespace CarCare_Service_Center
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.tabCustomer.SuspendLayout();
             this.Home.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -85,6 +91,11 @@ namespace CarCare_Service_Center
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.Profile.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // tabCustomer
@@ -286,7 +297,7 @@ namespace CarCare_Service_Center
             // 
             // Appointment
             // 
-            this.Appointment.Controls.Add(this.panel2);
+            this.Appointment.Controls.Add(this.tabControl1);
             this.Appointment.Location = new System.Drawing.Point(84, 4);
             this.Appointment.Name = "Appointment";
             this.Appointment.Size = new System.Drawing.Size(1094, 740);
@@ -299,9 +310,9 @@ namespace CarCare_Service_Center
             this.panel2.AutoScroll = true;
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.pictureBox3);
-            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Location = new System.Drawing.Point(6, 6);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1049, 729);
+            this.panel2.Size = new System.Drawing.Size(1071, 706);
             this.panel2.TabIndex = 6;
             // 
             // label7
@@ -310,9 +321,9 @@ namespace CarCare_Service_Center
             this.label7.Font = new System.Drawing.Font("Ink Free", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(406, 62);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(179, 34);
+            this.label7.Size = new System.Drawing.Size(243, 34);
             this.label7.TabIndex = 5;
-            this.label7.Text = "Appointment";
+            this.label7.Text = "New Appointment";
             // 
             // pictureBox3
             // 
@@ -485,6 +496,72 @@ namespace CarCare_Service_Center
             this.label16.TabIndex = 23;
             this.label16.Text = "Profile";
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(3, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1088, 744);
+            this.tabControl1.TabIndex = 6;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage1.Location = new System.Drawing.Point(4, 33);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1080, 707);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "New Appointment";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.panel4);
+            this.tabPage2.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage2.Location = new System.Drawing.Point(4, 33);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1080, 707);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "My Appointment";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // panel4
+            // 
+            this.panel4.AutoScroll = true;
+            this.panel4.Controls.Add(this.label9);
+            this.panel4.Controls.Add(this.pictureBox5);
+            this.panel4.Location = new System.Drawing.Point(5, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1071, 706);
+            this.panel4.TabIndex = 7;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Ink Free", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(405, 57);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(225, 34);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "My Appointment";
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(808, -24);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(223, 210);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 4;
+            this.pictureBox5.TabStop = false;
+            // 
             // frmCustomerMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -514,6 +591,12 @@ namespace CarCare_Service_Center
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.Profile.ResumeLayout(false);
             this.Profile.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -556,6 +639,12 @@ namespace CarCare_Service_Center
         private Label label14;
         private Label label15;
         private Label label16;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private Panel panel4;
+        private Label label9;
+        private PictureBox pictureBox5;
     }
 }
 

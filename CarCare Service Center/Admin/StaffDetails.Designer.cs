@@ -1,4 +1,5 @@
-﻿namespace CarCare_Service_Center
+﻿
+namespace CarCare_Service_Center
 {
     partial class StaffDetails
     {
@@ -196,6 +197,7 @@
             this.Controls.Add(this.label1);
             this.Name = "StaffDetails";
             this.Text = "CarCare Service Centre - Staff Details";
+            this.Load += new System.EventHandler(this.StaffDetails_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

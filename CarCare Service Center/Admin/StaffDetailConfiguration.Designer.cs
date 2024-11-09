@@ -1,4 +1,5 @@
-﻿namespace CarCare_Service_Center
+﻿
+namespace CarCare_Service_Center
 {
     partial class StaffDetailConfiguration
     {
@@ -38,8 +39,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
-            this.cmbRoleSelection = new System.Windows.Forms.ComboBox();
             this.txtSalary = new System.Windows.Forms.TextBox();
+            this.lblError = new System.Windows.Forms.Label();
+            this.lblRole = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblEmail
@@ -144,19 +146,6 @@
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
-            // cmbRoleSelection
-            // 
-            this.cmbRoleSelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRoleSelection.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbRoleSelection.FormattingEnabled = true;
-            this.cmbRoleSelection.Items.AddRange(new object[] {
-            "Mechanic",
-            "Receptionist"});
-            this.cmbRoleSelection.Location = new System.Drawing.Point(339, 450);
-            this.cmbRoleSelection.Name = "cmbRoleSelection";
-            this.cmbRoleSelection.Size = new System.Drawing.Size(408, 48);
-            this.cmbRoleSelection.TabIndex = 33;
-            // 
             // txtSalary
             // 
             this.txtSalary.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -164,14 +153,38 @@
             this.txtSalary.Name = "txtSalary";
             this.txtSalary.Size = new System.Drawing.Size(408, 48);
             this.txtSalary.TabIndex = 34;
+            this.txtSalary.TextChanged += new System.EventHandler(this.txtSalary_TextChanged);
+            // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Comic Sans MS", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(334, 635);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(60, 29);
+            this.lblError.TabIndex = 35;
+            this.lblError.Text = "Text";
+            this.lblError.Visible = false;
+            // 
+            // lblRole
+            // 
+            this.lblRole.AutoSize = true;
+            this.lblRole.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRole.Location = new System.Drawing.Point(332, 453);
+            this.lblRole.Name = "lblRole";
+            this.lblRole.Size = new System.Drawing.Size(28, 40);
+            this.lblRole.TabIndex = 36;
+            this.lblRole.Text = "-";
             // 
             // StaffDetailConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 808);
+            this.Controls.Add(this.lblRole);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.txtSalary);
-            this.Controls.Add(this.cmbRoleSelection);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblEmail);
@@ -200,7 +213,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnApply;
-        private System.Windows.Forms.ComboBox cmbRoleSelection;
         private System.Windows.Forms.TextBox txtSalary;
+        private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Label lblRole;
     }
 }

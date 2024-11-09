@@ -91,6 +91,12 @@
     </Compile>
     <Compile Include="Appearance.cs" />
     <Compile Include="Details.cs" />
+    <Compile Include="Admin\FeedbackDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FeedbackDetails.Designer.cs">
+      <DependentUpon>FeedbackDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mechanic\EditProfile.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -30,8 +30,16 @@ namespace CarCare_Service_Center
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdminMain));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabAdmin = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.crtHomeRating = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnHomeRatingDetail = new System.Windows.Forms.Button();
             this.cmbHomeYear = new System.Windows.Forms.ComboBox();
             this.cmbHomeMonth = new System.Windows.Forms.ComboBox();
@@ -56,8 +64,6 @@ namespace CarCare_Service_Center
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.btnStaffAdd = new System.Windows.Forms.Button();
-            this.btnStaffDelete = new System.Windows.Forms.Button();
-            this.btnStaffDetail = new System.Windows.Forms.Button();
             this.btnStaffAccountSortName = new System.Windows.Forms.Button();
             this.btnStaffAccountSortID = new System.Windows.Forms.Button();
             this.btnStaffSearch = new System.Windows.Forms.Button();
@@ -71,8 +77,6 @@ namespace CarCare_Service_Center
             this.btnServiceSortID = new System.Windows.Forms.Button();
             this.btnServiceSortName = new System.Windows.Forms.Button();
             this.btnServiceAdd = new System.Windows.Forms.Button();
-            this.btnServiceDelete = new System.Windows.Forms.Button();
-            this.btnServiceDetails = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tlpServiceData = new System.Windows.Forms.TableLayoutPanel();
             this.btnServiceSearch = new System.Windows.Forms.Button();
@@ -81,7 +85,70 @@ namespace CarCare_Service_Center
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.tabFeedback = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnFeedbackSortComment = new System.Windows.Forms.Button();
+            this.btnFeedbackSortRating = new System.Windows.Forms.Button();
+            this.btnFeedbackSortDate = new System.Windows.Forms.Button();
+            this.btnFeedbackSortID = new System.Windows.Forms.Button();
+            this.btnFeedbackSortName = new System.Windows.Forms.Button();
+            this.pnlFeedbackData = new System.Windows.Forms.Panel();
+            this.tlpFeedbackData = new System.Windows.Forms.TableLayoutPanel();
+            this.cmbFeedbackYear = new System.Windows.Forms.ComboBox();
+            this.cmbFeedbackMonth = new System.Windows.Forms.ComboBox();
+            this.btnFeedbackGenerate = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lblFeedbackTotal = new System.Windows.Forms.Label();
+            this.crtFeedbackRating = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabReport = new System.Windows.Forms.TabPage();
+            this.cmbReportYear = new System.Windows.Forms.ComboBox();
+            this.cmbReportMonth = new System.Windows.Forms.ComboBox();
+            this.btnReportGenerate = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tabReportSelection = new System.Windows.Forms.TabControl();
+            this.tabMonthlyReport = new System.Windows.Forms.TabPage();
+            this.lblReportFinalProfit = new System.Windows.Forms.Label();
+            this.lblReportStaffSalaryCost = new System.Windows.Forms.Label();
+            this.lblReportCostAndExpenses = new System.Windows.Forms.Label();
+            this.lblReportServiceRevenue = new System.Windows.Forms.Label();
+            this.lblReportProfit = new System.Windows.Forms.Label();
+            this.lblReportCost = new System.Windows.Forms.Label();
+            this.lblReportRevenue = new System.Windows.Forms.Label();
+            this.lblReportNumOfService = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.lblMonthlyReportTitle = new System.Windows.Forms.Label();
+            this.tabServiceReport = new System.Windows.Forms.TabPage();
+            this.tlpServiceReportSortButton = new System.Windows.Forms.TableLayoutPanel();
+            this.btnServiceReportSortPrice = new System.Windows.Forms.Button();
+            this.btnServiceReportSortSOID = new System.Windows.Forms.Button();
+            this.btnServiceReportSortDate = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.tlpServiceReportData = new System.Windows.Forms.TableLayoutPanel();
+            this.lblMonthlyServiceReport = new System.Windows.Forms.Label();
+            this.tabCostAndExpenses = new System.Windows.Forms.TabPage();
+            this.tlpCostAndExpensesSortButton = new System.Windows.Forms.TableLayoutPanel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.tlpCostAndExpensesData = new System.Windows.Forms.TableLayoutPanel();
+            this.lblCostAndExpensesReport = new System.Windows.Forms.Label();
+            this.tabStaffSalaryReport = new System.Windows.Forms.TabPage();
+            this.tlpStaffSalaryReportSortButton = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSSRPrice = new System.Windows.Forms.Button();
+            this.btnSSRID = new System.Windows.Forms.Button();
+            this.btnSSRName = new System.Windows.Forms.Button();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.tlpStaffSalaryReportData = new System.Windows.Forms.TableLayoutPanel();
+            this.lblStaffSalaryReport = new System.Windows.Forms.Label();
             this.tabProfile = new System.Windows.Forms.TabPage();
             this.lblAdminEmail = new System.Windows.Forms.Label();
             this.lblAdminName = new System.Windows.Forms.Label();
@@ -89,12 +156,13 @@ namespace CarCare_Service_Center
             this.btnChangePassword = new System.Windows.Forms.Button();
             this.btnChangeEmail = new System.Windows.Forms.Button();
             this.btnChangeUserName = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
             this.tabAdmin.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.crtHomeRating)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.tabStaffAccount.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -102,6 +170,23 @@ namespace CarCare_Service_Center
             this.tabServices.SuspendLayout();
             this.tlpServiceSortButtons.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.tabFeedback.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.pnlFeedbackData.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.crtFeedbackRating)).BeginInit();
+            this.tabReport.SuspendLayout();
+            this.tabReportSelection.SuspendLayout();
+            this.tabMonthlyReport.SuspendLayout();
+            this.tabServiceReport.SuspendLayout();
+            this.tlpServiceReportSortButton.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.tabCostAndExpenses.SuspendLayout();
+            this.tlpCostAndExpensesSortButton.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.tabStaffSalaryReport.SuspendLayout();
+            this.tlpStaffSalaryReportSortButton.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.tabProfile.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -117,7 +202,7 @@ namespace CarCare_Service_Center
             this.tabAdmin.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabAdmin.ItemSize = new System.Drawing.Size(50, 80);
             this.tabAdmin.Location = new System.Drawing.Point(1, 1);
-            this.tabAdmin.Margin = new System.Windows.Forms.Padding(2);
+            this.tabAdmin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabAdmin.Multiline = true;
             this.tabAdmin.Name = "tabAdmin";
             this.tabAdmin.SelectedIndex = 0;
@@ -127,6 +212,7 @@ namespace CarCare_Service_Center
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.crtHomeRating);
             this.tabPage1.Controls.Add(this.btnHomeRatingDetail);
             this.tabPage1.Controls.Add(this.cmbHomeYear);
             this.tabPage1.Controls.Add(this.cmbHomeMonth);
@@ -144,24 +230,50 @@ namespace CarCare_Service_Center
             this.tabPage1.Controls.Add(this.btnLogout);
             this.tabPage1.Controls.Add(this.pictureBoxLogo);
             this.tabPage1.Location = new System.Drawing.Point(84, 4);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage1.Size = new System.Drawing.Size(996, 612);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Home";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // crtHomeRating
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.crtHomeRating.ChartAreas.Add(chartArea1);
+            legend1.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            legend1.IsTextAutoFit = false;
+            legend1.Name = "Legend1";
+            this.crtHomeRating.Legends.Add(legend1);
+            this.crtHomeRating.Location = new System.Drawing.Point(507, 328);
+            this.crtHomeRating.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.crtHomeRating.Name = "crtHomeRating";
+            this.crtHomeRating.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series1.IsXValueIndexed = true;
+            series1.Legend = "Legend1";
+            series1.LegendText = "Chart";
+            series1.Name = "SeriesRating";
+            this.crtHomeRating.Series.Add(series1);
+            this.crtHomeRating.Size = new System.Drawing.Size(392, 216);
+            this.crtHomeRating.TabIndex = 42;
+            this.crtHomeRating.Text = "chartRating";
+            // 
             // btnHomeRatingDetail
             // 
+            this.btnHomeRatingDetail.Enabled = false;
             this.btnHomeRatingDetail.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHomeRatingDetail.Location = new System.Drawing.Point(708, 549);
-            this.btnHomeRatingDetail.Margin = new System.Windows.Forms.Padding(2);
+            this.btnHomeRatingDetail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnHomeRatingDetail.Name = "btnHomeRatingDetail";
             this.btnHomeRatingDetail.Size = new System.Drawing.Size(176, 42);
             this.btnHomeRatingDetail.TabIndex = 41;
             this.btnHomeRatingDetail.Text = "More Detail";
             this.btnHomeRatingDetail.UseVisualStyleBackColor = true;
+            this.btnHomeRatingDetail.Click += new System.EventHandler(this.btnHomeRatingDetail_Click);
             // 
             // cmbHomeYear
             // 
@@ -171,10 +283,11 @@ namespace CarCare_Service_Center
             this.cmbHomeYear.Items.AddRange(new object[] {
             "2024"});
             this.cmbHomeYear.Location = new System.Drawing.Point(402, 240);
-            this.cmbHomeYear.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbHomeYear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbHomeYear.Name = "cmbHomeYear";
             this.cmbHomeYear.Size = new System.Drawing.Size(138, 36);
             this.cmbHomeYear.TabIndex = 40;
+            this.cmbHomeYear.SelectedIndexChanged += new System.EventHandler(this.HomeresetPreview);
             // 
             // cmbHomeMonth
             // 
@@ -195,32 +308,36 @@ namespace CarCare_Service_Center
             "November",
             "December"});
             this.cmbHomeMonth.Location = new System.Drawing.Point(132, 240);
-            this.cmbHomeMonth.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbHomeMonth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbHomeMonth.Name = "cmbHomeMonth";
             this.cmbHomeMonth.Size = new System.Drawing.Size(203, 36);
             this.cmbHomeMonth.TabIndex = 39;
+            this.cmbHomeMonth.SelectedIndexChanged += new System.EventHandler(this.HomeresetPreview);
             // 
             // btnHomeGenerate
             // 
             this.btnHomeGenerate.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHomeGenerate.Location = new System.Drawing.Point(590, 236);
-            this.btnHomeGenerate.Margin = new System.Windows.Forms.Padding(2);
+            this.btnHomeGenerate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnHomeGenerate.Name = "btnHomeGenerate";
             this.btnHomeGenerate.Size = new System.Drawing.Size(120, 42);
             this.btnHomeGenerate.TabIndex = 38;
             this.btnHomeGenerate.Text = "Generate";
             this.btnHomeGenerate.UseVisualStyleBackColor = true;
+            this.btnHomeGenerate.Click += new System.EventHandler(this.btnHomeGenerate_Click);
             // 
             // btnHomeProfitDetail
             // 
+            this.btnHomeProfitDetail.Enabled = false;
             this.btnHomeProfitDetail.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHomeProfitDetail.Location = new System.Drawing.Point(231, 549);
-            this.btnHomeProfitDetail.Margin = new System.Windows.Forms.Padding(2);
+            this.btnHomeProfitDetail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnHomeProfitDetail.Name = "btnHomeProfitDetail";
             this.btnHomeProfitDetail.Size = new System.Drawing.Size(170, 42);
             this.btnHomeProfitDetail.TabIndex = 37;
             this.btnHomeProfitDetail.Text = "More Detail";
             this.btnHomeProfitDetail.UseVisualStyleBackColor = true;
+            this.btnHomeProfitDetail.Click += new System.EventHandler(this.btnHomeProfitDetail_Click);
             // 
             // lblHomeProfit
             // 
@@ -229,9 +346,9 @@ namespace CarCare_Service_Center
             this.lblHomeProfit.Location = new System.Drawing.Point(266, 474);
             this.lblHomeProfit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHomeProfit.Name = "lblHomeProfit";
-            this.lblHomeProfit.Size = new System.Drawing.Size(46, 30);
+            this.lblHomeProfit.Size = new System.Drawing.Size(62, 30);
             this.lblHomeProfit.TabIndex = 36;
-            this.lblHomeProfit.Text = "RM";
+            this.lblHomeProfit.Text = "RM -";
             // 
             // lblMoneySpent
             // 
@@ -240,9 +357,9 @@ namespace CarCare_Service_Center
             this.lblMoneySpent.Location = new System.Drawing.Point(266, 392);
             this.lblMoneySpent.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMoneySpent.Name = "lblMoneySpent";
-            this.lblMoneySpent.Size = new System.Drawing.Size(46, 30);
+            this.lblMoneySpent.Size = new System.Drawing.Size(62, 30);
             this.lblMoneySpent.TabIndex = 35;
-            this.lblMoneySpent.Text = "RM";
+            this.lblMoneySpent.Text = "RM -";
             // 
             // lblMoneyEarn
             // 
@@ -251,9 +368,9 @@ namespace CarCare_Service_Center
             this.lblMoneyEarn.Location = new System.Drawing.Point(266, 310);
             this.lblMoneyEarn.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMoneyEarn.Name = "lblMoneyEarn";
-            this.lblMoneyEarn.Size = new System.Drawing.Size(46, 30);
+            this.lblMoneyEarn.Size = new System.Drawing.Size(62, 30);
             this.lblMoneyEarn.TabIndex = 34;
-            this.lblMoneyEarn.Text = "RM";
+            this.lblMoneyEarn.Text = "RM -";
             // 
             // label5
             // 
@@ -317,28 +434,30 @@ namespace CarCare_Service_Center
             this.lblWelcome.Location = new System.Drawing.Point(2, 161);
             this.lblWelcome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(391, 51);
+            this.lblWelcome.Size = new System.Drawing.Size(369, 51);
             this.lblWelcome.TabIndex = 9;
-            this.lblWelcome.Text = "Welcome Back, Admin";
+            this.lblWelcome.Text = "Welcome Back, User";
             // 
             // btnLogout
             // 
             this.btnLogout.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.Location = new System.Drawing.Point(800, 15);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(120, 42);
             this.btnLogout.TabIndex = 8;
             this.btnLogout.Text = "Log Out";
             this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // pictureBoxLogo
             // 
-            this.pictureBoxLogo.Location = new System.Drawing.Point(431, -3);
-            this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
+            this.pictureBoxLogo.Location = new System.Drawing.Point(364, 4);
+            this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(172, 159);
-            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxLogo.Size = new System.Drawing.Size(219, 181);
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLogo.TabIndex = 0;
             this.pictureBoxLogo.TabStop = false;
             // 
@@ -347,8 +466,6 @@ namespace CarCare_Service_Center
             this.tabStaffAccount.Controls.Add(this.panel2);
             this.tabStaffAccount.Controls.Add(this.panel1);
             this.tabStaffAccount.Controls.Add(this.btnStaffAdd);
-            this.tabStaffAccount.Controls.Add(this.btnStaffDelete);
-            this.tabStaffAccount.Controls.Add(this.btnStaffDetail);
             this.tabStaffAccount.Controls.Add(this.btnStaffAccountSortName);
             this.tabStaffAccount.Controls.Add(this.btnStaffAccountSortID);
             this.tabStaffAccount.Controls.Add(this.btnStaffSearch);
@@ -357,9 +474,9 @@ namespace CarCare_Service_Center
             this.tabStaffAccount.Controls.Add(this.label7);
             this.tabStaffAccount.Controls.Add(this.label6);
             this.tabStaffAccount.Location = new System.Drawing.Point(84, 4);
-            this.tabStaffAccount.Margin = new System.Windows.Forms.Padding(2);
+            this.tabStaffAccount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabStaffAccount.Name = "tabStaffAccount";
-            this.tabStaffAccount.Padding = new System.Windows.Forms.Padding(2);
+            this.tabStaffAccount.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabStaffAccount.Size = new System.Drawing.Size(996, 612);
             this.tabStaffAccount.TabIndex = 1;
             this.tabStaffAccount.Text = "Staff Account";
@@ -369,30 +486,27 @@ namespace CarCare_Service_Center
             // 
             this.panel2.AutoScroll = true;
             this.panel2.Controls.Add(this.tlpStaffAccountData);
-            this.panel2.Location = new System.Drawing.Point(4, 238);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Location = new System.Drawing.Point(13, 238);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(921, 269);
+            this.panel2.Size = new System.Drawing.Size(930, 269);
             this.panel2.TabIndex = 14;
             // 
             // tlpStaffAccountData
             // 
-            this.tlpStaffAccountData.ColumnCount = 3;
-            this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.59679F));
-            this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.40321F));
-            this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 232F));
-            this.tlpStaffAccountData.Location = new System.Drawing.Point(27, 2);
-            this.tlpStaffAccountData.Margin = new System.Windows.Forms.Padding(2);
+            this.tlpStaffAccountData.AutoSize = true;
+            this.tlpStaffAccountData.ColumnCount = 4;
+            this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.03226F));
+            this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.96774F));
+            this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
+            this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 164F));
+            this.tlpStaffAccountData.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tlpStaffAccountData.Location = new System.Drawing.Point(15, 2);
+            this.tlpStaffAccountData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tlpStaffAccountData.Name = "tlpStaffAccountData";
-            this.tlpStaffAccountData.RowCount = 7;
-            this.tlpStaffAccountData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.57265F));
-            this.tlpStaffAccountData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.42735F));
-            this.tlpStaffAccountData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tlpStaffAccountData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.tlpStaffAccountData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tlpStaffAccountData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
-            this.tlpStaffAccountData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 14F));
-            this.tlpStaffAccountData.Size = new System.Drawing.Size(824, 297);
+            this.tlpStaffAccountData.RowCount = 1;
+            this.tlpStaffAccountData.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpStaffAccountData.Size = new System.Drawing.Size(869, 48);
             this.tlpStaffAccountData.TabIndex = 14;
             // 
             // panel1
@@ -403,16 +517,16 @@ namespace CarCare_Service_Center
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Location = new System.Drawing.Point(28, 199);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(898, 43);
+            this.panel1.Size = new System.Drawing.Size(890, 43);
             this.panel1.TabIndex = 13;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(28, 9);
+            this.label8.Location = new System.Drawing.Point(55, 9);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(39, 29);
@@ -423,7 +537,7 @@ namespace CarCare_Service_Center
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(300, 9);
+            this.label9.Location = new System.Drawing.Point(280, 9);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 29);
@@ -434,7 +548,7 @@ namespace CarCare_Service_Center
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(670, 10);
+            this.label10.Location = new System.Drawing.Point(562, 9);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(54, 29);
@@ -445,7 +559,7 @@ namespace CarCare_Service_Center
             // 
             this.btnStaffAdd.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStaffAdd.Location = new System.Drawing.Point(785, 528);
-            this.btnStaffAdd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStaffAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStaffAdd.Name = "btnStaffAdd";
             this.btnStaffAdd.Size = new System.Drawing.Size(125, 42);
             this.btnStaffAdd.TabIndex = 12;
@@ -453,35 +567,12 @@ namespace CarCare_Service_Center
             this.btnStaffAdd.UseVisualStyleBackColor = true;
             this.btnStaffAdd.Click += new System.EventHandler(this.btnStaffAdd_Click);
             // 
-            // btnStaffDelete
-            // 
-            this.btnStaffDelete.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStaffDelete.Location = new System.Drawing.Point(406, 528);
-            this.btnStaffDelete.Margin = new System.Windows.Forms.Padding(2);
-            this.btnStaffDelete.Name = "btnStaffDelete";
-            this.btnStaffDelete.Size = new System.Drawing.Size(125, 42);
-            this.btnStaffDelete.TabIndex = 11;
-            this.btnStaffDelete.Text = "Delete";
-            this.btnStaffDelete.UseVisualStyleBackColor = true;
-            this.btnStaffDelete.Click += new System.EventHandler(this.btnStaffDelete_Click);
-            // 
-            // btnStaffDetail
-            // 
-            this.btnStaffDetail.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStaffDetail.Location = new System.Drawing.Point(28, 528);
-            this.btnStaffDetail.Margin = new System.Windows.Forms.Padding(2);
-            this.btnStaffDetail.Name = "btnStaffDetail";
-            this.btnStaffDetail.Size = new System.Drawing.Size(125, 42);
-            this.btnStaffDetail.TabIndex = 10;
-            this.btnStaffDetail.Text = "Details";
-            this.btnStaffDetail.UseVisualStyleBackColor = true;
-            this.btnStaffDetail.Click += new System.EventHandler(this.btnStaffDetail_Click);
-            // 
             // btnStaffAccountSortName
             // 
+            this.btnStaffAccountSortName.Enabled = false;
             this.btnStaffAccountSortName.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStaffAccountSortName.Location = new System.Drawing.Point(422, 128);
-            this.btnStaffAccountSortName.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStaffAccountSortName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStaffAccountSortName.Name = "btnStaffAccountSortName";
             this.btnStaffAccountSortName.Size = new System.Drawing.Size(125, 42);
             this.btnStaffAccountSortName.TabIndex = 9;
@@ -491,9 +582,10 @@ namespace CarCare_Service_Center
             // 
             // btnStaffAccountSortID
             // 
+            this.btnStaffAccountSortID.Enabled = false;
             this.btnStaffAccountSortID.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStaffAccountSortID.Location = new System.Drawing.Point(187, 128);
-            this.btnStaffAccountSortID.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStaffAccountSortID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStaffAccountSortID.Name = "btnStaffAccountSortID";
             this.btnStaffAccountSortID.Size = new System.Drawing.Size(125, 42);
             this.btnStaffAccountSortID.TabIndex = 8;
@@ -503,9 +595,10 @@ namespace CarCare_Service_Center
             // 
             // btnStaffSearch
             // 
+            this.btnStaffSearch.Enabled = false;
             this.btnStaffSearch.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStaffSearch.Location = new System.Drawing.Point(427, 71);
-            this.btnStaffSearch.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStaffSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStaffSearch.Name = "btnStaffSearch";
             this.btnStaffSearch.Size = new System.Drawing.Size(120, 42);
             this.btnStaffSearch.TabIndex = 7;
@@ -517,7 +610,7 @@ namespace CarCare_Service_Center
             // 
             this.txtStaffSearch.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStaffSearch.Location = new System.Drawing.Point(28, 76);
-            this.txtStaffSearch.Margin = new System.Windows.Forms.Padding(2);
+            this.txtStaffSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtStaffSearch.Name = "txtStaffSearch";
             this.txtStaffSearch.Size = new System.Drawing.Size(358, 36);
             this.txtStaffSearch.TabIndex = 6;
@@ -533,10 +626,11 @@ namespace CarCare_Service_Center
             "Mechanic",
             "Receptionist"});
             this.cmbRoleSelection.Location = new System.Drawing.Point(122, 19);
-            this.cmbRoleSelection.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbRoleSelection.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbRoleSelection.Name = "cmbRoleSelection";
             this.cmbRoleSelection.Size = new System.Drawing.Size(264, 36);
             this.cmbRoleSelection.TabIndex = 5;
+            this.cmbRoleSelection.SelectedIndexChanged += new System.EventHandler(this.cmbRoleSelection_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -564,8 +658,6 @@ namespace CarCare_Service_Center
             // 
             this.tabServices.Controls.Add(this.tlpServiceSortButtons);
             this.tabServices.Controls.Add(this.btnServiceAdd);
-            this.tabServices.Controls.Add(this.btnServiceDelete);
-            this.tabServices.Controls.Add(this.btnServiceDetails);
             this.tabServices.Controls.Add(this.panel3);
             this.tabServices.Controls.Add(this.btnServiceSearch);
             this.tabServices.Controls.Add(this.txtServiceSearch);
@@ -573,7 +665,7 @@ namespace CarCare_Service_Center
             this.tabServices.Controls.Add(this.label12);
             this.tabServices.Controls.Add(this.label11);
             this.tabServices.Location = new System.Drawing.Point(84, 4);
-            this.tabServices.Margin = new System.Windows.Forms.Padding(2);
+            this.tabServices.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabServices.Name = "tabServices";
             this.tabServices.Size = new System.Drawing.Size(996, 612);
             this.tabServices.TabIndex = 2;
@@ -582,29 +674,31 @@ namespace CarCare_Service_Center
             // 
             // tlpServiceSortButtons
             // 
-            this.tlpServiceSortButtons.ColumnCount = 3;
-            this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.75248F));
-            this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.24753F));
-            this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 382F));
+            this.tlpServiceSortButtons.BackColor = System.Drawing.Color.Gainsboro;
+            this.tlpServiceSortButtons.ColumnCount = 4;
+            this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.73786F));
+            this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.26214F));
+            this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 320F));
+            this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140F));
             this.tlpServiceSortButtons.Controls.Add(this.btnServiceSortType, 2, 0);
             this.tlpServiceSortButtons.Controls.Add(this.btnServiceSortID, 0, 0);
             this.tlpServiceSortButtons.Controls.Add(this.btnServiceSortName, 1, 0);
             this.tlpServiceSortButtons.Location = new System.Drawing.Point(34, 172);
-            this.tlpServiceSortButtons.Margin = new System.Windows.Forms.Padding(2);
+            this.tlpServiceSortButtons.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tlpServiceSortButtons.Name = "tlpServiceSortButtons";
             this.tlpServiceSortButtons.RowCount = 1;
             this.tlpServiceSortButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.57265F));
-            this.tlpServiceSortButtons.Size = new System.Drawing.Size(834, 48);
+            this.tlpServiceSortButtons.Size = new System.Drawing.Size(862, 48);
             this.tlpServiceSortButtons.TabIndex = 20;
             // 
             // btnServiceSortType
             // 
             this.btnServiceSortType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnServiceSortType.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnServiceSortType.Location = new System.Drawing.Point(453, 2);
-            this.btnServiceSortType.Margin = new System.Windows.Forms.Padding(2);
+            this.btnServiceSortType.Location = new System.Drawing.Point(403, 2);
+            this.btnServiceSortType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnServiceSortType.Name = "btnServiceSortType";
-            this.btnServiceSortType.Size = new System.Drawing.Size(379, 44);
+            this.btnServiceSortType.Size = new System.Drawing.Size(316, 44);
             this.btnServiceSortType.TabIndex = 21;
             this.btnServiceSortType.Text = "Service Type";
             this.btnServiceSortType.UseVisualStyleBackColor = true;
@@ -614,9 +708,9 @@ namespace CarCare_Service_Center
             this.btnServiceSortID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnServiceSortID.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnServiceSortID.Location = new System.Drawing.Point(2, 2);
-            this.btnServiceSortID.Margin = new System.Windows.Forms.Padding(2);
+            this.btnServiceSortID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnServiceSortID.Name = "btnServiceSortID";
-            this.btnServiceSortID.Size = new System.Drawing.Size(107, 44);
+            this.btnServiceSortID.Size = new System.Drawing.Size(111, 44);
             this.btnServiceSortID.TabIndex = 20;
             this.btnServiceSortID.Text = "ID";
             this.btnServiceSortID.UseVisualStyleBackColor = true;
@@ -625,10 +719,10 @@ namespace CarCare_Service_Center
             // 
             this.btnServiceSortName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnServiceSortName.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnServiceSortName.Location = new System.Drawing.Point(113, 2);
-            this.btnServiceSortName.Margin = new System.Windows.Forms.Padding(2);
+            this.btnServiceSortName.Location = new System.Drawing.Point(117, 2);
+            this.btnServiceSortName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnServiceSortName.Name = "btnServiceSortName";
-            this.btnServiceSortName.Size = new System.Drawing.Size(336, 44);
+            this.btnServiceSortName.Size = new System.Drawing.Size(282, 44);
             this.btnServiceSortName.TabIndex = 21;
             this.btnServiceSortName.Text = "Name";
             this.btnServiceSortName.UseVisualStyleBackColor = true;
@@ -637,7 +731,7 @@ namespace CarCare_Service_Center
             // 
             this.btnServiceAdd.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnServiceAdd.Location = new System.Drawing.Point(774, 539);
-            this.btnServiceAdd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnServiceAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnServiceAdd.Name = "btnServiceAdd";
             this.btnServiceAdd.Size = new System.Drawing.Size(125, 42);
             this.btnServiceAdd.TabIndex = 19;
@@ -645,65 +739,40 @@ namespace CarCare_Service_Center
             this.btnServiceAdd.UseVisualStyleBackColor = true;
             this.btnServiceAdd.Click += new System.EventHandler(this.btnServiceAdd_Click);
             // 
-            // btnServiceDelete
-            // 
-            this.btnServiceDelete.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnServiceDelete.Location = new System.Drawing.Point(394, 539);
-            this.btnServiceDelete.Margin = new System.Windows.Forms.Padding(2);
-            this.btnServiceDelete.Name = "btnServiceDelete";
-            this.btnServiceDelete.Size = new System.Drawing.Size(125, 42);
-            this.btnServiceDelete.TabIndex = 18;
-            this.btnServiceDelete.Text = "Delete";
-            this.btnServiceDelete.UseVisualStyleBackColor = true;
-            this.btnServiceDelete.Click += new System.EventHandler(this.btnServiceDelete_Click);
-            // 
-            // btnServiceDetails
-            // 
-            this.btnServiceDetails.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnServiceDetails.Location = new System.Drawing.Point(15, 539);
-            this.btnServiceDetails.Margin = new System.Windows.Forms.Padding(2);
-            this.btnServiceDetails.Name = "btnServiceDetails";
-            this.btnServiceDetails.Size = new System.Drawing.Size(125, 42);
-            this.btnServiceDetails.TabIndex = 17;
-            this.btnServiceDetails.Text = "Details";
-            this.btnServiceDetails.UseVisualStyleBackColor = true;
-            this.btnServiceDetails.Click += new System.EventHandler(this.btnServiceDetails_Click);
-            // 
             // panel3
             // 
             this.panel3.AutoScroll = true;
             this.panel3.Controls.Add(this.tlpServiceData);
             this.panel3.Location = new System.Drawing.Point(16, 220);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(898, 292);
+            this.panel3.Size = new System.Drawing.Size(932, 292);
             this.panel3.TabIndex = 16;
             // 
             // tlpServiceData
             // 
-            this.tlpServiceData.ColumnCount = 3;
-            this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.75248F));
-            this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.24752F));
-            this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 382F));
-            this.tlpServiceData.Location = new System.Drawing.Point(16, 2);
-            this.tlpServiceData.Margin = new System.Windows.Forms.Padding(2);
+            this.tlpServiceData.AutoSize = true;
+            this.tlpServiceData.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.tlpServiceData.ColumnCount = 4;
+            this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.84314F));
+            this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.15686F));
+            this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 318F));
+            this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
+            this.tlpServiceData.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tlpServiceData.Location = new System.Drawing.Point(20, 2);
+            this.tlpServiceData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tlpServiceData.Name = "tlpServiceData";
             this.tlpServiceData.RowCount = 1;
-            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpServiceData.Size = new System.Drawing.Size(834, 46);
+            this.tlpServiceData.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpServiceData.Size = new System.Drawing.Size(860, 58);
             this.tlpServiceData.TabIndex = 14;
             // 
             // btnServiceSearch
             // 
+            this.btnServiceSearch.Enabled = false;
             this.btnServiceSearch.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnServiceSearch.Location = new System.Drawing.Point(611, 70);
-            this.btnServiceSearch.Margin = new System.Windows.Forms.Padding(2);
+            this.btnServiceSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnServiceSearch.Name = "btnServiceSearch";
             this.btnServiceSearch.Size = new System.Drawing.Size(120, 42);
             this.btnServiceSearch.TabIndex = 8;
@@ -715,7 +784,7 @@ namespace CarCare_Service_Center
             // 
             this.txtServiceSearch.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtServiceSearch.Location = new System.Drawing.Point(194, 19);
-            this.txtServiceSearch.Margin = new System.Windows.Forms.Padding(2);
+            this.txtServiceSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtServiceSearch.Name = "txtServiceSearch";
             this.txtServiceSearch.Size = new System.Drawing.Size(358, 36);
             this.txtServiceSearch.TabIndex = 7;
@@ -726,11 +795,24 @@ namespace CarCare_Service_Center
             this.cmbServiceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbServiceType.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbServiceType.FormattingEnabled = true;
+            this.cmbServiceType.Items.AddRange(new object[] {
+            "All",
+            "Basic Maintenance Services",
+            "Vehicle Diagnostics",
+            "Advanced Repair Services",
+            "Tire Services",
+            "Car Detailing Services",
+            "AC and Heating Services",
+            "Performance Enhancements",
+            "Safety Checks",
+            "Fleet Services",
+            "Specialized Services"});
             this.cmbServiceType.Location = new System.Drawing.Point(194, 77);
-            this.cmbServiceType.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbServiceType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbServiceType.Name = "cmbServiceType";
             this.cmbServiceType.Size = new System.Drawing.Size(358, 36);
             this.cmbServiceType.TabIndex = 6;
+            this.cmbServiceType.SelectedIndexChanged += new System.EventHandler(this.cmbServiceType_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -756,23 +838,887 @@ namespace CarCare_Service_Center
             // 
             // tabFeedback
             // 
+            this.tabFeedback.Controls.Add(this.tableLayoutPanel1);
+            this.tabFeedback.Controls.Add(this.pnlFeedbackData);
+            this.tabFeedback.Controls.Add(this.cmbFeedbackYear);
+            this.tabFeedback.Controls.Add(this.cmbFeedbackMonth);
+            this.tabFeedback.Controls.Add(this.btnFeedbackGenerate);
+            this.tabFeedback.Controls.Add(this.label13);
+            this.tabFeedback.Controls.Add(this.panel4);
             this.tabFeedback.Location = new System.Drawing.Point(84, 4);
-            this.tabFeedback.Margin = new System.Windows.Forms.Padding(2);
+            this.tabFeedback.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabFeedback.Name = "tabFeedback";
             this.tabFeedback.Size = new System.Drawing.Size(996, 612);
             this.tabFeedback.TabIndex = 3;
             this.tabFeedback.Text = "Feedback";
             this.tabFeedback.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.80247F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.19753F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 178F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 78F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel1.Controls.Add(this.btnFeedbackSortComment, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnFeedbackSortRating, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnFeedbackSortDate, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnFeedbackSortID, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnFeedbackSortName, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 324);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.57265F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(732, 48);
+            this.tableLayoutPanel1.TabIndex = 50;
+            this.tableLayoutPanel1.Visible = false;
+            // 
+            // btnFeedbackSortComment
+            // 
+            this.btnFeedbackSortComment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnFeedbackSortComment.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFeedbackSortComment.Location = new System.Drawing.Point(621, 2);
+            this.btnFeedbackSortComment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFeedbackSortComment.Name = "btnFeedbackSortComment";
+            this.btnFeedbackSortComment.Size = new System.Drawing.Size(109, 44);
+            this.btnFeedbackSortComment.TabIndex = 23;
+            this.btnFeedbackSortComment.Text = "Comment";
+            this.btnFeedbackSortComment.UseVisualStyleBackColor = true;
+            // 
+            // btnFeedbackSortRating
+            // 
+            this.btnFeedbackSortRating.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnFeedbackSortRating.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFeedbackSortRating.Location = new System.Drawing.Point(543, 2);
+            this.btnFeedbackSortRating.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFeedbackSortRating.Name = "btnFeedbackSortRating";
+            this.btnFeedbackSortRating.Size = new System.Drawing.Size(74, 44);
+            this.btnFeedbackSortRating.TabIndex = 22;
+            this.btnFeedbackSortRating.Text = "Rating";
+            this.btnFeedbackSortRating.UseVisualStyleBackColor = true;
+            // 
+            // btnFeedbackSortDate
+            // 
+            this.btnFeedbackSortDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnFeedbackSortDate.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFeedbackSortDate.Location = new System.Drawing.Point(365, 2);
+            this.btnFeedbackSortDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFeedbackSortDate.Name = "btnFeedbackSortDate";
+            this.btnFeedbackSortDate.Size = new System.Drawing.Size(174, 44);
+            this.btnFeedbackSortDate.TabIndex = 21;
+            this.btnFeedbackSortDate.Text = "Date";
+            this.btnFeedbackSortDate.UseVisualStyleBackColor = true;
+            // 
+            // btnFeedbackSortID
+            // 
+            this.btnFeedbackSortID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnFeedbackSortID.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFeedbackSortID.Location = new System.Drawing.Point(2, 2);
+            this.btnFeedbackSortID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFeedbackSortID.Name = "btnFeedbackSortID";
+            this.btnFeedbackSortID.Size = new System.Drawing.Size(126, 44);
+            this.btnFeedbackSortID.TabIndex = 20;
+            this.btnFeedbackSortID.Text = "ID";
+            this.btnFeedbackSortID.UseVisualStyleBackColor = true;
+            // 
+            // btnFeedbackSortName
+            // 
+            this.btnFeedbackSortName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnFeedbackSortName.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFeedbackSortName.Location = new System.Drawing.Point(132, 2);
+            this.btnFeedbackSortName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFeedbackSortName.Name = "btnFeedbackSortName";
+            this.btnFeedbackSortName.Size = new System.Drawing.Size(229, 44);
+            this.btnFeedbackSortName.TabIndex = 21;
+            this.btnFeedbackSortName.Text = "Name";
+            this.btnFeedbackSortName.UseVisualStyleBackColor = true;
+            // 
+            // pnlFeedbackData
+            // 
+            this.pnlFeedbackData.AutoScroll = true;
+            this.pnlFeedbackData.BackColor = System.Drawing.Color.White;
+            this.pnlFeedbackData.Controls.Add(this.tlpFeedbackData);
+            this.pnlFeedbackData.Location = new System.Drawing.Point(9, 372);
+            this.pnlFeedbackData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlFeedbackData.Name = "pnlFeedbackData";
+            this.pnlFeedbackData.Size = new System.Drawing.Size(929, 222);
+            this.pnlFeedbackData.TabIndex = 49;
+            this.pnlFeedbackData.Visible = false;
+            // 
+            // tlpFeedbackData
+            // 
+            this.tlpFeedbackData.AutoScroll = true;
+            this.tlpFeedbackData.AutoSize = true;
+            this.tlpFeedbackData.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.tlpFeedbackData.ColumnCount = 6;
+            this.tlpFeedbackData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.6701F));
+            this.tlpFeedbackData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.3299F));
+            this.tlpFeedbackData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 176F));
+            this.tlpFeedbackData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
+            this.tlpFeedbackData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.tlpFeedbackData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tlpFeedbackData.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tlpFeedbackData.Location = new System.Drawing.Point(0, 2);
+            this.tlpFeedbackData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpFeedbackData.Name = "tlpFeedbackData";
+            this.tlpFeedbackData.RowCount = 1;
+            this.tlpFeedbackData.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpFeedbackData.Size = new System.Drawing.Size(852, 58);
+            this.tlpFeedbackData.TabIndex = 14;
+            // 
+            // cmbFeedbackYear
+            // 
+            this.cmbFeedbackYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFeedbackYear.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFeedbackYear.FormattingEnabled = true;
+            this.cmbFeedbackYear.Items.AddRange(new object[] {
+            "2024"});
+            this.cmbFeedbackYear.Location = new System.Drawing.Point(411, 259);
+            this.cmbFeedbackYear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbFeedbackYear.Name = "cmbFeedbackYear";
+            this.cmbFeedbackYear.Size = new System.Drawing.Size(138, 36);
+            this.cmbFeedbackYear.TabIndex = 48;
+            this.cmbFeedbackYear.SelectedIndexChanged += new System.EventHandler(this.cmbFeedbackYear_SelectedIndexChanged);
+            // 
+            // cmbFeedbackMonth
+            // 
+            this.cmbFeedbackMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFeedbackMonth.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFeedbackMonth.FormattingEnabled = true;
+            this.cmbFeedbackMonth.Items.AddRange(new object[] {
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"});
+            this.cmbFeedbackMonth.Location = new System.Drawing.Point(141, 259);
+            this.cmbFeedbackMonth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbFeedbackMonth.Name = "cmbFeedbackMonth";
+            this.cmbFeedbackMonth.Size = new System.Drawing.Size(203, 36);
+            this.cmbFeedbackMonth.TabIndex = 47;
+            this.cmbFeedbackMonth.SelectedIndexChanged += new System.EventHandler(this.cmbFeedbackMonth_SelectedIndexChanged);
+            // 
+            // btnFeedbackGenerate
+            // 
+            this.btnFeedbackGenerate.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFeedbackGenerate.Location = new System.Drawing.Point(599, 256);
+            this.btnFeedbackGenerate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFeedbackGenerate.Name = "btnFeedbackGenerate";
+            this.btnFeedbackGenerate.Size = new System.Drawing.Size(120, 42);
+            this.btnFeedbackGenerate.TabIndex = 46;
+            this.btnFeedbackGenerate.Text = "Generate";
+            this.btnFeedbackGenerate.UseVisualStyleBackColor = true;
+            this.btnFeedbackGenerate.Click += new System.EventHandler(this.btnFeedbackGenerate_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(23, 263);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(69, 30);
+            this.label13.TabIndex = 45;
+            this.label13.Text = "Date:";
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.lblFeedbackTotal);
+            this.panel4.Controls.Add(this.crtFeedbackRating);
+            this.panel4.Location = new System.Drawing.Point(20, 15);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(770, 223);
+            this.panel4.TabIndex = 44;
+            // 
+            // lblFeedbackTotal
+            // 
+            this.lblFeedbackTotal.AutoSize = true;
+            this.lblFeedbackTotal.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFeedbackTotal.Location = new System.Drawing.Point(555, 180);
+            this.lblFeedbackTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFeedbackTotal.Name = "lblFeedbackTotal";
+            this.lblFeedbackTotal.Size = new System.Drawing.Size(81, 30);
+            this.lblFeedbackTotal.TabIndex = 52;
+            this.lblFeedbackTotal.Text = "Total: ";
+            // 
+            // crtFeedbackRating
+            // 
+            this.crtFeedbackRating.BackColor = System.Drawing.Color.Transparent;
+            chartArea2.Name = "ChartArea1";
+            this.crtFeedbackRating.ChartAreas.Add(chartArea2);
+            legend2.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            legend2.IsTextAutoFit = false;
+            legend2.Name = "Legend1";
+            this.crtFeedbackRating.Legends.Add(legend2);
+            this.crtFeedbackRating.Location = new System.Drawing.Point(2, 2);
+            this.crtFeedbackRating.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.crtFeedbackRating.Name = "crtFeedbackRating";
+            this.crtFeedbackRating.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series2.IsXValueIndexed = true;
+            series2.Legend = "Legend1";
+            series2.LegendText = "Chart";
+            series2.Name = "SeriesRating";
+            this.crtFeedbackRating.Series.Add(series2);
+            this.crtFeedbackRating.Size = new System.Drawing.Size(471, 216);
+            this.crtFeedbackRating.TabIndex = 43;
+            // 
             // tabReport
             // 
+            this.tabReport.Controls.Add(this.cmbReportYear);
+            this.tabReport.Controls.Add(this.cmbReportMonth);
+            this.tabReport.Controls.Add(this.btnReportGenerate);
+            this.tabReport.Controls.Add(this.label14);
+            this.tabReport.Controls.Add(this.tabReportSelection);
             this.tabReport.Location = new System.Drawing.Point(84, 4);
-            this.tabReport.Margin = new System.Windows.Forms.Padding(2);
+            this.tabReport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabReport.Name = "tabReport";
             this.tabReport.Size = new System.Drawing.Size(996, 612);
             this.tabReport.TabIndex = 4;
             this.tabReport.Text = "Report";
             this.tabReport.UseVisualStyleBackColor = true;
+            // 
+            // cmbReportYear
+            // 
+            this.cmbReportYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReportYear.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbReportYear.FormattingEnabled = true;
+            this.cmbReportYear.Items.AddRange(new object[] {
+            "2024"});
+            this.cmbReportYear.Location = new System.Drawing.Point(418, 32);
+            this.cmbReportYear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbReportYear.Name = "cmbReportYear";
+            this.cmbReportYear.Size = new System.Drawing.Size(138, 36);
+            this.cmbReportYear.TabIndex = 44;
+            // 
+            // cmbReportMonth
+            // 
+            this.cmbReportMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReportMonth.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbReportMonth.FormattingEnabled = true;
+            this.cmbReportMonth.Items.AddRange(new object[] {
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"});
+            this.cmbReportMonth.Location = new System.Drawing.Point(148, 32);
+            this.cmbReportMonth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbReportMonth.Name = "cmbReportMonth";
+            this.cmbReportMonth.Size = new System.Drawing.Size(203, 36);
+            this.cmbReportMonth.TabIndex = 43;
+            // 
+            // btnReportGenerate
+            // 
+            this.btnReportGenerate.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportGenerate.Location = new System.Drawing.Point(607, 28);
+            this.btnReportGenerate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnReportGenerate.Name = "btnReportGenerate";
+            this.btnReportGenerate.Size = new System.Drawing.Size(120, 42);
+            this.btnReportGenerate.TabIndex = 42;
+            this.btnReportGenerate.Text = "Generate";
+            this.btnReportGenerate.UseVisualStyleBackColor = true;
+            this.btnReportGenerate.Click += new System.EventHandler(this.btnReportGenerate_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(31, 35);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(69, 30);
+            this.label14.TabIndex = 41;
+            this.label14.Text = "Date:";
+            // 
+            // tabReportSelection
+            // 
+            this.tabReportSelection.Controls.Add(this.tabMonthlyReport);
+            this.tabReportSelection.Controls.Add(this.tabServiceReport);
+            this.tabReportSelection.Controls.Add(this.tabCostAndExpenses);
+            this.tabReportSelection.Controls.Add(this.tabStaffSalaryReport);
+            this.tabReportSelection.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabReportSelection.Location = new System.Drawing.Point(16, 94);
+            this.tabReportSelection.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabReportSelection.Name = "tabReportSelection";
+            this.tabReportSelection.SelectedIndex = 0;
+            this.tabReportSelection.Size = new System.Drawing.Size(901, 513);
+            this.tabReportSelection.TabIndex = 0;
+            // 
+            // tabMonthlyReport
+            // 
+            this.tabMonthlyReport.Controls.Add(this.lblReportFinalProfit);
+            this.tabMonthlyReport.Controls.Add(this.lblReportStaffSalaryCost);
+            this.tabMonthlyReport.Controls.Add(this.lblReportCostAndExpenses);
+            this.tabMonthlyReport.Controls.Add(this.lblReportServiceRevenue);
+            this.tabMonthlyReport.Controls.Add(this.lblReportProfit);
+            this.tabMonthlyReport.Controls.Add(this.lblReportCost);
+            this.tabMonthlyReport.Controls.Add(this.lblReportRevenue);
+            this.tabMonthlyReport.Controls.Add(this.lblReportNumOfService);
+            this.tabMonthlyReport.Controls.Add(this.label23);
+            this.tabMonthlyReport.Controls.Add(this.label22);
+            this.tabMonthlyReport.Controls.Add(this.label21);
+            this.tabMonthlyReport.Controls.Add(this.label20);
+            this.tabMonthlyReport.Controls.Add(this.label19);
+            this.tabMonthlyReport.Controls.Add(this.label18);
+            this.tabMonthlyReport.Controls.Add(this.label17);
+            this.tabMonthlyReport.Controls.Add(this.label16);
+            this.tabMonthlyReport.Controls.Add(this.label15);
+            this.tabMonthlyReport.Controls.Add(this.lblMonthlyReportTitle);
+            this.tabMonthlyReport.Location = new System.Drawing.Point(4, 37);
+            this.tabMonthlyReport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabMonthlyReport.Name = "tabMonthlyReport";
+            this.tabMonthlyReport.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabMonthlyReport.Size = new System.Drawing.Size(893, 472);
+            this.tabMonthlyReport.TabIndex = 0;
+            this.tabMonthlyReport.Text = "Monthly Report";
+            this.tabMonthlyReport.UseVisualStyleBackColor = true;
+            // 
+            // lblReportFinalProfit
+            // 
+            this.lblReportFinalProfit.AutoSize = true;
+            this.lblReportFinalProfit.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportFinalProfit.Location = new System.Drawing.Point(464, 430);
+            this.lblReportFinalProfit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblReportFinalProfit.Name = "lblReportFinalProfit";
+            this.lblReportFinalProfit.Size = new System.Drawing.Size(55, 30);
+            this.lblReportFinalProfit.TabIndex = 62;
+            this.lblReportFinalProfit.Text = "RM-";
+            // 
+            // lblReportStaffSalaryCost
+            // 
+            this.lblReportStaffSalaryCost.AutoSize = true;
+            this.lblReportStaffSalaryCost.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportStaffSalaryCost.Location = new System.Drawing.Point(464, 381);
+            this.lblReportStaffSalaryCost.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblReportStaffSalaryCost.Name = "lblReportStaffSalaryCost";
+            this.lblReportStaffSalaryCost.Size = new System.Drawing.Size(55, 30);
+            this.lblReportStaffSalaryCost.TabIndex = 61;
+            this.lblReportStaffSalaryCost.Text = "RM-";
+            // 
+            // lblReportCostAndExpenses
+            // 
+            this.lblReportCostAndExpenses.AutoSize = true;
+            this.lblReportCostAndExpenses.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportCostAndExpenses.Location = new System.Drawing.Point(464, 332);
+            this.lblReportCostAndExpenses.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblReportCostAndExpenses.Name = "lblReportCostAndExpenses";
+            this.lblReportCostAndExpenses.Size = new System.Drawing.Size(55, 30);
+            this.lblReportCostAndExpenses.TabIndex = 60;
+            this.lblReportCostAndExpenses.Text = "RM-";
+            // 
+            // lblReportServiceRevenue
+            // 
+            this.lblReportServiceRevenue.AutoSize = true;
+            this.lblReportServiceRevenue.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportServiceRevenue.Location = new System.Drawing.Point(464, 283);
+            this.lblReportServiceRevenue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblReportServiceRevenue.Name = "lblReportServiceRevenue";
+            this.lblReportServiceRevenue.Size = new System.Drawing.Size(55, 30);
+            this.lblReportServiceRevenue.TabIndex = 58;
+            this.lblReportServiceRevenue.Text = "RM-";
+            // 
+            // lblReportProfit
+            // 
+            this.lblReportProfit.AutoSize = true;
+            this.lblReportProfit.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportProfit.Location = new System.Drawing.Point(464, 185);
+            this.lblReportProfit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblReportProfit.Name = "lblReportProfit";
+            this.lblReportProfit.Size = new System.Drawing.Size(55, 30);
+            this.lblReportProfit.TabIndex = 57;
+            this.lblReportProfit.Text = "RM-";
+            // 
+            // lblReportCost
+            // 
+            this.lblReportCost.AutoSize = true;
+            this.lblReportCost.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportCost.Location = new System.Drawing.Point(464, 136);
+            this.lblReportCost.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblReportCost.Name = "lblReportCost";
+            this.lblReportCost.Size = new System.Drawing.Size(55, 30);
+            this.lblReportCost.TabIndex = 56;
+            this.lblReportCost.Text = "RM-";
+            // 
+            // lblReportRevenue
+            // 
+            this.lblReportRevenue.AutoSize = true;
+            this.lblReportRevenue.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportRevenue.Location = new System.Drawing.Point(464, 87);
+            this.lblReportRevenue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblReportRevenue.Name = "lblReportRevenue";
+            this.lblReportRevenue.Size = new System.Drawing.Size(55, 30);
+            this.lblReportRevenue.TabIndex = 55;
+            this.lblReportRevenue.Text = "RM-";
+            // 
+            // lblReportNumOfService
+            // 
+            this.lblReportNumOfService.AutoSize = true;
+            this.lblReportNumOfService.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportNumOfService.Location = new System.Drawing.Point(464, 38);
+            this.lblReportNumOfService.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblReportNumOfService.Name = "lblReportNumOfService";
+            this.lblReportNumOfService.Size = new System.Drawing.Size(22, 30);
+            this.lblReportNumOfService.TabIndex = 54;
+            this.lblReportNumOfService.Text = "-";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(8, 430);
+            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(141, 30);
+            this.label23.TabIndex = 53;
+            this.label23.Text = "Total Profit:";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(8, 381);
+            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(191, 30);
+            this.label22.TabIndex = 52;
+            this.label22.Text = "Staff Slary Cost:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(8, 332);
+            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(220, 30);
+            this.label21.TabIndex = 51;
+            this.label21.Text = "Cost and Expenses: ";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(8, 283);
+            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(236, 30);
+            this.label20.TabIndex = 50;
+            this.label20.Text = "Car Service Revenue: ";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(216, 234);
+            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(131, 30);
+            this.label19.TabIndex = 49;
+            this.label19.Text = "Description";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(8, 185);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(80, 30);
+            this.label18.TabIndex = 48;
+            this.label18.Text = "Profit:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(8, 136);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(66, 30);
+            this.label17.TabIndex = 47;
+            this.label17.Text = "Cost:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(8, 87);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(104, 30);
+            this.label16.TabIndex = 46;
+            this.label16.Text = "Revenue:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(8, 38);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(226, 30);
+            this.label15.TabIndex = 45;
+            this.label15.Text = "Number of Services:";
+            // 
+            // lblMonthlyReportTitle
+            // 
+            this.lblMonthlyReportTitle.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblMonthlyReportTitle.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMonthlyReportTitle.Location = new System.Drawing.Point(2, 2);
+            this.lblMonthlyReportTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblMonthlyReportTitle.Name = "lblMonthlyReportTitle";
+            this.lblMonthlyReportTitle.Size = new System.Drawing.Size(884, 29);
+            this.lblMonthlyReportTitle.TabIndex = 45;
+            this.lblMonthlyReportTitle.Text = "CarCare Service Centre Monthly Report";
+            // 
+            // tabServiceReport
+            // 
+            this.tabServiceReport.Controls.Add(this.tlpServiceReportSortButton);
+            this.tabServiceReport.Controls.Add(this.panel5);
+            this.tabServiceReport.Controls.Add(this.lblMonthlyServiceReport);
+            this.tabServiceReport.Location = new System.Drawing.Point(4, 37);
+            this.tabServiceReport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabServiceReport.Name = "tabServiceReport";
+            this.tabServiceReport.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabServiceReport.Size = new System.Drawing.Size(893, 472);
+            this.tabServiceReport.TabIndex = 1;
+            this.tabServiceReport.Text = "Service Report";
+            this.tabServiceReport.UseVisualStyleBackColor = true;
+            // 
+            // tlpServiceReportSortButton
+            // 
+            this.tlpServiceReportSortButton.BackColor = System.Drawing.Color.Gainsboro;
+            this.tlpServiceReportSortButton.ColumnCount = 4;
+            this.tlpServiceReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.73786F));
+            this.tlpServiceReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.26214F));
+            this.tlpServiceReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 295F));
+            this.tlpServiceReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 143F));
+            this.tlpServiceReportSortButton.Controls.Add(this.btnServiceReportSortPrice, 2, 0);
+            this.tlpServiceReportSortButton.Controls.Add(this.btnServiceReportSortSOID, 0, 0);
+            this.tlpServiceReportSortButton.Controls.Add(this.btnServiceReportSortDate, 1, 0);
+            this.tlpServiceReportSortButton.Location = new System.Drawing.Point(14, 52);
+            this.tlpServiceReportSortButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpServiceReportSortButton.Name = "tlpServiceReportSortButton";
+            this.tlpServiceReportSortButton.RowCount = 1;
+            this.tlpServiceReportSortButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.57265F));
+            this.tlpServiceReportSortButton.Size = new System.Drawing.Size(811, 48);
+            this.tlpServiceReportSortButton.TabIndex = 48;
+            this.tlpServiceReportSortButton.Visible = false;
+            // 
+            // btnServiceReportSortPrice
+            // 
+            this.btnServiceReportSortPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnServiceReportSortPrice.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnServiceReportSortPrice.Location = new System.Drawing.Point(374, 2);
+            this.btnServiceReportSortPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnServiceReportSortPrice.Name = "btnServiceReportSortPrice";
+            this.btnServiceReportSortPrice.Size = new System.Drawing.Size(291, 44);
+            this.btnServiceReportSortPrice.TabIndex = 21;
+            this.btnServiceReportSortPrice.Text = "Price";
+            this.btnServiceReportSortPrice.UseVisualStyleBackColor = true;
+            // 
+            // btnServiceReportSortSOID
+            // 
+            this.btnServiceReportSortSOID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnServiceReportSortSOID.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnServiceReportSortSOID.Location = new System.Drawing.Point(2, 2);
+            this.btnServiceReportSortSOID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnServiceReportSortSOID.Name = "btnServiceReportSortSOID";
+            this.btnServiceReportSortSOID.Size = new System.Drawing.Size(103, 44);
+            this.btnServiceReportSortSOID.TabIndex = 20;
+            this.btnServiceReportSortSOID.Text = "SOID";
+            this.btnServiceReportSortSOID.UseVisualStyleBackColor = true;
+            // 
+            // btnServiceReportSortDate
+            // 
+            this.btnServiceReportSortDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnServiceReportSortDate.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnServiceReportSortDate.Location = new System.Drawing.Point(109, 2);
+            this.btnServiceReportSortDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnServiceReportSortDate.Name = "btnServiceReportSortDate";
+            this.btnServiceReportSortDate.Size = new System.Drawing.Size(261, 44);
+            this.btnServiceReportSortDate.TabIndex = 21;
+            this.btnServiceReportSortDate.Text = "Date";
+            this.btnServiceReportSortDate.UseVisualStyleBackColor = true;
+            // 
+            // panel5
+            // 
+            this.panel5.AutoScroll = true;
+            this.panel5.Controls.Add(this.tlpServiceReportData);
+            this.panel5.Location = new System.Drawing.Point(2, 100);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(882, 357);
+            this.panel5.TabIndex = 47;
+            this.panel5.Visible = false;
+            // 
+            // tlpServiceReportData
+            // 
+            this.tlpServiceReportData.AutoSize = true;
+            this.tlpServiceReportData.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.tlpServiceReportData.ColumnCount = 4;
+            this.tlpServiceReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.71486F));
+            this.tlpServiceReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.28514F));
+            this.tlpServiceReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 295F));
+            this.tlpServiceReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 144F));
+            this.tlpServiceReportData.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tlpServiceReportData.Location = new System.Drawing.Point(11, 2);
+            this.tlpServiceReportData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpServiceReportData.Name = "tlpServiceReportData";
+            this.tlpServiceReportData.RowCount = 1;
+            this.tlpServiceReportData.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpServiceReportData.Size = new System.Drawing.Size(811, 58);
+            this.tlpServiceReportData.TabIndex = 14;
+            // 
+            // lblMonthlyServiceReport
+            // 
+            this.lblMonthlyServiceReport.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblMonthlyServiceReport.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMonthlyServiceReport.Location = new System.Drawing.Point(2, 2);
+            this.lblMonthlyServiceReport.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblMonthlyServiceReport.Name = "lblMonthlyServiceReport";
+            this.lblMonthlyServiceReport.Size = new System.Drawing.Size(884, 29);
+            this.lblMonthlyServiceReport.TabIndex = 46;
+            this.lblMonthlyServiceReport.Text = "CarCare Service Centre Monthly Service Report";
+            // 
+            // tabCostAndExpenses
+            // 
+            this.tabCostAndExpenses.Controls.Add(this.tlpCostAndExpensesSortButton);
+            this.tabCostAndExpenses.Controls.Add(this.panel6);
+            this.tabCostAndExpenses.Controls.Add(this.lblCostAndExpensesReport);
+            this.tabCostAndExpenses.Location = new System.Drawing.Point(4, 37);
+            this.tabCostAndExpenses.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabCostAndExpenses.Name = "tabCostAndExpenses";
+            this.tabCostAndExpenses.Size = new System.Drawing.Size(893, 472);
+            this.tabCostAndExpenses.TabIndex = 2;
+            this.tabCostAndExpenses.Text = "Cost and Expenses";
+            this.tabCostAndExpenses.UseVisualStyleBackColor = true;
+            // 
+            // tlpCostAndExpensesSortButton
+            // 
+            this.tlpCostAndExpensesSortButton.BackColor = System.Drawing.Color.Gainsboro;
+            this.tlpCostAndExpensesSortButton.ColumnCount = 4;
+            this.tlpCostAndExpensesSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.73786F));
+            this.tlpCostAndExpensesSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.26214F));
+            this.tlpCostAndExpensesSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
+            this.tlpCostAndExpensesSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
+            this.tlpCostAndExpensesSortButton.Controls.Add(this.button5, 2, 0);
+            this.tlpCostAndExpensesSortButton.Controls.Add(this.button6, 0, 0);
+            this.tlpCostAndExpensesSortButton.Controls.Add(this.button7, 1, 0);
+            this.tlpCostAndExpensesSortButton.Location = new System.Drawing.Point(14, 57);
+            this.tlpCostAndExpensesSortButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpCostAndExpensesSortButton.Name = "tlpCostAndExpensesSortButton";
+            this.tlpCostAndExpensesSortButton.RowCount = 1;
+            this.tlpCostAndExpensesSortButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.57265F));
+            this.tlpCostAndExpensesSortButton.Size = new System.Drawing.Size(811, 48);
+            this.tlpCostAndExpensesSortButton.TabIndex = 51;
+            this.tlpCostAndExpensesSortButton.Visible = false;
+            // 
+            // button5
+            // 
+            this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button5.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Location = new System.Drawing.Point(485, 2);
+            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(165, 44);
+            this.button5.TabIndex = 21;
+            this.button5.Text = "btnCaEPrice";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button6.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Location = new System.Drawing.Point(2, 2);
+            this.button6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(135, 44);
+            this.button6.TabIndex = 20;
+            this.button6.Text = "btnCaEID";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button7.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.Location = new System.Drawing.Point(141, 2);
+            this.button7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(340, 44);
+            this.button7.TabIndex = 21;
+            this.button7.Text = "btnCaEDate";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // panel6
+            // 
+            this.panel6.AutoScroll = true;
+            this.panel6.Controls.Add(this.tlpCostAndExpensesData);
+            this.panel6.Location = new System.Drawing.Point(2, 105);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(882, 357);
+            this.panel6.TabIndex = 50;
+            this.panel6.Visible = false;
+            // 
+            // tlpCostAndExpensesData
+            // 
+            this.tlpCostAndExpensesData.AutoSize = true;
+            this.tlpCostAndExpensesData.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.tlpCostAndExpensesData.ColumnCount = 4;
+            this.tlpCostAndExpensesData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.71486F));
+            this.tlpCostAndExpensesData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.28514F));
+            this.tlpCostAndExpensesData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 166F));
+            this.tlpCostAndExpensesData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 159F));
+            this.tlpCostAndExpensesData.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tlpCostAndExpensesData.Location = new System.Drawing.Point(11, 2);
+            this.tlpCostAndExpensesData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpCostAndExpensesData.Name = "tlpCostAndExpensesData";
+            this.tlpCostAndExpensesData.RowCount = 1;
+            this.tlpCostAndExpensesData.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpCostAndExpensesData.Size = new System.Drawing.Size(811, 58);
+            this.tlpCostAndExpensesData.TabIndex = 14;
+            // 
+            // lblCostAndExpensesReport
+            // 
+            this.lblCostAndExpensesReport.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblCostAndExpensesReport.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCostAndExpensesReport.Location = new System.Drawing.Point(2, 7);
+            this.lblCostAndExpensesReport.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCostAndExpensesReport.Name = "lblCostAndExpensesReport";
+            this.lblCostAndExpensesReport.Size = new System.Drawing.Size(884, 29);
+            this.lblCostAndExpensesReport.TabIndex = 49;
+            this.lblCostAndExpensesReport.Text = "CarCare Service Centre Monthly Cost and Expenses Report";
+            // 
+            // tabStaffSalaryReport
+            // 
+            this.tabStaffSalaryReport.Controls.Add(this.tlpStaffSalaryReportSortButton);
+            this.tabStaffSalaryReport.Controls.Add(this.panel7);
+            this.tabStaffSalaryReport.Controls.Add(this.lblStaffSalaryReport);
+            this.tabStaffSalaryReport.Location = new System.Drawing.Point(4, 37);
+            this.tabStaffSalaryReport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabStaffSalaryReport.Name = "tabStaffSalaryReport";
+            this.tabStaffSalaryReport.Size = new System.Drawing.Size(893, 472);
+            this.tabStaffSalaryReport.TabIndex = 3;
+            this.tabStaffSalaryReport.Text = "Staff Salary report";
+            this.tabStaffSalaryReport.UseVisualStyleBackColor = true;
+            // 
+            // tlpStaffSalaryReportSortButton
+            // 
+            this.tlpStaffSalaryReportSortButton.BackColor = System.Drawing.Color.Gainsboro;
+            this.tlpStaffSalaryReportSortButton.ColumnCount = 4;
+            this.tlpStaffSalaryReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.73786F));
+            this.tlpStaffSalaryReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.26214F));
+            this.tlpStaffSalaryReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 152F));
+            this.tlpStaffSalaryReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
+            this.tlpStaffSalaryReportSortButton.Controls.Add(this.btnSSRPrice, 2, 0);
+            this.tlpStaffSalaryReportSortButton.Controls.Add(this.btnSSRID, 0, 0);
+            this.tlpStaffSalaryReportSortButton.Controls.Add(this.btnSSRName, 1, 0);
+            this.tlpStaffSalaryReportSortButton.Location = new System.Drawing.Point(14, 57);
+            this.tlpStaffSalaryReportSortButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpStaffSalaryReportSortButton.Name = "tlpStaffSalaryReportSortButton";
+            this.tlpStaffSalaryReportSortButton.RowCount = 1;
+            this.tlpStaffSalaryReportSortButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.57265F));
+            this.tlpStaffSalaryReportSortButton.Size = new System.Drawing.Size(811, 48);
+            this.tlpStaffSalaryReportSortButton.TabIndex = 51;
+            this.tlpStaffSalaryReportSortButton.Visible = false;
+            // 
+            // btnSSRPrice
+            // 
+            this.btnSSRPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSSRPrice.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSSRPrice.Location = new System.Drawing.Point(502, 2);
+            this.btnSSRPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSSRPrice.Name = "btnSSRPrice";
+            this.btnSSRPrice.Size = new System.Drawing.Size(148, 44);
+            this.btnSSRPrice.TabIndex = 21;
+            this.btnSSRPrice.Text = "Price";
+            this.btnSSRPrice.UseVisualStyleBackColor = true;
+            // 
+            // btnSSRID
+            // 
+            this.btnSSRID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSSRID.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSSRID.Location = new System.Drawing.Point(2, 2);
+            this.btnSSRID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSSRID.Name = "btnSSRID";
+            this.btnSSRID.Size = new System.Drawing.Size(139, 44);
+            this.btnSSRID.TabIndex = 20;
+            this.btnSSRID.Text = "ID";
+            this.btnSSRID.UseVisualStyleBackColor = true;
+            // 
+            // btnSSRName
+            // 
+            this.btnSSRName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSSRName.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSSRName.Location = new System.Drawing.Point(145, 2);
+            this.btnSSRName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSSRName.Name = "btnSSRName";
+            this.btnSSRName.Size = new System.Drawing.Size(353, 44);
+            this.btnSSRName.TabIndex = 21;
+            this.btnSSRName.Text = "Name";
+            this.btnSSRName.UseVisualStyleBackColor = true;
+            // 
+            // panel7
+            // 
+            this.panel7.AutoScroll = true;
+            this.panel7.Controls.Add(this.tlpStaffSalaryReportData);
+            this.panel7.Location = new System.Drawing.Point(2, 105);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(882, 357);
+            this.panel7.TabIndex = 50;
+            this.panel7.Visible = false;
+            // 
+            // tlpStaffSalaryReportData
+            // 
+            this.tlpStaffSalaryReportData.AutoSize = true;
+            this.tlpStaffSalaryReportData.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.tlpStaffSalaryReportData.ColumnCount = 4;
+            this.tlpStaffSalaryReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.71486F));
+            this.tlpStaffSalaryReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.28514F));
+            this.tlpStaffSalaryReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tlpStaffSalaryReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.tlpStaffSalaryReportData.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tlpStaffSalaryReportData.Location = new System.Drawing.Point(11, 2);
+            this.tlpStaffSalaryReportData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpStaffSalaryReportData.Name = "tlpStaffSalaryReportData";
+            this.tlpStaffSalaryReportData.RowCount = 1;
+            this.tlpStaffSalaryReportData.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpStaffSalaryReportData.Size = new System.Drawing.Size(811, 58);
+            this.tlpStaffSalaryReportData.TabIndex = 14;
+            // 
+            // lblStaffSalaryReport
+            // 
+            this.lblStaffSalaryReport.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblStaffSalaryReport.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStaffSalaryReport.Location = new System.Drawing.Point(2, 7);
+            this.lblStaffSalaryReport.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblStaffSalaryReport.Name = "lblStaffSalaryReport";
+            this.lblStaffSalaryReport.Size = new System.Drawing.Size(884, 29);
+            this.lblStaffSalaryReport.TabIndex = 49;
+            this.lblStaffSalaryReport.Text = "CarCare Service Centre Monthly Staff Salary Report";
             // 
             // tabProfile
             // 
@@ -782,12 +1728,12 @@ namespace CarCare_Service_Center
             this.tabProfile.Controls.Add(this.btnChangePassword);
             this.tabProfile.Controls.Add(this.btnChangeEmail);
             this.tabProfile.Controls.Add(this.btnChangeUserName);
-            this.tabProfile.Controls.Add(this.label13);
-            this.tabProfile.Controls.Add(this.label14);
-            this.tabProfile.Controls.Add(this.label15);
-            this.tabProfile.Controls.Add(this.label16);
+            this.tabProfile.Controls.Add(this.label50);
+            this.tabProfile.Controls.Add(this.label44);
+            this.tabProfile.Controls.Add(this.label55);
+            this.tabProfile.Controls.Add(this.label66);
             this.tabProfile.Location = new System.Drawing.Point(84, 4);
-            this.tabProfile.Margin = new System.Windows.Forms.Padding(2);
+            this.tabProfile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabProfile.Name = "tabProfile";
             this.tabProfile.Size = new System.Drawing.Size(996, 612);
             this.tabProfile.TabIndex = 5;
@@ -854,45 +1800,45 @@ namespace CarCare_Service_Center
             this.btnChangeUserName.Text = "Change User Name";
             this.btnChangeUserName.UseVisualStyleBackColor = true;
             // 
-            // label13
+            // label50
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(95, 323);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(96, 34);
-            this.label13.TabIndex = 16;
-            this.label13.Text = "Email:";
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.Location = new System.Drawing.Point(95, 323);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(96, 34);
+            this.label50.TabIndex = 16;
+            this.label50.Text = "Email:";
             // 
-            // label14
+            // label44
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(95, 249);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(171, 34);
-            this.label14.TabIndex = 15;
-            this.label14.Text = "User Name:";
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(95, 249);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(171, 34);
+            this.label44.TabIndex = 15;
+            this.label44.Text = "User Name:";
             // 
-            // label15
+            // label55
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(95, 175);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(113, 34);
-            this.label15.TabIndex = 14;
-            this.label15.Text = "UserID:";
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(95, 175);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(113, 34);
+            this.label55.TabIndex = 14;
+            this.label55.Text = "UserID:";
             // 
-            // label16
+            // label66
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Ink Free", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(385, 36);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(148, 54);
-            this.label16.TabIndex = 13;
-            this.label16.Text = "Profile";
+            this.label66.AutoSize = true;
+            this.label66.Font = new System.Drawing.Font("Ink Free", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label66.Location = new System.Drawing.Point(385, 36);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(148, 54);
+            this.label66.TabIndex = 13;
+            this.label66.Text = "Profile";
             // 
             // frmAdminMain
             // 
@@ -900,23 +1846,51 @@ namespace CarCare_Service_Center
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 620);
             this.Controls.Add(this.tabAdmin);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmAdminMain";
             this.Text = "CarCare Service Centre - Admin";
             this.Load += new System.EventHandler(this.frmAdminMain_Load);
             this.tabAdmin.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.crtHomeRating)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.tabStaffAccount.ResumeLayout(false);
             this.tabStaffAccount.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabServices.ResumeLayout(false);
             this.tabServices.PerformLayout();
             this.tlpServiceSortButtons.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.tabFeedback.ResumeLayout(false);
+            this.tabFeedback.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.pnlFeedbackData.ResumeLayout(false);
+            this.pnlFeedbackData.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.crtFeedbackRating)).EndInit();
+            this.tabReport.ResumeLayout(false);
+            this.tabReport.PerformLayout();
+            this.tabReportSelection.ResumeLayout(false);
+            this.tabMonthlyReport.ResumeLayout(false);
+            this.tabMonthlyReport.PerformLayout();
+            this.tabServiceReport.ResumeLayout(false);
+            this.tlpServiceReportSortButton.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.tabCostAndExpenses.ResumeLayout(false);
+            this.tlpCostAndExpensesSortButton.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.tabStaffSalaryReport.ResumeLayout(false);
+            this.tlpStaffSalaryReportSortButton.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.tabProfile.ResumeLayout(false);
             this.tabProfile.PerformLayout();
             this.ResumeLayout(false);
@@ -941,17 +1915,12 @@ namespace CarCare_Service_Center
         private System.Windows.Forms.TabPage tabReport;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnStaffAdd;
-        private System.Windows.Forms.Button btnStaffDelete;
-        private System.Windows.Forms.Button btnStaffDetail;
         private System.Windows.Forms.Button btnStaffAccountSortName;
         private System.Windows.Forms.Button btnStaffAccountSortID;
         private System.Windows.Forms.TableLayoutPanel tlpStaffAccountData;
         private Panel panel2;
         private Button btnServiceAdd;
-        private Button btnServiceDelete;
-        private Button btnServiceDetails;
         private Panel panel3;
-        private TableLayoutPanel tlpServiceData;
         private Button btnServiceSearch;
         private TextBox txtServiceSearch;
         private ComboBox cmbServiceType;
@@ -984,9 +1953,74 @@ namespace CarCare_Service_Center
         private Button btnChangePassword;
         private Button btnChangeEmail;
         private Button btnChangeUserName;
+        private Label label50;
+        private Label label44;
+        private Label label55;
+        private Label label66;
+        private System.Windows.Forms.DataVisualization.Charting.Chart crtHomeRating;
+        private Panel panel4;
+        private System.Windows.Forms.DataVisualization.Charting.Chart crtFeedbackRating;
+        private ComboBox cmbFeedbackYear;
+        private ComboBox cmbFeedbackMonth;
+        private Button btnFeedbackGenerate;
         private Label label13;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Button btnFeedbackSortDate;
+        private Button btnFeedbackSortID;
+        private Button btnFeedbackSortName;
+        private Panel pnlFeedbackData;
+        private TableLayoutPanel tlpFeedbackData;
+        private Button btnFeedbackSortComment;
+        private Button btnFeedbackSortRating;
+        private Label lblFeedbackTotal;
+        private TableLayoutPanel tlpServiceData;
+        private TabControl tabReportSelection;
+        private TabPage tabMonthlyReport;
+        private TabPage tabServiceReport;
+        private TabPage tabCostAndExpenses;
+        private TabPage tabStaffSalaryReport;
+        private ComboBox cmbReportYear;
+        private ComboBox cmbReportMonth;
+        private Button btnReportGenerate;
         private Label label14;
-        private Label label15;
+        private Label lblReportFinalProfit;
+        private Label lblReportStaffSalaryCost;
+        private Label lblReportCostAndExpenses;
+        private Label lblReportServiceRevenue;
+        private Label lblReportProfit;
+        private Label lblReportCost;
+        private Label lblReportRevenue;
+        private Label lblReportNumOfService;
+        private Label label23;
+        private Label label22;
+        private Label label21;
+        private Label label20;
+        private Label label19;
+        private Label label18;
+        private Label label17;
         private Label label16;
+        private Label label15;
+        private Label lblMonthlyReportTitle;
+        private Label lblMonthlyServiceReport;
+        private TableLayoutPanel tlpServiceReportSortButton;
+        private Button btnServiceReportSortPrice;
+        private Button btnServiceReportSortSOID;
+        private Button btnServiceReportSortDate;
+        private Panel panel5;
+        private TableLayoutPanel tlpServiceReportData;
+        private TableLayoutPanel tlpCostAndExpensesSortButton;
+        private Button button5;
+        private Button button6;
+        private Button button7;
+        private Panel panel6;
+        private TableLayoutPanel tlpCostAndExpensesData;
+        private Label lblCostAndExpensesReport;
+        private TableLayoutPanel tlpStaffSalaryReportSortButton;
+        private Button btnSSRPrice;
+        private Button btnSSRID;
+        private Button btnSSRName;
+        private Panel panel7;
+        private TableLayoutPanel tlpStaffSalaryReportData;
+        private Label lblStaffSalaryReport;
     }
 }
