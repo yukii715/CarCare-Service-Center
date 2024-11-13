@@ -17,6 +17,7 @@ namespace Users
         public string Password { get; set; }
         public string Email { get; set; }
         public string Role { get; set; }
+        public int Salary { get; set; }
         public static void Add(string ID, string username, string email, string password, string role)
         {
 

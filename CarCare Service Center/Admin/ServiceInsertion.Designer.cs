@@ -171,7 +171,7 @@ namespace CarCare_Service_Center
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.67327F));
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.32674F));
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
-            this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 164F));
+            this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 166F));
             this.tlpPrice.Controls.Add(this.btnAddPrice, 0, 1);
             this.tlpPrice.Controls.Add(this.txtPriceDescription, 2, 0);
             this.tlpPrice.Controls.Add(this.txtPriceAmount, 1, 0);
@@ -183,7 +183,7 @@ namespace CarCare_Service_Center
             this.tlpPrice.RowCount = 2;
             this.tlpPrice.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tlpPrice.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tlpPrice.Size = new System.Drawing.Size(669, 110);
+            this.tlpPrice.Size = new System.Drawing.Size(671, 90);
             this.tlpPrice.TabIndex = 16;
             // 
             // btnAddPrice
@@ -194,7 +194,7 @@ namespace CarCare_Service_Center
             this.btnAddPrice.Location = new System.Drawing.Point(2, 47);
             this.btnAddPrice.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddPrice.Name = "btnAddPrice";
-            this.btnAddPrice.Size = new System.Drawing.Size(89, 61);
+            this.btnAddPrice.Size = new System.Drawing.Size(89, 41);
             this.btnAddPrice.TabIndex = 29;
             this.btnAddPrice.Text = "Add";
             this.btnAddPrice.UseVisualStyleBackColor = true;

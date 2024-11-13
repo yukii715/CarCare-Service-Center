@@ -52,7 +52,7 @@ namespace CarCare_Service_Center
         public class ServicePrice
         {
             public string ServiceID { get; set; }
-            public string Price { get; set; }
+            public Decimal Price { get; set; }
             public string Description { get; set; }
             public void Add()
             {
@@ -98,7 +98,7 @@ namespace CarCare_Service_Center
                 public string ServiceEntryID { get; set; }
                 public string ServiceOrderID { get; set; }
                 public string ServiceID { get; set; }
-                public string Price { get; set; }
+                public Decimal Price { get; set; }
                 public string InitialStatus { get; set; }
                 public string CompletionStatus { get; set; }
                 public class ServiceParts
@@ -132,15 +132,26 @@ namespace CarCare_Service_Center
         public string PartType { get; set; }
         public string PartName { get; set; }
         public int Stock {  get; set; }
-        public string SellPrice { get; set; }
+        public Decimal SellPrice { get; set; }
         public string Status {  get; set; }
         public class Purchases
         {
             public string PartID { get; set; }
-            public string UnitPrice { get; set; }
+            public DateTime DateTime { get; set; }
+            public Decimal UnitPrice { get; set; }
             public int Quantity { get; set; }
             public string Supplier {  get; set; }
 
+        }
+        public class Requests
+        {
+            public string RequestID { get; set; }
+            public string UserID { get; set; }
+            public string UserName { get; set; }
+            public DateTime DateTime { get; set; }
+            public string PartType { get; set; }
+            public string PartName { get; set; }
+            public string Description { get; set; }
         }
     }
 }

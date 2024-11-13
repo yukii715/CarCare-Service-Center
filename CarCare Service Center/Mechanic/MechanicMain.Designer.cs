@@ -1,5 +1,5 @@
 ﻿
-using Appearance;
+using ControlSetting;
 namespace CarCare_Service_Center
 {
     partial class frmMechanicMain

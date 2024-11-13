@@ -107,7 +107,7 @@ namespace CarCare_Service_Center
                     tlpPrice.GetControlFromPosition(2, row) is TextBox txtPriceDescription &&
                     !Validation.IsLengthInvalid(txtPriceDescription.Text, 1, 20))
                 {
-                    prices.Add(new Services.ServicePrice { Price = price.ToString("0.00"), Description = txtPriceDescription.Text });
+                    prices.Add(new Services.ServicePrice { Price = Decimal.Parse(price.ToString("0.00")), Description = txtPriceDescription.Text });
                 }
                 else
                 {
@@ -199,9 +199,8 @@ namespace CarCare_Service_Center
             tlpPrice.Controls.Add(txtPriceDescription, 2, rowCopy);
             txtPriceDescription.Dock = DockStyle.Fill;
 
-            Button btnRemovePrice = new Button {Text = "Remove"};
+            Button btnRemovePrice = new Button {Text = "Remove", Dock = DockStyle.Fill};
             tlpPrice.Controls.Add(btnRemovePrice, 3, rowCopy);
-            txtPriceDescription.Dock = DockStyle.Fill;
             btnRemovePrice.Click += btnRemove_Click;
 
             foreach (Control ctrl in panel1.Controls)

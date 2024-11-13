@@ -89,7 +89,7 @@
     <Compile Include="Admin\ServiceInsertion.Designer.cs">
       <DependentUpon>ServiceInsertion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Appearance.cs" />
+    <Compile Include="ControlSetting.cs" />
     <Compile Include="Details.cs" />
     <Compile Include="Admin\FeedbackDetails.cs">
       <SubType>Form</SubType>
@@ -187,6 +187,12 @@
     <Compile Include="Admin\StaffInsertion.Designer.cs">
       <DependentUpon>StaffInsertion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Customer\ViewServiceDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer\ViewServiceDetails.Designer.cs">
+      <DependentUpon>ViewServiceDetails.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Admin\AdminMain.resx">
       <DependentUpon>AdminMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -256,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Receptionist\ReceptionistMain.resx">
       <DependentUpon>ReceptionistMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\ViewServiceDetails.resx">
+      <DependentUpon>ViewServiceDetails.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
