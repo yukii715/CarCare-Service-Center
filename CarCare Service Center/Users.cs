@@ -18,6 +18,44 @@ namespace Users
         public string Email { get; set; }
         public string Role { get; set; }
         public int Salary { get; set; }
+        public static string GenerateUserID(string role)
+        {
+            string query_Customer = "SELECT COUNT(*) FROM Users WHERE Role = 'Customer'";
+            string query_Receptionist = "SELECT COUNT(*) FROM Users WHERE Role = 'Receptionist'";
+            string query_Mechanic = "SELECT COUNT(*) FROM Users WHERE Role = 'Mechanic'";
+            string UserID = null;
+            switch (role)
+            {
+                case "Customer":
+                    using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                    {
+                        SqlCommand command = new SqlCommand(query_Customer, connection);
+                        connection.Open();
+                        int count = (int)command.ExecuteScalar();
+                        UserID = $"0{(count + 1):D7}"; // Zero-padded to 7 digits
+                    }
+                    break;
+                case "Receptionist":
+                    using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                    {
+                        SqlCommand command = new SqlCommand(query_Receptionist, connection);
+                        connection.Open();
+                        int count = (int)command.ExecuteScalar();
+                        UserID = $"2{(count + 1):D7}"; // Zero-padded to 7 digits
+                    }
+                    break;
+                case "Mechanic":
+                    using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                    {
+                        SqlCommand command = new SqlCommand(query_Mechanic, connection);
+                        connection.Open();
+                        int count = (int)command.ExecuteScalar();
+                        UserID = $"3{(count + 1):D7}"; // Zero-padded to 7 digits
+                    }
+                    break;
+            }
+            return UserID;
+        }
         public static void Add(string ID, string username, string email, string password, string role)
         {
 
@@ -76,6 +114,20 @@ namespace Users
         public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
+        public static string GenerateRegisterID()
+        {
+            string query = "SELECT COUNT(*) FROM RegisteredUsers";
+            string registerID;
+
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                int count = (int)command.ExecuteScalar();
+                registerID = $"R{(count + 1):D7}"; // Zero-padded to 7 digits
+            }
+            return registerID;
+        }
         public static void Add(string ID, string username, string email, string password)
         {
             string query = "INSERT INTO RegisteredUsers (RegisterID, Username, Email, Password) VALUES (@RegisterID, @Username, @Email, @Password)";

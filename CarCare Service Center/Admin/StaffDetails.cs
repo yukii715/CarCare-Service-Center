@@ -1,4 +1,5 @@
 ﻿
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,12 +22,20 @@ namespace CarCare_Service_Center
             user = u;
         }
 
+        private void StaffDetails_Load(object sender, EventArgs e)
+        {
+            lblStaffID.Text = user.UserID;
+            lblName.Text = user.Username;
+            lblEmail.Text = user.Email;
+            lblRole.Text = user.Role;
+            lblSalary.Text = user.Salary.ToString();
+        }
+
+
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            StaffDetailConfiguration formStallDetailConfiguration = new StaffDetailConfiguration();
-            Hide();
+            StaffDetailConfiguration formStallDetailConfiguration = new StaffDetailConfiguration(user);
             formStallDetailConfiguration.ShowDialog();
-            Close();
 
         }
 
@@ -39,14 +48,6 @@ namespace CarCare_Service_Center
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void StaffDetails_Load(object sender, EventArgs e)
-        {
-            lblStaffID.Text = user.UserID;
-            lblName.Text = user.Username;
-            lblEmail.Text = user.Email;
-            lblRole.Text = user.Role;
         }
     }
 }

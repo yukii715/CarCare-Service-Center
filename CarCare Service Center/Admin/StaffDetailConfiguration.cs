@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,21 +9,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Users;
 
 namespace CarCare_Service_Center
 {
     public partial class StaffDetailConfiguration : Form
     {
-        public StaffDetailConfiguration()
+        private User user;
+
+        public StaffDetailConfiguration(User u = null)
         {
             InitializeComponent();
+            user = u;
+        }
+
+        private void StaffDetailConfiguration_Load(object sender, EventArgs e)
+        {
+            lblStaffID.Text = user.UserID;
+            lblName.Text = user.Username;
+            lblEmail.Text = user.Email;
+            lblRole.Text = user.Role;
+            txtSalary.Text = user.Salary.ToString();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
-            StaffDetails formStaffDetails = new StaffDetails();
-            formStaffDetails.Show();
+            Close();
         }
 
         private void btnApply_Click(object sender, EventArgs e)
@@ -34,10 +46,8 @@ namespace CarCare_Service_Center
             }
             else if (decimal.TryParse(txtSalary.Text, out decimal Salary))
             {
-                MessageBox.Show("Apply Successfully", "Staff Detail Upated", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-                StaffDetails formStaffDetails = new StaffDetails();
-                formStaffDetails.Show();
+                MessageBox.Show("Apply Successfully", "Staff Detail Upated", MessageBoxButtons.OK);
+                Close();
             }
             else
             {

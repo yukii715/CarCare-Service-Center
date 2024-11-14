@@ -77,12 +77,6 @@
     <Compile Include="Admin\ServiceDeletion.Designer.cs">
       <DependentUpon>ServiceDeletion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ServiceDetailConfiguration.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin\ServiceDetailConfiguration.Designer.cs">
-      <DependentUpon>ServiceDetailConfiguration.cs</DependentUpon>
-    </Compile>
     <Compile Include="Admin\ServiceInsertion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +202,12 @@
     <Compile Include="Mechanic\Shortages.Designer.cs">
       <DependentUpon>Shortages.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ServiceEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\ServiceEdit.Designer.cs">
+      <DependentUpon>ServiceEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Update.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,9 +215,6 @@
       <DependentUpon>Update.cs</DependentUpon>
     </Compile>
     <Compile Include="Users.cs" />
-    <EmbeddedResource Include="Admin\ServiceDetailConfiguration.resx">
-      <DependentUpon>ServiceDetailConfiguration.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Admin\ServiceInsertion.resx">
       <DependentUpon>ServiceInsertion.cs</DependentUpon>
     </EmbeddedResource>

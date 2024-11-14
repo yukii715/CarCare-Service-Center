@@ -138,7 +138,7 @@ namespace CarCare_Service_Center
             }
             Services service = new Services
             {
-                ServiceID = ID_Generator.ServiceID(service_type, txtTypePrefix.Text),
+                ServiceID = Services.GenerateServiceID(service_type, typePrefix),
                 ServiceType = service_type,
                 ServiceName = txtServiceName.Text,
                 EstimatedTime = estimated_time.ToString(),
@@ -266,7 +266,7 @@ namespace CarCare_Service_Center
 
         private void ServiceInsertion_Load(object sender, EventArgs e)
         {
-            string query = "SELECT ServiceType FROM Services";
+            string query = "SELECT DISTINCT ServiceType FROM Services";
             Database.LoadIntoComboBox(cmbServiceType, query, "ServiceType");
         }
     }

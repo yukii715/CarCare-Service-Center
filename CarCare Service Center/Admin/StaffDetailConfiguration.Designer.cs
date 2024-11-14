@@ -1,4 +1,5 @@
 ﻿
+
 namespace CarCare_Service_Center
 {
     partial class StaffDetailConfiguration
@@ -48,7 +49,7 @@ namespace CarCare_Service_Center
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(332, 333);
+            this.lblEmail.Location = new System.Drawing.Point(257, 333);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(28, 40);
             this.lblEmail.TabIndex = 22;
@@ -58,7 +59,7 @@ namespace CarCare_Service_Center
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(332, 213);
+            this.lblName.Location = new System.Drawing.Point(257, 213);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(28, 40);
             this.lblName.TabIndex = 21;
@@ -68,7 +69,7 @@ namespace CarCare_Service_Center
             // 
             this.lblStaffID.AutoSize = true;
             this.lblStaffID.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStaffID.Location = new System.Drawing.Point(332, 93);
+            this.lblStaffID.Location = new System.Drawing.Point(257, 93);
             this.lblStaffID.Name = "lblStaffID";
             this.lblStaffID.Size = new System.Drawing.Size(28, 40);
             this.lblStaffID.TabIndex = 20;
@@ -78,7 +79,7 @@ namespace CarCare_Service_Center
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(100, 573);
+            this.label5.Location = new System.Drawing.Point(21, 573);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(122, 40);
             this.label5.TabIndex = 19;
@@ -88,7 +89,7 @@ namespace CarCare_Service_Center
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(100, 453);
+            this.label4.Location = new System.Drawing.Point(21, 453);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 40);
             this.label4.TabIndex = 18;
@@ -98,7 +99,7 @@ namespace CarCare_Service_Center
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(100, 333);
+            this.label3.Location = new System.Drawing.Point(21, 333);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 40);
             this.label3.TabIndex = 17;
@@ -108,7 +109,7 @@ namespace CarCare_Service_Center
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(100, 213);
+            this.label2.Location = new System.Drawing.Point(21, 213);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 40);
             this.label2.TabIndex = 16;
@@ -118,7 +119,7 @@ namespace CarCare_Service_Center
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(100, 93);
+            this.label1.Location = new System.Drawing.Point(21, 93);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(151, 40);
             this.label1.TabIndex = 15;
@@ -149,7 +150,7 @@ namespace CarCare_Service_Center
             // txtSalary
             // 
             this.txtSalary.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSalary.Location = new System.Drawing.Point(339, 570);
+            this.txtSalary.Location = new System.Drawing.Point(264, 570);
             this.txtSalary.Name = "txtSalary";
             this.txtSalary.Size = new System.Drawing.Size(408, 48);
             this.txtSalary.TabIndex = 34;
@@ -160,7 +161,7 @@ namespace CarCare_Service_Center
             this.lblError.AutoSize = true;
             this.lblError.Font = new System.Drawing.Font("Comic Sans MS", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(334, 635);
+            this.lblError.Location = new System.Drawing.Point(259, 635);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(60, 29);
             this.lblError.TabIndex = 35;
@@ -171,7 +172,7 @@ namespace CarCare_Service_Center
             // 
             this.lblRole.AutoSize = true;
             this.lblRole.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRole.Location = new System.Drawing.Point(332, 453);
+            this.lblRole.Location = new System.Drawing.Point(257, 453);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(28, 40);
             this.lblRole.TabIndex = 36;
@@ -197,6 +198,7 @@ namespace CarCare_Service_Center
             this.Controls.Add(this.label1);
             this.Name = "StaffDetailConfiguration";
             this.Text = "CarCare Service Centre - Staff Details Edit";
+            this.Load += new System.EventHandler(this.StaffDetailConfiguration_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

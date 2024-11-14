@@ -26,6 +26,36 @@ namespace CarCare_Service_Center
             string pattern = @"^[A-Z]{3}$";
             return Regex.IsMatch(serviceTypePrefix, pattern);
         }
+        public static string GenerateServiceID(string serviceType, string newPrefix)
+        {
+            string ServiceID;
+            string query = "SELECT TOP 1 ServiceID FROM Services WHERE ServiceType = @ServiceType ORDER BY ServiceID DESC";
+
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ServiceType", serviceType);
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    // Existing service type found
+                    string lastServiceID = result.ToString();
+                    string existingPrefix = new string(lastServiceID.TakeWhile(char.IsLetter).ToArray());
+                    int lastNumber = int.Parse(new string(lastServiceID.SkipWhile(char.IsLetter).ToArray()));
+
+                    ServiceID = existingPrefix + (lastNumber + 1).ToString("D3");
+                }
+                else
+                {
+                    // New service type, use provided newPrefix and start with 001
+                    ServiceID = newPrefix + "001";
+                }
+            }
+            return ServiceID;
+        }
+
         public void Add()
         {
             string query = "INSERT INTO Services (ServiceID, ServiceType, ServiceName, EstimatedTime, Description, Briefing, ImageData, IsDeleted) " +
@@ -120,10 +150,32 @@ namespace CarCare_Service_Center
         public DateTime AppointmentDateTime { get; set; }
         public string VehicleNumber { get ; set; }
         public string Status { get; set; }
+        public static string GenerateAppointmentID()
+        {
+            string query = "SELECT COUNT(*) FROM Appointments";
+            string AppointmentID;
+            DateTime now = DateTime.Now;
+            string preciseTime = now.ToString("HHmmssfffddMMyy");
+
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                int count = (int)command.ExecuteScalar();
+                AppointmentID = string.Concat(preciseTime.Reverse()) + (count + 1).ToString("D8"); // Zero-padded to 7 digits
+            }
+            return AppointmentID;
+        }
         public class Services
         {
             public string AppointmentID { get; set; }
             public string ServiceID { get; set; }
+        }
+        public static bool IsVehicleNumberValid(string vehicle_number)
+        {
+            // Must start with capital letter, and can only contains capital letter and number within 2 - 15 characters and both must exist
+            string pattern = @"^[A-Z](?=.*\d)[A-Z\d]{1,14}$";
+            return Regex.IsMatch(vehicle_number, pattern);
         }
     }
     public class Parts

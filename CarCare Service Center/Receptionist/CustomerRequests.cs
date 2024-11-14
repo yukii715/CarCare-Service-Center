@@ -59,7 +59,7 @@ namespace CarCare_Service_Center
                 if (tblCustomerRequests.GetControlFromPosition(0, i) is CheckBox selectCustomer && selectCustomer.Checked)
                 {
                     string role = "Customer";
-                    string newUserID = ID_Generator.UserID(role);
+                    string newUserID = User.GenerateUserID(role);
                     User.Add(newUserID, users[i - 1].Username, users[i - 1].Email, users[i - 1].Password, role);
                     RegisteredUser.ChangeStatus(users[i - 1].RegisterID, 1);
 

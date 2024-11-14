@@ -130,13 +130,16 @@ namespace ControlSetting
                 monthComboBox.Text = "Month";
                 monthComboBox.ForeColor = Color.Gray;
 
-                int selectedYear = (int)yearComboBox.SelectedItem;
-                int startMonth = (selectedYear == startYear) ? today.Month : 1; // Start from current month if same year
-                int endMonth = (selectedYear == endYear) ? rangeEnd.Month : 12; // End at the range end month if it's the end year
-
-                for (int month = startMonth; month <= endMonth; month++)
+                if (yearComboBox.SelectedItem != null)
                 {
-                    monthComboBox.Items.Add(month);
+                    int selectedYear = (int)yearComboBox.SelectedItem;
+                    int startMonth = (selectedYear == startYear) ? today.Month : 1; // Start from current month if same year
+                    int endMonth = (selectedYear == endYear) ? rangeEnd.Month : 12; // End at the range end month if it's the end year
+
+                    for (int month = startMonth; month <= endMonth; month++)
+                    {
+                        monthComboBox.Items.Add(month);
+                    }
                 }
             }
 
@@ -177,14 +180,14 @@ namespace ControlSetting
             }
         }
         public static void SetUpDependentComboBox<T>(ComboBox primaryComboBox, ComboBox dependentComboBox,
-            List<T> list, PropertyInfo primaryProperty, PropertyInfo dependentProperty)
+            List<T> TargetList, PropertyInfo primaryProperty, PropertyInfo dependentProperty, List<T> SelectedList = null)
         {
             primaryComboBox.SelectedIndexChanged += (sender, e) =>
             {
                 // Clear previous items in the dependent ComboBox
                 dependentComboBox.Items.Clear();
 
-                foreach (var item in list)
+                foreach (var item in TargetList)
                 {
                     // Get the value of the primary property for the current item
                     var primaryValue = primaryProperty.GetValue(item)?.ToString();
@@ -192,8 +195,16 @@ namespace ControlSetting
                     // Check if this primary property value matches the selected item in the primary ComboBox
                     if (primaryValue == primaryComboBox.Text)
                     {
-                        // If it matches, get the dependent property value and add it to the dependent ComboBox
+                        // If it matches, get the dependent property value
                         var dependentValue = dependentProperty.GetValue(item)?.ToString();
+
+                        // Check if the item already selected
+                        if (SelectedList != null && SelectedList.Any(selectedItem =>
+                        dependentProperty.GetValue(selectedItem)?.ToString() == dependentValue))
+                        {
+                            continue;
+                        }
+
                         dependentComboBox.Items.Add(dependentValue);
                     }
                 }

@@ -33,10 +33,10 @@ namespace CarCare_Service_Center
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustomerMain));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend14 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tabCustomer = new System.Windows.Forms.TabControl();
-            this.Home = new System.Windows.Forms.TabPage();
+            this.HomeTab = new System.Windows.Forms.TabPage();
             this.cmbYear = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,22 +44,21 @@ namespace CarCare_Service_Center
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lstAppointment = new System.Windows.Forms.ListBox();
             this.crtServiceUsed = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.Search = new System.Windows.Forms.TabPage();
+            this.SearchTab = new System.Windows.Forms.TabPage();
             this.pnlSearchResults = new System.Windows.Forms.Panel();
             this.cmbServiceType = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.Appointment = new System.Windows.Forms.TabPage();
+            this.AppointmentTab = new System.Windows.Forms.TabPage();
             this.tabAppointment = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pnlNewAppointment = new System.Windows.Forms.Panel();
+            this.lblBottomMargin = new System.Windows.Forms.Label();
             this.btnAddApointment = new System.Windows.Forms.Button();
             this.tlpServices = new System.Windows.Forms.TableLayoutPanel();
             this.btnAptAdd = new System.Windows.Forms.Button();
-            this.cmbAptServiceType = new System.Windows.Forms.ComboBox();
-            this.cmbAptServiceName = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.txtVehicleNumber = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -79,11 +78,11 @@ namespace CarCare_Service_Center
             this.panel4 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.History = new System.Windows.Forms.TabPage();
+            this.HistoryTab = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.Profile = new System.Windows.Forms.TabPage();
+            this.ProfileTab = new System.Windows.Forms.TabPage();
             this.lblAdminEmail = new System.Windows.Forms.Label();
             this.lblAdminName = new System.Windows.Forms.Label();
             this.lblAdminID = new System.Windows.Forms.Label();
@@ -94,15 +93,14 @@ namespace CarCare_Service_Center
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.lblServiceID = new System.Windows.Forms.Label();
-            this.lblBottomMargin = new System.Windows.Forms.Label();
+            this.btnAptClear = new System.Windows.Forms.Button();
             this.tabCustomer.SuspendLayout();
-            this.Home.SuspendLayout();
+            this.HomeTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crtServiceUsed)).BeginInit();
-            this.Search.SuspendLayout();
+            this.SearchTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.Appointment.SuspendLayout();
+            this.AppointmentTab.SuspendLayout();
             this.tabAppointment.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.pnlNewAppointment.SuspendLayout();
@@ -111,20 +109,20 @@ namespace CarCare_Service_Center
             this.tabPage2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            this.History.SuspendLayout();
+            this.HistoryTab.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            this.Profile.SuspendLayout();
+            this.ProfileTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabCustomer
             // 
             this.tabCustomer.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.tabCustomer.Controls.Add(this.Home);
-            this.tabCustomer.Controls.Add(this.Search);
-            this.tabCustomer.Controls.Add(this.Appointment);
-            this.tabCustomer.Controls.Add(this.History);
-            this.tabCustomer.Controls.Add(this.Profile);
+            this.tabCustomer.Controls.Add(this.HomeTab);
+            this.tabCustomer.Controls.Add(this.SearchTab);
+            this.tabCustomer.Controls.Add(this.AppointmentTab);
+            this.tabCustomer.Controls.Add(this.HistoryTab);
+            this.tabCustomer.Controls.Add(this.ProfileTab);
             this.tabCustomer.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabCustomer.ItemSize = new System.Drawing.Size(50, 80);
             this.tabCustomer.Location = new System.Drawing.Point(0, 0);
@@ -135,23 +133,23 @@ namespace CarCare_Service_Center
             this.tabCustomer.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabCustomer.TabIndex = 0;
             // 
-            // Home
+            // HomeTab
             // 
-            this.Home.BackColor = System.Drawing.Color.Transparent;
-            this.Home.Controls.Add(this.cmbYear);
-            this.Home.Controls.Add(this.label3);
-            this.Home.Controls.Add(this.label2);
-            this.Home.Controls.Add(this.label1);
-            this.Home.Controls.Add(this.pictureBox1);
-            this.Home.Controls.Add(this.lstAppointment);
-            this.Home.Controls.Add(this.crtServiceUsed);
-            this.Home.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Home.Location = new System.Drawing.Point(84, 4);
-            this.Home.Name = "Home";
-            this.Home.Padding = new System.Windows.Forms.Padding(3);
-            this.Home.Size = new System.Drawing.Size(1094, 740);
-            this.Home.TabIndex = 0;
-            this.Home.Text = "Home";
+            this.HomeTab.BackColor = System.Drawing.Color.Transparent;
+            this.HomeTab.Controls.Add(this.cmbYear);
+            this.HomeTab.Controls.Add(this.label3);
+            this.HomeTab.Controls.Add(this.label2);
+            this.HomeTab.Controls.Add(this.label1);
+            this.HomeTab.Controls.Add(this.pictureBox1);
+            this.HomeTab.Controls.Add(this.lstAppointment);
+            this.HomeTab.Controls.Add(this.crtServiceUsed);
+            this.HomeTab.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HomeTab.Location = new System.Drawing.Point(84, 4);
+            this.HomeTab.Name = "HomeTab";
+            this.HomeTab.Padding = new System.Windows.Forms.Padding(3);
+            this.HomeTab.Size = new System.Drawing.Size(1094, 740);
+            this.HomeTab.TabIndex = 0;
+            this.HomeTab.Text = "Home";
             // 
             // cmbYear
             // 
@@ -216,31 +214,31 @@ namespace CarCare_Service_Center
             // crtServiceUsed
             // 
             this.crtServiceUsed.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea14.Name = "ChartArea1";
-            this.crtServiceUsed.ChartAreas.Add(chartArea14);
-            legend14.Name = "Legend1";
-            this.crtServiceUsed.Legends.Add(legend14);
+            chartArea1.Name = "ChartArea1";
+            this.crtServiceUsed.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.crtServiceUsed.Legends.Add(legend1);
             this.crtServiceUsed.Location = new System.Drawing.Point(100, 327);
             this.crtServiceUsed.Name = "crtServiceUsed";
             this.crtServiceUsed.Size = new System.Drawing.Size(440, 324);
             this.crtServiceUsed.TabIndex = 0;
             this.crtServiceUsed.Text = "chart1";
             // 
-            // Search
+            // SearchTab
             // 
-            this.Search.Controls.Add(this.pnlSearchResults);
-            this.Search.Controls.Add(this.cmbServiceType);
-            this.Search.Controls.Add(this.label5);
-            this.Search.Controls.Add(this.label4);
-            this.Search.Controls.Add(this.txtSearch);
-            this.Search.Controls.Add(this.pictureBox2);
-            this.Search.Location = new System.Drawing.Point(84, 4);
-            this.Search.Name = "Search";
-            this.Search.Padding = new System.Windows.Forms.Padding(3);
-            this.Search.Size = new System.Drawing.Size(1094, 740);
-            this.Search.TabIndex = 1;
-            this.Search.Text = "Search";
-            this.Search.UseVisualStyleBackColor = true;
+            this.SearchTab.Controls.Add(this.pnlSearchResults);
+            this.SearchTab.Controls.Add(this.cmbServiceType);
+            this.SearchTab.Controls.Add(this.label5);
+            this.SearchTab.Controls.Add(this.label4);
+            this.SearchTab.Controls.Add(this.txtSearch);
+            this.SearchTab.Controls.Add(this.pictureBox2);
+            this.SearchTab.Location = new System.Drawing.Point(84, 4);
+            this.SearchTab.Name = "SearchTab";
+            this.SearchTab.Padding = new System.Windows.Forms.Padding(3);
+            this.SearchTab.Size = new System.Drawing.Size(1094, 740);
+            this.SearchTab.TabIndex = 1;
+            this.SearchTab.Text = "Search";
+            this.SearchTab.UseVisualStyleBackColor = true;
             // 
             // pnlSearchResults
             // 
@@ -304,15 +302,15 @@ namespace CarCare_Service_Center
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
-            // Appointment
+            // AppointmentTab
             // 
-            this.Appointment.Controls.Add(this.tabAppointment);
-            this.Appointment.Location = new System.Drawing.Point(84, 4);
-            this.Appointment.Name = "Appointment";
-            this.Appointment.Size = new System.Drawing.Size(1094, 740);
-            this.Appointment.TabIndex = 2;
-            this.Appointment.Text = "Appointment";
-            this.Appointment.UseVisualStyleBackColor = true;
+            this.AppointmentTab.Controls.Add(this.tabAppointment);
+            this.AppointmentTab.Location = new System.Drawing.Point(84, 4);
+            this.AppointmentTab.Name = "AppointmentTab";
+            this.AppointmentTab.Size = new System.Drawing.Size(1094, 740);
+            this.AppointmentTab.TabIndex = 2;
+            this.AppointmentTab.Text = "Appointment";
+            this.AppointmentTab.UseVisualStyleBackColor = true;
             // 
             // tabAppointment
             // 
@@ -340,6 +338,7 @@ namespace CarCare_Service_Center
             // pnlNewAppointment
             // 
             this.pnlNewAppointment.AutoScroll = true;
+            this.pnlNewAppointment.Controls.Add(this.btnAptClear);
             this.pnlNewAppointment.Controls.Add(this.lblBottomMargin);
             this.pnlNewAppointment.Controls.Add(this.btnAddApointment);
             this.pnlNewAppointment.Controls.Add(this.tlpServices);
@@ -363,29 +362,34 @@ namespace CarCare_Service_Center
             this.pnlNewAppointment.Size = new System.Drawing.Size(1074, 695);
             this.pnlNewAppointment.TabIndex = 6;
             // 
+            // lblBottomMargin
+            // 
+            this.lblBottomMargin.AutoSize = true;
+            this.lblBottomMargin.Location = new System.Drawing.Point(470, 640);
+            this.lblBottomMargin.Name = "lblBottomMargin";
+            this.lblBottomMargin.Size = new System.Drawing.Size(0, 24);
+            this.lblBottomMargin.TabIndex = 21;
+            // 
             // btnAddApointment
             // 
             this.btnAddApointment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAddApointment.Location = new System.Drawing.Point(412, 596);
+            this.btnAddApointment.Location = new System.Drawing.Point(264, 598);
             this.btnAddApointment.Name = "btnAddApointment";
             this.btnAddApointment.Size = new System.Drawing.Size(215, 39);
             this.btnAddApointment.TabIndex = 20;
             this.btnAddApointment.Text = "Add Appointment";
             this.btnAddApointment.UseVisualStyleBackColor = true;
+            this.btnAddApointment.Click += new System.EventHandler(this.btnAddApointment_Click);
             // 
             // tlpServices
             // 
-            this.tlpServices.AutoSize = true;
             this.tlpServices.ColumnCount = 5;
             this.tlpServices.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.47472F));
             this.tlpServices.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.7917F));
             this.tlpServices.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.7917F));
             this.tlpServices.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.47174F));
             this.tlpServices.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.47014F));
-            this.tlpServices.Controls.Add(this.lblServiceID, 3, 0);
             this.tlpServices.Controls.Add(this.btnAptAdd, 0, 1);
-            this.tlpServices.Controls.Add(this.cmbAptServiceType, 1, 0);
-            this.tlpServices.Controls.Add(this.cmbAptServiceName, 2, 0);
             this.tlpServices.Location = new System.Drawing.Point(128, 364);
             this.tlpServices.Name = "tlpServices";
             this.tlpServices.RowCount = 2;
@@ -405,25 +409,6 @@ namespace CarCare_Service_Center
             this.btnAptAdd.Text = "Add";
             this.btnAptAdd.UseVisualStyleBackColor = true;
             this.btnAptAdd.Click += new System.EventHandler(this.Add_Service);
-            // 
-            // cmbAptServiceType
-            // 
-            this.cmbAptServiceType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cmbAptServiceType.FormattingEnabled = true;
-            this.cmbAptServiceType.Location = new System.Drawing.Point(116, 3);
-            this.cmbAptServiceType.Name = "cmbAptServiceType";
-            this.cmbAptServiceType.Size = new System.Drawing.Size(243, 32);
-            this.cmbAptServiceType.TabIndex = 1;
-            // 
-            // cmbAptServiceName
-            // 
-            this.cmbAptServiceName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cmbAptServiceName.FormattingEnabled = true;
-            this.cmbAptServiceName.Location = new System.Drawing.Point(365, 3);
-            this.cmbAptServiceName.Name = "cmbAptServiceName";
-            this.cmbAptServiceName.Size = new System.Drawing.Size(243, 32);
-            this.cmbAptServiceName.TabIndex = 2;
-            this.cmbAptServiceName.SelectedIndexChanged += new System.EventHandler(this.cmbAptServiceName_SelectedIndexChanged);
             // 
             // label19
             // 
@@ -614,15 +599,15 @@ namespace CarCare_Service_Center
             this.pictureBox5.TabIndex = 4;
             this.pictureBox5.TabStop = false;
             // 
-            // History
+            // HistoryTab
             // 
-            this.History.Controls.Add(this.panel3);
-            this.History.Location = new System.Drawing.Point(84, 4);
-            this.History.Name = "History";
-            this.History.Size = new System.Drawing.Size(1094, 740);
-            this.History.TabIndex = 3;
-            this.History.Text = "History";
-            this.History.UseVisualStyleBackColor = true;
+            this.HistoryTab.Controls.Add(this.panel3);
+            this.HistoryTab.Location = new System.Drawing.Point(84, 4);
+            this.HistoryTab.Name = "HistoryTab";
+            this.HistoryTab.Size = new System.Drawing.Size(1094, 740);
+            this.HistoryTab.TabIndex = 3;
+            this.HistoryTab.Text = "History";
+            this.HistoryTab.UseVisualStyleBackColor = true;
             // 
             // panel3
             // 
@@ -655,24 +640,24 @@ namespace CarCare_Service_Center
             this.pictureBox4.TabIndex = 4;
             this.pictureBox4.TabStop = false;
             // 
-            // Profile
+            // ProfileTab
             // 
-            this.Profile.Controls.Add(this.lblAdminEmail);
-            this.Profile.Controls.Add(this.lblAdminName);
-            this.Profile.Controls.Add(this.lblAdminID);
-            this.Profile.Controls.Add(this.btnChangePassword);
-            this.Profile.Controls.Add(this.btnChangeEmail);
-            this.Profile.Controls.Add(this.btnChangeUserName);
-            this.Profile.Controls.Add(this.label13);
-            this.Profile.Controls.Add(this.label14);
-            this.Profile.Controls.Add(this.label15);
-            this.Profile.Controls.Add(this.label16);
-            this.Profile.Location = new System.Drawing.Point(84, 4);
-            this.Profile.Name = "Profile";
-            this.Profile.Size = new System.Drawing.Size(1094, 740);
-            this.Profile.TabIndex = 4;
-            this.Profile.Text = "Profile";
-            this.Profile.UseVisualStyleBackColor = true;
+            this.ProfileTab.Controls.Add(this.lblAdminEmail);
+            this.ProfileTab.Controls.Add(this.lblAdminName);
+            this.ProfileTab.Controls.Add(this.lblAdminID);
+            this.ProfileTab.Controls.Add(this.btnChangePassword);
+            this.ProfileTab.Controls.Add(this.btnChangeEmail);
+            this.ProfileTab.Controls.Add(this.btnChangeUserName);
+            this.ProfileTab.Controls.Add(this.label13);
+            this.ProfileTab.Controls.Add(this.label14);
+            this.ProfileTab.Controls.Add(this.label15);
+            this.ProfileTab.Controls.Add(this.label16);
+            this.ProfileTab.Location = new System.Drawing.Point(84, 4);
+            this.ProfileTab.Name = "ProfileTab";
+            this.ProfileTab.Size = new System.Drawing.Size(1094, 740);
+            this.ProfileTab.TabIndex = 4;
+            this.ProfileTab.Text = "Profile";
+            this.ProfileTab.UseVisualStyleBackColor = true;
             // 
             // lblAdminEmail
             // 
@@ -774,23 +759,16 @@ namespace CarCare_Service_Center
             this.label16.TabIndex = 23;
             this.label16.Text = "Profile";
             // 
-            // lblServiceID
+            // btnAptClear
             // 
-            this.lblServiceID.AutoSize = true;
-            this.lblServiceID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblServiceID.Location = new System.Drawing.Point(614, 0);
-            this.lblServiceID.Name = "lblServiceID";
-            this.lblServiceID.Size = new System.Drawing.Size(107, 40);
-            this.lblServiceID.TabIndex = 21;
-            this.lblServiceID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblBottomMargin
-            // 
-            this.lblBottomMargin.AutoSize = true;
-            this.lblBottomMargin.Location = new System.Drawing.Point(470, 640);
-            this.lblBottomMargin.Name = "lblBottomMargin";
-            this.lblBottomMargin.Size = new System.Drawing.Size(0, 24);
-            this.lblBottomMargin.TabIndex = 21;
+            this.btnAptClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAptClear.Location = new System.Drawing.Point(617, 598);
+            this.btnAptClear.Name = "btnAptClear";
+            this.btnAptClear.Size = new System.Drawing.Size(215, 39);
+            this.btnAptClear.TabIndex = 22;
+            this.btnAptClear.Text = "Clear";
+            this.btnAptClear.UseVisualStyleBackColor = true;
+            this.btnAptClear.Click += new System.EventHandler(this.btnAptClear_Click);
             // 
             // frmCustomerMain
             // 
@@ -802,31 +780,30 @@ namespace CarCare_Service_Center
             this.Text = "CarCare Service Center";
             this.Load += new System.EventHandler(this.frmCustomerMain_Load);
             this.tabCustomer.ResumeLayout(false);
-            this.Home.ResumeLayout(false);
-            this.Home.PerformLayout();
+            this.HomeTab.ResumeLayout(false);
+            this.HomeTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.crtServiceUsed)).EndInit();
-            this.Search.ResumeLayout(false);
-            this.Search.PerformLayout();
+            this.SearchTab.ResumeLayout(false);
+            this.SearchTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.Appointment.ResumeLayout(false);
+            this.AppointmentTab.ResumeLayout(false);
             this.tabAppointment.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.pnlNewAppointment.ResumeLayout(false);
             this.pnlNewAppointment.PerformLayout();
             this.tlpServices.ResumeLayout(false);
-            this.tlpServices.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            this.History.ResumeLayout(false);
+            this.HistoryTab.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.Profile.ResumeLayout(false);
-            this.Profile.PerformLayout();
+            this.ProfileTab.ResumeLayout(false);
+            this.ProfileTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -834,11 +811,11 @@ namespace CarCare_Service_Center
         #endregion
 
         private System.Windows.Forms.TabControl tabCustomer;
-        private System.Windows.Forms.TabPage Home;
-        private System.Windows.Forms.TabPage Search;
-        private TabPage Appointment;
-        private TabPage History;
-        private TabPage Profile;
+        private System.Windows.Forms.TabPage HomeTab;
+        private System.Windows.Forms.TabPage SearchTab;
+        private TabPage AppointmentTab;
+        private TabPage HistoryTab;
+        private TabPage ProfileTab;
         private ListBox lstAppointment;
         private System.Windows.Forms.DataVisualization.Charting.Chart crtServiceUsed;
         private Label label1;
@@ -889,11 +866,9 @@ namespace CarCare_Service_Center
         private Label label18;
         private TableLayoutPanel tlpServices;
         private Button btnAptAdd;
-        private ComboBox cmbAptServiceType;
         private Button btnAddApointment;
-        private ComboBox cmbAptServiceName;
-        private Label lblServiceID;
         private Label lblBottomMargin;
+        private Button btnAptClear;
     }
 }
 

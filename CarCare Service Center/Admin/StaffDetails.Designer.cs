@@ -48,7 +48,7 @@ namespace CarCare_Service_Center
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(100, 93);
+            this.label1.Location = new System.Drawing.Point(12, 93);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(151, 40);
             this.label1.TabIndex = 0;
@@ -58,7 +58,7 @@ namespace CarCare_Service_Center
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(100, 213);
+            this.label2.Location = new System.Drawing.Point(12, 213);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 40);
             this.label2.TabIndex = 1;
@@ -68,7 +68,7 @@ namespace CarCare_Service_Center
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(100, 333);
+            this.label3.Location = new System.Drawing.Point(12, 333);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 40);
             this.label3.TabIndex = 2;
@@ -78,7 +78,7 @@ namespace CarCare_Service_Center
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(100, 453);
+            this.label4.Location = new System.Drawing.Point(12, 453);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 40);
             this.label4.TabIndex = 3;
@@ -88,7 +88,7 @@ namespace CarCare_Service_Center
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(100, 573);
+            this.label5.Location = new System.Drawing.Point(12, 573);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(122, 40);
             this.label5.TabIndex = 4;
@@ -98,7 +98,7 @@ namespace CarCare_Service_Center
             // 
             this.lblSalary.AutoSize = true;
             this.lblSalary.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSalary.Location = new System.Drawing.Point(332, 573);
+            this.lblSalary.Location = new System.Drawing.Point(268, 573);
             this.lblSalary.Name = "lblSalary";
             this.lblSalary.Size = new System.Drawing.Size(28, 40);
             this.lblSalary.TabIndex = 9;
@@ -108,7 +108,7 @@ namespace CarCare_Service_Center
             // 
             this.lblRole.AutoSize = true;
             this.lblRole.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRole.Location = new System.Drawing.Point(332, 453);
+            this.lblRole.Location = new System.Drawing.Point(268, 453);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(28, 40);
             this.lblRole.TabIndex = 8;
@@ -118,7 +118,7 @@ namespace CarCare_Service_Center
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(332, 333);
+            this.lblEmail.Location = new System.Drawing.Point(268, 333);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(28, 40);
             this.lblEmail.TabIndex = 7;
@@ -128,7 +128,7 @@ namespace CarCare_Service_Center
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(332, 213);
+            this.lblName.Location = new System.Drawing.Point(268, 213);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(28, 40);
             this.lblName.TabIndex = 6;
@@ -138,7 +138,7 @@ namespace CarCare_Service_Center
             // 
             this.lblStaffID.AutoSize = true;
             this.lblStaffID.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStaffID.Location = new System.Drawing.Point(332, 93);
+            this.lblStaffID.Location = new System.Drawing.Point(268, 93);
             this.lblStaffID.Name = "lblStaffID";
             this.lblStaffID.Size = new System.Drawing.Size(28, 40);
             this.lblStaffID.TabIndex = 5;
@@ -147,7 +147,7 @@ namespace CarCare_Service_Center
             // btnEdit
             // 
             this.btnEdit.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(48, 709);
+            this.btnEdit.Location = new System.Drawing.Point(44, 709);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(140, 57);
             this.btnEdit.TabIndex = 10;

@@ -34,7 +34,7 @@ namespace CarCare_Service_Center
                 MessageBox.Show("The confirmation password does not match. Please try again.");
             else
             {
-                string registerID = ID_Generator.RegisterID();
+                string registerID = RegisteredUser.GenerateRegisterID();
                 RegisteredUser.Add(registerID, txtUsername.Text, txtEmail.Text, txtPassword.Text);
                 MessageBox.Show("Register Successfully!");
                 txtUsername.Clear();

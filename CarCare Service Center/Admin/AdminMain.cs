@@ -1,4 +1,5 @@
 ﻿
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,12 +10,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using ControlSetting;
 using Users;
+using Functions;
 using CarCare_Service_Center;
 using static CarCare_Service_Center.Services;
 using static CarCare_Service_Center.Appointment;
 using System.Drawing.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using ControlSetting;
+
 
 namespace CarCare_Service_Center
 {
@@ -72,7 +77,7 @@ namespace CarCare_Service_Center
             // Create and add the UserID label
             Label staffID = new Label
             {
-                Text = user.UserID
+                Text = user.UserID.Trim()
             };
             ctrlPropertiesinTlp(staffID);
             tlpStaffAccountData.Controls.Add(staffID, 0, rowinsert);
@@ -80,7 +85,7 @@ namespace CarCare_Service_Center
             // Create and add the Username label
             Label staffName = new Label
             {
-                Text = user.Username
+                Text = user.Username.Trim()
             };
             ctrlPropertiesinTlp(staffName);
             tlpStaffAccountData.Controls.Add(staffName, 1, rowinsert);
@@ -88,7 +93,7 @@ namespace CarCare_Service_Center
             // Create and add the Role label
             Label staffRole = new Label
             {
-                Text = user.Role,
+                Text = user.Role.Trim(),
             };
             ctrlPropertiesinTlp(staffRole);
             tlpStaffAccountData.Controls.Add(staffRole, 2, rowinsert);
@@ -108,9 +113,12 @@ namespace CarCare_Service_Center
         // to show the Service data in tlpServiceData
         private void show_controlinTlpService(Services service, ref int rowinsert)
         {
+            // Increment row index for adding controls
+            rowinsert++;
+
             Label serviceID = new Label
             {
-                Text = service.ServiceID
+                Text = service.ServiceID.Trim()
             };
             ctrlPropertiesinTlp(serviceID);
             tlpServiceData.Controls.Add(serviceID, 0, rowinsert);
@@ -118,7 +126,8 @@ namespace CarCare_Service_Center
 
             Label serviceName = new Label
             {
-                Text = service.ServiceName
+                Text = service.ServiceName.Trim(),
+                TextAlign = ContentAlignment.MiddleCenter,
             };
             ctrlPropertiesinTlp(serviceName);
             tlpServiceData.Controls.Add(serviceName, 1, rowinsert);
@@ -126,7 +135,7 @@ namespace CarCare_Service_Center
 
             Label serviceType = new Label
             {
-                Text = service.ServiceType
+                Text = service.ServiceType.Trim()
             };
             ctrlPropertiesinTlp(serviceType);
             tlpServiceData.Controls.Add(serviceType, 2, rowinsert);
@@ -145,9 +154,11 @@ namespace CarCare_Service_Center
         // to show the Feedback data in tlpFeedbackData
         private void show_controlinTlpFeedback(ServiceOrder serviceOrder, ref int rowinsert)
         {
+            rowinsert++;
+
             Label serviceOrderID = new Label
             {
-                Text = serviceOrder.ServiceOrderID
+                Text = serviceOrder.ServiceOrderID.Trim()
             };
             ctrlPropertiesinTlp(serviceOrderID);
             tlpFeedbackData.Controls.Add(serviceOrderID, 0, rowinsert);
@@ -159,7 +170,7 @@ namespace CarCare_Service_Center
 
             Label userName = new Label
             {
-                Text = user.Username
+                Text = user.Username.Trim()
             };
             ctrlPropertiesinTlp(userName);
             tlpFeedbackData.Controls.Add(userName, 1, rowinsert);
@@ -167,7 +178,7 @@ namespace CarCare_Service_Center
 
             Label date = new Label
             {
-                Text = serviceOrder.Date.ToString()
+                Text = serviceOrder.Date.ToString().Trim()
             };
             ctrlPropertiesinTlp(date);
             tlpFeedbackData.Controls.Add(date, 2, rowinsert);
@@ -175,7 +186,7 @@ namespace CarCare_Service_Center
 
             Label rating = new Label
             {
-                Text = serviceOrder.Rating.ToString()
+                Text = serviceOrder.Rating.ToString().Trim()
             };
             ctrlPropertiesinTlp(rating);
             tlpFeedbackData.Controls.Add(rating, 3, rowinsert);
@@ -183,7 +194,7 @@ namespace CarCare_Service_Center
 
             Label comment = new Label();
             ctrlPropertiesinTlp(comment);
-            if (serviceOrder.Feedback == null)
+            if (serviceOrder.Feedback == null || serviceOrder.Feedback == "")
             {
                 comment.Text = "No";
             }
@@ -211,32 +222,39 @@ namespace CarCare_Service_Center
             Place_Holder.SetPlaceHolder(txtServiceSearch, "Search");
             Place_Holder.SetPlaceHolder(txtStaffSearch, "Search");
 
-            users.Add(new User { UserID = "20000001", Username = "Win", Role = "Receptionist" });
-            users.Add(new User { UserID = "30000001", Username = "Win", Role = "Mechanic" });
-            users.Add(new User { UserID = "30000002", Username = "Ali", Role = "Mechanic" });
+            string query = "SELECT * FROM Users WHERE Role IN ('Receptionist', 'Mechanic');";
+            users = Database.FetchData<User>(query);
+            users = users.OrderBy(u => u.UserID).ToList();
 
-            service.Add(new Services { ServiceID = "BMS001", ServiceName = "huh?", ServiceType = "Repair Service" });
-            service.Add(new Services { ServiceID = "BMS001", ServiceName = "huh?", ServiceType = "Repair Service" });
-            service.Add(new Services { ServiceID = "BMS001", ServiceName = "huh?", ServiceType = "Repair Service" });
-
-            appointments.Add(new Appointment { AppointmentID = "ID00", UserID = "20000001" });
-            appointments.Add(new Appointment { AppointmentID = "ID01", UserID = "30000001" });
+            query = "SELECT * FROM Services;";
+            service = Database.FetchData<Services>(query);
+            service = service.OrderBy(u => u.ServiceID).ToList();
 
 
-            serviceOrders.Add(new ServiceOrder { ServiceOrderID = "1001", ApointmentID = "ID00", Rating = 5, Feedback = "Very good", Date = DateTime.Now });
-            serviceOrders.Add(new ServiceOrder { ServiceOrderID = "2002", ApointmentID = "ID01", Rating = 1, Feedback = "Very bad", Date = DateTime.Now });
+            query = "SELECT * FROM Appointments;";
+            appointments = Database.FetchData<Appointment>(query);
+            appointments = appointments.OrderBy(a => a.AppointmentID).ToList();
 
 
-            staffsalary.Add(new User.StaffSalary { UserID = "20000001", Salary = 5000 });
-            staffsalary.Add(new User.StaffSalary { UserID = "30000001", Salary = 10000 });
-            staffsalary.Add(new User.StaffSalary { UserID = "30000002", Salary = 20000 });
+            query = "SELECT * FROM ServiceOrder;";
+            serviceOrders = Database.FetchData<ServiceOrder>(query);
+            serviceOrders = serviceOrders.OrderBy(s => s.ServiceOrderID).ToList();
+
+            query = "SELECT * From StaffSalary;";
+            staffsalary = Database.FetchData<User.StaffSalary>(query);
+            staffsalary = staffsalary.OrderBy(s => s.UserID).ToList();
+
+            for (int i = 0; i < staffsalary.Count; i++)
+            {
+                var user = users.Find(u => u.UserID == staffsalary[i].UserID);
+                users[i].Salary = staffsalary[i].Salary;
+            }
+
+
             int rowinsert = -1;
             for (int i = 0; i < users.Count; i++)
             {
-                if (users[i].Role == "Mechanic" || users[i].Role == "Receptionist")
-                {
-                    show_controlinTlpStaffAccount(users[i], ref rowinsert);
-                }
+                show_controlinTlpStaffAccount(users[i], ref rowinsert);
             }
 
             rowinsert = -1;
@@ -251,7 +269,6 @@ namespace CarCare_Service_Center
                 show_controlinTlpFeedback(serviceOrders[i], ref rowinsert);
             }
         }
-
         // Tab Home
         // Tab Home
         // Tab Home
@@ -301,9 +318,9 @@ namespace CarCare_Service_Center
             decimal profit = 70.45m;
             int ratingNumber = 5;
 
-            lblMoneyEarn.Text = "RM" + moneyEarn.ToString();
-            lblMoneySpent.Text = "RM" + moneySpent.ToString();
-            lblHomeProfit.Text = "RM" + profit.ToString();
+            lblMoneyEarn.Text = "RM" + moneyEarn.ToString().Trim();
+            lblMoneySpent.Text = "RM" + moneySpent.ToString().Trim();
+            lblHomeProfit.Text = "RM" + profit.ToString().Trim();
             btnHomeProfitDetail.Enabled = true;
             btnHomeRatingDetail.Enabled = true;
 
@@ -324,7 +341,6 @@ namespace CarCare_Service_Center
             tabAdmin.SelectedIndex = 4;
             cmbReportMonth.SelectedIndex = cmbHomeMonth.SelectedIndex;
             cmbReportYear.SelectedIndex = cmbHomeYear.SelectedIndex;
-            btnReportGenerate_Click(sender, e);
         }
 
         private void btnHomeRatingDetail_Click(object sender, EventArgs e)
@@ -341,17 +357,14 @@ namespace CarCare_Service_Center
         // Tab Staff
         // Tab Staff
         // Tab Staff
-        private void cmbRoleSelection_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btnStaffSearch.Enabled = true;
-        }
-
         private void btnStaffSearch_Click(object sender, EventArgs e)
         {
-            btnStaffAccountSortID.Enabled = true;
-            btnStaffAccountSortName.Enabled = true;
+            string role = null;
+            if (cmbRoleSelection.SelectedItem != null)
+            {
+                role = cmbRoleSelection.SelectedItem.ToString();
+            }
 
-            string role = cmbRoleSelection.SelectedItem.ToString();
             string StaffSearch = null;
 
             if (txtStaffSearch.Text != "Search")
@@ -363,14 +376,12 @@ namespace CarCare_Service_Center
             tlpStaffAccountData.Controls.Clear();
             tlpStaffAccountData.RowCount = 1;
 
-            if (StaffSearch == null && role == "All")
+            if (StaffSearch == null && (role == "All" || role == null))
             {
                 for (int i = 0; i < users.Count; i++)
                 {
-                    if (users[i].Role == "Mechanic" || users[i].Role == "Receptionist")
-                    {
-                        show_controlinTlpStaffAccount(users[i], ref rowinsert);  // Call show_control with the user and rowinsert
-                    }
+                    // Call show_control with the user and rowinsert
+                    show_controlinTlpStaffAccount(users[i], ref rowinsert);
                 }
             }
             else if (StaffSearch == null && role != "All")
@@ -379,7 +390,8 @@ namespace CarCare_Service_Center
                 {
                     if (users[i].Role == role)
                     {
-                        show_controlinTlpStaffAccount(users[i], ref rowinsert);  // Call show_control with the user and rowinsert
+                        // Call show_control with the user and rowinsert
+                        show_controlinTlpStaffAccount(users[i], ref rowinsert);
                     }
                 }
             }
@@ -387,7 +399,8 @@ namespace CarCare_Service_Center
             {
                 for (int i = 0; i < users.Count; i++)
                 {
-                    if ((users[i].Role == "Mechanic" || users[i].Role == "Receptionist") && (users[i].UserID.ToLower().Contains(StaffSearch) || users[i].Username.ToLower().Contains(StaffSearch)))
+                    if (users[i].UserID.ToLower().Contains(StaffSearch) ||
+                        users[i].Username.ToLower().Contains(StaffSearch))
                     {
                         show_controlinTlpStaffAccount(users[i], ref rowinsert);
                     }
@@ -397,7 +410,9 @@ namespace CarCare_Service_Center
             {
                 for (int i = 0; i < users.Count; i++)
                 {
-                    if (users[i].Role == role && (users[i].UserID.ToLower().Contains(StaffSearch) || users[i].Username.ToLower().Contains(StaffSearch)))
+                    if (users[i].Role == role &&
+                       (users[i].UserID.ToLower().Contains(StaffSearch) ||
+                        users[i].Username.ToLower().Contains(StaffSearch)))
                     {
                         show_controlinTlpStaffAccount(users[i], ref rowinsert);
                     }
@@ -428,7 +443,7 @@ namespace CarCare_Service_Center
         {
             User user = (User)(sender as Button).Tag;
             StaffDetails formStaffDetails = new StaffDetails(user);
-            formStaffDetails.Show();
+            formStaffDetails.ShowDialog();
         }
 
         private void btnStaffAdd_Click(object sender, EventArgs e)
@@ -437,29 +452,105 @@ namespace CarCare_Service_Center
             formStaffInsertion.Show();
         }
 
+        // Tab Service
+        // Tab Service
+        // Tab Service
+        // Tab Service
+        // Tab Service
+        // Tab Service
+        // Tab Service
+        // Tab Service
+
+        // To filter the Result based on Search
         private void btnServiceSearch_Click(object sender, EventArgs e)
         {
+            string service_type = null;
+            if (cmbServiceType.SelectedItem != null)
+            {
+                service_type = cmbServiceType.SelectedItem.ToString();
+            }
 
+
+            string serviceName = null;
+            if (txtServiceSearch.Text != "Search")
+            {
+                serviceName = txtServiceSearch.Text.ToLower();
+            }
+
+            int rowinsert = -1;
+            tlpServiceData.Controls.Clear();
+            tlpServiceData.RowCount = 1;
+
+            if ((service_type == "All" || service_type == null) && serviceName == null)
+            {
+                for (int i = 0; i < service.Count; i++)
+                {
+                    show_controlinTlpService(service[i], ref rowinsert);
+                }
+            }
+            else if (service_type != "All" && serviceName == null)
+            {
+                for (int i = 0; i < service.Count; i++)
+                {
+                    if (service[i].ServiceType == service_type)
+                    {
+                        show_controlinTlpService(service[i], ref rowinsert);
+                    }
+                }
+            }
+            else if (service_type == "All" && serviceName != null)
+            {
+                for (int i = 0; i < service.Count; i++)
+                {
+                    if (service[i].ServiceID.ToLower().Contains(serviceName) ||
+                        service[i].ServiceName.ToLower().Contains(serviceName))
+                    {
+                        show_controlinTlpService(service[i], ref rowinsert);
+                    }
+                }
+            }
+            else if (service_type != "All" && serviceName != null)
+            {
+                for (int i = 0; i < service.Count; i++)
+                {
+                    if (service[i].ServiceType == service_type &&
+                        (service[i].ServiceID.ToLower().Contains(serviceName) ||
+                        service[i].ServiceName.ToLower().Contains(serviceName)))
+                    {
+                        show_controlinTlpService(service[i], ref rowinsert);
+                    }
+                }
+            }
         }
+
 
         private void btnServiceSortID_Click(object sender, EventArgs e)
         {
-
+            // Sort service by Service ID
+            service = service.OrderBy(o => o.ServiceID).ToList();
+            btnServiceSearch_Click(sender, e);
         }
 
         private void btnServiceSortName_Click(object sender, EventArgs e)
         {
-
+            // Sort service by ServiceName
+            service = service.OrderBy(o => o.ServiceName).ToList();
+            btnServiceSearch_Click(sender, e);
         }
 
-        private void btnServiceSortServiceType_Click(object sender, EventArgs e)
+        private void btnServiceSortType_Click(object sender, EventArgs e)
         {
-
+            // Sort service by Service Type
+            service = service.OrderBy(o => o.ServiceID).ToList();
+            service = service.OrderBy(o => o.ServiceType).ToList();
+            btnServiceSearch_Click(sender, e);
         }
+
 
         private void btnServiceDetails_Click(object sender, EventArgs e)
         {
-            ServiceDetails formServiceDetails = new ServiceDetails();
+            Services services = (Services)(sender as Button).Tag;
+            ServiceDetails formServiceDetails = new ServiceDetails(services);
             formServiceDetails.Show();
         }
 
@@ -471,19 +562,11 @@ namespace CarCare_Service_Center
 
         private void cmbFeedbackMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
-            pnlFeedbackData.Visible = false;
-            tableLayoutPanel1.Visible = false;
-            Series series = crtFeedbackRating.Series[0];
-            series.Points.Clear();
             btnFeedbackGenerate.Enabled = true;
         }
 
         private void cmbFeedbackYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-            pnlFeedbackData.Visible = false;
-            tableLayoutPanel1.Visible = false;
-            Series series = crtFeedbackRating.Series[0];
-            series.Points.Clear();
             btnFeedbackGenerate.Enabled = true;
         }
         private void btnFeedbackGenerate_Click(object sender, EventArgs e)
@@ -506,8 +589,10 @@ namespace CarCare_Service_Center
             }
 
             Series feedbackSeries = crtFeedbackRating.Series[0];
+            feedbackSeries.Points.Clear();
 
             int ratingNumber = 5;
+            int totalRatingCount = 0;
 
             for (int i = 0; i < 5; i++)
             {
@@ -515,9 +600,11 @@ namespace CarCare_Service_Center
                 feedbackSeries.Points.AddY(ratingStar);
                 feedbackSeries.Points[i].LegendText = ratingNumber.ToString() + " Star:  " + ratingStar.ToString();
                 feedbackSeries.Points[i].IsValueShownAsLabel = true;
+                totalRatingCount += ratingStar;
                 ratingNumber--;
             }
 
+            lblFeedbackTotal.Text = "Total: " + totalRatingCount.ToString();
             pnlFeedbackData.Visible = true;
             tableLayoutPanel1.Visible = true;
             btnFeedbackGenerate.Enabled = false;
@@ -528,16 +615,6 @@ namespace CarCare_Service_Center
         {
             FeedbackDetails formFeedbackDetails = new FeedbackDetails();
             formFeedbackDetails.Show();
-        }
-
-        private void cmbServiceType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btnServiceSearch.Enabled = true;
-        }
-
-        private void btnReportGenerate_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

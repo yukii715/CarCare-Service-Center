@@ -33,7 +33,7 @@ namespace CarCare_Service_Center
             string password = username + date;
             string email = txtStaffEmail.Text;
             string role = cmbRoleSelection.Text;
-            string userid = ID_Generator.UserID(role);
+            string userid = User.GenerateUserID(role);
             if (Validation.IsUsernameInvalid(username))
                 MessageBox.Show("Invalid Username");
             else if (Validation.IsUsernameExists(txtStaffName.Text))

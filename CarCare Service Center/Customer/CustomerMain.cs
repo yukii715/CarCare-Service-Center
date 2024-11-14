@@ -18,6 +18,7 @@ namespace CarCare_Service_Center
     public partial class frmCustomerMain : Form
     {
         private List<Services> services;
+        private List<Services> selected_services = new List<Services>();
         private Customer customer;
         public frmCustomerMain(Customer cus)
         {
@@ -37,14 +38,11 @@ namespace CarCare_Service_Center
         {
             int row = 0;
             tabCustomer.DrawItem += Draw_Item.tabControlAdjustment;
-
             string query = "SELECT * FROM Services WHERE IsDeleted = 0";
             services = Database.FetchData<Services>(query);
 
             for (int i = 0; i < services.Count; i++)
             {
-                cmbServiceType.Items.Add(services[i].ServiceType);
-                cmbAptServiceType.Items.Add(services[i].ServiceType);
                 show_results(ref i, ref row);
             }
 
@@ -55,11 +53,32 @@ namespace CarCare_Service_Center
                     ComboBoxSetting.Set(comboBox);
                 }
             }
-            
-            PropertyInfo service_type = typeof(Services).GetProperty("ServiceType");
-            PropertyInfo service_name = typeof(Services).GetProperty("ServiceName");
-            ComboBoxSetting.SetUpDependentComboBox<Services>(cmbAptServiceType, cmbAptServiceName, services, service_type, service_name);
+            AddServiceTypeIntoComboBox(cmbServiceType);
+            SetupComboBoxPlaceHolder();
+            SetupInitialServiceSelection();
         }
+        private void AddServiceTypeIntoComboBox(ComboBox cmb)
+        {
+            string query = "SELECT DISTINCT ServiceType FROM Services";
+            Database.LoadIntoComboBox(cmb, query, "ServiceType");
+        }
+        private void SetComboBoxPlaceholder(ComboBox comboBox, string placeholder)
+        {
+            if (comboBox.SelectedIndex == -1)
+            {
+                comboBox.ForeColor = Color.Gray;
+                comboBox.Text = placeholder;
+            }
+        }
+        private void SetupComboBoxPlaceHolder()
+        {
+            SetComboBoxPlaceholder(cmbAptYear, "Year");
+            SetComboBoxPlaceholder(cmbAptMonth, "Month");
+            SetComboBoxPlaceholder(cmbAptDay, "Day");
+            SetComboBoxPlaceholder(cmbAptHour, "Hour");
+            SetComboBoxPlaceholder(cmbAptMinute, "Minutes");
+        }
+
         private IEnumerable<ComboBox> FindComboBoxes(Control parent)
         {
             foreach (Control control in parent.Controls)
@@ -136,7 +155,7 @@ namespace CarCare_Service_Center
             Services service = (Services)(sender as LinkLabel).Tag;
             frmViewServiceDetails frmViewServiceDetails = new frmViewServiceDetails(this, service);
             frmViewServiceDetails.Show();
-        }
+        } 
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
         {
@@ -202,8 +221,73 @@ namespace CarCare_Service_Center
         //
         // Appointment
         //
+        private void SetupServiceComboBox(int rowIndex)
+        {
+            ComboBox cmbServiceType = new ComboBox();
+            cmbServiceType.Dock = DockStyle.Fill;
+            tlpServices.Controls.Add(cmbServiceType, 1, rowIndex);
+
+            ComboBox cmbServiceName = new ComboBox();
+            cmbServiceName.Dock = DockStyle.Fill;
+            tlpServices.Controls.Add(cmbServiceName, 2, rowIndex);
+
+            AddServiceTypeIntoComboBox(cmbServiceType);
+
+            PropertyInfo service_type = typeof(Services).GetProperty("ServiceType");
+            PropertyInfo service_name = typeof(Services).GetProperty("ServiceName");
+            ComboBoxSetting.SetUpDependentComboBox<Services>(cmbServiceType, cmbServiceName, services, service_type, service_name, selected_services);
+
+            Label lblServiceID = new Label
+            {
+                Font = new Font("Comic Sans MS", 9F, FontStyle.Regular),
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+            tlpServices.Controls.Add(lblServiceID, 3, rowIndex);
+
+            cmbServiceName.SelectedIndexChanged += (s, eArgs) =>
+            {
+                // Retrieve the selected type and name
+                string selectedType = cmbServiceType.SelectedItem.ToString();
+                string selectedName = cmbServiceName.SelectedItem.ToString();
+
+                // Find the matching service and display its ServiceID
+                var service = services.Find(ser => ser.ServiceType == selectedType && ser.ServiceName == selectedName);
+                lblServiceID.Text = service.ServiceID;
+
+                selected_services.Add(service);
+            };
+        }
 
         int rowCount = 2; // Initial rows of table 
+        private void SetupInitialServiceSelection()
+        {
+            tlpServices.Controls.Clear();
+
+            float rowheight = 27f;
+            btnAddApointment.Top -= (int)rowheight * (rowCount -2);
+            btnAptClear.Top -= (int)rowheight * (rowCount - 2);
+            lblBottomMargin.Top -= (int)rowheight * (rowCount - 2);
+
+            rowCount = 2;
+
+            // Botttom row is add button
+            int rowAdd = rowCount - 1;    // Row of button Add
+            int rowIndex = rowCount - 2;  // Row of other controls
+
+            // Add new row
+            tlpServices.RowCount = rowCount;
+            tlpServices.RowStyles.Clear();
+            tlpServices.RowStyles.Add(new RowStyle(SizeType.Absolute, rowheight));
+            tlpServices.RowStyles.Add(new RowStyle(SizeType.Absolute, rowheight));
+            tlpServices.Height = (int)rowheight * 2;
+
+            // Add button
+            tlpServices.Controls.Add(btnAptAdd, 0, rowAdd);
+
+            // Add new control to new line
+            SetupServiceComboBox(rowIndex);
+        }
 
         private bool IsLastComboBoxValid()
         {
@@ -221,6 +305,7 @@ namespace CarCare_Service_Center
             return isValid;
         }
 
+
         private void Add_Service(object sender, EventArgs e)
         {
             if (!IsLastComboBoxValid())
@@ -237,70 +322,27 @@ namespace CarCare_Service_Center
             tlpServices.RowCount = rowCount;
             float rowheight = tlpServices.GetRowHeights()[0];
             tlpServices.RowStyles.Add(new RowStyle(SizeType.Absolute, rowheight)); // New row styles
+            tlpServices.Height += (int)rowheight;
 
             // Move the add button
             tlpServices.Controls.Remove(btnAptAdd);
             tlpServices.Controls.Add(btnAptAdd, 0, rowAdd);
 
             // Add new control to new line
-            ComboBox cmbServiceType = new ComboBox();
-            cmbServiceType.Dock = DockStyle.Fill;
-            tlpServices.Controls.Add(cmbServiceType, 1, rowIndex);
-            
-            ComboBox cmbServiceName = new ComboBox();
-            cmbServiceName.Dock = DockStyle.Fill;
-            tlpServices.Controls.Add(cmbServiceName, 2, rowIndex);
+            SetupServiceComboBox(rowIndex);
 
-            for (int i = 0; i < services.Count; i++)
+            Button btnRemove = new Button
             {
-                cmbServiceType.Items.Add(services[i].ServiceType);
-            }
-
-            Label lblServiceID = new Label
-            {
-                Font = new Font("Comic Sans MS", 9F, FontStyle.Regular),
+                Text = "Remove",
                 Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleCenter,
-                AutoSize = true
-            };
-            tlpServices.Controls.Add(lblServiceID, 3, rowIndex);
-
-            PropertyInfo service_type = typeof(Services).GetProperty("ServiceType");
-            PropertyInfo service_name = typeof(Services).GetProperty("ServiceName");
-            ComboBoxSetting.SetUpDependentComboBox<Services>(cmbServiceType, cmbServiceName,services,service_type,service_name);
-
-            Button btnRemove = new Button 
-            {
-                Text = "Remove" , 
-                Dock = DockStyle.Fill, 
                 Font = new Font("Comic Sans MS", 9F, FontStyle.Regular)
             };
             tlpServices.Controls.Add(btnRemove, 4, rowIndex);
             btnRemove.Click += btnRemove_Click;
 
-            cmbServiceName.SelectedIndexChanged += (s, eArgs) =>
-            {
-                // Retrieve the selected type and name
-                string selectedType = cmbServiceType.SelectedItem.ToString();
-                string selectedName = cmbServiceName.SelectedItem.ToString();
-
-                // Find the matching service and display its ServiceID
-                var service = services.FirstOrDefault(ser => ser.ServiceType == selectedType && ser.ServiceName == selectedName);
-                lblServiceID.Text = service.ServiceID;
-            };
-
             btnAddApointment.Top += (int)rowheight;
+            btnAptClear.Top += (int)rowheight;
             lblBottomMargin.Top += (int)rowheight;
-        }
-
-        private void cmbAptServiceName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedType = cmbAptServiceType.SelectedItem.ToString();
-            string selectedName = cmbAptServiceName.SelectedItem.ToString();
-
-            var service = services.Find(s => s.ServiceType == selectedType && s.ServiceName == selectedName);
-
-            lblServiceID.Text = service.ServiceID;
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -312,6 +354,11 @@ namespace CarCare_Service_Center
                 int removeRow = btnSelected.Row;
                 foreach (Control control in tlpServices.Controls.OfType<Control>().Where(c => tlpServices.GetRow(c) == removeRow).ToList())
                 {
+                    if (control is Label lbl && lbl.Text != null)
+                    {
+                        var service = selected_services.Find(s => s.ServiceID == lbl.Text);
+                        selected_services.Remove(service);
+                    }
                     tlpServices.Controls.Remove(control);
                     control.Dispose();
                 }
@@ -324,11 +371,56 @@ namespace CarCare_Service_Center
                 }
 
                 btnAddApointment.Top -= tlpServices.GetRowHeights()[0];
+                btnAptClear.Top -= tlpServices.GetRowHeights()[0];
+                lblBottomMargin.Top -= tlpServices.GetRowHeights()[0];
 
                 tlpServices.RowStyles.RemoveAt(removeRow);
                 tlpServices.RowCount--;
+                tlpServices.Height -= tlpServices.GetRowHeights()[0];
                 rowCount--;
             }
+        }
+
+        private void btnAptClear_Click(object sender, EventArgs e)
+        {
+            txtVehicleNumber.Clear();
+            SetupInitialServiceSelection();
+            selected_services.Clear();
+            foreach (Control ctrl in pnlNewAppointment.Controls)
+            {
+                if (ctrl is ComboBox cmb)
+                {
+                    cmb.SelectedIndex = -1;
+                    SetupComboBoxPlaceHolder();
+                }
+            }
+        }
+
+        private void btnAddApointment_Click(object sender, EventArgs e)
+        {
+            string message;
+            foreach (Control ctrl in pnlNewAppointment.Controls)
+            {
+                if (ctrl is ComboBox cmb && cmb.SelectedIndex == -1)
+                {
+                    message = "Oops! It seems like Appointment is incomplete. Check each section for any missing information.";
+                    MessageBox.Show(message, "Incomplete Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            if (!Appointment.IsVehicleNumberValid(txtVehicleNumber.Text))
+            {
+                MessageBox.Show("Please ensure that all letters are capitalized and that the input does not contain any spaces.", 
+                    "Invalid Vehicle Number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!IsLastComboBoxValid())
+                return;
+
+            MessageBox.Show("Appointment Added Successfully!");
+            btnAptClear_Click(sender, e);
         }
     }
 }
