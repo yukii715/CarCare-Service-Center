@@ -208,6 +208,42 @@ namespace CarCare_Service_Center
             public string PartType { get; set; }
             public string PartName { get; set; }
             public string Description { get; set; }
+            public static string GenerateRequestID()
+            {
+                string query = "SELECT COUNT(*) FROM PartsRequests";
+                string requestID;
+
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    requestID = $"Q{(count + 1):D7}"; // Zero-padded to 7 digits
+                }
+                return requestID;
+            }
+            public void Add()
+            {
+                string query = "INSERT INTO PartsRequests (RequestID, UserID, DateTime, PartType, PartName, Description) VALUES " +
+                    "(@RequestID, @UserID, @DateTime, @PartType, @PartName, @Description)";
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Add parameters to avoid SQL injection
+                    command.Parameters.AddWithValue("@RequestID", RequestID);
+                    command.Parameters.AddWithValue("@UserID", UserID);
+                    command.Parameters.AddWithValue("@DateTime", DateTime);
+                    command.Parameters.AddWithValue("@PartType", PartType);
+                    command.Parameters.AddWithValue("@PartName", PartName);
+                    command.Parameters.AddWithValue("@Description", Description);
+
+                    connection.Open();
+
+                    // Execute the command without returning any results
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

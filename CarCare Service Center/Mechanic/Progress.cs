@@ -1,4 +1,5 @@
 ﻿
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,17 @@ namespace CarCare_Service_Center
         int newRowOffSet = 10;
         int currentRow = 1;
         int index = 2;
+        private Dictionary<string, List<string>> serviceTypeOptions = new Dictionary<string, List<string>>()
+        {
+            { "a", new List<string> { "1", "2", "3" } },
+            { "b", new List<string> { "4", "5", "6" } },
+            { "c", new List<string> { "7", "8", "9" } }
+        };
+
+        private List<ComboBox> partTypeComboBoxes = new List<ComboBox>();
+        private List<ComboBox> partNameComboBoxes = new List<ComboBox>();
+        private List<TextBox> usedAmountTextBoxes = new List<TextBox>();
+        private List<string> selectedPartNames = new List<string>();
         public Progress()
         {
             InitializeComponent();
@@ -25,113 +37,263 @@ namespace CarCare_Service_Center
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            InitializePartTypeComboBox();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void InitializePartTypeComboBox()
         {
-            string msg = string.Empty;
+            cmbPartTypeUsed.Items.Clear();
+            cmbPartTypeUsed.Items.AddRange(new string[] { "a", "b", "c" });
+            SetComboBoxToDefaultState(cmbPartTypeUsed, "Select Part Type");
+            cmbPartTypeUsed.SelectedIndexChanged += cmbPartTypeUsed_SelectedIndexChanged;
+            cmbPartNameUsed.Enabled = false;
+            SetComboBoxToDefaultState(cmbPartNameUsed, "Select Part Name");
+            cmbPartNameUsed.SelectedIndexChanged += cmbPartNameUsed_SelectedIndexChanged;
+        }
 
-            for (int i = 1; i < index; i++)
+        private void cmbPartTypeUsed_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cmb = (ComboBox)sender;
+            if (cmb.SelectedIndex != -1)
             {
-                string comboBoxName = "cmbInventoryUsed" + i.ToString();
-                string textBoxName = "txtUsedAmount" + i.ToString();
+                string selectedPartType = cmb.SelectedItem.ToString();
 
-                ComboBox cmbInventoryUsed = panelProgress.Controls.Find(comboBoxName, true).First() as ComboBox;
-                TextBox txtUsedAmount = panelProgress.Controls.Find(textBoxName, true).First() as TextBox;
-
-                if (cmbInventoryUsed != null && txtUsedAmount != null)
+                if (cmb == cmbPartTypeUsed)
                 {
-                    bool isComboBoxSelected = cmbInventoryUsed.SelectedItem != null;
-                    bool isTextBoxFilled = !string.IsNullOrWhiteSpace(txtUsedAmount.Text);
-
-                    if (isTextBoxFilled && !int.TryParse(txtUsedAmount.Text, out _))
-                    {
-                        MessageBox.Show("Error: 'Used Amount' must be a numeric value. Please correct it before proceeding.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    if (isComboBoxSelected && !isTextBoxFilled)
-                    {
-                        var result = MessageBox.Show("You selected an Inventory but did not fill in the Used Amount. Do you want to submit?", "Incomplete Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (result == DialogResult.No)
-                        {
-                            this.Close();
-                            return;
-                        }
-
-                    }
-                    else if (!isComboBoxSelected && isTextBoxFilled)
-                    {
-                        var result = MessageBox.Show("You filled in the Used Amount but did not select an Inventory. Do you want to submit?", "Incomplete Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (result == DialogResult.No)
-                        {
-                            this.Close();
-                            return;
-                        }
-                    }
-                    else if (isComboBoxSelected && isTextBoxFilled)
-                    {
-                        msg += $"Inventory Used: {cmbInventoryUsed.SelectedItem}, Used Amount: {txtUsedAmount.Text}\n";
-
-                    }
+                    UpdatePartNameOptions(cmbPartNameUsed, selectedPartType);
+                    cmbPartNameUsed.Enabled = true;
                 }
-                else
-                {
-                    MessageBox.Show("Error: Required controls not found. Please check control names and try again.");
-                    return;
 
-                }
+                SetComboBoxToSelectedState(cmb);
+                cmbPartNameUsed.Focus();
             }
-
-
-            if (!string.IsNullOrWhiteSpace(msg))
+            else
             {
-                MessageBox.Show(msg);
-                this.Close();
+                SetComboBoxToDefaultState(cmbPartNameUsed, "Select Part Name");
+                cmbPartNameUsed.Enabled = false;
             }
         }
+
+        private void cmbPartNameUsed_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cmb = (ComboBox)sender;
+
+            if (cmb.SelectedIndex != -1)
+            {
+                SetComboBoxToSelectedState(cmb);
+                txtUsedAmount.Focus();
+                string selectedPartName = cmb.SelectedItem.ToString();
+                selectedPartNames.Add(selectedPartName);
+
+                foreach (ComboBox otherCmb in partNameComboBoxes)
+                {
+                    if (otherCmb != cmb && otherCmb.Items.Contains(selectedPartName))
+                    {
+                        otherCmb.Items.Remove(selectedPartName);
+                    }
+                }
+            }
+
+            else
+            {
+                SetComboBoxToDefaultState(cmb, "Select Part Name");
+            }
+        }
+
+        private void UpdatePartNameOptions(ComboBox partNameComboBox, string partType)
+        {
+            partNameComboBox.Items.Clear();
+            if (serviceTypeOptions.ContainsKey(partType))
+            {
+                List<string> partNames = serviceTypeOptions[partType];
+                partNames.RemoveAll(name => selectedPartNames.Contains(name));
+                partNameComboBox.Items.AddRange(partNames.ToArray());
+            }
+            else
+            {
+                partNameComboBox.Items.Add("No options available");
+            }
+        }
+
+        private void SetComboBoxToDefaultState(ComboBox comboBox, string defaultText)
+        {
+            comboBox.Text = defaultText;
+            comboBox.ForeColor = Color.Gray;
+            comboBox.BackColor = Color.LightGray;
+        }
+
+        private void SetComboBoxToSelectedState(ComboBox comboBox)
+        {
+            comboBox.ForeColor = Color.Black;
+            comboBox.BackColor = Color.White;
+        }
+
+
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            int yOffset = currentRow * (lblInventoryUsed.Height + newRowOffSet);
+            int yOffset = currentRow * (lblPartTypeUsed.Height + newRowOffSet);
 
 
-            Label labelInventory = new Label();
-            labelInventory.Name = "lblInventoryUsed" + index.ToString();
-            labelInventory.Text = "Inventory Used :";
-            labelInventory.Location = new Point(lblInventoryUsed.Location.X, 14 + yOffset);
-            labelInventory.Size = lblInventoryUsed.Size;
-            labelInventory.Font = lblInventoryUsed.Font;
-            panelProgress.Controls.Add(labelInventory);
+            Label newlblPartTypeUsed = new Label();
+            newlblPartTypeUsed.Name = "labelPartTyprUsed" + index.ToString();
+            newlblPartTypeUsed.Text = "Part Type Used :";
+            newlblPartTypeUsed.Location = new Point(lblPartTypeUsed.Location.X, lblPartTypeUsed.Location.Y + yOffset);
+            newlblPartTypeUsed.Size = lblPartTypeUsed.Size;
+            newlblPartTypeUsed.Font = lblPartTypeUsed.Font;
+            panelProgress.Controls.Add(newlblPartTypeUsed);
 
-            ComboBox comboBox = new ComboBox();
-            comboBox.Name = "cmbInventoryUsed" + index.ToString();
-            comboBox.Location = new Point(cmbInventoryUsed1.Location.X, 13 + yOffset);
-            comboBox.Size = cmbInventoryUsed1.Size;
-            comboBox.Font = cmbInventoryUsed1.Font;
-            foreach (var item in cmbInventoryUsed1.Items)
+            ComboBox cmbPartTypeUsednew = new ComboBox();
+            cmbPartTypeUsednew.Name = "cmbPartTypeUsed" + index.ToString();
+            cmbPartTypeUsednew.Location = new Point(cmbPartTypeUsed.Location.X, cmbPartTypeUsed.Location.Y + yOffset);
+            cmbPartTypeUsednew.Size = cmbPartTypeUsed.Size;
+            cmbPartTypeUsednew.Font = cmbPartTypeUsed.Font;
+            cmbPartTypeUsednew.Items.AddRange(new string[] { "a", "b", "c" });
+            cmbPartTypeUsednew.SelectedIndex = -1;
+            cmbPartTypeUsednew.Text = "Select Part Type";
+            cmbPartTypeUsednew.ForeColor = Color.Gray;
+            cmbPartTypeUsednew.BackColor = Color.LightGray;
+            panelProgress.Controls.Add(cmbPartTypeUsednew);
+            cmbPartTypeUsednew.SelectedIndexChanged += cmbPartTypeUsed_SelectedIndexChanged;
+            partTypeComboBoxes.Add(cmbPartTypeUsednew);
+
+            Label lblPartNameUsednew = new Label();
+            lblPartNameUsednew.Name = "lblPartNameUsed" + index.ToString();
+            lblPartNameUsednew.Text = "Part Name Used :";
+            lblPartNameUsednew.Location = new Point(lblPartNameUsed.Location.X, lblPartNameUsed.Location.Y + yOffset);
+            lblPartNameUsednew.Size = lblPartNameUsed.Size;
+            lblPartNameUsednew.Font = lblPartNameUsed.Font;
+            panelProgress.Controls.Add(lblPartNameUsednew);
+
+            Label newlblUsedAmount = new Label();
+            newlblUsedAmount.Name = "lblUsedAmount" + index.ToString();
+            newlblUsedAmount.Text = "Used Amount :";
+            newlblUsedAmount.Location = new Point(lblUsedAmount.Location.X, lblUsedAmount.Location.Y + yOffset);
+            newlblUsedAmount.Size = lblUsedAmount.Size;
+            newlblUsedAmount.Font = lblUsedAmount.Font;
+            panelProgress.Controls.Add(newlblUsedAmount);
+
+
+            TextBox newtxtUsedAmount = new TextBox();
+            newtxtUsedAmount.Name = "txtUsedAmount" + index.ToString();
+            newtxtUsedAmount.Location = new Point(txtUsedAmount.Location.X, txtUsedAmount.Location.Y + yOffset);
+            newtxtUsedAmount.Size = txtUsedAmount.Size;
+            newtxtUsedAmount.Font = txtUsedAmount.Font;
+            panelProgress.Controls.Add(newtxtUsedAmount);
+            usedAmountTextBoxes.Add(newtxtUsedAmount);
+
+            ComboBox cmbPartNameUsednew = new ComboBox();
+            cmbPartNameUsednew.Name = "cmbPartNameUsed" + index.ToString();
+            cmbPartNameUsednew.Location = new Point(cmbPartNameUsed.Location.X, cmbPartNameUsed.Location.Y + yOffset);
+            cmbPartNameUsednew.Size = cmbPartNameUsed.Size;
+            cmbPartNameUsednew.Font = cmbPartNameUsed.Font;
+            cmbPartNameUsednew.Enabled = false;
+            cmbPartNameUsednew.Text = "Select Part Name";
+            cmbPartNameUsednew.ForeColor = Color.Gray;
+            cmbPartNameUsednew.BackColor = Color.LightGray;
+            cmbPartNameUsednew.SelectedIndexChanged += cmbPartNameUsed_SelectedIndexChanged;
+            panelProgress.Controls.Add(cmbPartNameUsednew);
+            partNameComboBoxes.Add(cmbPartNameUsednew);
+
+            cmbPartNameUsednew.SelectedIndexChanged += (s, ev) =>
             {
-                comboBox.Items.Add(item);
-            }
-            panelProgress.Controls.Add(comboBox);
+                if (cmbPartNameUsednew.SelectedIndex != -1)
+                {
+                    SetComboBoxToSelectedState(cmbPartNameUsednew);
+                    cmbPartNameUsednew.ForeColor = Color.Black;
+                    cmbPartNameUsednew.BackColor = Color.White;
+                    newtxtUsedAmount.Focus();
+                    string selectedPartName = cmbPartNameUsednew.SelectedItem.ToString();
+                    selectedPartNames.Add(selectedPartName);
 
-            Label labelUsedAmount = new Label();
-            labelUsedAmount.Name = "lblUsedAmount" + index.ToString();
-            labelUsedAmount.Text = "Used Amount :";
-            labelUsedAmount.Location = new Point(lblUsedAmount.Location.X, 14 + yOffset);
-            labelUsedAmount.Size = lblUsedAmount.Size;
-            labelUsedAmount.Font = lblUsedAmount.Font;
-            panelProgress.Controls.Add(labelUsedAmount);
+                    foreach (ComboBox otherCmb in partNameComboBoxes)
+                    {
+                        if (otherCmb != cmbPartNameUsednew && otherCmb.Items.Contains(selectedPartName))
+                        {
+                            otherCmb.Items.Remove(selectedPartName);
+                        }
+                    }
+                }
 
-            TextBox textBox = new TextBox();
-            textBox.Name = "txtUsedAmount" + index.ToString();
-            textBox.Location = new Point(txtUsedAmount1.Location.X, 16 + yOffset);
-            textBox.Size = txtUsedAmount1.Size;
-            textBox.Font = txtUsedAmount1.Font;
-            panelProgress.Controls.Add(textBox);
+                else
+                {
+                    SetComboBoxToDefaultState(cmbPartNameUsednew, "Select Part Name");
+                    cmbPartNameUsednew.ForeColor = Color.Gray;
+                    cmbPartNameUsednew.BackColor = Color.LightGray;
+                }
+            };
 
+            cmbPartTypeUsednew.SelectedIndexChanged += (s, ev) =>
+            {
+                if (cmbPartTypeUsednew.SelectedIndex != -1)
+                {
+                    string selectedPartType = cmbPartTypeUsednew.SelectedItem.ToString();
+                    UpdatePartNameOptions(cmbPartNameUsednew, selectedPartType);
+
+                    cmbPartTypeUsednew.ForeColor = Color.Black;
+                    cmbPartTypeUsednew.BackColor = Color.White;
+                    cmbPartNameUsednew.Enabled = true;
+                    cmbPartNameUsednew.Focus();
+                }
+                else
+                {
+                    cmbPartTypeUsednew.ForeColor = Color.Gray;
+                    cmbPartTypeUsednew.BackColor = Color.LightGray;
+                    cmbPartNameUsednew.Enabled = false;
+
+                }
+            };
             currentRow++;
             index++;
         }
+
+
+        private void btnProgressDone_Click(object sender, EventArgs e)
+        {
+            bool allTextBoxesValid = true;
+
+            foreach (TextBox textBox in usedAmountTextBoxes)
+            {
+                if (!string.IsNullOrEmpty(textBox.Text) && !decimal.TryParse(textBox.Text, out _))
+                {
+                    MessageBox.Show("All 'Used Amount' fields must contain only numbers or be left blank.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    textBox.Focus();
+                    allTextBoxesValid = false;
+                    return;
+                }
+            }
+
+            if (allTextBoxesValid)
+            {
+                List<string> collectedData = new List<string>();
+
+                if (cmbPartTypeUsed.SelectedIndex != -1 && cmbPartNameUsed.SelectedIndex != -1 && !string.IsNullOrEmpty(txtUsedAmount.Text))
+                {
+                    collectedData.Add($"Part Type: {cmbPartTypeUsed.SelectedItem}");
+                    collectedData.Add($"Part Name: {cmbPartNameUsed.SelectedItem}");
+                    collectedData.Add($"Used Amount: {txtUsedAmount.Text}");
+                }
+
+                for (int i = 0; i < partTypeComboBoxes.Count; i++)
+                {
+                    ComboBox partTypeComboBox = partTypeComboBoxes[i];
+                    ComboBox partNameComboBox = partNameComboBoxes[i];
+                    TextBox usedAmountTextBox = usedAmountTextBoxes[i];
+
+                    if (partTypeComboBox.SelectedIndex != -1 && partNameComboBox.SelectedIndex != -1 && !string.IsNullOrEmpty(usedAmountTextBox.Text))
+                    {
+                        collectedData.Add($"Part Type: {partTypeComboBox.SelectedItem}");
+                        collectedData.Add($"Part Name: {partNameComboBox.SelectedItem}");
+                        collectedData.Add($"Used Amount: {usedAmountTextBox.Text}");
+                    }
+                }
+
+                MessageBox.Show(string.Join("\n", collectedData), "Collected Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+
+        }
+
     }
+
 }

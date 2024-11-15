@@ -1,4 +1,5 @@
-﻿namespace CarCare_Service_Center
+﻿
+namespace CarCare_Service_Center
 {
     partial class Shortages
     {
@@ -28,63 +29,138 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnUpdateDone = new System.Windows.Forms.Button();
-            this.btnUpdateBack = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblInventoryShortages = new System.Windows.Forms.Label();
+            this.lblShortagesPartName = new System.Windows.Forms.Label();
+            this.lblShortagesPartType = new System.Windows.Forms.Label();
+            this.cmbShortagesPartType = new System.Windows.Forms.ComboBox();
+            this.btnShortagesBack = new System.Windows.Forms.Button();
+            this.btnShortagesReport = new System.Windows.Forms.Button();
+            this.cmbShortagesPartName = new System.Windows.Forms.ComboBox();
+            this.lblPartId = new System.Windows.Forms.Label();
+            this.lblShortagesPartID = new System.Windows.Forms.Label();
+            this.lblStock = new System.Windows.Forms.Label();
+            this.lblShortagesStock = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // btnUpdateDone
+            // lblInventoryShortages
             // 
-            this.btnUpdateDone.Font = new System.Drawing.Font("Times New Roman", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateDone.Location = new System.Drawing.Point(573, 573);
-            this.btnUpdateDone.Name = "btnUpdateDone";
-            this.btnUpdateDone.Size = new System.Drawing.Size(187, 78);
-            this.btnUpdateDone.TabIndex = 16;
-            this.btnUpdateDone.Text = "Done";
-            this.btnUpdateDone.UseVisualStyleBackColor = true;
-            this.btnUpdateDone.Click += new System.EventHandler(this.btnUpdateDone_Click);
+            this.lblInventoryShortages.Font = new System.Drawing.Font("Comic Sans MS", 28F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInventoryShortages.Location = new System.Drawing.Point(-41, -2);
+            this.lblInventoryShortages.Name = "lblInventoryShortages";
+            this.lblInventoryShortages.Size = new System.Drawing.Size(857, 93);
+            this.lblInventoryShortages.TabIndex = 13;
+            this.lblInventoryShortages.Text = "Inventory Shortages";
+            this.lblInventoryShortages.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnUpdateBack
+            // lblShortagesPartName
             // 
-            this.btnUpdateBack.Font = new System.Drawing.Font("Times New Roman", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateBack.Location = new System.Drawing.Point(256, 573);
-            this.btnUpdateBack.Name = "btnUpdateBack";
-            this.btnUpdateBack.Size = new System.Drawing.Size(187, 78);
-            this.btnUpdateBack.TabIndex = 15;
-            this.btnUpdateBack.Text = "Back";
-            this.btnUpdateBack.UseVisualStyleBackColor = true;
-            this.btnUpdateBack.Click += new System.EventHandler(this.btnUpdateBack_Click);
+            this.lblShortagesPartName.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShortagesPartName.Location = new System.Drawing.Point(101, 187);
+            this.lblShortagesPartName.Name = "lblShortagesPartName";
+            this.lblShortagesPartName.Size = new System.Drawing.Size(168, 38);
+            this.lblShortagesPartName.TabIndex = 22;
+            this.lblShortagesPartName.Text = "Part Name : ";
             // 
-            // groupBox1
+            // lblShortagesPartType
             // 
-            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(62, 91);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(892, 461);
-            this.groupBox1.TabIndex = 14;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Inventory Complement";
+            this.lblShortagesPartType.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShortagesPartType.Location = new System.Drawing.Point(101, 118);
+            this.lblShortagesPartType.Name = "lblShortagesPartType";
+            this.lblShortagesPartType.Size = new System.Drawing.Size(181, 38);
+            this.lblShortagesPartType.TabIndex = 21;
+            this.lblShortagesPartType.Text = "Part Type :";
             // 
-            // label8
+            // cmbShortagesPartType
             // 
-            this.label8.Font = new System.Drawing.Font("Comic Sans MS", 28F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(65, 7);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(857, 93);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Inventory Shortages";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cmbShortagesPartType.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbShortagesPartType.FormattingEnabled = true;
+            this.cmbShortagesPartType.Location = new System.Drawing.Point(299, 118);
+            this.cmbShortagesPartType.Name = "cmbShortagesPartType";
+            this.cmbShortagesPartType.Size = new System.Drawing.Size(296, 41);
+            this.cmbShortagesPartType.TabIndex = 20;
+            // 
+            // btnShortagesBack
+            // 
+            this.btnShortagesBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnShortagesBack.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShortagesBack.Location = new System.Drawing.Point(182, 591);
+            this.btnShortagesBack.Name = "btnShortagesBack";
+            this.btnShortagesBack.Size = new System.Drawing.Size(143, 53);
+            this.btnShortagesBack.TabIndex = 19;
+            this.btnShortagesBack.Text = "Back";
+            this.btnShortagesBack.UseVisualStyleBackColor = true;
+            this.btnShortagesBack.Click += new System.EventHandler(this.btnShortagesBack_Click);
+            // 
+            // btnShortagesReport
+            // 
+            this.btnShortagesReport.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnShortagesReport.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShortagesReport.Location = new System.Drawing.Point(451, 591);
+            this.btnShortagesReport.Name = "btnShortagesReport";
+            this.btnShortagesReport.Size = new System.Drawing.Size(144, 53);
+            this.btnShortagesReport.TabIndex = 18;
+            this.btnShortagesReport.Text = "Report";
+            this.btnShortagesReport.UseVisualStyleBackColor = true;
+            // 
+            // cmbShortagesPartName
+            // 
+            this.cmbShortagesPartName.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbShortagesPartName.FormattingEnabled = true;
+            this.cmbShortagesPartName.Location = new System.Drawing.Point(299, 187);
+            this.cmbShortagesPartName.Name = "cmbShortagesPartName";
+            this.cmbShortagesPartName.Size = new System.Drawing.Size(296, 41);
+            this.cmbShortagesPartName.TabIndex = 24;
+            // 
+            // lblPartId
+            // 
+            this.lblPartId.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPartId.Location = new System.Drawing.Point(101, 256);
+            this.lblPartId.Name = "lblPartId";
+            this.lblPartId.Size = new System.Drawing.Size(168, 38);
+            this.lblPartId.TabIndex = 25;
+            this.lblPartId.Text = "Part ID : ";
+            // 
+            // lblShortagesPartID
+            // 
+            this.lblShortagesPartID.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShortagesPartID.Location = new System.Drawing.Point(293, 256);
+            this.lblShortagesPartID.Name = "lblShortagesPartID";
+            this.lblShortagesPartID.Size = new System.Drawing.Size(168, 38);
+            this.lblShortagesPartID.TabIndex = 26;
+            // 
+            // lblStock
+            // 
+            this.lblStock.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStock.Location = new System.Drawing.Point(101, 319);
+            this.lblStock.Name = "lblStock";
+            this.lblStock.Size = new System.Drawing.Size(494, 269);
+            this.lblStock.TabIndex = 27;
+            this.lblStock.Text = "Stock:";
+            // 
+            // lblShortagesStock
+            // 
+            this.lblShortagesStock.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShortagesStock.Location = new System.Drawing.Point(293, 319);
+            this.lblShortagesStock.Name = "lblShortagesStock";
+            this.lblShortagesStock.Size = new System.Drawing.Size(168, 38);
+            this.lblShortagesStock.TabIndex = 28;
             // 
             // Shortages
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1019, 658);
-            this.Controls.Add(this.btnUpdateDone);
-            this.Controls.Add(this.btnUpdateBack);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label8);
+            this.ClientSize = new System.Drawing.Size(775, 677);
+            this.Controls.Add(this.lblShortagesStock);
+            this.Controls.Add(this.lblStock);
+            this.Controls.Add(this.lblShortagesPartID);
+            this.Controls.Add(this.lblPartId);
+            this.Controls.Add(this.cmbShortagesPartName);
+            this.Controls.Add(this.lblShortagesPartName);
+            this.Controls.Add(this.lblShortagesPartType);
+            this.Controls.Add(this.cmbShortagesPartType);
+            this.Controls.Add(this.btnShortagesBack);
+            this.Controls.Add(this.btnShortagesReport);
+            this.Controls.Add(this.lblInventoryShortages);
             this.Name = "Shortages";
             this.Text = "Shortages";
             this.ResumeLayout(false);
@@ -92,10 +168,16 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnUpdateDone;
-        private System.Windows.Forms.Button btnUpdateBack;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblInventoryShortages;
+        private System.Windows.Forms.Label lblShortagesPartName;
+        private System.Windows.Forms.Label lblShortagesPartType;
+        private System.Windows.Forms.ComboBox cmbShortagesPartType;
+        private System.Windows.Forms.Button btnShortagesBack;
+        private System.Windows.Forms.Button btnShortagesReport;
+        private System.Windows.Forms.ComboBox cmbShortagesPartName;
+        private System.Windows.Forms.Label lblPartId;
+        private System.Windows.Forms.Label lblShortagesPartID;
+        private System.Windows.Forms.Label lblStock;
+        private System.Windows.Forms.Label lblShortagesStock;
     }
 }
