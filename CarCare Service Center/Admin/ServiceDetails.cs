@@ -1,4 +1,5 @@
-﻿using Functions;
+﻿
+using Functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,8 +33,8 @@ namespace CarCare_Service_Center
             service_price = Database.FetchData<Services.ServicePrice>(query);
 
 
-            lblServiceID.Text = "Service ID: " + service.ServiceID;
-            lblServiceType.Text = "Service Type: " + service.ServiceType;
+            lblServiceID.Text = "Service ID: " + service.ServiceID.Trim();
+            lblServiceType.Text = "Service Type: " + service.ServiceType.Trim();
             lblServiceName.Text = "Service Name: " + service.ServiceName.Trim();
             var servicePrice = from Price in service_price
                                where Price.ServiceID == service.ServiceID
@@ -54,7 +55,7 @@ namespace CarCare_Service_Center
 
                 Label priceAmount = new Label
                 {
-                    Text = service_price[i].Price.ToString(),
+                    Text = service_price[i].Price.ToString().Trim(),
                     Dock = DockStyle.Fill,
                     TextAlign = ContentAlignment.MiddleLeft,
                     AutoSize = true,
@@ -63,7 +64,7 @@ namespace CarCare_Service_Center
 
                 Label description = new Label
                 {
-                    Text = "(" + service_price[i].Description + ")",
+                    Text = "(" + service_price[i].Description.Trim() + ")",
                     Dock = DockStyle.Fill,
                     TextAlign = ContentAlignment.MiddleCenter,
                     AutoSize = true,
@@ -80,8 +81,8 @@ namespace CarCare_Service_Center
                 tlpPrice.RowCount++;
             }
 
-            lblTime.Text = "Estimated Time: " + service.EstimatedTime.ToString() + " Mins";
-            lblDescription.Text = service.Description;
+            lblTime.Text = "Estimated Time: " + service.EstimatedTime.ToString().Trim() + " Mins";
+            lblDescription.Text = service.Description.Trim();
 
             foreach (Control ctrl in panel1.Controls)
             {
@@ -91,8 +92,8 @@ namespace CarCare_Service_Center
                 }
             }
 
-            lblTitle.Text = service.ServiceID + " " + service.ServiceName;
-            lblBriefDescription.Text = service.Briefing;
+            lblTitle.Text = service.ServiceID.Trim() + " " + service.ServiceName.Trim();
+            lblBriefDescription.Text = service.Briefing.Trim();
 
             using (MemoryStream ms = new MemoryStream(service.ImageData))
             {
@@ -118,7 +119,7 @@ namespace CarCare_Service_Center
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

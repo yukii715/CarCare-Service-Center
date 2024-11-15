@@ -208,6 +208,18 @@
     <Compile Include="Admin\ServiceEdit.Designer.cs">
       <DependentUpon>ServiceEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\SalaryRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\SalaryRecord.Designer.cs">
+      <DependentUpon>SalaryRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\StaffSalaryRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\StaffSalaryRecord.Designer.cs">
+      <DependentUpon>StaffSalaryRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="Update.cs">
       <SubType>Form</SubType>
     </Compile>

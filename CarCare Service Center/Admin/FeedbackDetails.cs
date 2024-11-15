@@ -1,4 +1,5 @@
 ﻿
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,9 +22,15 @@ namespace CarCare_Service_Center
             btnBack.Location = new System.Drawing.Point(150, lblComment.Bottom + 50);  // Position below the label
         }
 
-        private void btnFeedbackGenerate_Click(object sender, EventArgs e)
+
+        private void FeedbackDetails_Load(object sender, EventArgs e)
         {
-            this.Close();
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

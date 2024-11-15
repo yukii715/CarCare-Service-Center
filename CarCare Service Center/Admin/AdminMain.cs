@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using Appearance;
 using Users;
 using Functions;
 using CarCare_Service_Center;
@@ -268,6 +269,26 @@ namespace CarCare_Service_Center
             {
                 show_controlinTlpFeedback(serviceOrders[i], ref rowinsert);
             }
+
+
+            //int earliestYear = GetEarliestRecordYear();
+            //int currentYear = DateTime.Now.Year;
+
+            //// Populate Year ComboBox from earliest year to current year
+            //cmbFeedbackYear.Items.Clear();
+            //cmbHomeYear.Items.Clear();
+            //cmbReportYear.Items.Clear();
+
+
+            //for (int year = earliestYear; year <= currentYear; year++)
+            //{
+            //    cmbHomeYear.Items.Add(year);
+            //    cmbReportYear.Items.Add(year);
+            //    cmbFeedbackYear.Items.Add(year);
+            //}
+
+            //// Populate Month ComboBox based on the selected year
+            //UpdateMonthComboBox(currentYear);
         }
         // Tab Home
         // Tab Home
@@ -280,7 +301,7 @@ namespace CarCare_Service_Center
 
             btnHomeProfitDetail.Enabled = false;
             btnHomeRatingDetail.Enabled = false;
-            btnHomeGenerate.Enabled = true;
+            btnHomeSearch.Enabled = true;
             lblMoneyEarn.Text = "RM -";
             lblMoneySpent.Text = "RM -";
             lblHomeProfit.Text = "RM -";
@@ -292,7 +313,7 @@ namespace CarCare_Service_Center
 
         }
 
-        private void btnHomeGenerate_Click(object sender, EventArgs e)
+        private void btnHomeSearch_Click(object sender, EventArgs e)
         {
             // Check if items are selected in both cmbHomeMonth and cmHomeYear
             if (cmbHomeMonth.SelectedItem == null && cmbHomeYear.SelectedItem == null)
@@ -328,12 +349,12 @@ namespace CarCare_Service_Center
             {
                 int ratingStar = 10;
                 series.Points.AddY(ratingStar);
-                series.Points[i].LegendText = ratingNumber.ToString() + " Star";
+                series.Points[i].LegendText = ratingNumber.ToString().Trim() + " Star";
                 series.Points[i].IsValueShownAsLabel = true;
                 ratingNumber--;
             }
 
-            btnHomeGenerate.Enabled = false;
+            btnHomeSearch.Enabled = false;
         }
 
         private void btnHomeProfitDetail_Click(object sender, EventArgs e)
@@ -362,14 +383,14 @@ namespace CarCare_Service_Center
             string role = null;
             if (cmbRoleSelection.SelectedItem != null)
             {
-                role = cmbRoleSelection.SelectedItem.ToString();
+                role = cmbRoleSelection.SelectedItem.ToString().Trim();
             }
 
             string StaffSearch = null;
 
             if (txtStaffSearch.Text != "Search")
             {
-                StaffSearch = txtStaffSearch.Text.ToLower();
+                StaffSearch = txtStaffSearch.Text.ToLower().Trim();
             }
 
             int rowinsert = -1;
@@ -467,14 +488,14 @@ namespace CarCare_Service_Center
             string service_type = null;
             if (cmbServiceType.SelectedItem != null)
             {
-                service_type = cmbServiceType.SelectedItem.ToString();
+                service_type = cmbServiceType.SelectedItem.ToString().Trim();
             }
 
 
             string serviceName = null;
             if (txtServiceSearch.Text != "Search")
             {
-                serviceName = txtServiceSearch.Text.ToLower();
+                serviceName = txtServiceSearch.Text.ToLower().Trim();
             }
 
             int rowinsert = -1;
@@ -560,6 +581,16 @@ namespace CarCare_Service_Center
             formServiceInsertion.Show();
         }
 
+
+
+
+        // Tab Feedback
+        // Tab Feedback
+        // Tab Feedback
+        // Tab Feedback
+        // Tab Feedback
+        // Tab Feedback
+
         private void cmbFeedbackMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnFeedbackGenerate.Enabled = true;
@@ -598,13 +629,13 @@ namespace CarCare_Service_Center
             {
                 int ratingStar = 10;
                 feedbackSeries.Points.AddY(ratingStar);
-                feedbackSeries.Points[i].LegendText = ratingNumber.ToString() + " Star:  " + ratingStar.ToString();
+                feedbackSeries.Points[i].LegendText = ratingNumber.ToString().Trim() + " Star:  " + ratingStar.ToString().Trim();
                 feedbackSeries.Points[i].IsValueShownAsLabel = true;
                 totalRatingCount += ratingStar;
                 ratingNumber--;
             }
 
-            lblFeedbackTotal.Text = "Total: " + totalRatingCount.ToString();
+            lblFeedbackTotal.Text = "Total: " + totalRatingCount.ToString().Trim();
             pnlFeedbackData.Visible = true;
             tableLayoutPanel1.Visible = true;
             btnFeedbackGenerate.Enabled = false;
@@ -616,5 +647,6 @@ namespace CarCare_Service_Center
             FeedbackDetails formFeedbackDetails = new FeedbackDetails();
             formFeedbackDetails.Show();
         }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿namespace CarCare_Service_Center
+﻿
+namespace CarCare_Service_Center
 {
     partial class FeedbackDetails
     {
@@ -28,7 +29,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FeedbackDetails));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -123,9 +123,8 @@
             this.lblComment.Location = new System.Drawing.Point(45, 654);
             this.lblComment.MaximumSize = new System.Drawing.Size(690, 10000);
             this.lblComment.Name = "lblComment";
-            this.lblComment.Size = new System.Drawing.Size(689, 280);
+            this.lblComment.Size = new System.Drawing.Size(0, 40);
             this.lblComment.TabIndex = 60;
-            this.lblComment.Text = resources.GetString("lblComment.Text");
             // 
             // lblName
             // 
@@ -197,14 +196,14 @@
             this.btnBack.TabIndex = 67;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnFeedbackGenerate_Click);
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // FeedbackDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(800, 864);
+            this.ClientSize = new System.Drawing.Size(834, 864);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.lblRating);
             this.Controls.Add(this.lblPrice);
@@ -222,6 +221,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FeedbackDetails";
             this.Text = "Feedback Details";
+            this.Load += new System.EventHandler(this.FeedbackDetails_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

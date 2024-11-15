@@ -16,25 +16,28 @@ namespace CarCare_Service_Center
     public partial class StaffDetailConfiguration : Form
     {
         private User user;
+        private StaffDetails StaffDetails;
 
-        public StaffDetailConfiguration(User u = null)
+        public StaffDetailConfiguration(User u = null, StaffDetails sd = null)
         {
             InitializeComponent();
             user = u;
+            StaffDetails = sd;
         }
 
         private void StaffDetailConfiguration_Load(object sender, EventArgs e)
         {
-            lblStaffID.Text = user.UserID;
-            lblName.Text = user.Username;
-            lblEmail.Text = user.Email;
-            lblRole.Text = user.Role;
-            txtSalary.Text = user.Salary.ToString();
+            lblStaffID.Text = user.UserID.Trim();
+            lblName.Text = user.Username.Trim();
+            lblEmail.Text = user.Email.Trim();
+            lblRole.Text = user.Role.Trim();
+            txtSalary.Text = user.Salary.ToString().Trim();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
+            StaffDetails.Show();
         }
 
         private void btnApply_Click(object sender, EventArgs e)
@@ -48,6 +51,9 @@ namespace CarCare_Service_Center
             {
                 MessageBox.Show("Apply Successfully", "Staff Detail Upated", MessageBoxButtons.OK);
                 Close();
+                StaffDetails.Close();
+                StaffDetails staffDetails = new StaffDetails(user);
+                staffDetails.Show();
             }
             else
             {

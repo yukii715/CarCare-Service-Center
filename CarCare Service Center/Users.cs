@@ -7,6 +7,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using CarCare_Service_Center;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Users
 {
@@ -106,6 +108,43 @@ namespace Users
         {
             public string UserID { get; set; }
             public int Salary { get; set; }
+            public class Payroll
+            {
+                public string PayrollID { get; set; }
+                public string UserID { get; set; }
+                public string Username { get; set; }
+                public string Role { get; set; }
+                public int Amount { get; set; }
+                public string Month { get; set; }
+                public string Year { get; set; }
+                public DateTime PaymentDate { get; set; }
+                public string GeneratePayrollID()
+                {
+                    return Year + Month + UserID;
+                }
+                public void Add()
+                {
+                    string query = "INSERT INTO Payroll (PayrollID, UserID, Amount, Month, Year, PaymentDate) VALUES " +
+                        "(@PayrollID, @UserID, @Amount, @Month, @Year, @PaymentDate)";
+                    using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                    {
+                        SqlCommand command = new SqlCommand(query, connection);
+
+                        // Add parameters to avoid SQL injection
+                        command.Parameters.AddWithValue("@PayrollID", PayrollID);
+                        command.Parameters.AddWithValue("@UserID", UserID);
+                        command.Parameters.AddWithValue("@Amount", Amount);
+                        command.Parameters.AddWithValue("@Month", Month);
+                        command.Parameters.AddWithValue("@Year", Year);
+                        command.Parameters.AddWithValue("@PaymentDate", PaymentDate);
+
+                        connection.Open();
+
+                        // Execute the command without returning any results
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
         }
     }
     public class RegisteredUser

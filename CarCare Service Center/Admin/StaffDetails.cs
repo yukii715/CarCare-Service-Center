@@ -24,17 +24,17 @@ namespace CarCare_Service_Center
 
         private void StaffDetails_Load(object sender, EventArgs e)
         {
-            lblStaffID.Text = user.UserID;
-            lblName.Text = user.Username;
-            lblEmail.Text = user.Email;
-            lblRole.Text = user.Role;
-            lblSalary.Text = user.Salary.ToString();
+            lblStaffID.Text = user.UserID.Trim();
+            lblName.Text = user.Username.Trim();
+            lblEmail.Text = user.Email.Trim();
+            lblRole.Text = user.Role.Trim();
+            lblSalary.Text = user.Salary.ToString().Trim();
         }
 
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            StaffDetailConfiguration formStallDetailConfiguration = new StaffDetailConfiguration(user);
+            StaffDetailConfiguration formStallDetailConfiguration = new StaffDetailConfiguration(user, this);
             formStallDetailConfiguration.ShowDialog();
 
         }

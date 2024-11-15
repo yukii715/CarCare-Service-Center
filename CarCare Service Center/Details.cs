@@ -166,6 +166,10 @@ namespace CarCare_Service_Center
             }
             return AppointmentID;
         }
+        public void Add()
+        {
+
+        }
         public class Services
         {
             public string AppointmentID { get; set; }
