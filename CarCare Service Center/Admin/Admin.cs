@@ -20,9 +20,9 @@ namespace Users
             Password = user.Password;
             Role = user.Role;
         }
-        public void assign_staff_salary(string userid, int salary)
+        public void assign_staff_salary(string userid, int salary, DateTime join_date_time)
         {
-            string query = "INSERT INTO StaffSalary (UserID, Salary) VALUES (@UserID, @Salary)";
+            string query = "INSERT INTO StaffSalary (UserID, Salary, JoinDateTime) VALUES (@UserID, @Salary, @JoinDateTime)";
             using (SqlConnection connection = new SqlConnection(Program.connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
@@ -30,6 +30,7 @@ namespace Users
                 // Add parameters to avoid SQL injection
                 command.Parameters.AddWithValue("@UserID", userid);
                 command.Parameters.AddWithValue("@Salary", salary);
+                command.Parameters.AddWithValue("@JoinDateTime", join_date_time);
 
                 connection.Open();
 

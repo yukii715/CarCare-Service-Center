@@ -55,6 +55,7 @@ namespace CarCare_Service_Center
             this.tabAppointment = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pnlNewAppointment = new System.Windows.Forms.Panel();
+            this.btnAptClear = new System.Windows.Forms.Button();
             this.lblBottomMargin = new System.Windows.Forms.Label();
             this.btnAddApointment = new System.Windows.Forms.Button();
             this.tlpServices = new System.Windows.Forms.TableLayoutPanel();
@@ -75,9 +76,9 @@ namespace CarCare_Service_Center
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pnlMyAppointment = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.picLogo = new System.Windows.Forms.PictureBox();
             this.HistoryTab = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
@@ -93,7 +94,6 @@ namespace CarCare_Service_Center
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.btnAptClear = new System.Windows.Forms.Button();
             this.tabCustomer.SuspendLayout();
             this.HomeTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -107,8 +107,8 @@ namespace CarCare_Service_Center
             this.tlpServices.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.pnlMyAppointment.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.HistoryTab.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -252,7 +252,6 @@ namespace CarCare_Service_Center
             // 
             this.cmbServiceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbServiceType.Font = new System.Drawing.Font("Book Antiqua", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbServiceType.FormattingEnabled = true;
             this.cmbServiceType.Items.AddRange(new object[] {
             "All"});
             this.cmbServiceType.Location = new System.Drawing.Point(397, 94);
@@ -361,6 +360,17 @@ namespace CarCare_Service_Center
             this.pnlNewAppointment.Name = "pnlNewAppointment";
             this.pnlNewAppointment.Size = new System.Drawing.Size(1074, 695);
             this.pnlNewAppointment.TabIndex = 6;
+            // 
+            // btnAptClear
+            // 
+            this.btnAptClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAptClear.Location = new System.Drawing.Point(617, 598);
+            this.btnAptClear.Name = "btnAptClear";
+            this.btnAptClear.Size = new System.Drawing.Size(215, 39);
+            this.btnAptClear.TabIndex = 22;
+            this.btnAptClear.Text = "Clear";
+            this.btnAptClear.UseVisualStyleBackColor = true;
+            this.btnAptClear.Click += new System.EventHandler(this.btnAptClear_Click);
             // 
             // lblBottomMargin
             // 
@@ -558,7 +568,7 @@ namespace CarCare_Service_Center
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.panel4);
+            this.tabPage2.Controls.Add(this.pnlMyAppointment);
             this.tabPage2.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage2.Location = new System.Drawing.Point(4, 33);
             this.tabPage2.Name = "tabPage2";
@@ -568,36 +578,36 @@ namespace CarCare_Service_Center
             this.tabPage2.Text = "My Appointment";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // panel4
+            // pnlMyAppointment
             // 
-            this.panel4.AutoScroll = true;
-            this.panel4.Controls.Add(this.label9);
-            this.panel4.Controls.Add(this.pictureBox5);
-            this.panel4.Location = new System.Drawing.Point(5, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1071, 706);
-            this.panel4.TabIndex = 7;
+            this.pnlMyAppointment.AutoScroll = true;
+            this.pnlMyAppointment.Controls.Add(this.lblTitle);
+            this.pnlMyAppointment.Controls.Add(this.picLogo);
+            this.pnlMyAppointment.Location = new System.Drawing.Point(5, 3);
+            this.pnlMyAppointment.Name = "pnlMyAppointment";
+            this.pnlMyAppointment.Size = new System.Drawing.Size(1071, 706);
+            this.pnlMyAppointment.TabIndex = 7;
             // 
-            // label9
+            // lblTitle
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Ink Free", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(405, 57);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(225, 34);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "My Appointment";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Ink Free", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(405, 57);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(225, 34);
+            this.lblTitle.TabIndex = 5;
+            this.lblTitle.Text = "My Appointment";
             // 
-            // pictureBox5
+            // picLogo
             // 
-            this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(808, -24);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(223, 210);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 4;
-            this.pictureBox5.TabStop = false;
+            this.picLogo.BackColor = System.Drawing.Color.Transparent;
+            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
+            this.picLogo.Location = new System.Drawing.Point(808, -24);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(223, 210);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLogo.TabIndex = 4;
+            this.picLogo.TabStop = false;
             // 
             // HistoryTab
             // 
@@ -759,17 +769,6 @@ namespace CarCare_Service_Center
             this.label16.TabIndex = 23;
             this.label16.Text = "Profile";
             // 
-            // btnAptClear
-            // 
-            this.btnAptClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAptClear.Location = new System.Drawing.Point(617, 598);
-            this.btnAptClear.Name = "btnAptClear";
-            this.btnAptClear.Size = new System.Drawing.Size(215, 39);
-            this.btnAptClear.TabIndex = 22;
-            this.btnAptClear.Text = "Clear";
-            this.btnAptClear.UseVisualStyleBackColor = true;
-            this.btnAptClear.Click += new System.EventHandler(this.btnAptClear_Click);
-            // 
             // frmCustomerMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -795,9 +794,9 @@ namespace CarCare_Service_Center
             this.tlpServices.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            this.pnlMyAppointment.ResumeLayout(false);
+            this.pnlMyAppointment.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.HistoryTab.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -848,9 +847,9 @@ namespace CarCare_Service_Center
         private TabControl tabAppointment;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private Panel panel4;
-        private Label label9;
-        private PictureBox pictureBox5;
+        private Panel pnlMyAppointment;
+        private Label lblTitle;
+        private PictureBox picLogo;
         private ComboBox cmbAptYear;
         private Label label10;
         private Label label6;

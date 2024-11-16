@@ -9,6 +9,11 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using static CarCare_Service_Center.Appointment;
+using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
+using System.IO.Ports;
+using Users;
 
 namespace CarCare_Service_Center
 {
@@ -168,18 +173,53 @@ namespace CarCare_Service_Center
         }
         public void Add()
         {
+            string query = "INSERT INTO Appointments (AppointmentID, UserID, MakingDateTime, AppointmentDateTime, VehicleNumber, Status) " +
+                           "VALUES (@AppointmentID, @UserID, @MakingDateTime, @AppointmentDateTime, @VehicleNumber, 'Pending')";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
 
-        }
-        public class Services
-        {
-            public string AppointmentID { get; set; }
-            public string ServiceID { get; set; }
+                // Add parameters to avoid SQL injection
+                command.Parameters.AddWithValue("@AppointmentID", AppointmentID);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                command.Parameters.AddWithValue("@MakingDateTime", MakingDateTime);
+                command.Parameters.AddWithValue("@AppointmentDateTime", AppointmentDateTime);
+                command.Parameters.AddWithValue("@VehicleNumber", VehicleNumber);
+
+                connection.Open();
+
+                // Execute the command
+                command.ExecuteNonQuery();
+            }
         }
         public static bool IsVehicleNumberValid(string vehicle_number)
         {
             // Must start with capital letter, and can only contains capital letter and number within 2 - 15 characters and both must exist
             string pattern = @"^[A-Z](?=.*\d)[A-Z\d]{1,14}$";
             return Regex.IsMatch(vehicle_number, pattern);
+        }
+        public class Services
+        {
+            public string AppointmentID { get; set; }
+            public string ServiceID { get; set; }
+            public void Add()
+            {
+                string query = "INSERT INTO AppointmentServices (AppointmentID, ServiceID) " +
+                               "VALUES (@AppointmentID, @ServiceID)";
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Add parameters to avoid SQL injection
+                    command.Parameters.AddWithValue("@AppointmentID", AppointmentID);
+                    command.Parameters.AddWithValue("@ServiceID", ServiceID);
+
+                    connection.Open();
+
+                    // Execute the command
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
     public class Parts
@@ -190,6 +230,68 @@ namespace CarCare_Service_Center
         public int Stock {  get; set; }
         public Decimal SellPrice { get; set; }
         public string Status {  get; set; }
+        public static string GeneratePartID(string PartType, string newPrefix)
+        {
+            string PartID;
+            string query = "SELECT TOP 1 PartID FROM Parts WHERE PartType = @PartType ORDER BY PartID DESC";
+
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@PartType", PartType);
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    // Existing service type found
+                    string lastServiceID = result.ToString();
+                    string existingPrefix = new string(lastServiceID.TakeWhile(char.IsLetter).ToArray());
+                    int lastNumber = int.Parse(new string(lastServiceID.SkipWhile(char.IsLetter).ToArray()));
+
+                    PartID = existingPrefix + (lastNumber + 1).ToString("D3");
+                }
+                else
+                {
+                    // New service type, use provided newPrefix and start with 001
+                    PartID = newPrefix + "001";
+                }
+            }
+            return PartID;
+        }
+        public void Add()
+        {
+            string query = "INSERT INTO Parts (PartID, PartType, PartName, Stock, Status) VALUES " +
+                "(@PartID, @PartType, @PartName, 0, 'New')";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+
+                // Add parameters to avoid SQL injection
+                command.Parameters.AddWithValue("@PartID", PartID);
+                command.Parameters.AddWithValue("@PartType", PartType);
+                command.Parameters.AddWithValue("@PartName", PartName);
+
+                connection.Open();
+
+                // Execute the command
+                command.ExecuteNonQuery();
+            }
+        }
+        public void ChangeStatus(string status)
+        {
+            string query = "UPDATE Parts SET Status = @Status WHERE PartID = @PartID";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@PartID", PartID);
+                command.Parameters.AddWithValue("@Status", status);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
+        }
         public class Purchases
         {
             public string PartID { get; set; }
@@ -197,7 +299,34 @@ namespace CarCare_Service_Center
             public Decimal UnitPrice { get; set; }
             public int Quantity { get; set; }
             public string Supplier {  get; set; }
+            public void Add()
+            {
+                string query = "INSERT INTO Parts (PartID, DateTime, UnitPrice, Quantity, Supplier) VALUES " +
+                    "(@PartID, @DateTime, @UnitPrice, @Quantity, @Supplier)";
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
 
+                    SqlParameter unitprice = new SqlParameter("@UnitPrice", SqlDbType.Decimal)
+                    {
+                        Precision = 10,  // Total number of digits
+                        Scale = 2,       // Number of decimal places
+                        Value = UnitPrice
+                    };
+
+                    // Add parameters to avoid SQL injection
+                    command.Parameters.AddWithValue("@PartID", PartID);
+                    command.Parameters.AddWithValue("@DateTime", DateTime);
+                    command.Parameters.AddWithValue("@Quantity", Quantity);
+                    command.Parameters.AddWithValue("@Supplier", Supplier);
+                    command.Parameters.Add(unitprice);
+
+                    connection.Open();
+
+                    // Execute the command
+                    command.ExecuteNonQuery();
+                }
+            }
         }
         public class Requests
         {

@@ -44,8 +44,9 @@ namespace CarCare_Service_Center
                 MessageBox.Show("Invalid Salary");
             else
             {
+                DateTime now = DateTime.Now;
                 User.Add(userid,username,email,password,role);
-                admin.assign_staff_salary(userid, salary);
+                admin.assign_staff_salary(userid, salary, now);
                 MessageBox.Show($"Staff added, Password is {password}");
             }
         }

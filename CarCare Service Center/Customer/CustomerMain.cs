@@ -12,6 +12,8 @@ using Users;
 using ControlSetting;
 using System.Runtime.ConstrainedExecution;
 using System.Reflection;
+using System.Globalization;
+using System.Diagnostics;
 
 namespace CarCare_Service_Center
 {
@@ -19,6 +21,7 @@ namespace CarCare_Service_Center
     {
         private List<Services> services;
         private List<Services> selected_services = new List<Services>();
+        private List<Appointment> appointments;
         private Customer customer;
         public frmCustomerMain(Customer cus)
         {
@@ -36,14 +39,16 @@ namespace CarCare_Service_Center
 
         private void frmCustomerMain_Load(object sender, EventArgs e)
         {
-            int row = 0;
             tabCustomer.DrawItem += Draw_Item.tabControlAdjustment;
-            string query = "SELECT * FROM Services WHERE IsDeleted = 0";
-            services = Database.FetchData<Services>(query);
+
+            int search_row = 0;
+
+            string find_services = "SELECT * FROM Services WHERE IsDeleted = 0";
+            services = Database.FetchData<Services>(find_services);
 
             for (int i = 0; i < services.Count; i++)
             {
-                show_results(ref i, ref row);
+                show_results(ref i, ref search_row);
             }
 
             foreach (Control control in FindComboBoxes(tabCustomer))
@@ -56,7 +61,9 @@ namespace CarCare_Service_Center
             AddServiceTypeIntoComboBox(cmbServiceType);
             SetupComboBoxPlaceHolder();
             SetupInitialServiceSelection();
+            LoadMyAppointment();
         }
+
         private void AddServiceTypeIntoComboBox(ComboBox cmb)
         {
             string query = "SELECT DISTINCT ServiceType FROM Services";
@@ -419,8 +426,120 @@ namespace CarCare_Service_Center
             if (!IsLastComboBoxValid())
                 return;
 
+            string format = "yyyy-MM-dd HH:mm";
+            int mounth = int.Parse(cmbAptMonth.Text);
+            int day = int.Parse(cmbAptDay.Text);
+            int hour = int.Parse(cmbAptHour.Text);
+            DateTime appointment_datetime = DateTime.ParseExact($"{cmbAptYear.Text}-{mounth:D2}-{day:D2} " +
+                $"{hour:D2}:{cmbAptMinute.Text}", format, CultureInfo.InvariantCulture);
+
+            Appointment appointment = new Appointment
+            {
+                AppointmentID = Appointment.GenerateAppointmentID(),
+                UserID = customer.UserID,
+                MakingDateTime = DateTime.Now,
+                AppointmentDateTime = appointment_datetime,
+                VehicleNumber = txtVehicleNumber.Text
+            };
+            appointment.Add();
+
+            selected_services.ForEach(s => new Appointment.Services
+            {
+                AppointmentID = appointment.AppointmentID,
+                ServiceID = s.ServiceID,
+            }.Add());
+
             MessageBox.Show("Appointment Added Successfully!");
             btnAptClear_Click(sender, e);
+
+            var controlsToRemove = new List<Control>();
+
+            foreach (Control ctrl in pnlMyAppointment.Controls)
+            {
+                if (ctrl.Name != "lblTitle" && ctrl.Name != "picLogo")
+                {
+                    controlsToRemove.Add(ctrl);
+                }
+            }
+
+            // Now remove controls from pnlMyAppointment
+            foreach (var ctrl in controlsToRemove)
+            {
+                pnlMyAppointment.Controls.Remove(ctrl);
+            }
+            LoadMyAppointment();
+        }
+        //
+        // My Appointment
+        //
+        private void LoadMyAppointment()
+        {
+            int my_appointment_row = 0;
+
+            string find_cus_appointment = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}'";
+            appointments = Database.FetchData<Appointment>(find_cus_appointment);
+
+            for (int i = 0; i < appointments.Count; i++)
+            {
+                showMyAppointment(ref i, ref my_appointment_row);
+            }
+        }
+        private void showMyAppointment(ref int i, ref int row)
+        {
+            int start_X = 25;
+            int start_Y = 130;
+
+            Panel panel = new Panel
+            {
+                Font = new Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Regular),
+                Location = new Point(start_X, start_Y + 190 * row),
+                Size = new Size(630, 155),
+                BackColor = Color.Moccasin,
+                BorderStyle = BorderStyle.FixedSingle,
+            };
+            pnlMyAppointment.Controls.Add(panel);
+
+            Label BottomMargin = new Label
+            {
+                Location = new Point(start_X,  start_Y + 155 + 190 * row)
+            };
+            pnlMyAppointment.Controls.Add(BottomMargin);
+
+            Label ID = new Label
+            {
+                Text = appointments[i].AppointmentID,
+                Location = new Point(6, 10),
+                AutoSize = true
+            };
+            panel.Controls.Add(ID);
+
+            Label Date = new Label
+            {
+                Text = "Date: " + appointments[i].AppointmentDateTime.ToString("yyyy-MM-dd"),
+                Location = new Point(6, 30),
+                AutoSize = true
+            };
+            panel.Controls.Add(Date);
+
+            Label Time = new Label
+            {
+                Text = "Time: " + appointments[i].AppointmentDateTime.ToString("HH:ss"),
+                Location = new Point(6, 50),
+                AutoSize = true
+            };
+            panel.Controls.Add(Time);
+
+            Button Details = new Button
+            {
+                Text = "Details",
+                Location = new Point(500, 100),
+                Size = new Size(105,30),
+                FlatStyle = FlatStyle.Popup,
+                Tag = appointments[i]
+            };
+            panel.Controls.Add(Details);
+
+            row++;
         }
     }
 }

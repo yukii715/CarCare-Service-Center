@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Drawing.Text;
@@ -150,18 +151,13 @@ namespace CarCare_Service_Center
             // Save service into database
             service.Add();
 
-            foreach (var price in prices)
+            prices.ForEach(sp => new Services.ServicePrice
             {
-                Services.ServicePrice servicePrice = new Services.ServicePrice
-                {
-                    ServiceID = service.ServiceID,
-                    Price = price.Price,
-                    Description = price.Description
-                };
+                ServiceID = service.ServiceID,
+                Price = sp.Price,
+                Description = sp.Description
+            }.Add());
 
-                // Save each price record
-                servicePrice.Add();
-            }
             MessageBox.Show("Successfully created!");
             Close();
         }

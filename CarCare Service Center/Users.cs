@@ -108,6 +108,7 @@ namespace Users
         {
             public string UserID { get; set; }
             public int Salary { get; set; }
+            public DateTime JoinDateTime { get; set; }
             public class Payroll
             {
                 public string PayrollID { get; set; }
