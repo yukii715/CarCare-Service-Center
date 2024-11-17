@@ -58,6 +58,51 @@ namespace Users
             }
             return UserID;
         }
+
+        public static void ChangeName( String UserID , string UserName)
+        {
+            string query = "UPDATE Users SET Username = @UserName WHERE UserID = @UserID";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                command.Parameters.AddWithValue("@UserName", UserName);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public static void ChangePassword(string UserID, string Password)
+        {
+            string query = "UPDATE Users SET Password = @Password WHERE UserID = @UserID";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                command.Parameters.AddWithValue("@Password", Password);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public static void ChangeEmail(string UserID, string Email)
+        {
+            string query = "UPDATE Users SET Email = @Email WHERE UserID = @UserID";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                command.Parameters.AddWithValue("@Email", Email);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
+        }
         public static void Add(string ID, string username, string email, string password, string role)
         {
 
@@ -108,6 +153,7 @@ namespace Users
         {
             public string UserID { get; set; }
             public int Salary { get; set; }
+            public DateTime JoinDateTime { get; set; }
             public class Payroll
             {
                 public string PayrollID { get; set; }
@@ -197,7 +243,7 @@ namespace Users
 
                 connection.Open();
 
-                command.ExecuteNonQuery ();
+                command.ExecuteNonQuery();
             }
         }
     }

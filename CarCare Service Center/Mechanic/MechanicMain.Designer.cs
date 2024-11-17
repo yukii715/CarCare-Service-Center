@@ -30,12 +30,12 @@ namespace CarCare_Service_Center
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint13 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 12D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint14 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 21D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint15 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(3D, 10D);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 12D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint5 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 21D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint6 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(3D, 10D);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMechanicMain));
             this.tabMechanic = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -49,16 +49,16 @@ namespace CarCare_Service_Center
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tblCustomerRequests = new System.Windows.Forms.TableLayoutPanel();
-            this.lblServiceTaskTime = new System.Windows.Forms.Label();
+            this.tlpServiceTask = new System.Windows.Forms.TableLayoutPanel();
             this.lblServicetaskNote = new System.Windows.Forms.Label();
             this.lblServicetaskCusName = new System.Windows.Forms.Label();
             this.lblServicetaskService = new System.Windows.Forms.Label();
             this.lblServicetaskDate = new System.Windows.Forms.Label();
+            this.lblServiceTaskTime = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelServiceProgress = new System.Windows.Forms.Panel();
             this.btnEndTask = new System.Windows.Forms.Button();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.lblRemark = new System.Windows.Forms.Label();
@@ -69,13 +69,14 @@ namespace CarCare_Service_Center
             this.cmbService = new System.Windows.Forms.ComboBox();
             this.cmbServiceType = new System.Windows.Forms.ComboBox();
             this.btnStartTask = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpServiceProgress = new System.Windows.Forms.TableLayoutPanel();
             this.lblProgressNote = new System.Windows.Forms.Label();
             this.lblProgressService = new System.Windows.Forms.Label();
             this.tlpProgress = new System.Windows.Forms.TableLayoutPanel();
+            this.lblProgressPlateNumber = new System.Windows.Forms.Label();
             this.lblProgressUserID = new System.Windows.Forms.Label();
-            this.lblPlateNumber = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
+            this.lblProgressName = new System.Windows.Forms.Label();
+            this.lblUserId = new System.Windows.Forms.Label();
             this.lblProgressApointmentId = new System.Windows.Forms.Label();
             this.lblAppointmentId = new System.Windows.Forms.Label();
             this.lblProgressNoPlate = new System.Windows.Forms.Label();
@@ -103,11 +104,11 @@ namespace CarCare_Service_Center
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.tblCustomerRequests.SuspendLayout();
+            this.tlpServiceTask.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelServiceProgress.SuspendLayout();
             this.grbAddService.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tlpServiceProgress.SuspendLayout();
             this.tlpProgress.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -213,20 +214,20 @@ namespace CarCare_Service_Center
             this.chart1.BorderlineColor = System.Drawing.Color.Black;
             this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
             this.chart1.BorderlineWidth = 3;
-            chartArea5.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.chart1.Legends.Add(legend5);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(6, 349);
             this.chart1.Name = "chart1";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            series5.Points.Add(dataPoint13);
-            series5.Points.Add(dataPoint14);
-            series5.Points.Add(dataPoint15);
-            this.chart1.Series.Add(series5);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            series2.Points.Add(dataPoint4);
+            series2.Points.Add(dataPoint5);
+            series2.Points.Add(dataPoint6);
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(1016, 408);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
@@ -254,7 +255,7 @@ namespace CarCare_Service_Center
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.PapayaWhip;
-            this.tabPage2.Controls.Add(this.tblCustomerRequests);
+            this.tabPage2.Controls.Add(this.tlpServiceTask);
             this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Location = new System.Drawing.Point(84, 4);
@@ -264,45 +265,33 @@ namespace CarCare_Service_Center
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Service Task";
             // 
-            // tblCustomerRequests
+            // tlpServiceTask
             // 
-            this.tblCustomerRequests.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
-            this.tblCustomerRequests.ColumnCount = 5;
-            this.tblCustomerRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
-            this.tblCustomerRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tblCustomerRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46F));
-            this.tblCustomerRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18F));
-            this.tblCustomerRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9F));
-            this.tblCustomerRequests.Controls.Add(this.lblServiceTaskTime, 4, 0);
-            this.tblCustomerRequests.Controls.Add(this.lblServicetaskNote, 0, 0);
-            this.tblCustomerRequests.Controls.Add(this.lblServicetaskCusName, 1, 0);
-            this.tblCustomerRequests.Controls.Add(this.lblServicetaskService, 2, 0);
-            this.tblCustomerRequests.Controls.Add(this.lblServicetaskDate, 3, 0);
-            this.tblCustomerRequests.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tblCustomerRequests.Location = new System.Drawing.Point(30, 103);
-            this.tblCustomerRequests.Name = "tblCustomerRequests";
-            this.tblCustomerRequests.RowCount = 4;
-            this.tblCustomerRequests.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tblCustomerRequests.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tblCustomerRequests.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tblCustomerRequests.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tblCustomerRequests.Size = new System.Drawing.Size(1012, 226);
-            this.tblCustomerRequests.TabIndex = 10;
-            // 
-            // lblServiceTaskTime
-            // 
-            this.lblServiceTaskTime.Location = new System.Drawing.Point(920, 3);
-            this.lblServiceTaskTime.Name = "lblServiceTaskTime";
-            this.lblServiceTaskTime.Size = new System.Drawing.Size(86, 52);
-            this.lblServiceTaskTime.TabIndex = 4;
-            this.lblServiceTaskTime.Text = "TIME";
-            this.lblServiceTaskTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tlpServiceTask.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.tlpServiceTask.ColumnCount = 5;
+            this.tlpServiceTask.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
+            this.tlpServiceTask.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpServiceTask.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46F));
+            this.tlpServiceTask.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.tlpServiceTask.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9F));
+            this.tlpServiceTask.Controls.Add(this.lblServicetaskNote, 0, 0);
+            this.tlpServiceTask.Controls.Add(this.lblServicetaskCusName, 1, 0);
+            this.tlpServiceTask.Controls.Add(this.lblServicetaskService, 2, 0);
+            this.tlpServiceTask.Controls.Add(this.lblServicetaskDate, 3, 0);
+            this.tlpServiceTask.Controls.Add(this.lblServiceTaskTime, 4, 0);
+            this.tlpServiceTask.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tlpServiceTask.Location = new System.Drawing.Point(30, 103);
+            this.tlpServiceTask.Name = "tlpServiceTask";
+            this.tlpServiceTask.RowCount = 1;
+            this.tlpServiceTask.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tlpServiceTask.Size = new System.Drawing.Size(1012, 46);
+            this.tlpServiceTask.TabIndex = 10;
             // 
             // lblServicetaskNote
             // 
             this.lblServicetaskNote.Location = new System.Drawing.Point(6, 3);
             this.lblServicetaskNote.Name = "lblServicetaskNote";
-            this.lblServicetaskNote.Size = new System.Drawing.Size(63, 52);
+            this.lblServicetaskNote.Size = new System.Drawing.Size(63, 40);
             this.lblServicetaskNote.TabIndex = 0;
             this.lblServicetaskNote.Text = "NO";
             this.lblServicetaskNote.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -311,7 +300,7 @@ namespace CarCare_Service_Center
             // 
             this.lblServicetaskCusName.Location = new System.Drawing.Point(78, 3);
             this.lblServicetaskCusName.Name = "lblServicetaskCusName";
-            this.lblServicetaskCusName.Size = new System.Drawing.Size(183, 52);
+            this.lblServicetaskCusName.Size = new System.Drawing.Size(183, 40);
             this.lblServicetaskCusName.TabIndex = 1;
             this.lblServicetaskCusName.Text = "NAME";
             this.lblServicetaskCusName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -320,7 +309,7 @@ namespace CarCare_Service_Center
             // 
             this.lblServicetaskService.Location = new System.Drawing.Point(279, 3);
             this.lblServicetaskService.Name = "lblServicetaskService";
-            this.lblServicetaskService.Size = new System.Drawing.Size(451, 52);
+            this.lblServicetaskService.Size = new System.Drawing.Size(451, 40);
             this.lblServicetaskService.TabIndex = 2;
             this.lblServicetaskService.Text = "SERVICE";
             this.lblServicetaskService.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -329,10 +318,19 @@ namespace CarCare_Service_Center
             // 
             this.lblServicetaskDate.Location = new System.Drawing.Point(739, 3);
             this.lblServicetaskDate.Name = "lblServicetaskDate";
-            this.lblServicetaskDate.Size = new System.Drawing.Size(172, 52);
+            this.lblServicetaskDate.Size = new System.Drawing.Size(172, 40);
             this.lblServicetaskDate.TabIndex = 3;
             this.lblServicetaskDate.Text = "DATE";
             this.lblServicetaskDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblServiceTaskTime
+            // 
+            this.lblServiceTaskTime.Location = new System.Drawing.Point(920, 3);
+            this.lblServiceTaskTime.Name = "lblServiceTaskTime";
+            this.lblServiceTaskTime.Size = new System.Drawing.Size(86, 40);
+            this.lblServiceTaskTime.TabIndex = 4;
+            this.lblServiceTaskTime.Text = "TIME";
+            this.lblServiceTaskTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button1
             // 
@@ -356,7 +354,7 @@ namespace CarCare_Service_Center
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.PapayaWhip;
-            this.tabPage3.Controls.Add(this.panel1);
+            this.tabPage3.Controls.Add(this.panelServiceProgress);
             this.tabPage3.Controls.Add(this.label6);
             this.tabPage3.Location = new System.Drawing.Point(84, 4);
             this.tabPage3.Name = "tabPage3";
@@ -364,20 +362,20 @@ namespace CarCare_Service_Center
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Service Progress";
             // 
-            // panel1
+            // panelServiceProgress
             // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.btnEndTask);
-            this.panel1.Controls.Add(this.txtRemark);
-            this.panel1.Controls.Add(this.lblRemark);
-            this.panel1.Controls.Add(this.grbAddService);
-            this.panel1.Controls.Add(this.btnStartTask);
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Controls.Add(this.tlpProgress);
-            this.panel1.Location = new System.Drawing.Point(12, 95);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1077, 719);
-            this.panel1.TabIndex = 12;
+            this.panelServiceProgress.AutoScroll = true;
+            this.panelServiceProgress.Controls.Add(this.btnEndTask);
+            this.panelServiceProgress.Controls.Add(this.txtRemark);
+            this.panelServiceProgress.Controls.Add(this.lblRemark);
+            this.panelServiceProgress.Controls.Add(this.grbAddService);
+            this.panelServiceProgress.Controls.Add(this.btnStartTask);
+            this.panelServiceProgress.Controls.Add(this.tlpServiceProgress);
+            this.panelServiceProgress.Controls.Add(this.tlpProgress);
+            this.panelServiceProgress.Location = new System.Drawing.Point(12, 95);
+            this.panelServiceProgress.Name = "panelServiceProgress";
+            this.panelServiceProgress.Size = new System.Drawing.Size(1077, 719);
+            this.panelServiceProgress.TabIndex = 12;
             // 
             // btnEndTask
             // 
@@ -461,31 +459,22 @@ namespace CarCare_Service_Center
             // cmbService
             // 
             this.cmbService.FormattingEnabled = true;
-            this.cmbService.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
             this.cmbService.Location = new System.Drawing.Point(264, 122);
             this.cmbService.Name = "cmbService";
             this.cmbService.Size = new System.Drawing.Size(247, 44);
             this.cmbService.TabIndex = 8;
-            this.cmbService.SelectedIndexChanged += new System.EventHandler(this.cmbService_SelectedIndexChanged);
             // 
             // cmbServiceType
             // 
             this.cmbServiceType.FormattingEnabled = true;
-            this.cmbServiceType.Items.AddRange(new object[] {
-            "a",
-            "b",
-            "c"});
             this.cmbServiceType.Location = new System.Drawing.Point(264, 56);
             this.cmbServiceType.Name = "cmbServiceType";
             this.cmbServiceType.Size = new System.Drawing.Size(247, 44);
             this.cmbServiceType.TabIndex = 9;
-            this.cmbServiceType.SelectedIndexChanged += new System.EventHandler(this.cmbServiceType_SelectedIndexChanged);
             // 
             // btnStartTask
             // 
+            this.btnStartTask.BackColor = System.Drawing.Color.PapayaWhip;
             this.btnStartTask.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnStartTask.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartTask.Location = new System.Drawing.Point(387, 439);
@@ -493,27 +482,28 @@ namespace CarCare_Service_Center
             this.btnStartTask.Size = new System.Drawing.Size(264, 60);
             this.btnStartTask.TabIndex = 12;
             this.btnStartTask.Text = "Start Task";
-            this.btnStartTask.UseVisualStyleBackColor = true;
+            this.btnStartTask.UseVisualStyleBackColor = false;
             this.btnStartTask.Click += new System.EventHandler(this.btnStartTask_Click_1);
             // 
-            // tableLayoutPanel1
+            // tlpServiceProgress
             // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.tableLayoutPanel1.Controls.Add(this.lblProgressNote, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblProgressService, 1, 0);
-            this.tableLayoutPanel1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(17, 200);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1002, 66);
-            this.tableLayoutPanel1.TabIndex = 15;
+            this.tlpServiceProgress.AutoSize = true;
+            this.tlpServiceProgress.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
+            this.tlpServiceProgress.ColumnCount = 2;
+            this.tlpServiceProgress.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tlpServiceProgress.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.tlpServiceProgress.Controls.Add(this.lblProgressNote, 0, 0);
+            this.tlpServiceProgress.Controls.Add(this.lblProgressService, 1, 0);
+            this.tlpServiceProgress.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tlpServiceProgress.Location = new System.Drawing.Point(17, 200);
+            this.tlpServiceProgress.MaximumSize = new System.Drawing.Size(1002, 0);
+            this.tlpServiceProgress.Name = "tlpServiceProgress";
+            this.tlpServiceProgress.RowCount = 1;
+            this.tlpServiceProgress.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            this.tlpServiceProgress.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            this.tlpServiceProgress.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            this.tlpServiceProgress.Size = new System.Drawing.Size(1002, 76);
+            this.tlpServiceProgress.TabIndex = 15;
             // 
             // lblProgressNote
             // 
@@ -521,7 +511,7 @@ namespace CarCare_Service_Center
             this.lblProgressNote.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblProgressNote.Location = new System.Drawing.Point(5, 2);
             this.lblProgressNote.Name = "lblProgressNote";
-            this.lblProgressNote.Size = new System.Drawing.Size(93, 62);
+            this.lblProgressNote.Size = new System.Drawing.Size(93, 72);
             this.lblProgressNote.TabIndex = 6;
             this.lblProgressNote.Text = "NO";
             this.lblProgressNote.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -532,7 +522,7 @@ namespace CarCare_Service_Center
             this.lblProgressService.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblProgressService.Location = new System.Drawing.Point(106, 2);
             this.lblProgressService.Name = "lblProgressService";
-            this.lblProgressService.Size = new System.Drawing.Size(891, 62);
+            this.lblProgressService.Size = new System.Drawing.Size(891, 72);
             this.lblProgressService.TabIndex = 5;
             this.lblProgressService.Text = "SERVICE";
             this.lblProgressService.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -545,9 +535,10 @@ namespace CarCare_Service_Center
             this.tlpProgress.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tlpProgress.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpProgress.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tlpProgress.Controls.Add(this.lblProgressPlateNumber, 3, 1);
             this.tlpProgress.Controls.Add(this.lblProgressUserID, 2, 0);
-            this.tlpProgress.Controls.Add(this.lblPlateNumber, 1, 1);
-            this.tlpProgress.Controls.Add(this.lblName, 3, 0);
+            this.tlpProgress.Controls.Add(this.lblProgressName, 1, 1);
+            this.tlpProgress.Controls.Add(this.lblUserId, 3, 0);
             this.tlpProgress.Controls.Add(this.lblProgressApointmentId, 0, 0);
             this.tlpProgress.Controls.Add(this.lblAppointmentId, 1, 0);
             this.tlpProgress.Controls.Add(this.lblProgressNoPlate, 2, 1);
@@ -561,6 +552,14 @@ namespace CarCare_Service_Center
             this.tlpProgress.Size = new System.Drawing.Size(1002, 159);
             this.tlpProgress.TabIndex = 14;
             // 
+            // lblProgressPlateNumber
+            // 
+            this.lblProgressPlateNumber.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblProgressPlateNumber.Location = new System.Drawing.Point(704, 80);
+            this.lblProgressPlateNumber.Name = "lblProgressPlateNumber";
+            this.lblProgressPlateNumber.Size = new System.Drawing.Size(293, 77);
+            this.lblProgressPlateNumber.TabIndex = 13;
+            // 
             // lblProgressUserID
             // 
             this.lblProgressUserID.Location = new System.Drawing.Point(504, 2);
@@ -570,21 +569,21 @@ namespace CarCare_Service_Center
             this.lblProgressUserID.Text = "USER ID";
             this.lblProgressUserID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblPlateNumber
+            // lblProgressName
             // 
-            this.lblPlateNumber.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPlateNumber.Location = new System.Drawing.Point(205, 80);
-            this.lblPlateNumber.Name = "lblPlateNumber";
-            this.lblPlateNumber.Size = new System.Drawing.Size(291, 77);
-            this.lblPlateNumber.TabIndex = 11;
+            this.lblProgressName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblProgressName.Location = new System.Drawing.Point(205, 80);
+            this.lblProgressName.Name = "lblProgressName";
+            this.lblProgressName.Size = new System.Drawing.Size(291, 77);
+            this.lblProgressName.TabIndex = 11;
             // 
-            // lblName
+            // lblUserId
             // 
-            this.lblName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblName.Location = new System.Drawing.Point(704, 2);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(293, 76);
-            this.lblName.TabIndex = 10;
+            this.lblUserId.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblUserId.Location = new System.Drawing.Point(704, 2);
+            this.lblUserId.Name = "lblUserId";
+            this.lblUserId.Size = new System.Drawing.Size(293, 76);
+            this.lblUserId.TabIndex = 10;
             // 
             // lblProgressApointmentId
             // 
@@ -703,7 +702,6 @@ namespace CarCare_Service_Center
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox3.ErrorImage = null;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.InitialImage = null;
             this.pictureBox3.Location = new System.Drawing.Point(256, 531);
             this.pictureBox3.Name = "pictureBox3";
@@ -835,13 +833,13 @@ namespace CarCare_Service_Center
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            this.tblCustomerRequests.ResumeLayout(false);
+            this.tlpServiceTask.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelServiceProgress.ResumeLayout(false);
+            this.panelServiceProgress.PerformLayout();
             this.grbAddService.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tlpServiceProgress.ResumeLayout(false);
+            this.tlpServiceProgress.PerformLayout();
             this.tlpProgress.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
@@ -885,18 +883,18 @@ namespace CarCare_Service_Center
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnShortages;
         private System.Windows.Forms.Button btnRequest;
-        private System.Windows.Forms.TableLayoutPanel tblCustomerRequests;
+        private System.Windows.Forms.TableLayoutPanel tlpServiceTask;
         private System.Windows.Forms.Label lblServicetaskDate;
         private System.Windows.Forms.Label lblServicetaskService;
         private System.Windows.Forms.Label lblServicetaskCusName;
         private System.Windows.Forms.Label lblServicetaskNote;
         private System.Windows.Forms.Label lblServiceTaskTime;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelServiceProgress;
         private System.Windows.Forms.GroupBox grbAddService;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ComboBox cmbService;
         private System.Windows.Forms.ComboBox cmbServiceType;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tlpServiceProgress;
         private System.Windows.Forms.Label lblProgressNote;
         private System.Windows.Forms.Label lblProgressService;
         private System.Windows.Forms.Button btnStartTask;
@@ -910,9 +908,10 @@ namespace CarCare_Service_Center
         private System.Windows.Forms.Button btnEndTask;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lblPlateNumber;
-        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblProgressName;
+        private System.Windows.Forms.Label lblUserId;
         private System.Windows.Forms.Label lblAppointmentId;
         private System.Windows.Forms.Label lblProgressUserID;
+        private System.Windows.Forms.Label lblProgressPlateNumber;
     }
 }

@@ -47,16 +47,16 @@ namespace CarCare_Service_Center
             Parts.Requests newRequest = new Parts.Requests
             {
                 RequestID = Parts.Requests.GenerateRequestID(),
-                UserID = mechanic.UserID,     // 從表單中的使用者 ID 輸入框
-                UserName = mechanic.Username,// 從表單中的使用者名稱輸入框
-                DateTime = DateTime.Now,          // 自動設置當前時間
-                PartType = cmbPartType.Text, // 從表單中的零件類型選單
-                PartName = txtboxPartName.Text, // 從表單中的零件名稱選單
-                Description = txtDescription.Text // 從表單中的描述輸入框
+                UserID = mechanic.UserID,     
+                UserName = mechanic.Username,
+                DateTime = DateTime.Now,          
+                PartType = cmbPartType.Text, 
+                PartName = txtboxPartName.Text, 
+                Description = txtDescription.Text 
             };
 
             newRequest.Add();
-            MessageBox.Show("Request added successfully.");
+            MessageBox.Show("Request added successfully.", "Update Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
 
@@ -90,8 +90,6 @@ namespace CarCare_Service_Center
             }
         }
 
-
-
-
+        
     }
 }

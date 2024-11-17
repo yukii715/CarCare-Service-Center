@@ -55,7 +55,7 @@ namespace CarCare_Service_Center
             // lblShortagesPartName
             // 
             this.lblShortagesPartName.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShortagesPartName.Location = new System.Drawing.Point(101, 187);
+            this.lblShortagesPartName.Location = new System.Drawing.Point(73, 187);
             this.lblShortagesPartName.Name = "lblShortagesPartName";
             this.lblShortagesPartName.Size = new System.Drawing.Size(168, 38);
             this.lblShortagesPartName.TabIndex = 22;
@@ -64,7 +64,7 @@ namespace CarCare_Service_Center
             // lblShortagesPartType
             // 
             this.lblShortagesPartType.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShortagesPartType.Location = new System.Drawing.Point(101, 118);
+            this.lblShortagesPartType.Location = new System.Drawing.Point(73, 118);
             this.lblShortagesPartType.Name = "lblShortagesPartType";
             this.lblShortagesPartType.Size = new System.Drawing.Size(181, 38);
             this.lblShortagesPartType.TabIndex = 21;
@@ -74,7 +74,7 @@ namespace CarCare_Service_Center
             // 
             this.cmbShortagesPartType.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbShortagesPartType.FormattingEnabled = true;
-            this.cmbShortagesPartType.Location = new System.Drawing.Point(299, 118);
+            this.cmbShortagesPartType.Location = new System.Drawing.Point(260, 117);
             this.cmbShortagesPartType.Name = "cmbShortagesPartType";
             this.cmbShortagesPartType.Size = new System.Drawing.Size(296, 41);
             this.cmbShortagesPartType.TabIndex = 20;
@@ -101,12 +101,13 @@ namespace CarCare_Service_Center
             this.btnShortagesReport.TabIndex = 18;
             this.btnShortagesReport.Text = "Report";
             this.btnShortagesReport.UseVisualStyleBackColor = true;
+            this.btnShortagesReport.Click += new System.EventHandler(this.btnShortagesReport_Click);
             // 
             // cmbShortagesPartName
             // 
             this.cmbShortagesPartName.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbShortagesPartName.FormattingEnabled = true;
-            this.cmbShortagesPartName.Location = new System.Drawing.Point(299, 187);
+            this.cmbShortagesPartName.Location = new System.Drawing.Point(260, 186);
             this.cmbShortagesPartName.Name = "cmbShortagesPartName";
             this.cmbShortagesPartName.Size = new System.Drawing.Size(296, 41);
             this.cmbShortagesPartName.TabIndex = 24;
@@ -114,7 +115,7 @@ namespace CarCare_Service_Center
             // lblPartId
             // 
             this.lblPartId.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPartId.Location = new System.Drawing.Point(101, 256);
+            this.lblPartId.Location = new System.Drawing.Point(73, 254);
             this.lblPartId.Name = "lblPartId";
             this.lblPartId.Size = new System.Drawing.Size(168, 38);
             this.lblPartId.TabIndex = 25;
@@ -123,7 +124,7 @@ namespace CarCare_Service_Center
             // lblShortagesPartID
             // 
             this.lblShortagesPartID.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShortagesPartID.Location = new System.Drawing.Point(293, 256);
+            this.lblShortagesPartID.Location = new System.Drawing.Point(254, 254);
             this.lblShortagesPartID.Name = "lblShortagesPartID";
             this.lblShortagesPartID.Size = new System.Drawing.Size(168, 38);
             this.lblShortagesPartID.TabIndex = 26;
@@ -131,19 +132,19 @@ namespace CarCare_Service_Center
             // lblStock
             // 
             this.lblStock.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStock.Location = new System.Drawing.Point(101, 319);
+            this.lblStock.Location = new System.Drawing.Point(73, 317);
             this.lblStock.Name = "lblStock";
-            this.lblStock.Size = new System.Drawing.Size(494, 269);
+            this.lblStock.Size = new System.Drawing.Size(113, 43);
             this.lblStock.TabIndex = 27;
             this.lblStock.Text = "Stock:";
             // 
             // lblShortagesStock
             // 
             this.lblShortagesStock.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShortagesStock.Location = new System.Drawing.Point(293, 319);
+            this.lblShortagesStock.Location = new System.Drawing.Point(254, 319);
             this.lblShortagesStock.Name = "lblShortagesStock";
-            this.lblShortagesStock.Size = new System.Drawing.Size(168, 38);
-            this.lblShortagesStock.TabIndex = 28;
+            this.lblShortagesStock.Size = new System.Drawing.Size(168, 41);
+            this.lblShortagesStock.TabIndex = 29;
             // 
             // Shortages
             // 
@@ -163,6 +164,7 @@ namespace CarCare_Service_Center
             this.Controls.Add(this.lblInventoryShortages);
             this.Name = "Shortages";
             this.Text = "Shortages";
+            this.Load += new System.EventHandler(this.Shortages_Load);
             this.ResumeLayout(false);
 
         }
@@ -178,6 +180,7 @@ namespace CarCare_Service_Center
         private System.Windows.Forms.Label lblPartId;
         private System.Windows.Forms.Label lblShortagesPartID;
         private System.Windows.Forms.Label lblStock;
+      
         private System.Windows.Forms.Label lblShortagesStock;
     }
 }

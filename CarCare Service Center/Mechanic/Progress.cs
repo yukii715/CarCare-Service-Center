@@ -15,6 +15,11 @@ namespace CarCare_Service_Center
 {
     public partial class Progress : Form
     {
+        public string AppointmentId { get; set; }
+        public string UserId { get; set; }
+        public string UserName { get; set; }
+        public string PlateNumber { get; set; }
+
         int newRowOffSet = 10;
         int currentRow = 1;
         int index = 2;
@@ -32,14 +37,31 @@ namespace CarCare_Service_Center
         public Progress()
         {
             InitializeComponent();
-
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Progress_Load_1(object sender, EventArgs e)
         {
             InitializePartTypeComboBox();
+            if (string.IsNullOrEmpty(AppointmentId) || string.IsNullOrEmpty(UserId) || string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(PlateNumber))
+            {
+                MessageBox.Show("Some data is missing!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                lblAppointmentId.Text = AppointmentId;
+                lblAppointmentId.Dock = DockStyle.Fill;
+                lblAppointmentId.TextAlign = ContentAlignment.MiddleLeft;
+                lblUserID.Text = UserId;
+                lblUserID.Dock = DockStyle.Fill;
+                lblUserID.TextAlign = ContentAlignment.MiddleLeft;
+                lblName.Text = UserName;
+                lblName.Dock = DockStyle.Fill;
+                lblName.TextAlign = ContentAlignment.MiddleLeft;
+                lblPlateNumber.Text = PlateNumber;
+                lblPlateNumber.Dock = DockStyle.Fill;
+                lblPlateNumber.TextAlign = ContentAlignment.MiddleLeft;
+            }
         }
-
         private void InitializePartTypeComboBox()
         {
             cmbPartTypeUsed.Items.Clear();
@@ -294,6 +316,12 @@ namespace CarCare_Service_Center
 
         }
 
+ 
+
+        private void lblProgress_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

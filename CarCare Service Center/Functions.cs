@@ -72,7 +72,7 @@ namespace Functions
             // Regular expression for validating password
             string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,20}$";
             //Should include at least one uppercase and lowercase alphabet, number and symbol, and need 8-20 characters
-            return Regex.IsMatch(password, pattern);
+            return Regex.IsMatch(password, pattern); 
         }
     }
 
