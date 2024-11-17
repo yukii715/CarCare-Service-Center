@@ -16,5 +16,13 @@ namespace Users
             Password = user.Password;
             Role = user.Role;
         }
+        User receptionistTest = new User
+        {
+            UserID = "000000001",
+            Username = "Daryl",
+            Email = "testUsername",
+            Password = "012345",
+            Role = "Receptionist"
+        };
     }
 }

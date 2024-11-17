@@ -103,18 +103,6 @@
     <Compile Include="Mechanic\Progress.Designer.cs">
       <DependentUpon>Progress.cs</DependentUpon>
     </Compile>
-    <Compile Include="Receptionist\CustomerEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Receptionist\CustomerEdit.Designer.cs">
-      <DependentUpon>CustomerEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Receptionist\CustomerRequests.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Receptionist\CustomerRequests.Designer.cs">
-      <DependentUpon>CustomerRequests.cs</DependentUpon>
-    </Compile>
     <Compile Include="Customer\Customer.cs" />
     <Compile Include="Customer\CustomerMain.cs">
       <SubType>Form</SubType>
@@ -136,15 +124,14 @@
     <Compile Include="Mechanic\MechanicMain.Designer.cs">
       <DependentUpon>MechanicMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Receptionist\ReceptionistMain.cs">
+    <Compile Include="PartsPurchase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Receptionist\ReceptionistMain.Designer.cs">
-      <DependentUpon>ReceptionistMain.cs</DependentUpon>
+    <Compile Include="PartsPurchase.Designer.cs">
+      <DependentUpon>PartsPurchase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Receptionist\Receptionist.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Login and Register\Register.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,6 +207,43 @@
     <Compile Include="Admin\StaffSalaryRecord.Designer.cs">
       <DependentUpon>StaffSalaryRecord.cs</DependentUpon>
     </Compile>
+    <Compile Include="Receptionist\CustomerDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receptionist\CustomerDetails.Designer.cs">
+      <DependentUpon>CustomerDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Receptionist\CustomerRequests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receptionist\CustomerRequests.Designer.cs">
+      <DependentUpon>CustomerRequests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Receptionist\PartsRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receptionist\PartsRequest.Designer.cs">
+      <DependentUpon>PartsRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Receptionist\PartsRequestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Receptionist\PartsRequestControl.Designer.cs">
+      <DependentUpon>PartsRequestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Receptionist\PendingAppointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receptionist\PendingAppointments.Designer.cs">
+      <DependentUpon>PendingAppointments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Receptionist\Receptionist.cs" />
+    <Compile Include="Receptionist\ReceptionistMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receptionist\ReceptionistMain.Designer.cs">
+      <DependentUpon>ReceptionistMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs" />
     <EmbeddedResource Include="Admin\ServiceInsertion.resx">
       <DependentUpon>ServiceInsertion.cs</DependentUpon>
@@ -232,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mechanic\MechanicMain.resx">
       <DependentUpon>MechanicMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartsPurchase.resx">
+      <DependentUpon>PartsPurchase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -260,14 +287,26 @@
     <EmbeddedResource Include="Admin\StaffInsertion.resx">
       <DependentUpon>StaffInsertion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Customer\ViewServiceDetails.resx">
+      <DependentUpon>ViewServiceDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receptionist\CustomerDetails.resx">
+      <DependentUpon>CustomerDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Receptionist\CustomerRequests.resx">
       <DependentUpon>CustomerRequests.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Receptionist\PartsRequest.resx">
+      <DependentUpon>PartsRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receptionist\PartsRequestControl.resx">
+      <DependentUpon>PartsRequestControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receptionist\PendingAppointments.resx">
+      <DependentUpon>PendingAppointments.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Receptionist\ReceptionistMain.resx">
       <DependentUpon>ReceptionistMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Customer\ViewServiceDetails.resx">
-      <DependentUpon>ViewServiceDetails.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

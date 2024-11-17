@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq; 
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -48,7 +48,7 @@ namespace CarCare_Service_Center
                 newCustomerEmail.Dock = DockStyle.Fill;
                 newCustomerEmail.TextAlign = ContentAlignment.MiddleLeft;
             }
-            tblCustomerRequests.RowCount = users.Count + 1;
+            //tblCustomerRequests.RowCount = users.Count + 1;
         }
 
         private void btnConfirmRequest_Click(object sender, EventArgs e)
@@ -69,6 +69,7 @@ namespace CarCare_Service_Center
                         tblCustomerRequests.Controls.Remove(control);
                         control.Dispose();
                     }
+                    tblCustomerRequests.RowStyles.RemoveAt(i);
                     tblCustomerRequests.RowCount--;
                 }
             }
@@ -90,6 +91,7 @@ namespace CarCare_Service_Center
                         tblCustomerRequests.Controls.Remove(control);
                         control.Dispose();
                     }
+                    tblCustomerRequests.RowStyles.RemoveAt(i);
                     tblCustomerRequests.RowCount--;
                 }
             }

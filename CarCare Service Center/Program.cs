@@ -11,7 +11,7 @@ namespace CarCare_Service_Center
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        public const string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"D:\\CarCare Service Center Management System\\CarCare Service Center\\CarCare Service Center\\Database1.mdf\";Integrated Security=True";
+        public const string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\cjngd\\OneDrive\\Documents\\Assignment\\APU Degree\\Introduction to Object Oriented Programming\\CarCare Service Center\\CarCare Service Center\\Database1.mdf\";Integrated Security=True";
         [STAThread]
         static void Main()
         {

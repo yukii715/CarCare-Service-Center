@@ -65,10 +65,10 @@ namespace CarCare_Service_Center
             // btnCreate
             // 
             this.btnCreate.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreate.Location = new System.Drawing.Point(637, 572);
+            this.btnCreate.Location = new System.Drawing.Point(566, 508);
             this.btnCreate.Margin = new System.Windows.Forms.Padding(2);
             this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(150, 51);
+            this.btnCreate.Size = new System.Drawing.Size(133, 45);
             this.btnCreate.TabIndex = 26;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
@@ -92,19 +92,19 @@ namespace CarCare_Service_Center
             this.panel1.Controls.Add(this.lblServiceName);
             this.panel1.Controls.Add(this.lblServiceType);
             this.panel1.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(5, 11);
+            this.panel1.Location = new System.Drawing.Point(4, 10);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(849, 504);
+            this.panel1.Size = new System.Drawing.Size(755, 448);
             this.panel1.TabIndex = 24;
             // 
             // btnNewType
             // 
             this.btnNewType.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewType.Location = new System.Drawing.Point(604, 20);
+            this.btnNewType.Location = new System.Drawing.Point(537, 18);
             this.btnNewType.Margin = new System.Windows.Forms.Padding(2);
             this.btnNewType.Name = "btnNewType";
-            this.btnNewType.Size = new System.Drawing.Size(119, 36);
+            this.btnNewType.Size = new System.Drawing.Size(106, 32);
             this.btnNewType.TabIndex = 27;
             this.btnNewType.Text = "New";
             this.btnNewType.UseVisualStyleBackColor = true;
@@ -115,30 +115,30 @@ namespace CarCare_Service_Center
             this.cmbServiceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbServiceType.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbServiceType.FormattingEnabled = true;
-            this.cmbServiceType.Location = new System.Drawing.Point(197, 20);
+            this.cmbServiceType.Location = new System.Drawing.Point(175, 18);
             this.cmbServiceType.Margin = new System.Windows.Forms.Padding(2);
             this.cmbServiceType.Name = "cmbServiceType";
-            this.cmbServiceType.Size = new System.Drawing.Size(391, 36);
+            this.cmbServiceType.Size = new System.Drawing.Size(348, 32);
             this.cmbServiceType.TabIndex = 40;
             // 
             // txtDescription
             // 
             this.txtDescription.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescription.Location = new System.Drawing.Point(22, 460);
+            this.txtDescription.Location = new System.Drawing.Point(20, 409);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(2);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDescription.Size = new System.Drawing.Size(730, 230);
+            this.txtDescription.Size = new System.Drawing.Size(649, 205);
             this.txtDescription.TabIndex = 20;
             // 
             // txtTime
             // 
             this.txtTime.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTime.Location = new System.Drawing.Point(202, 348);
+            this.txtTime.Location = new System.Drawing.Point(180, 309);
             this.txtTime.Margin = new System.Windows.Forms.Padding(2);
             this.txtTime.Name = "txtTime";
-            this.txtTime.Size = new System.Drawing.Size(92, 36);
+            this.txtTime.Size = new System.Drawing.Size(82, 31);
             this.txtTime.TabIndex = 19;
             this.txtTime.Text = "\r\n";
             // 
@@ -146,20 +146,20 @@ namespace CarCare_Service_Center
             // 
             this.lblTimeMins.AutoSize = true;
             this.lblTimeMins.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimeMins.Location = new System.Drawing.Point(306, 350);
+            this.lblTimeMins.Location = new System.Drawing.Point(272, 311);
             this.lblTimeMins.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTimeMins.Name = "lblTimeMins";
-            this.lblTimeMins.Size = new System.Drawing.Size(59, 29);
+            this.lblTimeMins.Size = new System.Drawing.Size(46, 24);
             this.lblTimeMins.TabIndex = 18;
             this.lblTimeMins.Text = "Mins";
             // 
             // txtServiceName
             // 
             this.txtServiceName.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtServiceName.Location = new System.Drawing.Point(197, 90);
+            this.txtServiceName.Location = new System.Drawing.Point(175, 80);
             this.txtServiceName.Margin = new System.Windows.Forms.Padding(2);
             this.txtServiceName.Name = "txtServiceName";
-            this.txtServiceName.Size = new System.Drawing.Size(391, 36);
+            this.txtServiceName.Size = new System.Drawing.Size(348, 31);
             this.txtServiceName.TabIndex = 17;
             this.txtServiceName.Text = "\r\n";
             // 
@@ -169,20 +169,20 @@ namespace CarCare_Service_Center
             this.tlpPrice.ColumnCount = 4;
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.67327F));
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.32674F));
-            this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
-            this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 167F));
+            this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 194F));
+            this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 149F));
             this.tlpPrice.Controls.Add(this.btnAddPrice, 0, 1);
             this.tlpPrice.Controls.Add(this.txtPriceDescription, 2, 0);
             this.tlpPrice.Controls.Add(this.txtPriceAmount, 1, 0);
             this.tlpPrice.Controls.Add(this.lblPriceCurrency, 0, 0);
             this.tlpPrice.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tlpPrice.Location = new System.Drawing.Point(151, 173);
+            this.tlpPrice.Location = new System.Drawing.Point(134, 154);
             this.tlpPrice.Margin = new System.Windows.Forms.Padding(2);
             this.tlpPrice.Name = "tlpPrice";
             this.tlpPrice.RowCount = 2;
-            this.tlpPrice.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tlpPrice.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tlpPrice.Size = new System.Drawing.Size(672, 90);
+            this.tlpPrice.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpPrice.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpPrice.Size = new System.Drawing.Size(598, 80);
             this.tlpPrice.TabIndex = 16;
             // 
             // btnAddPrice
@@ -190,10 +190,10 @@ namespace CarCare_Service_Center
             this.btnAddPrice.AutoSize = true;
             this.btnAddPrice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAddPrice.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddPrice.Location = new System.Drawing.Point(2, 47);
+            this.btnAddPrice.Location = new System.Drawing.Point(2, 42);
             this.btnAddPrice.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddPrice.Name = "btnAddPrice";
-            this.btnAddPrice.Size = new System.Drawing.Size(89, 41);
+            this.btnAddPrice.Size = new System.Drawing.Size(79, 36);
             this.btnAddPrice.TabIndex = 29;
             this.btnAddPrice.Text = "Add";
             this.btnAddPrice.UseVisualStyleBackColor = true;
@@ -203,20 +203,20 @@ namespace CarCare_Service_Center
             // 
             this.txtPriceDescription.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPriceDescription.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPriceDescription.Location = new System.Drawing.Point(288, 2);
+            this.txtPriceDescription.Location = new System.Drawing.Point(256, 2);
             this.txtPriceDescription.Margin = new System.Windows.Forms.Padding(2);
             this.txtPriceDescription.Name = "txtPriceDescription";
-            this.txtPriceDescription.Size = new System.Drawing.Size(214, 36);
+            this.txtPriceDescription.Size = new System.Drawing.Size(190, 31);
             this.txtPriceDescription.TabIndex = 25;
             // 
             // txtPriceAmount
             // 
             this.txtPriceAmount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPriceAmount.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPriceAmount.Location = new System.Drawing.Point(95, 2);
+            this.txtPriceAmount.Location = new System.Drawing.Point(85, 2);
             this.txtPriceAmount.Margin = new System.Windows.Forms.Padding(2);
             this.txtPriceAmount.Name = "txtPriceAmount";
-            this.txtPriceAmount.Size = new System.Drawing.Size(189, 36);
+            this.txtPriceAmount.Size = new System.Drawing.Size(167, 31);
             this.txtPriceAmount.TabIndex = 23;
             this.txtPriceAmount.TabStop = false;
             // 
@@ -228,7 +228,7 @@ namespace CarCare_Service_Center
             this.lblPriceCurrency.Location = new System.Drawing.Point(2, 0);
             this.lblPriceCurrency.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPriceCurrency.Name = "lblPriceCurrency";
-            this.lblPriceCurrency.Size = new System.Drawing.Size(89, 45);
+            this.lblPriceCurrency.Size = new System.Drawing.Size(79, 40);
             this.lblPriceCurrency.TabIndex = 17;
             this.lblPriceCurrency.Text = "RM";
             this.lblPriceCurrency.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -239,21 +239,21 @@ namespace CarCare_Service_Center
             this.pnlBriefing.Controls.Add(this.txtBriefing);
             this.pnlBriefing.Controls.Add(this.btnImage);
             this.pnlBriefing.Controls.Add(this.picService);
-            this.pnlBriefing.Location = new System.Drawing.Point(23, 776);
+            this.pnlBriefing.Location = new System.Drawing.Point(20, 690);
             this.pnlBriefing.Margin = new System.Windows.Forms.Padding(2);
             this.pnlBriefing.Name = "pnlBriefing";
-            this.pnlBriefing.Size = new System.Drawing.Size(772, 292);
+            this.pnlBriefing.Size = new System.Drawing.Size(686, 260);
             this.pnlBriefing.TabIndex = 15;
             // 
             // txtBriefing
             // 
             this.txtBriefing.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBriefing.Location = new System.Drawing.Point(26, 39);
+            this.txtBriefing.Location = new System.Drawing.Point(23, 35);
             this.txtBriefing.Margin = new System.Windows.Forms.Padding(2);
             this.txtBriefing.Multiline = true;
             this.txtBriefing.Name = "txtBriefing";
             this.txtBriefing.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtBriefing.Size = new System.Drawing.Size(391, 175);
+            this.txtBriefing.Size = new System.Drawing.Size(348, 156);
             this.txtBriefing.TabIndex = 21;
             this.txtBriefing.TabStop = false;
             this.txtBriefing.Text = "\r\n";
@@ -261,10 +261,10 @@ namespace CarCare_Service_Center
             // btnImage
             // 
             this.btnImage.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImage.Location = new System.Drawing.Point(532, 237);
+            this.btnImage.Location = new System.Drawing.Point(473, 211);
             this.btnImage.Margin = new System.Windows.Forms.Padding(2);
             this.btnImage.Name = "btnImage";
-            this.btnImage.Size = new System.Drawing.Size(152, 37);
+            this.btnImage.Size = new System.Drawing.Size(135, 33);
             this.btnImage.TabIndex = 24;
             this.btnImage.TabStop = false;
             this.btnImage.Text = "Upload";
@@ -275,10 +275,10 @@ namespace CarCare_Service_Center
             // 
             this.picService.BackColor = System.Drawing.SystemColors.ControlLight;
             this.picService.Image = ((System.Drawing.Image)(resources.GetObject("picService.Image")));
-            this.picService.Location = new System.Drawing.Point(460, 22);
+            this.picService.Location = new System.Drawing.Point(409, 20);
             this.picService.Margin = new System.Windows.Forms.Padding(2);
             this.picService.Name = "picService";
-            this.picService.Size = new System.Drawing.Size(269, 191);
+            this.picService.Size = new System.Drawing.Size(239, 170);
             this.picService.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picService.TabIndex = 18;
             this.picService.TabStop = false;
@@ -287,10 +287,10 @@ namespace CarCare_Service_Center
             // 
             this.lblDescriptionTitle.AutoSize = true;
             this.lblDescriptionTitle.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescriptionTitle.Location = new System.Drawing.Point(16, 415);
+            this.lblDescriptionTitle.Location = new System.Drawing.Point(14, 369);
             this.lblDescriptionTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDescriptionTitle.Name = "lblDescriptionTitle";
-            this.lblDescriptionTitle.Size = new System.Drawing.Size(131, 29);
+            this.lblDescriptionTitle.Size = new System.Drawing.Size(106, 24);
             this.lblDescriptionTitle.TabIndex = 13;
             this.lblDescriptionTitle.Text = "Description:";
             // 
@@ -298,10 +298,10 @@ namespace CarCare_Service_Center
             // 
             this.lblBriefing.AutoSize = true;
             this.lblBriefing.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBriefing.Location = new System.Drawing.Point(17, 728);
+            this.lblBriefing.Location = new System.Drawing.Point(15, 647);
             this.lblBriefing.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBriefing.Name = "lblBriefing";
-            this.lblBriefing.Size = new System.Drawing.Size(92, 29);
+            this.lblBriefing.Size = new System.Drawing.Size(74, 24);
             this.lblBriefing.TabIndex = 7;
             this.lblBriefing.Text = "Briefing";
             // 
@@ -309,20 +309,20 @@ namespace CarCare_Service_Center
             // 
             this.lblTime.AutoSize = true;
             this.lblTime.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(16, 350);
+            this.lblTime.Location = new System.Drawing.Point(14, 311);
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(178, 29);
+            this.lblTime.Size = new System.Drawing.Size(145, 24);
             this.lblTime.TabIndex = 6;
             this.lblTime.Text = "Estimated Time: ";
             // 
             // lblPrice
             // 
             this.lblPrice.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(16, 173);
+            this.lblPrice.Location = new System.Drawing.Point(14, 154);
             this.lblPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(131, 67);
+            this.lblPrice.Size = new System.Drawing.Size(116, 60);
             this.lblPrice.TabIndex = 5;
             this.lblPrice.Text = "Price and Description:";
             // 
@@ -330,10 +330,10 @@ namespace CarCare_Service_Center
             // 
             this.lblServiceName.AutoSize = true;
             this.lblServiceName.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblServiceName.Location = new System.Drawing.Point(16, 92);
+            this.lblServiceName.Location = new System.Drawing.Point(14, 82);
             this.lblServiceName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblServiceName.Name = "lblServiceName";
-            this.lblServiceName.Size = new System.Drawing.Size(160, 29);
+            this.lblServiceName.Size = new System.Drawing.Size(132, 24);
             this.lblServiceName.TabIndex = 4;
             this.lblServiceName.Text = "Service Name: ";
             // 
@@ -341,20 +341,20 @@ namespace CarCare_Service_Center
             // 
             this.lblServiceType.AutoSize = true;
             this.lblServiceType.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblServiceType.Location = new System.Drawing.Point(16, 23);
+            this.lblServiceType.Location = new System.Drawing.Point(14, 20);
             this.lblServiceType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblServiceType.Name = "lblServiceType";
-            this.lblServiceType.Size = new System.Drawing.Size(152, 29);
+            this.lblServiceType.Size = new System.Drawing.Size(126, 24);
             this.lblServiceType.TabIndex = 3;
             this.lblServiceType.Text = "Service Type: ";
             // 
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(97, 572);
+            this.btnCancel.Location = new System.Drawing.Point(86, 508);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(150, 51);
+            this.btnCancel.Size = new System.Drawing.Size(133, 45);
             this.btnCancel.TabIndex = 25;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -368,9 +368,9 @@ namespace CarCare_Service_Center
             // 
             // ServiceInsertion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(857, 658);
+            this.ClientSize = new System.Drawing.Size(762, 585);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCancel);
