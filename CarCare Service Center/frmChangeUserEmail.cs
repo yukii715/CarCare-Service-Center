@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CarCare_Service_Center
 {
-    public partial class Form1 : Form
+    public partial class frmChangeUserEmail : Form
     {
-        public Form1()
+        public frmChangeUserEmail()
         {
             InitializeComponent();
         }

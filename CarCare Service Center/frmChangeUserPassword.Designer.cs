@@ -42,7 +42,7 @@
             // 
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBack.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Location = new System.Drawing.Point(458, 279);
+            this.btnBack.Location = new System.Drawing.Point(482, 279);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(122, 48);
             this.btnBack.TabIndex = 11;
@@ -53,7 +53,7 @@
             // 
             this.btnDone.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDone.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDone.Location = new System.Drawing.Point(244, 279);
+            this.btnDone.Location = new System.Drawing.Point(225, 279);
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(122, 48);
             this.btnDone.TabIndex = 10;
@@ -122,7 +122,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(873, 399);
+            this.ClientSize = new System.Drawing.Size(862, 399);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
