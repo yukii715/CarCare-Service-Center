@@ -20,7 +20,7 @@ namespace Users
             Password = user.Password;
             Role = user.Role;
         }
-        public void assign_staff_salary(string userid, int salary, DateTime join_date_time)
+        public static void assign_staff_salary(string userid, int salary, DateTime join_date_time)
         {
             string query = "INSERT INTO StaffSalary (UserID, Salary, JoinDateTime) VALUES (@UserID, @Salary, @JoinDateTime)";
             using (SqlConnection connection = new SqlConnection(Program.connectionString))
@@ -34,6 +34,20 @@ namespace Users
 
                 connection.Open();
 
+                // Execute the command without returning any results
+                command.ExecuteNonQuery();
+            }
+        }
+        public static void edit_staff_salary(string userid, int salary)
+        {
+            string query = "UPDATE StaffSalary SET SALARY = @Salary WHERE UserID = @UserID";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                // Add parameters to avoid SQL injection
+                command.Parameters.AddWithValue("@UserID", userid);
+                command.Parameters.AddWithValue("@Salary", salary);
+                connection.Open();
                 // Execute the command without returning any results
                 command.ExecuteNonQuery();
             }

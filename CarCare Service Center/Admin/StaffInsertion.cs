@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,10 +16,12 @@ namespace CarCare_Service_Center
     public partial class StaffInsertion : Form
     {
         private Admin admin;
-        public StaffInsertion(Admin ad)
+        private frmAdminMain frmAdmin;
+        public StaffInsertion(Admin ad, frmAdminMain frmAdminMain)
         {
             InitializeComponent();
             admin = ad;
+            frmAdmin = frmAdminMain;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -44,10 +47,16 @@ namespace CarCare_Service_Center
                 MessageBox.Show("Invalid Salary");
             else
             {
-                DateTime now = DateTime.Now;
-                User.Add(userid,username,email,password,role);
-                admin.assign_staff_salary(userid, salary, now);
+                User.Add(userid, username, email, password, role);
+                Admin.assign_staff_salary(userid, salary, DateTime.Now);
                 MessageBox.Show($"Staff added, Password is {password}");
+                frmAdmin.tlpStaffAccountData.Controls.Clear();
+                frmAdmin.tlpStaffAccountData.RowCount = 1;
+                frmAdmin.cmbRoleSelection.SelectedIndex = -1;
+                frmAdmin.txtStaffSearch.Text = "Search";
+                frmAdmin.LoadUser();
+                Close();
+                frmAdmin.Show();
             }
         }
     }

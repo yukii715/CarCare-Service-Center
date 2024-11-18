@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CarCare_Service_Center
 {
-    public partial class CustomerEdit : Form
+    public partial class PendingAppointments : Form
     {
-        public CustomerEdit()
+        public PendingAppointments()
         {
             InitializeComponent();
         }

@@ -1,4 +1,6 @@
 ﻿
+
+using Functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Users;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace CarCare_Service_Center
 {
@@ -17,12 +21,14 @@ namespace CarCare_Service_Center
     {
         private User user;
         private StaffDetails StaffDetails;
+        private frmAdminMain frmAdmin;
 
-        public StaffDetailConfiguration(User u = null, StaffDetails sd = null)
+        public StaffDetailConfiguration(User u, StaffDetails sd, frmAdminMain frmAdminMain)
         {
             InitializeComponent();
             user = u;
             StaffDetails = sd;
+            frmAdmin = frmAdminMain;
         }
 
         private void StaffDetailConfiguration_Load(object sender, EventArgs e)
@@ -42,23 +48,33 @@ namespace CarCare_Service_Center
 
         private void btnApply_Click(object sender, EventArgs e)
         {
+            string staffID = user.UserID.ToString().Trim();
+
             if (txtSalary.Text == null)
             {
                 lblError.Visible = true;
                 lblError.Text = "Please Enter a Salary Amount!";
             }
-            else if (decimal.TryParse(txtSalary.Text, out decimal Salary))
-            {
-                MessageBox.Show("Apply Successfully", "Staff Detail Upated", MessageBoxButtons.OK);
-                Close();
-                StaffDetails.Close();
-                StaffDetails staffDetails = new StaffDetails(user);
-                staffDetails.Show();
-            }
-            else
+            else if (!int.TryParse(txtSalary.Text, out int Salary))
             {
                 lblError.Visible = true;
                 lblError.Text = "Please enter a valid amount for Salary!";
+            }
+            else
+            {
+                Admin.edit_staff_salary(staffID, Salary);
+
+                MessageBox.Show("Apply Successfully", "Staff Detail Upated", MessageBoxButtons.OK);
+
+                frmAdmin.tlpStaffAccountData.Controls.Clear();
+                frmAdmin.tlpStaffAccountData.RowCount = 1;
+                frmAdmin.cmbRoleSelection.SelectedIndex = -1;
+                frmAdmin.txtStaffSearch.Text = "Search";
+                frmAdmin.LoadUser();
+                Close();
+                StaffDetails.Close();
+                StaffDetails staffDetails = new StaffDetails(user, frmAdmin);
+                staffDetails.Show();
             }
         }
 

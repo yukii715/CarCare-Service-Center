@@ -44,7 +44,7 @@
             // 
             this.btnAdd.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.Location = new System.Drawing.Point(423, 414);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(105, 41);
             this.btnAdd.TabIndex = 35;
@@ -56,7 +56,7 @@
             // 
             this.btnCancel.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(76, 414);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(105, 41);
             this.btnCancel.TabIndex = 34;
@@ -68,7 +68,7 @@
             // 
             this.txtSalary.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSalary.Location = new System.Drawing.Point(250, 315);
-            this.txtSalary.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtSalary.Margin = new System.Windows.Forms.Padding(2);
             this.txtSalary.Name = "txtSalary";
             this.txtSalary.Size = new System.Drawing.Size(307, 38);
             this.txtSalary.TabIndex = 33;
@@ -82,7 +82,7 @@
             "Mechanic",
             "Receptionist"});
             this.cmbRoleSelection.Location = new System.Drawing.Point(250, 229);
-            this.cmbRoleSelection.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbRoleSelection.Margin = new System.Windows.Forms.Padding(2);
             this.cmbRoleSelection.Name = "cmbRoleSelection";
             this.cmbRoleSelection.Size = new System.Drawing.Size(307, 38);
             this.cmbRoleSelection.TabIndex = 32;
@@ -135,7 +135,7 @@
             // 
             this.txtStaffEmail.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStaffEmail.Location = new System.Drawing.Point(250, 143);
-            this.txtStaffEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtStaffEmail.Margin = new System.Windows.Forms.Padding(2);
             this.txtStaffEmail.Name = "txtStaffEmail";
             this.txtStaffEmail.Size = new System.Drawing.Size(307, 38);
             this.txtStaffEmail.TabIndex = 36;
@@ -144,7 +144,7 @@
             // 
             this.txtStaffName.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStaffName.Location = new System.Drawing.Point(250, 56);
-            this.txtStaffName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtStaffName.Margin = new System.Windows.Forms.Padding(2);
             this.txtStaffName.Name = "txtStaffName";
             this.txtStaffName.Size = new System.Drawing.Size(307, 38);
             this.txtStaffName.TabIndex = 37;
@@ -164,7 +164,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "StaffInsertion";
             this.Text = "StaffInsertion";
             this.ResumeLayout(false);

@@ -22,6 +22,13 @@ namespace CarCare_Service_Center
         private List<Services> services;
         private List<Services> selected_services = new List<Services>();
         private List<Appointment> appointments;
+        private List<Appointment> late_appointments;
+        private List<Appointment> cancelled_appointments;
+        private List<Appointment> rejected_appointments;
+        private List<Services.ServiceOrder> my_order;
+        private List<Services.ServiceOrder.ServiceEntry> my_order_entries;
+        private List<Services.ServiceOrder.ServiceEntry.ServiceParts> ServiceParts;
+        private List<Parts> Parts;
         private Customer customer;
         public frmCustomerMain(Customer cus)
         {
@@ -61,7 +68,7 @@ namespace CarCare_Service_Center
             AddServiceTypeIntoComboBox(cmbServiceType);
             SetupComboBoxPlaceHolder();
             SetupInitialServiceSelection();
-            LoadMyAppointment();
+            LoadAppointment();
         }
 
         private void AddServiceTypeIntoComboBox(ComboBox cmb)
@@ -467,16 +474,23 @@ namespace CarCare_Service_Center
             {
                 pnlMyAppointment.Controls.Remove(ctrl);
             }
-            LoadMyAppointment();
+            LoadAppointment();
         }
         //
         // My Appointment
         //
+        public void LoadAppointment()
+        {
+            LoadMyAppointment();
+            LoadRejectedAppointment();
+            LoadLateAppointment();
+            LoadCancelledAppointment();
+        }
         private void LoadMyAppointment()
         {
             int my_appointment_row = 0;
 
-            string find_cus_appointment = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}'";
+            string find_cus_appointment = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}' AND Status IN ('Pending', 'Accepted') ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
             appointments = Database.FetchData<Appointment>(find_cus_appointment);
 
             for (int i = 0; i < appointments.Count; i++)
@@ -515,7 +529,7 @@ namespace CarCare_Service_Center
 
             Label Date = new Label
             {
-                Text = "Date: " + appointments[i].AppointmentDateTime.ToString("yyyy-MM-dd"),
+                Text = "Date: " + appointments[i].AppointmentDateTime.ToString("yyyy-MM-dd dddd"),
                 Location = new Point(6, 30),
                 AutoSize = true
             };
@@ -523,7 +537,7 @@ namespace CarCare_Service_Center
 
             Label Time = new Label
             {
-                Text = "Time: " + appointments[i].AppointmentDateTime.ToString("HH:ss"),
+                Text = "Time: " + appointments[i].AppointmentDateTime.ToString("hh:ss tt"),
                 Location = new Point(6, 50),
                 AutoSize = true
             };
@@ -540,6 +554,202 @@ namespace CarCare_Service_Center
             panel.Controls.Add(Details);
 
             row++;
+
+            Details.Click += (s, e) =>
+            {
+                Appointment appointment = (Appointment)Details.Tag;
+                frmAppointmentDetails frmAppointmentDetails = new frmAppointmentDetails(appointment, this);
+                frmAppointmentDetails.ShowDialog();
+            };
+        }
+        private void LoadRejectedAppointment()
+        {
+            int my_appointment_row = appointments.Count;
+
+            string find_rejected_appointment = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}' AND Status = 'Rejected' ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
+            rejected_appointments = Database.FetchData<Appointment>(find_rejected_appointment);
+
+            for (int i = 0; i < rejected_appointments.Count; i++)
+            {
+                showRejectedLateCancelledAppointment(rejected_appointments, ref i, ref my_appointment_row);
+            }
+        }
+        private void LoadLateAppointment()
+        {
+            int my_appointment_row = appointments.Count + rejected_appointments.Count;
+
+            string find_late_appointment = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}' AND Status = 'Late' ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
+            late_appointments = Database.FetchData<Appointment>(find_late_appointment);
+
+            for (int i = 0; i < late_appointments.Count; i++)
+            {
+                showRejectedLateCancelledAppointment(late_appointments, ref i, ref my_appointment_row);
+            }
+        }
+        private void LoadCancelledAppointment()
+        {
+            int my_appointment_row = appointments.Count + rejected_appointments.Count +late_appointments.Count;
+
+            string find_cancelled_appointment = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}' AND Status = 'Cancelled' ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
+            cancelled_appointments = Database.FetchData<Appointment>(find_cancelled_appointment);
+
+            for (int i = 0; i < cancelled_appointments.Count; i++)
+            {
+                showRejectedLateCancelledAppointment(cancelled_appointments, ref i, ref my_appointment_row);
+            }
+        }
+        
+        private void showRejectedLateCancelledAppointment(List<Appointment> target_list, ref int i, ref int row)
+        {
+            int start_X = 25;
+            int start_Y = 130;
+
+            Panel panel = new Panel
+            {
+                Font = new Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Regular),
+                Location = new Point(start_X, start_Y + 190 * row),
+                Size = new Size(630, 155),
+                BackColor = Color.Moccasin,
+                BorderStyle = BorderStyle.FixedSingle,
+            };
+            pnlMyAppointment.Controls.Add(panel);
+
+            Label BottomMargin = new Label
+            {
+                Location = new Point(start_X, start_Y + 155 + 190 * row)
+            };
+            pnlMyAppointment.Controls.Add(BottomMargin);
+
+            Label Message = new Label
+            {
+                Text = "*" + target_list[i].Status,
+                ForeColor = Color.Red,
+                Location = new Point(6, 10),
+                AutoSize = true
+            };
+            panel.Controls.Add(Message);
+
+            Label ID = new Label
+            {
+                Text = target_list[i].AppointmentID,
+                Location = new Point(6, 30),
+                AutoSize = true
+            };
+            panel.Controls.Add(ID);
+
+            Label Date = new Label
+            {
+                Text = "Date: " + target_list[i].AppointmentDateTime.ToString("yyyy-MM-dd dddd"),
+                Location = new Point(6, 50),
+                AutoSize = true
+            };
+            panel.Controls.Add(Date);
+
+            Label Time = new Label
+            {
+                Text = "Time: " + target_list[i].AppointmentDateTime.ToString("hh:ss tt"),
+                Location = new Point(6, 70),
+                AutoSize = true
+            };
+            panel.Controls.Add(Time);
+
+            Button Details = new Button
+            {
+                Text = "Details",
+                Location = new Point(500, 100),
+                Size = new Size(105, 30),
+                FlatStyle = FlatStyle.Popup,
+                Tag = target_list[i]
+            };
+            panel.Controls.Add(Details);
+
+            row++;
+
+            Details.Click += (s, e) =>
+            {
+                Appointment appointment = (Appointment)Details.Tag;
+                frmAppointmentDetails frmAppointmentDetails = new frmAppointmentDetails(appointment, this);
+                frmAppointmentDetails.ShowDialog();
+            };
+        }
+        //
+        // History
+        //
+        private void LoadHistory()
+        {
+            int my_appointment_row = 0;
+
+            string find_History = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}' AND Status IN ('Pending', 'Accepted') ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
+            appointments = Database.FetchData<Appointment>(find_History);
+
+            for (int i = 0; i < appointments.Count; i++)
+            {
+                showHistory(ref i, ref my_appointment_row);
+            }
+        }
+        private void showHistory(ref int i, ref int row)
+        {
+            int start_X = 25;
+            int start_Y = 130;
+
+            Panel panel = new Panel
+            {
+                Font = new Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Regular),
+                Location = new Point(start_X, start_Y + 190 * row),
+                Size = new Size(630, 155),
+                BackColor = Color.Moccasin,
+                BorderStyle = BorderStyle.FixedSingle,
+            };
+            pnlMyAppointment.Controls.Add(panel);
+
+            Label BottomMargin = new Label
+            {
+                Location = new Point(start_X, start_Y + 155 + 190 * row)
+            };
+            pnlMyAppointment.Controls.Add(BottomMargin);
+
+            Label ID = new Label
+            {
+                Text = appointments[i].AppointmentID,
+                Location = new Point(6, 10),
+                AutoSize = true
+            };
+            panel.Controls.Add(ID);
+
+            Label Date = new Label
+            {
+                Text = "Date: " + appointments[i].AppointmentDateTime.ToString("yyyy-MM-dd dddd"),
+                Location = new Point(6, 30),
+                AutoSize = true
+            };
+            panel.Controls.Add(Date);
+
+            Label Time = new Label
+            {
+                Text = "Time: " + appointments[i].AppointmentDateTime.ToString("hh:ss tt"),
+                Location = new Point(6, 50),
+                AutoSize = true
+            };
+            panel.Controls.Add(Time);
+
+            Button Details = new Button
+            {
+                Text = "Details",
+                Location = new Point(500, 100),
+                Size = new Size(105, 30),
+                FlatStyle = FlatStyle.Popup,
+                Tag = appointments[i]
+            };
+            panel.Controls.Add(Details);
+
+            row++;
+
+            Details.Click += (s, e) =>
+            {
+                Appointment appointment = (Appointment)Details.Tag;
+                frmAppointmentDetails frmAppointmentDetails = new frmAppointmentDetails(appointment, this);
+                frmAppointmentDetails.ShowDialog();
+            };
         }
     }
 }

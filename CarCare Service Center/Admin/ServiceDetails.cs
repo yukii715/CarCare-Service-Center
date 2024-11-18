@@ -1,9 +1,11 @@
 ﻿
+
 using Functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -18,29 +20,33 @@ namespace CarCare_Service_Center
     public partial class ServiceDetails : Form
     {
         Services service = new Services();
-        List<Services.ServicePrice> service_price = new List<Services.ServicePrice>();
+        private List<Services.ServicePrice> service_price;
+        private frmAdminMain frmAdmin;
 
-        public ServiceDetails(Services s = null)
+        public ServiceDetails(frmAdminMain frmAdminMain, Services s)
         {
             InitializeComponent();
             service = s;
+            frmAdmin = frmAdminMain;
         }
 
 
         private void ServiceDetails_Load(object sender, EventArgs e)
         {
-            string query = "Select * FROM ServicePrice;";
-            service_price = Database.FetchData<Services.ServicePrice>(query);
 
+
+            string query = "SELECT * From ServicePrice WHERE ServiceID = " + $"'{service.ServiceID}'" + "ORDER BY PRiCE; ";
+            service_price = Database.FetchData<Services.ServicePrice>(query); // Return the result from query
 
             lblServiceID.Text = "Service ID: " + service.ServiceID.Trim();
             lblServiceType.Text = "Service Type: " + service.ServiceType.Trim();
             lblServiceName.Text = "Service Name: " + service.ServiceName.Trim();
-            var servicePrice = from Price in service_price
-                               where Price.ServiceID == service.ServiceID
-                               select Price;
+            //var servicePrice = from Price in service_price
+            //                   where Price.ServiceID == service.ServiceID
+            //                   select Price;
 
-            service_price = servicePrice.ToList();
+            //service_price = servicePrice.ToList();
+
 
             for (int i = 0; i < service_price.Count; i++)
             {
@@ -95,26 +101,21 @@ namespace CarCare_Service_Center
             lblTitle.Text = service.ServiceID.Trim() + " " + service.ServiceName.Trim();
             lblBriefDescription.Text = service.Briefing.Trim();
 
-            using (MemoryStream ms = new MemoryStream(service.ImageData))
-            {
-                Image img = Image.FromStream(ms);
-                // Set the image to the PictureBox
-                picService.Image = img;
-            }
+            picService.Image = IMG.ConvertByByteArray(service.ImageData);
         }
 
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            ServiceEdit serviceDetailConfiguration = new ServiceEdit(service, service_price, this);
+            ServiceEdit serviceDetailConfiguration = new ServiceEdit(frmAdmin, service, service_price, this);
             serviceDetailConfiguration.Show();
             Hide();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            ServiceDeletion serviceDeletion = new ServiceDeletion();
-            serviceDeletion.Show();
+            ServiceDeletion serviceDeletion = new ServiceDeletion(service, this, frmAdmin);
+            serviceDeletion.ShowDialog();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

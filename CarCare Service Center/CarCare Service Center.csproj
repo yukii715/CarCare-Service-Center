@@ -83,7 +83,61 @@
     <Compile Include="Admin\ServiceInsertion.Designer.cs">
       <DependentUpon>ServiceInsertion.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChangeEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeEmail.Designer.cs">
+      <DependentUpon>ChangeEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangePassword.Designer.cs">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeUsername.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeUsername.Designer.cs">
+      <DependentUpon>ChangeUsername.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Receptionist\PartsPurchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receptionist\PartsPurchase.Designer.cs">
+      <DependentUpon>PartsPurchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Receptionist\PartsRequestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Receptionist\PartsRequestControl.Designer.cs">
+      <DependentUpon>PartsRequestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Receptionist\PendingAppointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receptionist\PendingAppointments.Designer.cs">
+      <DependentUpon>PendingAppointments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Receptionist\CustomerDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receptionist\CustomerDetails.Designer.cs">
+      <DependentUpon>CustomerDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\AppointmentDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer\AppointmentDetails.Designer.cs">
+      <DependentUpon>AppointmentDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlSetting.cs" />
+    <Compile Include="Customer\DeleteConfirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer\DeleteConfirmation.Designer.cs">
+      <DependentUpon>DeleteConfirmation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Details.cs" />
     <Compile Include="Admin\FeedbackDetails.cs">
       <SubType>Form</SubType>
@@ -91,11 +145,11 @@
     <Compile Include="Admin\FeedbackDetails.Designer.cs">
       <DependentUpon>FeedbackDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mechanic\EditProfile.cs">
+    <Compile Include="Customer\HistoryDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mechanic\EditProfile.Designer.cs">
-      <DependentUpon>EditProfile.cs</DependentUpon>
+    <Compile Include="Customer\HistoryDetails.Designer.cs">
+      <DependentUpon>HistoryDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Mechanic\Progress.cs">
       <SubType>Form</SubType>
@@ -103,11 +157,11 @@
     <Compile Include="Mechanic\Progress.Designer.cs">
       <DependentUpon>Progress.cs</DependentUpon>
     </Compile>
-    <Compile Include="Receptionist\CustomerEdit.cs">
+    <Compile Include="Receptionist\PartsRequest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Receptionist\CustomerEdit.Designer.cs">
-      <DependentUpon>CustomerEdit.cs</DependentUpon>
+    <Compile Include="Receptionist\PartsRequest.Designer.cs">
+      <DependentUpon>PartsRequest.cs</DependentUpon>
     </Compile>
     <Compile Include="Receptionist\CustomerRequests.cs">
       <SubType>Form</SubType>
@@ -220,18 +274,45 @@
     <Compile Include="Admin\StaffSalaryRecord.Designer.cs">
       <DependentUpon>StaffSalaryRecord.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\StaffSalaryDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\StaffSalaryDetails.Designer.cs">
+      <DependentUpon>StaffSalaryDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs" />
     <EmbeddedResource Include="Admin\ServiceInsertion.resx">
       <DependentUpon>ServiceInsertion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChangeEmail.resx">
+      <DependentUpon>ChangeEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangePassword.resx">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangeUsername.resx">
+      <DependentUpon>ChangeUsername.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\AppointmentDetails.resx">
+      <DependentUpon>AppointmentDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Customer\CustomerMain.resx">
       <DependentUpon>CustomerMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\HistoryDetails.resx">
+      <DependentUpon>HistoryDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\DeleteConfirmation.resx">
+      <DependentUpon>DeleteConfirmation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login and Register\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mechanic\MechanicMain.resx">
       <DependentUpon>MechanicMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanic\Shortages.resx">
+      <DependentUpon>Shortages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

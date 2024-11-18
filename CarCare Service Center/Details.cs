@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.IO.Ports;
 using Users;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CarCare_Service_Center
 {
@@ -84,6 +85,52 @@ namespace CarCare_Service_Center
                 command.ExecuteNonQuery();
             }
         }
+        public void Edit()
+        {
+            string query = "UPDATE Services SET EstimatedTime = @EstimatedTime, Description = @Description, Briefing = @Briefing, ImageData = @ImageData WHERE ServiceID = @ServiceID; ";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                // Add parameters to avoid SQL injection
+                command.Parameters.AddWithValue("@ServiceID", ServiceID);
+                command.Parameters.AddWithValue("@EstimatedTime", EstimatedTime);
+                command.Parameters.AddWithValue("@Description", Description);
+                command.Parameters.AddWithValue("@Briefing", Briefing);
+                command.Parameters.Add("@ImageData", SqlDbType.VarBinary).Value = ImageData;
+                connection.Open();
+                // Execute the command
+                command.ExecuteNonQuery();
+            }
+        }
+        public void EditWithoutNewImage()
+        {
+            string query = "UPDATE Services SET EstimatedTime = @EstimatedTime, Description = @Description, Briefing = @Briefing WHERE ServiceID = @ServiceID; ";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                // Add parameters to avoid SQL injection
+                command.Parameters.AddWithValue("@ServiceID", ServiceID);
+                command.Parameters.AddWithValue("@EstimatedTime", EstimatedTime);
+                command.Parameters.AddWithValue("@Description", Description);
+                command.Parameters.AddWithValue("@Briefing", Briefing);
+                connection.Open();
+                // Execute the command
+                command.ExecuteNonQuery();
+            }
+        }
+        public static void Delete(string serviceID)
+        {
+            string query = "UPDATE Services SET IsDeleted = 1 WHERE ServiceID = @ServiceID";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                // Add parameters to avoid SQL injection
+                command.Parameters.AddWithValue("@ServiceID", serviceID);
+                connection.Open();
+                // Execute the command without returning any results
+                command.ExecuteNonQuery();
+            }
+        }
         public class ServicePrice
         {
             public string ServiceID { get; set; }
@@ -114,20 +161,52 @@ namespace CarCare_Service_Center
                     command.ExecuteNonQuery();
                 }
             }
+            public void Delete()
+            {
+                string query = "DELETE FROM ServicePrice WHERE ServiceID = @ServiceID;";
+
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Add parameters to avoid SQL injection
+                    command.Parameters.AddWithValue("@ServiceID", ServiceID);
+
+                    connection.Open();
+
+                    // Execute the command
+                    command.ExecuteNonQuery();
+                }
+            }
         }
             public class ServiceOrder
         {
             public string ServiceOrderID { get; set; }
+            public string Username { get; set; }
             public string ApointmentID { get; set; }
-            public DateTime Date { get; set; }
-            public DateTime ArrivalTime { get; set; }
-            public DateTime StartTime {  get; set; }
+            public DateTime ArrivalDateTime { get; set; }
+            public DateTime StartDateTime {  get; set; }
             public DateTime EndDateTime { get; set; }
             public DateTime CollectionDateTime { get; set; }
             public string Remark { get; set; }
-            public string TotalPrice { get; set; }
+            public Decimal TotalPrice { get; set; }
             public string Feedback { get; set; }
             public int Rating { get; set; }
+            public string GenerateServiceOrderID()
+            {
+                string query = "SELECT COUNT(*) FROM ServiceOrder";
+                string ServiceOrderID;
+                string DateTime = ArrivalDateTime.ToString("HHmmssddMMyy");
+
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    ServiceOrderID = string.Concat(DateTime.Reverse()) + (count + 1).ToString("D8"); // Zero-padded to 7 digits
+                }
+                return ServiceOrderID;
+            }
             public class ServiceEntry
             {
                 public string ServiceEntryID { get; set; }
@@ -136,6 +215,19 @@ namespace CarCare_Service_Center
                 public Decimal Price { get; set; }
                 public string InitialStatus { get; set; }
                 public string CompletionStatus { get; set; }
+                public string GenerateServiceEntryID()
+                {
+                    string query = "SELECT COUNT(*) FROM ServiceEntry WHERE ServiceOrderID = @ServiceOrderID";
+                    string ServiceEntryID;
+                    using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                    {
+                        SqlCommand command = new SqlCommand(query, connection);
+                        connection.Open();
+                        int count = (int)command.ExecuteScalar();
+                        ServiceEntryID = string.Concat(ServiceOrderID.Substring(ServiceOrderID.Length - 8).Reverse()) + (count + 1).ToString("D2"); // Zero-padded to 7 digits
+                    }
+                    return ServiceEntryID;
+                }
                 public class ServiceParts
                 {
                     public string ServiceEntryID { get; set; }
@@ -192,6 +284,38 @@ namespace CarCare_Service_Center
                 command.ExecuteNonQuery();
             }
         }
+        public void UpdateStatus(string status)
+        {
+            string query = "UPDATE Appointments SET Status = @Status WHERE AppointmentID = @AppointmentID";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@AppointmentID", AppointmentID);
+                command.Parameters.AddWithValue("@Status", status);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
+        }
+        public void Modify()
+        {
+            string query = "UPDATE Appointments " +
+                "SET AppointmentDateTime = @AppointmentDateTime, " +
+                "VehicleNumber = @VehicleNumber " +
+                "WHERE AppointmentID = @AppointmentID";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@AppointmentID", AppointmentID);
+                command.Parameters.AddWithValue("@AppointmentDateTime", AppointmentDateTime);
+                command.Parameters.AddWithValue("@VehicleNumber", VehicleNumber);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
+        }
         public static bool IsVehicleNumberValid(string vehicle_number)
         {
             // Must start with capital letter, and can only contains capital letter and number within 2 - 15 characters and both must exist
@@ -230,6 +354,11 @@ namespace CarCare_Service_Center
         public int Stock {  get; set; }
         public Decimal SellPrice { get; set; }
         public string Status {  get; set; }
+        public static bool IsPartTypePrefixValid(string partTypePrefix)
+        {
+            string pattern = @"^[A-Z]{3}$";
+            return Regex.IsMatch(partTypePrefix, pattern);
+        }
         public static string GeneratePartID(string PartType, string newPrefix)
         {
             string PartID;

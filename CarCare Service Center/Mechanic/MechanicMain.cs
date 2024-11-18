@@ -1,40 +1,46 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using ControlSetting;
 using Functions;
 using Users;
 using static CarCare_Service_Center.Appointment;
+using static Users.Mechanic;
 
 namespace CarCare_Service_Center
 {
     public partial class frmMechanicMain : Form
     {
+        private List<Label> progressNotes = new List<Label>();
+        private List<Label> progressServiceNames = new List<Label>();
         private Mechanic mechanic;
-        private List<Mechanic.MechanicTasks> mechanic_task = new List<Mechanic.MechanicTasks>();
-        private List<Appointment> appointments = new List<Appointment>();
-        private List<User> users = new List<User>();
-        private List<Appointment.Services> appointment_service = new List<Appointment.Services>();
-        private List<Services> services = new List<Services>();
-
+        private List<MechanicTasks> mechanic_task;
+        private List<Appointment> appointments;
+        private List<User> users;
+        private List<Appointment.Services> appointment_service;
+        private List<Services> services;
+        private List<MechanicTasks> ServiceProgress;
+        private List<Services> ServiceInProgress = new List<Services>();
+        private List<Appointment.Services> CustomerService;
         public frmMechanicMain(Mechanic mec)
         {
             InitializeComponent();
             mechanic = mec;
             sessionStartTime = DateTime.Now;
             timer1.Start();
-
         }
         private DateTime sessionStartTime;
-
 
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -51,12 +57,6 @@ namespace CarCare_Service_Center
         }
 
 
-
-        private void btnProfile_Click(object sender, EventArgs e)
-        {
-            EditProfile editprofileform = new EditProfile(this);
-            editprofileform.ShowDialog();
-        }
         public void updateProfile(string name, string mail)
         {
             nameProfileChange.Text = name;
@@ -78,148 +78,303 @@ namespace CarCare_Service_Center
         private void frmMechanicMain_Load(object sender, EventArgs e)
         {
             tabMechanic.DrawItem += Draw_Item.tabControlAdjustment;
-            tblCustomerRequests_Load(sender, e);
-            cmbService.Enabled = false;
+
+            string query_MechanicTasks = "SELECT * FROM MechanicTasks WHERE InProgress IS NULL AND UserID = " + $"'{mechanic.UserID}'";
+            mechanic_task = Database.FetchData<MechanicTasks>(query_MechanicTasks);
+
+            string query_Appointments = "SELECT * FROM Appointments WHERE Status = 'Accepted'";
+            appointments = Database.FetchData<Appointment>(query_Appointments);
+
+            string query_Users = "SELECT * FROM Users WHERE IsDeleted = 0";
+            users = Database.FetchData<User>(query_Users);
+
+            string query_AppointmentServices = "SELECT * FROM AppointmentServices";
+            appointment_service = Database.FetchData<Appointment.Services>(query_AppointmentServices);
+
+            string query_Services = "SELECT * FROM Services";
+            services = Database.FetchData<Services>(query_Services);
+            LoadMechanicTasks();
+
+            string query_ServiceProgress = "SELECT * FROM MechanicTasks WHERE InProgress = 1 AND UserID = " + $"'{mechanic.UserID}'";
+            ServiceProgress = Database.FetchData<MechanicTasks>(query_ServiceProgress);
+            ServiceProgress_load();
+
+            string query = "SELECT DISTINCT ServiceType FROM Services";
+            Database.LoadIntoComboBox(cmbServiceType, query, "ServiceType");
         }
-        private void tblCustomerRequests_Load(object sender, EventArgs e)
+
+        private void LoadMechanicTasks()
         {
-            mechanic_task.Add(new Mechanic.MechanicTasks { UserID = "1", AppointmentID = "1" });
-            mechanic_task.Add(new Mechanic.MechanicTasks { UserID = "1", AppointmentID = "2" });
-
-            string format = "yyyy-MM-dd HH:mm:ss";
-            appointments.Add(new Appointment { UserID = "C1", AppointmentID = "1", AppointmentDateTime = DateTime.ParseExact("2024-11-15 15:30:00", format, System.Globalization.CultureInfo.InvariantCulture) });
-            appointments.Add(new Appointment { UserID = "C2", AppointmentID = "2", AppointmentDateTime = DateTime.ParseExact("2024-11-17 10:00:00", format, System.Globalization.CultureInfo.InvariantCulture) });
-
-            users.Add(new User { UserID = "C1", Username = "Venti" });
-            users.Add(new User { UserID = "C2", Username = "Kinich" });
-
-            appointment_service.Add(new Appointment.Services { AppointmentID = "1", ServiceID = "1" });
-            appointment_service.Add(new Appointment.Services { AppointmentID = "1", ServiceID = "2" });
-            appointment_service.Add(new Appointment.Services { AppointmentID = "2", ServiceID = "1" });
-
-            services.Add(new Services { ServiceID = "1", ServiceName = "Service1" });
-            services.Add(new Services { ServiceID = "2", ServiceName = "Service2" });
-
-            tblCustomerRequests.RowCount = mechanic_task.Count + 1;  // Add a row for headers
-
-            // Loop through mechanic tasks and populate the TableLayoutPanel
             for (int i = 0; i < mechanic_task.Count; i++)
             {
-                var task = mechanic_task[i];
-                var appointment = appointments.Find(a => a.AppointmentID == task.AppointmentID);
-                var customer = users.Find(u => u.UserID == appointment?.UserID);
+                int rowheight = 29 * appointment_service.FindAll(apts => apts.AppointmentID == mechanic_task[i].AppointmentID).Count;
+                tlpServiceTask.RowStyles.Add(new RowStyle(SizeType.Absolute, rowheight));
+                tlpServiceTask.Height += rowheight + 5;
 
-                if (appointment != null && customer != null)
-                {
-                    task.DateTime = appointment.AppointmentDateTime;
-                    task.CustomerName = customer.Username;
-                }
-                else
-                {
-                    task.CustomerName = "Unknown";
-                    task.DateTime = DateTime.MinValue; // Assign a default date if missing
-                }
+                Label NOTE = new Label();
+                NOTE.Text = (i + 1).ToString();
+                tlpServiceTask.Controls.Add(NOTE, 0, i + 1);
+                NOTE.Dock = DockStyle.Fill;
+                NOTE.TextAlign = ContentAlignment.MiddleLeft;
 
-                // Populate table layout with task information
-                Label noteLabel = new Label { Text = (i + 1).ToString(), Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft };
-                tblCustomerRequests.Controls.Add(noteLabel, 0, i + 1);
+                Label CustomerName = new Label();
+                CustomerName.Text = users.Find(u => u.UserID == appointments.Find(a => a.AppointmentID == mechanic_task[i].AppointmentID).UserID).Username;
+                tlpServiceTask.Controls.Add(CustomerName, 1, i + 1);
+                CustomerName.Dock = DockStyle.Fill;
+                CustomerName.TextAlign = ContentAlignment.MiddleLeft;
 
-                Label nameLabel = new Label { Text = task.CustomerName, Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft };
-                tblCustomerRequests.Controls.Add(nameLabel, 1, i + 1);
+                Label ServiceName = new Label();
+                appointment_service.FindAll(apts => apts.AppointmentID == mechanic_task[i].AppointmentID).ForEach(service => ServiceName.Text += services.Find(s => s.ServiceID == service.ServiceID).ServiceName.Trim() + "\n");
+                ServiceName.Text = ServiceName.Text.Substring(0, ServiceName.Text.Length - 1);
+                tlpServiceTask.Controls.Add(ServiceName, 2, i + 1);
+                ServiceName.Dock = DockStyle.Fill;
+                ServiceName.TextAlign = ContentAlignment.MiddleLeft;
 
-                // Build the Service Name string
-                string serviceName = string.Join(", ", appointment_service
-                    .Where(s => s.AppointmentID == task.AppointmentID)
-                    .Select(s => services.Find(serv => serv.ServiceID == s.ServiceID)?.ServiceName)
-                    .Where(name => name != null));
+                Label ServiceDate = new Label();
+                ServiceDate.Text = appointments.Find(a => a.AppointmentID == mechanic_task[i].AppointmentID).AppointmentDateTime.ToString("yyyy-MM-dd");
+                tlpServiceTask.Controls.Add(ServiceDate, 3, i + 1);
+                ServiceDate.Dock = DockStyle.Fill;
+                ServiceDate.TextAlign = ContentAlignment.MiddleLeft;
 
-                Label serviceLabel = new Label { Text = serviceName, Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft };
-                tblCustomerRequests.Controls.Add(serviceLabel, 2, i + 1);
-
-                Label dateLabel = new Label { Text = task.DateTime.ToString("yyyy-MM-dd"), Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft };
-                tblCustomerRequests.Controls.Add(dateLabel, 3, i + 1);
-
-                Label timeLabel = new Label { Text = task.DateTime.ToString("HH:mm"), Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft };
-                tblCustomerRequests.Controls.Add(timeLabel, 4, i + 1);
+                Label ServiceTime = new Label();
+                ServiceTime.Text = appointments.Find(a => a.AppointmentID == mechanic_task[i].AppointmentID).AppointmentDateTime.ToString("HH:mm");
+                tlpServiceTask.Controls.Add(ServiceTime, 4, i + 1);
+                ServiceTime.Dock = DockStyle.Fill;
+                ServiceTime.TextAlign = ContentAlignment.MiddleLeft;
             }
+            tlpServiceTask.RowCount = mechanic_task.Count + 1;
         }
-        private Dictionary<string, List<string>> serviceTypeOptions = new Dictionary<string, List<string>>()
-{
-        { "a", new List<string> { "1", "2", "3" } },
-        { "b", new List<string> { "4", "5", "6" } },
-        { "c", new List<string> { "7", "8", "9" } }
-};
 
+        private void ServiceProgress_load()
+        {
+            if (ServiceProgress.Count == 0)
+                return;
+            lblAppointmentId.Text = ServiceProgress[0].AppointmentID;
+            lblAppointmentId.Dock = DockStyle.Fill;
+            lblAppointmentId.TextAlign = ContentAlignment.MiddleLeft;
+
+            lblUserId.Text = appointments.Find(a => a.AppointmentID == ServiceProgress[0].AppointmentID).UserID;
+            lblUserId.Dock = DockStyle.Fill;
+            lblUserId.TextAlign = ContentAlignment.MiddleLeft;
+
+            lblProgressName.Text = users.Find(u => u.UserID == appointments.Find(a => a.AppointmentID == ServiceProgress[0].AppointmentID).UserID).Username;
+            lblProgressName.Dock = DockStyle.Fill;
+            lblProgressName.TextAlign = ContentAlignment.MiddleLeft;
+
+            lblProgressPlateNumber.Text = appointments.Find(a => a.AppointmentID == ServiceProgress[0].AppointmentID).VehicleNumber;
+            lblProgressPlateNumber.Dock = DockStyle.Fill;
+            lblProgressPlateNumber.TextAlign = ContentAlignment.MiddleLeft;
+
+            string query_CustomerService = "SELECT * FROM AppointmentServices WHERE AppointmentID = " + $"'{lblAppointmentId.Text}'";
+            CustomerService = Database.FetchData<Appointment.Services>(query_CustomerService);
+
+            for (int i = 0; i < CustomerService.Count; i++)
+
+            {
+                Label ProgressNote = new Label();
+                ProgressNote.Text = (i + 1).ToString();
+                tlpServiceProgress.Controls.Add(ProgressNote, 0, i + 1);
+                ProgressNote.Dock = DockStyle.Fill;
+                ProgressNote.TextAlign = ContentAlignment.MiddleLeft;
+
+                Label ProgressServiceName = new Label();
+                ProgressServiceName.Text = services.Find(s => s.ServiceID == CustomerService[i].ServiceID).ServiceName;
+                tlpServiceProgress.Controls.Add(ProgressServiceName, 1, i + 1);
+                ProgressServiceName.Dock = DockStyle.Fill;
+                ProgressServiceName.TextAlign = ContentAlignment.MiddleLeft;
+
+                progressNotes.Add(ProgressNote);
+                progressServiceNames.Add(ProgressServiceName);
+
+
+                ProgressNote.MouseEnter += (s, ev) =>
+                {
+                    ProgressNote.BackColor = Color.Ivory;
+                    ProgressServiceName.BackColor = Color.Ivory;
+                };
+                ProgressNote.MouseLeave += (s, ev) =>
+                {
+
+                    if (ProgressNote.BackColor != Color.PapayaWhip)
+                    {
+                        ProgressNote.BackColor = Color.Transparent;
+                        ProgressServiceName.BackColor = Color.Transparent;
+                    }
+                };
+                ProgressNote.MouseDown += (s, ev) =>
+                {
+                    ProgressNote.BackColor = Color.PeachPuff;
+                    ProgressServiceName.BackColor = Color.PeachPuff;
+                };
+
+                ProgressNote.MouseUp += (s, ev) =>
+                {
+                    ProgressNote.BackColor = Color.Transparent;
+                    ProgressServiceName.BackColor = Color.Transparent;
+                };
+
+
+                ProgressServiceName.MouseEnter += (s, ev) =>
+                {
+
+                    ProgressNote.BackColor = Color.Ivory;
+                    ProgressServiceName.BackColor = Color.Ivory;
+
+                };
+
+                ProgressServiceName.MouseLeave += (s, ev) =>
+                {
+                    if (ProgressServiceName.BackColor != Color.PapayaWhip)
+                    {
+                        ProgressNote.BackColor = Color.Transparent;
+                        ProgressServiceName.BackColor = Color.Transparent;
+                    }
+
+                };
+                ProgressServiceName.MouseDown += (s, ev) =>
+                {
+                    ProgressNote.BackColor = Color.PeachPuff;
+                    ProgressServiceName.BackColor = Color.PeachPuff;
+                };
+
+                ProgressServiceName.MouseUp += (s, ev) =>
+                {
+                    ProgressNote.BackColor = Color.Transparent;
+                    ProgressServiceName.BackColor = Color.Transparent;
+                };
+            }
+            tlpServiceProgress.RowCount = CustomerService.Count;
+        }
         private void btnStartTask_Click_1(object sender, EventArgs e)
         {
+            if (ServiceProgress.Count == 0)
+            {
+                MessageBox.Show("No Service is assigned to you now", "Invalid Action", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             grbAddService.Visible = true;
             lblRemark.Visible = true;
             txtRemark.Visible = true;
             btnEndTask.Visible = true;
             btnStartTask.Visible = false;
-        }
 
-        int rowCount = 1;
+            foreach (var progressNote in progressNotes)
+            {
+                progressNote.Click += (s, _) => OpenProgressForm(progressNote.Text);
+            }
+
+            foreach (var progressServiceName in progressServiceNames)
+            {
+                progressServiceName.Click += (s, _) => OpenProgressForm(progressServiceName.Text);
+            }
+
+            appointment_service.FindAll(apts => apts.AppointmentID == ServiceProgress[0].AppointmentID).ForEach(service => ServiceInProgress.Add(services.Find(s => s.ServiceID == service.ServiceID)));
+
+            PropertyInfo service_type = typeof(Services).GetProperty("ServiceType");
+            PropertyInfo service_name = typeof(Services).GetProperty("ServiceName");
+            ComboBoxSetting.SetUpDependentComboBox<Services>(cmbServiceType, cmbService, services, service_type, service_name, ServiceInProgress);
+
+        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (cmbServiceType.SelectedItem != null && cmbService.SelectedItem != null)
+            var service = new Appointment.Services
+            {
+                AppointmentID = lblAppointmentId.Text,
+                ServiceID = services.Find(s => s.ServiceName == cmbService.Text).ServiceID,
+            };
+
+            CustomerService.Add(service);
+
+            int count = CustomerService.Count;
+
+            Label ProgressNote = new Label();
+            ProgressNote.Text = count.ToString();
+            tlpServiceProgress.Controls.Add(ProgressNote, 0, count);
+            ProgressNote.Dock = DockStyle.Fill;
+            ProgressNote.TextAlign = ContentAlignment.MiddleLeft;
+
+            Label ProgressServiceName = new Label();
+            ProgressServiceName.Text = services.Find(s => s.ServiceID == CustomerService[count - 1].ServiceID).ServiceName;
+            tlpServiceProgress.Controls.Add(ProgressServiceName, 1, count);
+            ProgressServiceName.Dock = DockStyle.Fill;
+            ProgressServiceName.TextAlign = ContentAlignment.MiddleLeft;
+
+            ProgressNote.MouseEnter += (s, ev) =>
             {
 
-                string selectedService = cmbService.SelectedItem.ToString();
-                string selectedType = cmbServiceType.SelectedItem.ToString();
-                cmbService.Items.Remove(selectedService);
-                serviceTypeOptions[selectedType].Remove(selectedService);
-                cmbService.SelectedItem = null;
-                rowCount++;
-                int rowIndex = rowCount - 1;
-                float rowheight = 50;
+                ProgressNote.BackColor = Color.Ivory;
+                ProgressServiceName.BackColor = Color.Ivory;
+            };
 
-                tableLayoutPanel1.RowCount = rowCount;
-                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, rowheight));
 
-                Label lblNote = new Label
+            ProgressNote.MouseLeave += (s, ev) =>
+            {
+                if (ProgressNote.BackColor != Color.PapayaWhip)
                 {
-                    Text = rowIndex.ToString(),
-                    AutoSize = true,
-                    TextAlign = ContentAlignment.MiddleCenter,
-                    Dock = DockStyle.Fill
-                };
-
-                Label lblService = new Label
-                {
-                    Text = selectedService,
-                    AutoSize = true,
-                    TextAlign = ContentAlignment.MiddleLeft,
-                    Dock = DockStyle.Fill,
-                    BackColor = Color.LightGoldenrodYellow
-                };
-
-                lblService.MouseEnter += (s, ev) => lblService.BackColor = Color.Ivory;
-                lblService.MouseLeave += (s, ev) => lblService.BackColor = Color.LightGoldenrodYellow;
-                lblService.MouseDown += (s, ev) => lblService.BackColor = Color.PeachPuff;
-
-
-                lblService.Click += (s, _) => OpenProgressForm(selectedService);
-
-                tableLayoutPanel1.Controls.Add(lblNote, 0, rowIndex);
-                tableLayoutPanel1.Controls.Add(lblService, 1, rowIndex);
-                for (int i = 0; i < tableLayoutPanel1.RowCount; i++)
-                {
-                    tableLayoutPanel1.RowStyles[i] = new RowStyle(SizeType.Absolute, rowheight);
+                    ProgressNote.BackColor = Color.Transparent;
+                    ProgressServiceName.BackColor = Color.Transparent;
                 }
+            };
+            ProgressNote.MouseDown += (s, ev) =>
+            {
+                ProgressNote.BackColor = Color.PeachPuff;
+                ProgressServiceName.BackColor = Color.PeachPuff;
+            };
 
-                foreach (Control ctrl in panel1.Controls)
+
+            ProgressNote.MouseUp += (s, ev) =>
+            {
+                ProgressNote.BackColor = Color.Transparent;
+                ProgressServiceName.BackColor = Color.Transparent;
+            };
+
+
+            ProgressServiceName.MouseEnter += (s, ev) =>
+            {
+                ProgressNote.BackColor = Color.Ivory;
+                ProgressServiceName.BackColor = Color.Ivory;
+            };
+
+            ProgressServiceName.MouseLeave += (s, ev) =>
+            {
+                if (ProgressServiceName.BackColor != Color.PapayaWhip)
                 {
-                    if (ctrl.Top > tableLayoutPanel1.Bottom)
-                    {
-                        ctrl.Top += (int)rowheight;
-                    }
+                    ProgressNote.BackColor = Color.Transparent;
+                    ProgressServiceName.BackColor = Color.Transparent;
                 }
-                if (cmbService.Items.Count == 0)
+            };
+            ProgressServiceName.MouseDown += (s, ev) =>
+            {
+                ProgressNote.BackColor = Color.PeachPuff;
+                ProgressServiceName.BackColor = Color.PeachPuff;
+            };
+
+
+            ProgressServiceName.MouseUp += (s, ev) =>
+            {
+                ProgressNote.BackColor = Color.Transparent;
+                ProgressServiceName.BackColor = Color.Transparent;
+            };
+
+
+            ProgressNote.Click += (s, _) => OpenProgressForm(ProgressNote.Text);
+            ProgressServiceName.Click += (s, _) => OpenProgressForm(ProgressServiceName.Text);
+
+
+            tlpServiceProgress.RowCount = count;
+
+            foreach (Control ctrl in panelServiceProgress.Controls)
+            {
+                if (ctrl.Top > tlpServiceProgress.Bottom)
                 {
-                    cmbService.Enabled = false;
+                    ctrl.Top += tlpServiceProgress.GetRowHeights()[0];
                 }
             }
+            if (cmbService.Items.Count == 0)
+            {
+                cmbService.Enabled = false;
+            }
+
 
             else
             {
@@ -229,38 +384,13 @@ namespace CarCare_Service_Center
         private void OpenProgressForm(string selectedService)
         {
             Progress progressfrm = new Progress();
+            progressfrm.AppointmentId = lblAppointmentId.Text;
+            progressfrm.UserId = lblUserId.Text;
+            progressfrm.UserName = lblProgressName.Text;
+            progressfrm.PlateNumber = lblProgressPlateNumber.Text;
             progressfrm.ShowDialog();
         }
 
-        private void cmbServiceType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmbService.Items.Clear();
-            string selectedType = cmbServiceType.SelectedItem.ToString();
-            if (serviceTypeOptions.ContainsKey(selectedType))
-            {
-                foreach (var service in serviceTypeOptions[selectedType])
-                {
-                    cmbService.Items.Add(service);
-                }
-            }
-            if (cmbServiceType.SelectedIndex != -1)
-            {
-                cmbService.Enabled = true;
-            }
-            else
-            {
-                cmbService.Enabled = false;
-            }
-        }
-
-        private void cmbService_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbServiceType.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a Service Type first!");
-                cmbService.SelectedIndex = -1;
-            }
-        }
 
         private void btnEndTask_Click(object sender, EventArgs e)
         {
@@ -274,4 +404,3 @@ namespace CarCare_Service_Center
 
     }
 }
-

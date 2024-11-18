@@ -1,8 +1,8 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Drawing.Text;
@@ -22,11 +22,13 @@ namespace CarCare_Service_Center
         private TextBox txtNewType;
         private TextBox txtTypePrefix;
         private bool ImageUpload = false;
+        private frmAdminMain frmAdmin;
 
 
-        public ServiceInsertion()
+        public ServiceInsertion(frmAdminMain frmAdminMain)
         {
             InitializeComponent();
+            frmAdmin = frmAdminMain;
         }
 
         private void btnNewType_Click(object sender, EventArgs e)
@@ -104,7 +106,7 @@ namespace CarCare_Service_Center
             for (int row = 0; row < rowCount - 1; row++) // Last row is add button
             {
                 if (tlpPrice.GetControlFromPosition(1, row) is TextBox txtPrice &&
-                    float.TryParse(txtPrice.Text, out float price) && price > 0 && 
+                    float.TryParse(txtPrice.Text, out float price) && price > 0 &&
                     tlpPrice.GetControlFromPosition(2, row) is TextBox txtPriceDescription &&
                     !Validation.IsLengthInvalid(txtPriceDescription.Text, 1, 20))
                 {
@@ -124,7 +126,7 @@ namespace CarCare_Service_Center
             }
             if (string.IsNullOrWhiteSpace(txtDescription.Text))
             {
-                MessageBox.Show("Please enter the Description!","Description Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Please enter the Description!", "Description Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             if (string.IsNullOrWhiteSpace(txtBriefing.Text))
@@ -151,14 +153,24 @@ namespace CarCare_Service_Center
             // Save service into database
             service.Add();
 
-            prices.ForEach(sp => new Services.ServicePrice
+            foreach (var price in prices)
             {
-                ServiceID = service.ServiceID,
-                Price = sp.Price,
-                Description = sp.Description
-            }.Add());
+                Services.ServicePrice servicePrice = new Services.ServicePrice
+                {
+                    ServiceID = service.ServiceID,
+                    Price = price.Price,
+                    Description = price.Description
+                };
 
+                // Save each price record
+                servicePrice.Add();
+            }
             MessageBox.Show("Successfully created!");
+            frmAdmin.tlpServiceData.Controls.Clear();
+            frmAdmin.tlpServiceData.RowCount = 1;
+            frmAdmin.LoadServices();
+            frmAdmin.cmbServiceType.SelectedIndex = -1;
+            frmAdmin.txtServiceSearch.Text = "Search";
             Close();
         }
 
@@ -182,7 +194,7 @@ namespace CarCare_Service_Center
             tlpPrice.Controls.Add(btnAddPrice, 0, rowIndex);
 
             // Add new control to new line
-            Label lblPriceCurrency = new Label { Text = "RM" , AutoSize = true};
+            Label lblPriceCurrency = new Label { Text = "RM", AutoSize = true };
             tlpPrice.Controls.Add(lblPriceCurrency, 0, rowCopy);
             lblPriceCurrency.Dock = DockStyle.Fill;
             lblPriceCurrency.TextAlign = ContentAlignment.MiddleLeft;
@@ -195,7 +207,7 @@ namespace CarCare_Service_Center
             tlpPrice.Controls.Add(txtPriceDescription, 2, rowCopy);
             txtPriceDescription.Dock = DockStyle.Fill;
 
-            Button btnRemovePrice = new Button {Text = "Remove", Dock = DockStyle.Fill};
+            Button btnRemovePrice = new Button { Text = "Remove", Dock = DockStyle.Fill };
             tlpPrice.Controls.Add(btnRemovePrice, 3, rowCopy);
             btnRemovePrice.Click += btnRemove_Click;
 

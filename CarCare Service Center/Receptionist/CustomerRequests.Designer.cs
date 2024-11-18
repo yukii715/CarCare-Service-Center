@@ -1,4 +1,5 @@
-﻿namespace CarCare_Service_Center
+﻿
+namespace CarCare_Service_Center
 {
     partial class CustomerRequests
     {
@@ -41,8 +42,10 @@
             // tblCustomerRequests
             // 
             this.tblCustomerRequests.AutoSize = true;
+            this.tblCustomerRequests.BackColor = System.Drawing.Color.Gainsboro;
+            this.tblCustomerRequests.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
             this.tblCustomerRequests.ColumnCount = 4;
-            this.tblCustomerRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tblCustomerRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tblCustomerRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tblCustomerRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblCustomerRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
@@ -50,11 +53,11 @@
             this.tblCustomerRequests.Controls.Add(this.label3, 2, 0);
             this.tblCustomerRequests.Controls.Add(this.label4, 3, 0);
             this.tblCustomerRequests.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tblCustomerRequests.Location = new System.Drawing.Point(33, 91);
+            this.tblCustomerRequests.Location = new System.Drawing.Point(29, 81);
             this.tblCustomerRequests.Name = "tblCustomerRequests";
             this.tblCustomerRequests.RowCount = 1;
-            this.tblCustomerRequests.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tblCustomerRequests.Size = new System.Drawing.Size(830, 72);
+            this.tblCustomerRequests.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.tblCustomerRequests.Size = new System.Drawing.Size(738, 70);
             this.tblCustomerRequests.TabIndex = 0;
             // 
             // label2
@@ -63,9 +66,9 @@
             this.label2.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(37, 0);
+            this.label2.Location = new System.Drawing.Point(39, 3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(153, 72);
+            this.label2.Size = new System.Drawing.Size(132, 64);
             this.label2.TabIndex = 0;
             this.label2.Text = "ID";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -76,9 +79,9 @@
             this.label3.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(196, 0);
+            this.label3.Location = new System.Drawing.Point(180, 3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(392, 72);
+            this.label3.Size = new System.Drawing.Size(340, 64);
             this.label3.TabIndex = 1;
             this.label3.Text = "Username";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -89,9 +92,9 @@
             this.label4.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(594, 0);
+            this.label4.Location = new System.Drawing.Point(529, 3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(233, 72);
+            this.label4.Size = new System.Drawing.Size(203, 64);
             this.label4.TabIndex = 2;
             this.label4.Text = "Email";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -100,9 +103,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(340, 36);
+            this.label1.Location = new System.Drawing.Point(302, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(269, 39);
+            this.label1.Size = new System.Drawing.Size(218, 31);
             this.label1.TabIndex = 1;
             this.label1.Text = "Customer Requests";
             // 
@@ -110,9 +113,9 @@
             // 
             this.btnDenyRequest.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnDenyRequest.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDenyRequest.Location = new System.Drawing.Point(0, 473);
+            this.btnDenyRequest.Location = new System.Drawing.Point(0, 420);
             this.btnDenyRequest.Name = "btnDenyRequest";
-            this.btnDenyRequest.Size = new System.Drawing.Size(940, 40);
+            this.btnDenyRequest.Size = new System.Drawing.Size(836, 36);
             this.btnDenyRequest.TabIndex = 2;
             this.btnDenyRequest.Text = "Deny Request";
             this.btnDenyRequest.UseVisualStyleBackColor = true;
@@ -122,9 +125,9 @@
             // 
             this.btnConfirmRequest.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnConfirmRequest.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmRequest.Location = new System.Drawing.Point(0, 433);
+            this.btnConfirmRequest.Location = new System.Drawing.Point(0, 384);
             this.btnConfirmRequest.Name = "btnConfirmRequest";
-            this.btnConfirmRequest.Size = new System.Drawing.Size(940, 40);
+            this.btnConfirmRequest.Size = new System.Drawing.Size(836, 36);
             this.btnConfirmRequest.TabIndex = 3;
             this.btnConfirmRequest.Text = "ConfirmRequest";
             this.btnConfirmRequest.UseVisualStyleBackColor = true;
@@ -132,10 +135,10 @@
             // 
             // CustomerRequests
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(940, 513);
+            this.ClientSize = new System.Drawing.Size(836, 456);
             this.Controls.Add(this.btnConfirmRequest);
             this.Controls.Add(this.btnDenyRequest);
             this.Controls.Add(this.label1);

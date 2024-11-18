@@ -33,8 +33,8 @@ namespace CarCare_Service_Center
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustomerMain));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tabCustomer = new System.Windows.Forms.TabControl();
             this.HomeTab = new System.Windows.Forms.TabPage();
             this.cmbYear = new System.Windows.Forms.ComboBox();
@@ -80,7 +80,7 @@ namespace CarCare_Service_Center
             this.lblTitle = new System.Windows.Forms.Label();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.HistoryTab = new System.Windows.Forms.TabPage();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.pnlHistory = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.ProfileTab = new System.Windows.Forms.TabPage();
@@ -110,7 +110,7 @@ namespace CarCare_Service_Center
             this.pnlMyAppointment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.HistoryTab.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.pnlHistory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.ProfileTab.SuspendLayout();
             this.SuspendLayout();
@@ -214,10 +214,10 @@ namespace CarCare_Service_Center
             // crtServiceUsed
             // 
             this.crtServiceUsed.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea1.Name = "ChartArea1";
-            this.crtServiceUsed.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.crtServiceUsed.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.crtServiceUsed.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.crtServiceUsed.Legends.Add(legend2);
             this.crtServiceUsed.Location = new System.Drawing.Point(100, 327);
             this.crtServiceUsed.Name = "crtServiceUsed";
             this.crtServiceUsed.Size = new System.Drawing.Size(440, 324);
@@ -611,7 +611,7 @@ namespace CarCare_Service_Center
             // 
             // HistoryTab
             // 
-            this.HistoryTab.Controls.Add(this.panel3);
+            this.HistoryTab.Controls.Add(this.pnlHistory);
             this.HistoryTab.Location = new System.Drawing.Point(84, 4);
             this.HistoryTab.Name = "HistoryTab";
             this.HistoryTab.Size = new System.Drawing.Size(1094, 740);
@@ -619,15 +619,15 @@ namespace CarCare_Service_Center
             this.HistoryTab.Text = "History";
             this.HistoryTab.UseVisualStyleBackColor = true;
             // 
-            // panel3
+            // pnlHistory
             // 
-            this.panel3.AutoScroll = true;
-            this.panel3.Controls.Add(this.label8);
-            this.panel3.Controls.Add(this.pictureBox4);
-            this.panel3.Location = new System.Drawing.Point(3, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1049, 729);
-            this.panel3.TabIndex = 7;
+            this.pnlHistory.AutoScroll = true;
+            this.pnlHistory.Controls.Add(this.label8);
+            this.pnlHistory.Controls.Add(this.pictureBox4);
+            this.pnlHistory.Location = new System.Drawing.Point(3, 3);
+            this.pnlHistory.Name = "pnlHistory";
+            this.pnlHistory.Size = new System.Drawing.Size(1049, 729);
+            this.pnlHistory.TabIndex = 7;
             // 
             // label8
             // 
@@ -798,8 +798,8 @@ namespace CarCare_Service_Center
             this.pnlMyAppointment.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.HistoryTab.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.pnlHistory.ResumeLayout(false);
+            this.pnlHistory.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ProfileTab.ResumeLayout(false);
             this.ProfileTab.PerformLayout();
@@ -831,7 +831,7 @@ namespace CarCare_Service_Center
         private PictureBox pictureBox3;
         private Panel pnlNewAppointment;
         private Label label7;
-        private Panel panel3;
+        private Panel pnlHistory;
         private Label label8;
         private PictureBox pictureBox4;
         private Label lblAdminEmail;
@@ -847,7 +847,6 @@ namespace CarCare_Service_Center
         private TabControl tabAppointment;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private Panel pnlMyAppointment;
         private Label lblTitle;
         private PictureBox picLogo;
         private ComboBox cmbAptYear;
@@ -868,6 +867,7 @@ namespace CarCare_Service_Center
         private Button btnAddApointment;
         private Label lblBottomMargin;
         private Button btnAptClear;
+        public Panel pnlMyAppointment;
     }
 }
 

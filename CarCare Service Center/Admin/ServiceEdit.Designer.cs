@@ -1,4 +1,5 @@
-﻿namespace CarCare_Service_Center
+﻿
+namespace CarCare_Service_Center
 {
     partial class ServiceEdit
     {
@@ -63,6 +64,7 @@
             this.btnApply.TabIndex = 23;
             this.btnApply.Text = "Apply";
             this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // panel1
             // 
@@ -122,14 +124,14 @@
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.07821F));
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.92179F));
             this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 260F));
-            this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 172F));
+            this.tlpPrice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 173F));
             this.tlpPrice.Controls.Add(this.btnAddPrice, 0, 0);
             this.tlpPrice.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tlpPrice.Location = new System.Drawing.Point(139, 323);
             this.tlpPrice.Name = "tlpPrice";
             this.tlpPrice.RowCount = 1;
             this.tlpPrice.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
-            this.tlpPrice.Size = new System.Drawing.Size(767, 62);
+            this.tlpPrice.Size = new System.Drawing.Size(768, 62);
             this.tlpPrice.TabIndex = 16;
             // 
             // btnAddPrice

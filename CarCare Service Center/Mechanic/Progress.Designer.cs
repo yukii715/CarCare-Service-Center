@@ -42,13 +42,13 @@ namespace CarCare_Service_Center
             this.lblProgress = new System.Windows.Forms.Label();
             this.tlpProgress = new System.Windows.Forms.TableLayoutPanel();
             this.lblProgressUserID = new System.Windows.Forms.Label();
-            this.lblPlateNumber = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
             this.lblProgressApointmentId = new System.Windows.Forms.Label();
             this.lblAppointmentId = new System.Windows.Forms.Label();
             this.lblProgressNoPlate = new System.Windows.Forms.Label();
             this.lblProgressCusName = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.lblUserID = new System.Windows.Forms.Label();
+            this.lblPlateNumber = new System.Windows.Forms.Label();
             this.panelProgress.SuspendLayout();
             this.tlpProgress.SuspendLayout();
             this.SuspendLayout();
@@ -160,6 +160,7 @@ namespace CarCare_Service_Center
             this.lblProgress.Name = "lblProgress";
             this.lblProgress.Size = new System.Drawing.Size(1235, 223);
             this.lblProgress.TabIndex = 3;
+            this.lblProgress.Click += new System.EventHandler(this.lblProgress_Click);
             // 
             // tlpProgress
             // 
@@ -195,22 +196,6 @@ namespace CarCare_Service_Center
             this.lblProgressUserID.TabIndex = 12;
             this.lblProgressUserID.Text = "USER ID";
             this.lblProgressUserID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPlateNumber
-            // 
-            this.lblPlateNumber.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPlateNumber.Location = new System.Drawing.Point(865, 111);
-            this.lblPlateNumber.Name = "lblPlateNumber";
-            this.lblPlateNumber.Size = new System.Drawing.Size(361, 107);
-            this.lblPlateNumber.TabIndex = 11;
-            // 
-            // lblName
-            // 
-            this.lblName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblName.Location = new System.Drawing.Point(251, 111);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(360, 107);
-            this.lblName.TabIndex = 10;
             // 
             // lblProgressApointmentId
             // 
@@ -250,6 +235,14 @@ namespace CarCare_Service_Center
             this.lblProgressCusName.Text = "NAME";
             this.lblProgressCusName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblName
+            // 
+            this.lblName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblName.Location = new System.Drawing.Point(251, 111);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(360, 107);
+            this.lblName.TabIndex = 10;
+            // 
             // lblUserID
             // 
             this.lblUserID.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -257,6 +250,14 @@ namespace CarCare_Service_Center
             this.lblUserID.Name = "lblUserID";
             this.lblUserID.Size = new System.Drawing.Size(361, 107);
             this.lblUserID.TabIndex = 13;
+            // 
+            // lblPlateNumber
+            // 
+            this.lblPlateNumber.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPlateNumber.Location = new System.Drawing.Point(865, 111);
+            this.lblPlateNumber.Name = "lblPlateNumber";
+            this.lblPlateNumber.Size = new System.Drawing.Size(361, 107);
+            this.lblPlateNumber.TabIndex = 11;
             // 
             // Progress
             // 
@@ -269,7 +270,7 @@ namespace CarCare_Service_Center
             this.Controls.Add(this.btnProgressDone);
             this.Name = "Progress";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Progress_Load_1);
             this.panelProgress.ResumeLayout(false);
             this.panelProgress.PerformLayout();
             this.tlpProgress.ResumeLayout(false);

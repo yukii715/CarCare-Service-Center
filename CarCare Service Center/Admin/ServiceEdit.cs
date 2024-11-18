@@ -1,4 +1,5 @@
 ﻿
+
 using Functions;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Users;
+using static CarCare_Service_Center.Appointment;
 
 namespace CarCare_Service_Center
 {
@@ -21,24 +23,27 @@ namespace CarCare_Service_Center
         private List<Services.ServicePrice> service_price;
         private Services service;
         private bool ImageUpload = false;
+        private Services serviceEdit;
+        private frmAdminMain frmAdmin;
 
         // row index for the add button
         int rowIndex = 0;
 
 
-        public ServiceEdit(Services s, List<Services.ServicePrice> p, ServiceDetails sd)
+        public ServiceEdit(frmAdminMain frmAdminMain, Services s = null, List<Services.ServicePrice> p = null, ServiceDetails sd = null)
         {
             InitializeComponent();
             serviceDetail = sd;
             service = s;
             service_price = p;
+            frmAdmin = frmAdminMain;
         }
 
         private void ServiceEdit_Load(object sender, EventArgs e)
         {
-            lblServiceID.Text = "Service ID: " + service.ServiceID;
-            lblServiceType.Text = "Service Type: " + service.ServiceType;
-            lblServiceName.Text = "Service Name: " + service.ServiceName;
+            lblServiceID.Text = "Service ID: " + service.ServiceID.Trim();
+            lblServiceType.Text = "Service Type: " + service.ServiceType.Trim();
+            lblServiceName.Text = "Service Name: " + service.ServiceName.Trim();
 
             tlpPrice.Controls.Remove(btnAddPrice);
 
@@ -46,6 +51,8 @@ namespace CarCare_Service_Center
             {
                 tlpPrice.RowCount++;
                 rowIndex++;
+                float rowheight = tlpPrice.GetRowHeights()[0];
+                tlpPrice.RowStyles.Add(new RowStyle(SizeType.Absolute, rowheight)); // New row styles
 
                 Label lblPriceCurrency = new Label
                 {
@@ -95,17 +102,14 @@ namespace CarCare_Service_Center
                 }
             };
 
-            txtTime.Text = service.EstimatedTime;
-            txtDescription.Text = service.Description;
-            txtBriefDescription.Text = service.Briefing;
+            txtTime.Text = service.EstimatedTime.Trim();
+            txtDescription.Text = service.Description.Trim();
+            txtBriefDescription.Text = service.Briefing.Trim();
 
-            using (MemoryStream ms = new MemoryStream(service.ImageData))
-            {
-                Image img = Image.FromStream(ms);
-                // Set the image to the PictureBox
-                picService.Image = img;
-            }
+
+            picService.Image = IMG.ConvertByByteArray(service.ImageData);
         }
+
 
         private void btnAddPrice_Click(object sender, EventArgs e)
         {
@@ -215,6 +219,112 @@ namespace CarCare_Service_Center
         {
             Close();
             serviceDetail.Show();
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            string serviceID = service.ServiceID;
+
+            var prices = new List<Services.ServicePrice>();
+
+            for (int row = 0; row < rowIndex; row++) // Last row is add button
+            {
+                if (tlpPrice.GetControlFromPosition(1, row) is TextBox txtPrice &&
+                    float.TryParse(txtPrice.Text, out float price) && price > 0 &&
+                    tlpPrice.GetControlFromPosition(2, row) is TextBox txtPriceDescription &&
+                    !Validation.IsLengthInvalid(txtPriceDescription.Text, 1, 20))
+                {
+                    prices.Add(new Services.ServicePrice { Price = Decimal.Parse(price.ToString("0.00")), Description = txtPriceDescription.Text });
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Price or Description", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            if (!int.TryParse(txtTime.Text, out int estimated_time) || estimated_time < 1 || estimated_time > 999)
+            {
+                MessageBox.Show("Invalid Estimated Time", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtDescription.Text))
+            {
+                MessageBox.Show("Please enter the Description", "Description Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtBriefDescription.Text))
+            {
+                MessageBox.Show("Please enter the Briefing!", "Briefing Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (ImageUpload)
+            {
+                serviceEdit = new Services
+                {
+                    ServiceID = service.ServiceID.ToString().Trim(),
+                    ServiceType = service.ServiceType.ToString().Trim(),
+                    ServiceName = service.ServiceName.ToString().Trim(),
+                    EstimatedTime = estimated_time.ToString().Trim(),
+                    Description = txtDescription.Text.ToString().Trim(),
+                    Briefing = txtBriefDescription.Text.ToString().Trim(),
+                    ImageData = IMG.ToByteArray(picService.Image)
+                };
+                serviceEdit.Edit();
+            }
+            else
+            {
+                serviceEdit = new Services
+                {
+                    ServiceID = service.ServiceID.ToString().Trim(),
+                    ServiceType = service.ServiceType.ToString().Trim(),
+                    ServiceName = service.ServiceName.ToString().Trim(),
+                    EstimatedTime = estimated_time.ToString().Trim(),
+                    Description = txtDescription.Text.ToString().Trim(),
+                    Briefing = txtBriefDescription.Text.ToString().Trim(),
+                    ImageData = service.ImageData
+                };
+                serviceEdit.EditWithoutNewImage();
+            }
+
+            // Save service into database
+
+
+
+            Services.ServicePrice servicePriceDeletion = new Services.ServicePrice
+            {
+                ServiceID = service.ServiceID,
+            };
+
+            // Delete the previous service price from Database
+            servicePriceDeletion.Delete();
+
+
+
+            foreach (var price in prices)
+            {
+                Services.ServicePrice servicePrice = new Services.ServicePrice
+                {
+                    ServiceID = service.ServiceID,
+                    Price = price.Price,
+                    Description = price.Description
+                };
+
+                // Save each price record
+                servicePrice.Add();
+            }
+            MessageBox.Show("Apply Successfully", "Service Detail Upated", MessageBoxButtons.OK);
+            frmAdmin.tlpServiceData.Controls.Clear();
+            frmAdmin.tlpServiceData.RowCount = 1;
+            frmAdmin.LoadServices();
+            frmAdmin.cmbServiceType.SelectedIndex = -1;
+            frmAdmin.txtServiceSearch.Text = "Search";
+            frmAdmin.LoadUser();
+            Close();
+            serviceDetail.Close();
+            ServiceDetails newServiceDetail = new ServiceDetails(frmAdmin, serviceEdit);
+            newServiceDetail.Show();
         }
     }
 }

@@ -81,6 +81,55 @@ namespace Users
                 command.ExecuteNonQuery();
             }
         }
+        public static void Delete(string ID)
+        {
+            string query = "UPDATE Users SET IsDeleted = 1 WHERE UserID = @UserID";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                // Add parameters to avoid SQL injection
+                command.Parameters.AddWithValue("@UserID", ID);
+                connection.Open();
+                // Execute the command without returning any results
+                command.ExecuteNonQuery();
+            }
+        }
+        public static void ChangeName(String UserID, string UserName)
+        {
+            string query = "UPDATE Users SET Username = @UserName WHERE UserID = @UserID";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                command.Parameters.AddWithValue("@UserName", UserName);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+        public static void ChangePassword(string UserID, string Password)
+        {
+            string query = "UPDATE Users SET Password = @Password WHERE UserID = @UserID";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                command.Parameters.AddWithValue("@Password", Password);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+        public static void ChangeEmail(string UserID, string Email)
+        {
+            string query = "UPDATE Users SET Email = @Email WHERE UserID = @UserID";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                command.Parameters.AddWithValue("@Email", Email);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
         public void GetUserInfo(string userid)
         {
             using (SqlConnection connection = new SqlConnection(Program.connectionString))
