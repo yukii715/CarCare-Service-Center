@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,6 +31,7 @@ namespace CarCare_Service_Center
         private List<Appointment.Services> appointment_service;
         private List<Services> services;
         private List<MechanicTasks> ServiceProgress;
+        private List<Services> ServiceInProgress = new List<Services>();
         private List<Appointment.Services> CustomerService;
         public frmMechanicMain(Mechanic mec)
         {
@@ -58,12 +57,6 @@ namespace CarCare_Service_Center
         }
 
 
-
-        private void btnProfile_Click(object sender, EventArgs e)
-        {
-            EditProfile editprofileform = new EditProfile(this);
-            editprofileform.ShowDialog();
-        }
         public void updateProfile(string name, string mail)
         {
             nameProfileChange.Text = name;
@@ -85,7 +78,6 @@ namespace CarCare_Service_Center
         private void frmMechanicMain_Load(object sender, EventArgs e)
         {
             tabMechanic.DrawItem += Draw_Item.tabControlAdjustment;
-            cmbService.Enabled = false;
 
             string query_MechanicTasks = "SELECT * FROM MechanicTasks WHERE InProgress IS NULL AND UserID = " + $"'{mechanic.UserID}'";
             mechanic_task = Database.FetchData<MechanicTasks>(query_MechanicTasks);
@@ -109,8 +101,6 @@ namespace CarCare_Service_Center
 
             string query = "SELECT DISTINCT ServiceType FROM Services";
             Database.LoadIntoComboBox(cmbServiceType, query, "ServiceType");
-
-      
         }
 
         private void LoadMechanicTasks()
@@ -157,6 +147,8 @@ namespace CarCare_Service_Center
 
         private void ServiceProgress_load()
         {
+            if (ServiceProgress.Count == 0)
+                return;
             lblAppointmentId.Text = ServiceProgress[0].AppointmentID;
             lblAppointmentId.Dock = DockStyle.Fill;
             lblAppointmentId.TextAlign = ContentAlignment.MiddleLeft;
@@ -224,10 +216,10 @@ namespace CarCare_Service_Center
 
                 ProgressServiceName.MouseEnter += (s, ev) =>
                 {
-                    
+
                     ProgressNote.BackColor = Color.Ivory;
                     ProgressServiceName.BackColor = Color.Ivory;
-                    
+
                 };
 
                 ProgressServiceName.MouseLeave += (s, ev) =>
@@ -255,7 +247,11 @@ namespace CarCare_Service_Center
         }
         private void btnStartTask_Click_1(object sender, EventArgs e)
         {
-         
+            if (ServiceProgress.Count == 0)
+            {
+                MessageBox.Show("No Service is assigned to you now", "Invalid Action", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             grbAddService.Visible = true;
             lblRemark.Visible = true;
             txtRemark.Visible = true;
@@ -272,20 +268,16 @@ namespace CarCare_Service_Center
                 progressServiceName.Click += (s, _) => OpenProgressForm(progressServiceName.Text);
             }
 
+            appointment_service.FindAll(apts => apts.AppointmentID == ServiceProgress[0].AppointmentID).ForEach(service => ServiceInProgress.Add(services.Find(s => s.ServiceID == service.ServiceID)));
 
             PropertyInfo service_type = typeof(Services).GetProperty("ServiceType");
             PropertyInfo service_name = typeof(Services).GetProperty("ServiceName");
-            ComboBoxSetting.SetUpDependentComboBox<Services>(cmbServiceType, cmbService, services, service_type, service_name, services);
+            ComboBoxSetting.SetUpDependentComboBox<Services>(cmbServiceType, cmbService, services, service_type, service_name, ServiceInProgress);
 
         }
-
-        
-
-       
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var service = new Appointment.Services 
+            var service = new Appointment.Services
             {
                 AppointmentID = lblAppointmentId.Text,
                 ServiceID = services.Find(s => s.ServiceName == cmbService.Text).ServiceID,
@@ -297,19 +289,19 @@ namespace CarCare_Service_Center
 
             Label ProgressNote = new Label();
             ProgressNote.Text = count.ToString();
-            tlpServiceProgress.Controls.Add(ProgressNote, 0, count );
+            tlpServiceProgress.Controls.Add(ProgressNote, 0, count);
             ProgressNote.Dock = DockStyle.Fill;
             ProgressNote.TextAlign = ContentAlignment.MiddleLeft;
 
             Label ProgressServiceName = new Label();
-            ProgressServiceName.Text = services.Find(s => s.ServiceID == CustomerService[count -1].ServiceID).ServiceName;
-            tlpServiceProgress.Controls.Add(ProgressServiceName, 1, count );
+            ProgressServiceName.Text = services.Find(s => s.ServiceID == CustomerService[count - 1].ServiceID).ServiceName;
+            tlpServiceProgress.Controls.Add(ProgressServiceName, 1, count);
             ProgressServiceName.Dock = DockStyle.Fill;
             ProgressServiceName.TextAlign = ContentAlignment.MiddleLeft;
 
             ProgressNote.MouseEnter += (s, ev) =>
             {
-               
+
                 ProgressNote.BackColor = Color.Ivory;
                 ProgressServiceName.BackColor = Color.Ivory;
             };
@@ -338,9 +330,9 @@ namespace CarCare_Service_Center
 
 
             ProgressServiceName.MouseEnter += (s, ev) =>
-            { 
+            {
                 ProgressNote.BackColor = Color.Ivory;
-                ProgressServiceName.BackColor = Color.Ivory;   
+                ProgressServiceName.BackColor = Color.Ivory;
             };
 
             ProgressServiceName.MouseLeave += (s, ev) =>
@@ -382,8 +374,8 @@ namespace CarCare_Service_Center
             {
                 cmbService.Enabled = false;
             }
-        
-    
+
+
             else
             {
                 MessageBox.Show("Please Select Service Type and Service！");
@@ -412,4 +404,3 @@ namespace CarCare_Service_Center
 
     }
 }
-

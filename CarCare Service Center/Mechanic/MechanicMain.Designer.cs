@@ -759,7 +759,6 @@ namespace CarCare_Service_Center
             this.btnProfile.TabIndex = 8;
             this.btnProfile.Text = "Edit Profile";
             this.btnProfile.UseVisualStyleBackColor = true;
-            this.btnProfile.Click += new System.EventHandler(this.btnProfile_Click);
             // 
             // roleProfile
             // 

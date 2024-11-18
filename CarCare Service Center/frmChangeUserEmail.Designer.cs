@@ -30,10 +30,10 @@
         {
             this.btnBack = new System.Windows.Forms.Button();
             this.btnDone = new System.Windows.Forms.Button();
-            this.txtboxNewUserName = new System.Windows.Forms.TextBox();
-            this.lblNewUsername = new System.Windows.Forms.Label();
-            this.lblUsername = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.txtboxNewEmail = new System.Windows.Forms.TextBox();
+            this.lblNewEmail = new System.Windows.Forms.Label();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.lblShowUserEmail = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnBack
@@ -57,57 +57,58 @@
             this.btnDone.TabIndex = 18;
             this.btnDone.Text = "Done";
             this.btnDone.UseVisualStyleBackColor = true;
+            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
             // 
-            // txtboxNewUserName
+            // txtboxNewEmail
             // 
-            this.txtboxNewUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtboxNewUserName.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtboxNewUserName.Location = new System.Drawing.Point(306, 133);
-            this.txtboxNewUserName.Multiline = true;
-            this.txtboxNewUserName.Name = "txtboxNewUserName";
-            this.txtboxNewUserName.Size = new System.Drawing.Size(480, 34);
-            this.txtboxNewUserName.TabIndex = 17;
+            this.txtboxNewEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtboxNewEmail.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtboxNewEmail.Location = new System.Drawing.Point(306, 133);
+            this.txtboxNewEmail.Multiline = true;
+            this.txtboxNewEmail.Name = "txtboxNewEmail";
+            this.txtboxNewEmail.Size = new System.Drawing.Size(480, 34);
+            this.txtboxNewEmail.TabIndex = 17;
             // 
-            // lblNewUsername
+            // lblNewEmail
             // 
-            this.lblNewUsername.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNewUsername.Location = new System.Drawing.Point(118, 133);
-            this.lblNewUsername.Name = "lblNewUsername";
-            this.lblNewUsername.Size = new System.Drawing.Size(165, 47);
-            this.lblNewUsername.TabIndex = 16;
-            this.lblNewUsername.Text = "New Email :";
+            this.lblNewEmail.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNewEmail.Location = new System.Drawing.Point(118, 133);
+            this.lblNewEmail.Name = "lblNewEmail";
+            this.lblNewEmail.Size = new System.Drawing.Size(165, 47);
+            this.lblNewEmail.TabIndex = 16;
+            this.lblNewEmail.Text = "New Email :";
             // 
-            // lblUsername
+            // lblEmail
             // 
-            this.lblUsername.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(175, 76);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(108, 47);
-            this.lblUsername.TabIndex = 15;
-            this.lblUsername.Text = "Email :";
+            this.lblEmail.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.Location = new System.Drawing.Point(175, 76);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(108, 47);
+            this.lblEmail.TabIndex = 15;
+            this.lblEmail.Text = "Email :";
             // 
-            // label1
+            // lblShowUserEmail
             // 
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(300, 76);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(539, 47);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "oscar@carcareservicecenter.com";
+            this.lblShowUserEmail.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowUserEmail.Location = new System.Drawing.Point(300, 76);
+            this.lblShowUserEmail.Name = "lblShowUserEmail";
+            this.lblShowUserEmail.Size = new System.Drawing.Size(510, 47);
+            this.lblShowUserEmail.TabIndex = 20;
             // 
-            // Form1
+            // frmChangeUserEmail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 345);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblShowUserEmail);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnDone);
-            this.Controls.Add(this.txtboxNewUserName);
-            this.Controls.Add(this.lblNewUsername);
-            this.Controls.Add(this.lblUsername);
-            this.Name = "Form1";
+            this.Controls.Add(this.txtboxNewEmail);
+            this.Controls.Add(this.lblNewEmail);
+            this.Controls.Add(this.lblEmail);
+            this.Name = "frmChangeUserEmail";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.frmChangeUserEmail_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,9 +117,9 @@
         #endregion
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnDone;
-        private System.Windows.Forms.TextBox txtboxNewUserName;
-        private System.Windows.Forms.Label lblNewUsername;
-        private System.Windows.Forms.Label lblUsername;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtboxNewEmail;
+        private System.Windows.Forms.Label lblNewEmail;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label lblShowUserEmail;
     }
 }

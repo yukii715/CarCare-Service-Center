@@ -1,6 +1,6 @@
 ﻿namespace CarCare_Service_Center
 {
-    partial class txtNewUserName
+    partial class frmChangeUserName
     {
         /// <summary>
         /// Required designer variable.
@@ -34,6 +34,7 @@
             this.lblOldUsername = new System.Windows.Forms.Label();
             this.btnDone = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.lblChangeUsernameValidation = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblUsername
@@ -63,16 +64,14 @@
             this.txtboxNewUserName.Name = "txtboxNewUserName";
             this.txtboxNewUserName.Size = new System.Drawing.Size(348, 34);
             this.txtboxNewUserName.TabIndex = 2;
-            this.txtboxNewUserName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // lblOldUsername
             // 
             this.lblOldUsername.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOldUsername.Location = new System.Drawing.Point(339, 47);
             this.lblOldUsername.Name = "lblOldUsername";
-            this.lblOldUsername.Size = new System.Drawing.Size(521, 47);
+            this.lblOldUsername.Size = new System.Drawing.Size(422, 47);
             this.lblOldUsername.TabIndex = 3;
-            this.lblOldUsername.Text = "Liew JUN Ming";
             // 
             // btnDone
             // 
@@ -84,6 +83,7 @@
             this.btnDone.TabIndex = 4;
             this.btnDone.Text = "Done";
             this.btnDone.UseVisualStyleBackColor = true;
+            this.btnDone.Click += new System.EventHandler(this.btnDone_Click_1);
             // 
             // btnBack
             // 
@@ -95,19 +95,31 @@
             this.btnBack.TabIndex = 5;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click_1);
             // 
-            // txtNewUserName
+            // lblChangeUsernameValidation
+            // 
+            this.lblChangeUsernameValidation.AutoSize = true;
+            this.lblChangeUsernameValidation.Font = new System.Drawing.Font("Comic Sans MS", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChangeUsernameValidation.Location = new System.Drawing.Point(341, 152);
+            this.lblChangeUsernameValidation.Name = "lblChangeUsernameValidation";
+            this.lblChangeUsernameValidation.Size = new System.Drawing.Size(139, 23);
+            this.lblChangeUsernameValidation.TabIndex = 12;
+            this.lblChangeUsernameValidation.Text = "*3-20 characters";
+            // 
+            // frmChangeUserName
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(773, 309);
+            this.Controls.Add(this.lblChangeUsernameValidation);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnDone);
             this.Controls.Add(this.lblOldUsername);
             this.Controls.Add(this.txtboxNewUserName);
             this.Controls.Add(this.lblNewUsername);
             this.Controls.Add(this.lblUsername);
-            this.Name = "txtNewUserName";
+            this.Name = "frmChangeUserName";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -122,5 +134,6 @@
         private System.Windows.Forms.Label lblOldUsername;
         private System.Windows.Forms.Button btnDone;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Label lblChangeUsernameValidation;
     }
 }
