@@ -26,6 +26,9 @@ namespace CarCare_Service_Center
         private List<Appointment> appointments;
         private List<Parts> parts;
         private List<Parts.Requests> partsRequests;
+        private List<Label> LabelAppointmentRequests = new List<Label>();
+        private List<Label> LabelUpcomingAppointment = new List<Label>();
+        private List<Label> LabelAppointmentLog = new List<Label>();
 
         public frmReceptionistMain(Receptionist rec)
         {
@@ -149,31 +152,72 @@ namespace CarCare_Service_Center
             appointments = Database.FetchData<Appointment>(query);
             for (int i = 0; i < appointments.Count; i++)
             {
+                int index = i;
+
                 Label appointmentID = new Label();
                 appointmentID.Text = appointments[i].AppointmentID;
+                appointmentID.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
                 tblAppointmentRequests.Controls.Add(appointmentID, 0, i + 1);
                 appointmentID.Dock = DockStyle.Fill;
-                appointmentID.TextAlign = ContentAlignment.MiddleLeft;
+                appointmentID.TextAlign = ContentAlignment.MiddleCenter;
+                LabelAppointmentRequests.Add(appointmentID);
 
                 Label timeRequested = new Label();
                 timeRequested.Text = $"{appointments[i].AppointmentDateTime.ToString("dd-MM-yyyy")}\n" +
-                    $"{appointments[i].AppointmentDateTime.ToString("HH:mm")}";
+                    $"{appointments[i].AppointmentDateTime.ToString("hh:mm tt")}";
+                timeRequested.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
                 tblAppointmentRequests.Controls.Add(timeRequested, 1, i + 1);
                 timeRequested.Dock = DockStyle.Fill;
                 timeRequested.TextAlign = ContentAlignment.MiddleCenter;
                 timeRequested.AutoSize = true;
+                LabelAppointmentRequests.Add(timeRequested);
 
                 Label customerName = new Label();
                 customerName.Text = users.Find(c => c.UserID == appointments[i].UserID).Username;
+                customerName.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
                 tblAppointmentRequests.Controls.Add(customerName, 2, i + 1);
                 customerName.Dock = DockStyle.Fill;
                 customerName.TextAlign = ContentAlignment.MiddleLeft;
+                LabelAppointmentRequests.Add(customerName);
 
                 Label vehicleNumber = new Label();
                 vehicleNumber.Text = appointments[i].VehicleNumber;
+                vehicleNumber.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
                 tblAppointmentRequests.Controls.Add(vehicleNumber, 3, i + 1);
                 vehicleNumber.Dock = DockStyle.Fill;
                 vehicleNumber.TextAlign = ContentAlignment.MiddleCenter;
+                LabelAppointmentRequests.Add(vehicleNumber);
+                void SetLabelBackColor(Color color)
+                {
+                    appointmentID.BackColor = color;
+                    timeRequested.BackColor = color;
+                    customerName.BackColor = color;
+                    vehicleNumber.BackColor = color;
+                }
+                void HightLightLabelEvent(Label label)
+                {
+                    label.MouseEnter += (s, ev) => SetLabelBackColor(Color.PapayaWhip);
+                    label.MouseLeave += (s, ev) =>
+                    {
+                        if (label.BackColor != Color.LemonChiffon)
+                            SetLabelBackColor(Color.Transparent);
+                    };
+                    label.MouseDown += (s, ev) =>
+                    {
+                        LabelAppointmentRequests.ForEach(lbl => lbl.BackColor = Color.Transparent);
+                        SetLabelBackColor(Color.PeachPuff);
+                    };
+                    label.MouseUp += (s, ev) => 
+                    {
+                        SetLabelBackColor(Color.LemonChiffon);
+                        frmRequestedAppointment requestedAppointment = new frmRequestedAppointment(appointments[index], this);
+                        requestedAppointment.ShowDialog();
+                    };
+                }
+                HightLightLabelEvent(appointmentID);
+                HightLightLabelEvent(timeRequested);
+                HightLightLabelEvent(customerName);
+                HightLightLabelEvent(vehicleNumber);
             }
         }
 

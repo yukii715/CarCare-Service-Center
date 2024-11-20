@@ -45,7 +45,7 @@ namespace CarCare_Service_Center
 
             if (appointment.Status != "Pending")
                 btnModify.Visible = false;
-            if (Appointment.Status != "Pending" && appointment.Status != "Accepted")
+            if (appointment.Status != "Pending" && appointment.Status != "Accepted")
                 btnDelete.Visible = false;
         }
         private void ShowServices()

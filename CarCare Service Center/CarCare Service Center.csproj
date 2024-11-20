@@ -83,6 +83,12 @@
     <Compile Include="Admin\ServiceInsertion.Designer.cs">
       <DependentUpon>ServiceInsertion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Receptionist\AssignConfirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receptionist\AssignConfirmation.Designer.cs">
+      <DependentUpon>AssignConfirmation.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChangeEmail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,12 @@
     <Compile Include="ChangeUsername.Designer.cs">
       <DependentUpon>ChangeUsername.cs</DependentUpon>
     </Compile>
+    <Compile Include="Receptionist\MechanicAvailability.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receptionist\MechanicAvailability.Designer.cs">
+      <DependentUpon>MechanicAvailability.cs</DependentUpon>
+    </Compile>
     <Compile Include="Receptionist\PartsPurchase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,12 +124,6 @@
     </Compile>
     <Compile Include="Receptionist\PartsRequestControl.Designer.cs">
       <DependentUpon>PartsRequestControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Receptionist\PendingAppointments.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Receptionist\PendingAppointments.Designer.cs">
-      <DependentUpon>PendingAppointments.cs</DependentUpon>
     </Compile>
     <Compile Include="Receptionist\CustomerDetails.cs">
       <SubType>Form</SubType>
@@ -280,6 +286,18 @@
     <Compile Include="Admin\StaffSalaryDetails.Designer.cs">
       <DependentUpon>StaffSalaryDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Receptionist\RejectConfirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receptionist\RejectConfirmation.Designer.cs">
+      <DependentUpon>RejectConfirmation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Receptionist\RequestedAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receptionist\RequestedAppointment.Designer.cs">
+      <DependentUpon>RequestedAppointment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs" />
     <EmbeddedResource Include="Admin\ServiceInsertion.resx">
       <DependentUpon>ServiceInsertion.cs</DependentUpon>
@@ -341,14 +359,26 @@
     <EmbeddedResource Include="Admin\StaffInsertion.resx">
       <DependentUpon>StaffInsertion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Receptionist\AssignConfirmation.resx">
+      <DependentUpon>AssignConfirmation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Receptionist\CustomerRequests.resx">
       <DependentUpon>CustomerRequests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receptionist\MechanicAvailability.resx">
+      <DependentUpon>MechanicAvailability.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Receptionist\ReceptionistMain.resx">
       <DependentUpon>ReceptionistMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Customer\ViewServiceDetails.resx">
       <DependentUpon>ViewServiceDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receptionist\RejectConfirmation.resx">
+      <DependentUpon>RejectConfirmation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receptionist\RequestedAppointment.resx">
+      <DependentUpon>RequestedAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

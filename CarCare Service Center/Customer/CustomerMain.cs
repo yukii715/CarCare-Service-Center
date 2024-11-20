@@ -537,7 +537,7 @@ namespace CarCare_Service_Center
 
             Label Time = new Label
             {
-                Text = "Time: " + appointments[i].AppointmentDateTime.ToString("hh:ss tt"),
+                Text = "Time: " + appointments[i].AppointmentDateTime.ToString("hh:mm tt"),
                 Location = new Point(6, 50),
                 AutoSize = true
             };
