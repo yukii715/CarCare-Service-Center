@@ -401,6 +401,13 @@ namespace CarCare_Service_Center
         {
             tabMechanic.SelectedIndex = 3;
         }
-
+        //
+        // Profile
+        //
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            frmLogoutConfirmation frmLogoutConfirmation = new frmLogoutConfirmation(this);
+            frmLogoutConfirmation.ShowDialog();
+        }
     }
 }

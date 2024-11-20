@@ -115,13 +115,12 @@ namespace CarCare_Service_Center
         private void btnBack_Click(object sender, EventArgs e)
         {
             Close();
-            Form_Closed(sender, e);
         }
         private void Form_Closed(object sender, EventArgs e)
         {
             var controlsToRemove = new List<Control>();
 
-            foreach (Control ctrl in frmReceptionistMain.tblAppointmentRequests.Controls)
+            foreach (Control ctrl in frmReceptionistMain.tlpAppointmentRequests.Controls)
             {
                 if (ctrl.Name != "lblAptID" && ctrl.Name != "lblAptTime" && ctrl.Name != "lblAptUsername" && ctrl.Name != "lblAptVehicleNum")
                 {
@@ -132,7 +131,7 @@ namespace CarCare_Service_Center
             // Now remove controls from pnlMyAppointment
             foreach (var ctrl in controlsToRemove)
             {
-                frmReceptionistMain.tblAppointmentRequests.Controls.Remove(ctrl);
+                frmReceptionistMain.tlpAppointmentRequests.Controls.Remove(ctrl);
             }
             frmReceptionistMain.LoadAppointmentRequests();
         }

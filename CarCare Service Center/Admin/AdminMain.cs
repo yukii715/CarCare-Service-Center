@@ -499,10 +499,6 @@ namespace CarCare_Service_Center
 
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnHomeSearch_Click(object sender, EventArgs e)
         {
@@ -1177,7 +1173,14 @@ namespace CarCare_Service_Center
             StaffSalaryDetails details = new StaffSalaryDetails(payroll);
             details.Show();
         }
-
+        //
+        // Profile
+        //
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            frmLogoutConfirmation frmLogoutConfirmation = new frmLogoutConfirmation(this);
+            frmLogoutConfirmation.ShowDialog();
+        }
     }
 
 }

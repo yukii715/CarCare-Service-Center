@@ -43,7 +43,7 @@ namespace CarCare_Service_Center
             string query_services = "SELECT * FROM Services";
             services = Database.FetchData<Services>(query_services);
 
-            string query_users = "SELECT * FROM Users WHERE Role = 'Mechanic'";
+            string query_users = "SELECT * FROM Users WHERE Role = 'Mechanic' ORDER BY CAST(UserID AS INT)";
             mechanics = Database.FetchData<User>(query_users);
 
             string query_mechanic_tasks = "SELECT * FROM MechanicTasks";

@@ -33,8 +33,8 @@ namespace CarCare_Service_Center
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustomerMain));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tabCustomer = new System.Windows.Forms.TabControl();
             this.HomeTab = new System.Windows.Forms.TabPage();
             this.cmbYear = new System.Windows.Forms.ComboBox();
@@ -94,6 +94,7 @@ namespace CarCare_Service_Center
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.tabCustomer.SuspendLayout();
             this.HomeTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -214,10 +215,10 @@ namespace CarCare_Service_Center
             // crtServiceUsed
             // 
             this.crtServiceUsed.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea2.Name = "ChartArea1";
-            this.crtServiceUsed.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.crtServiceUsed.Legends.Add(legend2);
+            chartArea3.Name = "ChartArea1";
+            this.crtServiceUsed.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.crtServiceUsed.Legends.Add(legend3);
             this.crtServiceUsed.Location = new System.Drawing.Point(100, 327);
             this.crtServiceUsed.Name = "crtServiceUsed";
             this.crtServiceUsed.Size = new System.Drawing.Size(440, 324);
@@ -652,6 +653,7 @@ namespace CarCare_Service_Center
             // 
             // ProfileTab
             // 
+            this.ProfileTab.Controls.Add(this.btnLogout);
             this.ProfileTab.Controls.Add(this.lblAdminEmail);
             this.ProfileTab.Controls.Add(this.lblAdminName);
             this.ProfileTab.Controls.Add(this.lblAdminID);
@@ -769,6 +771,19 @@ namespace CarCare_Service_Center
             this.label16.TabIndex = 23;
             this.label16.Text = "Profile";
             // 
+            // btnLogout
+            // 
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLogout.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.Location = new System.Drawing.Point(904, 16);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(122, 51);
+            this.btnLogout.TabIndex = 33;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // frmCustomerMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -868,6 +883,7 @@ namespace CarCare_Service_Center
         private Label lblBottomMargin;
         private Button btnAptClear;
         public Panel pnlMyAppointment;
+        private Button btnLogout;
     }
 }
 

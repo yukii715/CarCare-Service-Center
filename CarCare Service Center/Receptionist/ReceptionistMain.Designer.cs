@@ -49,7 +49,6 @@ namespace CarCare_Service_Center
             this.label10 = new System.Windows.Forms.Label();
             this.lstLog = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.lblLogout = new System.Windows.Forms.Label();
             this.lblClock = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblOverview = new System.Windows.Forms.Label();
@@ -61,14 +60,14 @@ namespace CarCare_Service_Center
             this.label5 = new System.Windows.Forms.Label();
             this.cmbCustomerAccounts = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.txtSearchCustomer = new System.Windows.Forms.TextBox();
             this.btnAccountDetails = new System.Windows.Forms.Button();
             this.btnAccountRequests = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Appointments = new System.Windows.Forms.TabPage();
             this.tabAppointment = new System.Windows.Forms.TabControl();
             this.AppointmentRequest = new System.Windows.Forms.TabPage();
-            this.tblAppointmentRequests = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpAppointmentRequests = new System.Windows.Forms.TableLayoutPanel();
             this.lblAptID = new System.Windows.Forms.Label();
             this.lblAptTime = new System.Windows.Forms.Label();
             this.lblAptUsername = new System.Windows.Forms.Label();
@@ -76,25 +75,23 @@ namespace CarCare_Service_Center
             this.label14 = new System.Windows.Forms.Label();
             this.cmbApmtReqSort = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSearchAppointmentRequests = new System.Windows.Forms.TextBox();
             this.AppointmentUpcoming = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
+            this.tlpUpcomingAppointments = new System.Windows.Forms.TableLayoutPanel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label42 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtSearchUpcomingAppointments = new System.Windows.Forms.TextBox();
             this.AppointmentLog = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpAppointmentLog = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.Parts = new System.Windows.Forms.TabPage();
             this.tabParts = new System.Windows.Forms.TabControl();
@@ -119,6 +116,7 @@ namespace CarCare_Service_Center
             this.label35 = new System.Windows.Forms.Label();
             this.Profile = new System.Windows.Forms.TabPage();
             this.tmClock = new System.Windows.Forms.Timer(this.components);
+            this.btnLogout = new System.Windows.Forms.Button();
             this.tabReceptionist.SuspendLayout();
             this.Home.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -132,17 +130,18 @@ namespace CarCare_Service_Center
             this.Appointments.SuspendLayout();
             this.tabAppointment.SuspendLayout();
             this.AppointmentRequest.SuspendLayout();
-            this.tblAppointmentRequests.SuspendLayout();
+            this.tlpAppointmentRequests.SuspendLayout();
             this.AppointmentUpcoming.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
+            this.tlpUpcomingAppointments.SuspendLayout();
             this.AppointmentLog.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tlpAppointmentLog.SuspendLayout();
             this.Parts.SuspendLayout();
             this.tabParts.SuspendLayout();
             this.PartsInventory.SuspendLayout();
             this.tblPartsInventory.SuspendLayout();
             this.PartsRequests.SuspendLayout();
             this.PartsLog.SuspendLayout();
+            this.Profile.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabReceptionist
@@ -172,7 +171,6 @@ namespace CarCare_Service_Center
             this.Home.Controls.Add(this.panel1);
             this.Home.Controls.Add(this.lstLog);
             this.Home.Controls.Add(this.label8);
-            this.Home.Controls.Add(this.lblLogout);
             this.Home.Controls.Add(this.lblClock);
             this.Home.Controls.Add(this.label6);
             this.Home.Controls.Add(this.lblOverview);
@@ -359,19 +357,6 @@ namespace CarCare_Service_Center
             this.label8.TabIndex = 4;
             this.label8.Text = "Recent Changelog";
             // 
-            // lblLogout
-            // 
-            this.lblLogout.AutoSize = true;
-            this.lblLogout.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogout.Location = new System.Drawing.Point(879, 97);
-            this.lblLogout.Name = "lblLogout";
-            this.lblLogout.Size = new System.Drawing.Size(95, 30);
-            this.lblLogout.TabIndex = 2;
-            this.lblLogout.Text = "Log Out";
-            this.lblLogout.Click += new System.EventHandler(this.lblLogout_Click);
-            this.lblLogout.MouseEnter += new System.EventHandler(this.lblLogout_MouseEnter);
-            this.lblLogout.MouseLeave += new System.EventHandler(this.lblLogout_MouseLeave);
-            // 
             // lblClock
             // 
             this.lblClock.AutoSize = true;
@@ -420,7 +405,7 @@ namespace CarCare_Service_Center
             this.Accounts.Controls.Add(this.tblCustomerAccounts);
             this.Accounts.Controls.Add(this.cmbCustomerAccounts);
             this.Accounts.Controls.Add(this.label2);
-            this.Accounts.Controls.Add(this.txtSearch);
+            this.Accounts.Controls.Add(this.txtSearchCustomer);
             this.Accounts.Controls.Add(this.btnAccountDetails);
             this.Accounts.Controls.Add(this.btnAccountRequests);
             this.Accounts.Controls.Add(this.label1);
@@ -449,8 +434,8 @@ namespace CarCare_Service_Center
             this.tblCustomerAccounts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tblCustomerAccounts.Name = "tblCustomerAccounts";
             this.tblCustomerAccounts.RowCount = 1;
-            this.tblCustomerAccounts.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 88F));
-            this.tblCustomerAccounts.Size = new System.Drawing.Size(948, 94);
+            this.tblCustomerAccounts.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 97F));
+            this.tblCustomerAccounts.Size = new System.Drawing.Size(948, 103);
             this.tblCustomerAccounts.TabIndex = 6;
             // 
             // label3
@@ -461,7 +446,7 @@ namespace CarCare_Service_Center
             this.label3.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(6, 3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(181, 88);
+            this.label3.Size = new System.Drawing.Size(181, 97);
             this.label3.TabIndex = 0;
             this.label3.Text = "ID";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -474,7 +459,7 @@ namespace CarCare_Service_Center
             this.label4.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(196, 3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(387, 88);
+            this.label4.Size = new System.Drawing.Size(387, 97);
             this.label4.TabIndex = 1;
             this.label4.Text = "Username";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -487,7 +472,7 @@ namespace CarCare_Service_Center
             this.label5.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(592, 3);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(350, 88);
+            this.label5.Size = new System.Drawing.Size(350, 97);
             this.label5.TabIndex = 2;
             this.label5.Text = "Email";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -517,14 +502,14 @@ namespace CarCare_Service_Center
             this.label2.TabIndex = 4;
             this.label2.Text = "Sort By:";
             // 
-            // txtSearch
+            // txtSearchCustomer
             // 
-            this.txtSearch.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(105, 136);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(496, 38);
-            this.txtSearch.TabIndex = 3;
+            this.txtSearchCustomer.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchCustomer.Location = new System.Drawing.Point(105, 136);
+            this.txtSearchCustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtSearchCustomer.Name = "txtSearchCustomer";
+            this.txtSearchCustomer.Size = new System.Drawing.Size(496, 38);
+            this.txtSearchCustomer.TabIndex = 3;
             // 
             // btnAccountDetails
             // 
@@ -574,12 +559,11 @@ namespace CarCare_Service_Center
             // 
             // tabAppointment
             // 
-            this.tabAppointment.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabAppointment.Controls.Add(this.AppointmentRequest);
             this.tabAppointment.Controls.Add(this.AppointmentUpcoming);
             this.tabAppointment.Controls.Add(this.AppointmentLog);
             this.tabAppointment.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabAppointment.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabAppointment.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabAppointment.Location = new System.Drawing.Point(0, 0);
             this.tabAppointment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabAppointment.Name = "tabAppointment";
@@ -590,44 +574,44 @@ namespace CarCare_Service_Center
             // AppointmentRequest
             // 
             this.AppointmentRequest.AutoScroll = true;
-            this.AppointmentRequest.Controls.Add(this.tblAppointmentRequests);
+            this.AppointmentRequest.Controls.Add(this.tlpAppointmentRequests);
             this.AppointmentRequest.Controls.Add(this.label14);
             this.AppointmentRequest.Controls.Add(this.cmbApmtReqSort);
             this.AppointmentRequest.Controls.Add(this.label15);
-            this.AppointmentRequest.Controls.Add(this.textBox1);
-            this.AppointmentRequest.Location = new System.Drawing.Point(4, 31);
+            this.AppointmentRequest.Controls.Add(this.txtSearchAppointmentRequests);
+            this.AppointmentRequest.Location = new System.Drawing.Point(4, 33);
             this.AppointmentRequest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AppointmentRequest.Name = "AppointmentRequest";
             this.AppointmentRequest.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.AppointmentRequest.Size = new System.Drawing.Size(1082, 701);
+            this.AppointmentRequest.Size = new System.Drawing.Size(1082, 699);
             this.AppointmentRequest.TabIndex = 0;
             this.AppointmentRequest.Text = "Requests";
             this.AppointmentRequest.UseVisualStyleBackColor = true;
             // 
-            // tblAppointmentRequests
+            // tlpAppointmentRequests
             // 
-            this.tblAppointmentRequests.AutoSize = true;
-            this.tblAppointmentRequests.BackColor = System.Drawing.Color.NavajoWhite;
-            this.tblAppointmentRequests.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tblAppointmentRequests.ColumnCount = 4;
-            this.tblAppointmentRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.06349F));
-            this.tblAppointmentRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.32804F));
-            this.tblAppointmentRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.12698F));
-            this.tblAppointmentRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.79894F));
-            this.tblAppointmentRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblAppointmentRequests.Controls.Add(this.lblAptID, 0, 0);
-            this.tblAppointmentRequests.Controls.Add(this.lblAptTime, 1, 0);
-            this.tblAppointmentRequests.Controls.Add(this.lblAptUsername, 2, 0);
-            this.tblAppointmentRequests.Controls.Add(this.lblAptVehicleNum, 3, 0);
-            this.tblAppointmentRequests.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tblAppointmentRequests.Location = new System.Drawing.Point(51, 208);
-            this.tblAppointmentRequests.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tblAppointmentRequests.MaximumSize = new System.Drawing.Size(948, 0);
-            this.tblAppointmentRequests.Name = "tblAppointmentRequests";
-            this.tblAppointmentRequests.RowCount = 1;
-            this.tblAppointmentRequests.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 88F));
-            this.tblAppointmentRequests.Size = new System.Drawing.Size(948, 94);
-            this.tblAppointmentRequests.TabIndex = 11;
+            this.tlpAppointmentRequests.AutoSize = true;
+            this.tlpAppointmentRequests.BackColor = System.Drawing.Color.NavajoWhite;
+            this.tlpAppointmentRequests.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tlpAppointmentRequests.ColumnCount = 4;
+            this.tlpAppointmentRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.06349F));
+            this.tlpAppointmentRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.32804F));
+            this.tlpAppointmentRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.12698F));
+            this.tlpAppointmentRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.79894F));
+            this.tlpAppointmentRequests.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpAppointmentRequests.Controls.Add(this.lblAptID, 0, 0);
+            this.tlpAppointmentRequests.Controls.Add(this.lblAptTime, 1, 0);
+            this.tlpAppointmentRequests.Controls.Add(this.lblAptUsername, 2, 0);
+            this.tlpAppointmentRequests.Controls.Add(this.lblAptVehicleNum, 3, 0);
+            this.tlpAppointmentRequests.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tlpAppointmentRequests.Location = new System.Drawing.Point(51, 208);
+            this.tlpAppointmentRequests.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tlpAppointmentRequests.MaximumSize = new System.Drawing.Size(948, 0);
+            this.tlpAppointmentRequests.Name = "tlpAppointmentRequests";
+            this.tlpAppointmentRequests.RowCount = 1;
+            this.tlpAppointmentRequests.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 95F));
+            this.tlpAppointmentRequests.Size = new System.Drawing.Size(948, 97);
+            this.tlpAppointmentRequests.TabIndex = 11;
             // 
             // lblAptID
             // 
@@ -637,7 +621,7 @@ namespace CarCare_Service_Center
             this.lblAptID.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAptID.Location = new System.Drawing.Point(4, 1);
             this.lblAptID.Name = "lblAptID";
-            this.lblAptID.Size = new System.Drawing.Size(295, 92);
+            this.lblAptID.Size = new System.Drawing.Size(295, 95);
             this.lblAptID.TabIndex = 0;
             this.lblAptID.Text = "Appointment ID";
             this.lblAptID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -650,7 +634,7 @@ namespace CarCare_Service_Center
             this.lblAptTime.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAptTime.Location = new System.Drawing.Point(306, 1);
             this.lblAptTime.Name = "lblAptTime";
-            this.lblAptTime.Size = new System.Drawing.Size(203, 92);
+            this.lblAptTime.Size = new System.Drawing.Size(203, 95);
             this.lblAptTime.TabIndex = 0;
             this.lblAptTime.Text = "Time Requested";
             this.lblAptTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -663,7 +647,7 @@ namespace CarCare_Service_Center
             this.lblAptUsername.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAptUsername.Location = new System.Drawing.Point(516, 1);
             this.lblAptUsername.Name = "lblAptUsername";
-            this.lblAptUsername.Size = new System.Drawing.Size(220, 92);
+            this.lblAptUsername.Size = new System.Drawing.Size(220, 95);
             this.lblAptUsername.TabIndex = 0;
             this.lblAptUsername.Text = "Username";
             this.lblAptUsername.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -676,7 +660,7 @@ namespace CarCare_Service_Center
             this.lblAptVehicleNum.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAptVehicleNum.Location = new System.Drawing.Point(743, 1);
             this.lblAptVehicleNum.Name = "lblAptVehicleNum";
-            this.lblAptVehicleNum.Size = new System.Drawing.Size(201, 92);
+            this.lblAptVehicleNum.Size = new System.Drawing.Size(201, 95);
             this.lblAptVehicleNum.TabIndex = 0;
             this.lblAptVehicleNum.Text = "Vehicle Number";
             this.lblAptVehicleNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -712,119 +696,107 @@ namespace CarCare_Service_Center
             this.label15.TabIndex = 8;
             this.label15.Text = "Sort By:";
             // 
-            // textBox1
+            // txtSearchAppointmentRequests
             // 
-            this.textBox1.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(82, 130);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(540, 38);
-            this.textBox1.TabIndex = 7;
+            this.txtSearchAppointmentRequests.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchAppointmentRequests.Location = new System.Drawing.Point(82, 130);
+            this.txtSearchAppointmentRequests.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtSearchAppointmentRequests.Name = "txtSearchAppointmentRequests";
+            this.txtSearchAppointmentRequests.Size = new System.Drawing.Size(540, 38);
+            this.txtSearchAppointmentRequests.TabIndex = 7;
             // 
             // AppointmentUpcoming
             // 
-            this.AppointmentUpcoming.Controls.Add(this.tableLayoutPanel4);
+            this.AppointmentUpcoming.Controls.Add(this.tlpUpcomingAppointments);
             this.AppointmentUpcoming.Controls.Add(this.label33);
             this.AppointmentUpcoming.Controls.Add(this.comboBox4);
             this.AppointmentUpcoming.Controls.Add(this.label42);
-            this.AppointmentUpcoming.Controls.Add(this.textBox5);
-            this.AppointmentUpcoming.Location = new System.Drawing.Point(4, 31);
+            this.AppointmentUpcoming.Controls.Add(this.txtSearchUpcomingAppointments);
+            this.AppointmentUpcoming.Location = new System.Drawing.Point(4, 33);
             this.AppointmentUpcoming.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AppointmentUpcoming.Name = "AppointmentUpcoming";
             this.AppointmentUpcoming.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.AppointmentUpcoming.Size = new System.Drawing.Size(1082, 701);
+            this.AppointmentUpcoming.Size = new System.Drawing.Size(1082, 699);
             this.AppointmentUpcoming.TabIndex = 3;
             this.AppointmentUpcoming.Text = "Upcoming";
             this.AppointmentUpcoming.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel4
+            // tlpUpcomingAppointments
             // 
-            this.tableLayoutPanel4.BackColor = System.Drawing.Color.Gainsboro;
-            this.tableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
-            this.tableLayoutPanel4.ColumnCount = 5;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17F));
-            this.tableLayoutPanel4.Controls.Add(this.label39, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label41, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label48, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label49, 3, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label50, 4, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(51, 208);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(948, 110);
-            this.tableLayoutPanel4.TabIndex = 17;
+            this.tlpUpcomingAppointments.AutoSize = true;
+            this.tlpUpcomingAppointments.BackColor = System.Drawing.Color.NavajoWhite;
+            this.tlpUpcomingAppointments.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tlpUpcomingAppointments.ColumnCount = 4;
+            this.tlpUpcomingAppointments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.06349F));
+            this.tlpUpcomingAppointments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.32804F));
+            this.tlpUpcomingAppointments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.12698F));
+            this.tlpUpcomingAppointments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.79894F));
+            this.tlpUpcomingAppointments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpUpcomingAppointments.Controls.Add(this.label16, 0, 0);
+            this.tlpUpcomingAppointments.Controls.Add(this.label17, 1, 0);
+            this.tlpUpcomingAppointments.Controls.Add(this.label18, 2, 0);
+            this.tlpUpcomingAppointments.Controls.Add(this.label19, 3, 0);
+            this.tlpUpcomingAppointments.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tlpUpcomingAppointments.Location = new System.Drawing.Point(51, 208);
+            this.tlpUpcomingAppointments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tlpUpcomingAppointments.MaximumSize = new System.Drawing.Size(948, 0);
+            this.tlpUpcomingAppointments.Name = "tlpUpcomingAppointments";
+            this.tlpUpcomingAppointments.RowCount = 1;
+            this.tlpUpcomingAppointments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 95F));
+            this.tlpUpcomingAppointments.Size = new System.Drawing.Size(948, 97);
+            this.tlpUpcomingAppointments.TabIndex = 16;
             // 
-            // label39
+            // label16
             // 
-            this.label39.AutoSize = true;
-            this.label39.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label39.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label39.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(6, 3);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(161, 68);
-            this.label39.TabIndex = 0;
-            this.label39.Text = "Appointment ID";
-            this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Moccasin;
+            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label16.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(4, 1);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(295, 95);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Appointment ID";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label41
+            // label17
             // 
-            this.label41.AutoSize = true;
-            this.label41.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label41.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label41.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(176, 3);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(198, 68);
-            this.label41.TabIndex = 0;
-            this.label41.Text = "Appointment Time";
-            this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Moccasin;
+            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label17.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(306, 1);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(203, 95);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "Date Time";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label48
+            // label18
             // 
-            this.label48.AutoSize = true;
-            this.label48.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label48.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label48.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(383, 3);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(273, 68);
-            this.label48.TabIndex = 0;
-            this.label48.Text = "Username";
-            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Moccasin;
+            this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label18.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(516, 1);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(220, 95);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "Username";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label49
+            // label19
             // 
-            this.label49.AutoSize = true;
-            this.label49.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label49.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label49.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(665, 3);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(114, 68);
-            this.label49.TabIndex = 0;
-            this.label49.Text = "Vehicle Number";
-            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label50.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label50.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(788, 3);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(154, 68);
-            this.label50.TabIndex = 0;
-            this.label50.Text = "Details";
-            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.Moccasin;
+            this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label19.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(743, 1);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(201, 95);
+            this.label19.TabIndex = 0;
+            this.label19.Text = "Vehicle Number";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label33
             // 
@@ -857,61 +829,58 @@ namespace CarCare_Service_Center
             this.label42.TabIndex = 13;
             this.label42.Text = "Sort By:";
             // 
-            // textBox5
+            // txtSearchUpcomingAppointments
             // 
-            this.textBox5.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(82, 130);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(540, 38);
-            this.textBox5.TabIndex = 12;
+            this.txtSearchUpcomingAppointments.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchUpcomingAppointments.Location = new System.Drawing.Point(82, 130);
+            this.txtSearchUpcomingAppointments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtSearchUpcomingAppointments.Name = "txtSearchUpcomingAppointments";
+            this.txtSearchUpcomingAppointments.Size = new System.Drawing.Size(540, 38);
+            this.txtSearchUpcomingAppointments.TabIndex = 12;
             // 
             // AppointmentLog
             // 
-            this.AppointmentLog.Controls.Add(this.tableLayoutPanel2);
+            this.AppointmentLog.Controls.Add(this.tlpAppointmentLog);
             this.AppointmentLog.Controls.Add(this.label40);
-            this.AppointmentLog.Location = new System.Drawing.Point(4, 31);
+            this.AppointmentLog.Location = new System.Drawing.Point(4, 33);
             this.AppointmentLog.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AppointmentLog.Name = "AppointmentLog";
             this.AppointmentLog.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.AppointmentLog.Size = new System.Drawing.Size(1082, 701);
+            this.AppointmentLog.Size = new System.Drawing.Size(1082, 699);
             this.AppointmentLog.TabIndex = 4;
             this.AppointmentLog.Text = "Log";
             this.AppointmentLog.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel2
+            // tlpAppointmentLog
             // 
-            this.tableLayoutPanel2.BackColor = System.Drawing.Color.Gainsboro;
-            this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
-            this.tableLayoutPanel2.ColumnCount = 5;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.tableLayoutPanel2.Controls.Add(this.label7, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label30, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label36, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label37, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label38, 4, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(51, 124);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(948, 110);
-            this.tableLayoutPanel2.TabIndex = 16;
+            this.tlpAppointmentLog.BackColor = System.Drawing.Color.NavajoWhite;
+            this.tlpAppointmentLog.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.tlpAppointmentLog.ColumnCount = 4;
+            this.tlpAppointmentLog.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.65724F));
+            this.tlpAppointmentLog.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.24774F));
+            this.tlpAppointmentLog.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.49242F));
+            this.tlpAppointmentLog.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.60259F));
+            this.tlpAppointmentLog.Controls.Add(this.label7, 0, 0);
+            this.tlpAppointmentLog.Controls.Add(this.label30, 1, 0);
+            this.tlpAppointmentLog.Controls.Add(this.label36, 2, 0);
+            this.tlpAppointmentLog.Controls.Add(this.label37, 3, 0);
+            this.tlpAppointmentLog.Location = new System.Drawing.Point(65, 101);
+            this.tlpAppointmentLog.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tlpAppointmentLog.Name = "tlpAppointmentLog";
+            this.tlpAppointmentLog.RowCount = 1;
+            this.tlpAppointmentLog.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 93F));
+            this.tlpAppointmentLog.Size = new System.Drawing.Size(948, 96);
+            this.tlpAppointmentLog.TabIndex = 16;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label7.BackColor = System.Drawing.Color.Moccasin;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(6, 3);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(161, 68);
+            this.label7.Size = new System.Drawing.Size(186, 93);
             this.label7.TabIndex = 0;
             this.label7.Text = "Appointment ID";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -919,12 +888,12 @@ namespace CarCare_Service_Center
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label30.BackColor = System.Drawing.Color.Moccasin;
             this.label30.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label30.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(176, 3);
+            this.label30.Location = new System.Drawing.Point(201, 3);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(198, 68);
+            this.label30.Size = new System.Drawing.Size(229, 93);
             this.label30.TabIndex = 0;
             this.label30.Text = "Appointment Time";
             this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -932,12 +901,12 @@ namespace CarCare_Service_Center
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label36.BackColor = System.Drawing.Color.Moccasin;
             this.label36.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label36.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(383, 3);
+            this.label36.Location = new System.Drawing.Point(439, 3);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(310, 68);
+            this.label36.Size = new System.Drawing.Size(306, 93);
             this.label36.TabIndex = 0;
             this.label36.Text = "Username";
             this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -945,28 +914,15 @@ namespace CarCare_Service_Center
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label37.BackColor = System.Drawing.Color.Moccasin;
             this.label37.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label37.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(702, 3);
+            this.label37.Location = new System.Drawing.Point(754, 3);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(114, 68);
+            this.label37.Size = new System.Drawing.Size(188, 93);
             this.label37.TabIndex = 0;
-            this.label37.Text = "Total\r\n(RM)";
+            this.label37.Text = "Total (RM)";
             this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label38.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label38.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(825, 3);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(117, 68);
-            this.label38.TabIndex = 0;
-            this.label38.Text = "Details";
-            this.label38.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label40
             // 
@@ -992,12 +948,11 @@ namespace CarCare_Service_Center
             // 
             // tabParts
             // 
-            this.tabParts.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabParts.Controls.Add(this.PartsInventory);
             this.tabParts.Controls.Add(this.PartsRequests);
             this.tabParts.Controls.Add(this.PartsLog);
             this.tabParts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabParts.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabParts.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabParts.Location = new System.Drawing.Point(0, 0);
             this.tabParts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabParts.Multiline = true;
@@ -1016,11 +971,11 @@ namespace CarCare_Service_Center
             this.PartsInventory.Controls.Add(this.textBox2);
             this.PartsInventory.Controls.Add(this.label22);
             this.PartsInventory.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PartsInventory.Location = new System.Drawing.Point(4, 31);
+            this.PartsInventory.Location = new System.Drawing.Point(4, 33);
             this.PartsInventory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PartsInventory.Name = "PartsInventory";
             this.PartsInventory.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.PartsInventory.Size = new System.Drawing.Size(1082, 701);
+            this.PartsInventory.Size = new System.Drawing.Size(1082, 699);
             this.PartsInventory.TabIndex = 0;
             this.PartsInventory.Text = "Inventory";
             this.PartsInventory.UseVisualStyleBackColor = true;
@@ -1039,7 +994,7 @@ namespace CarCare_Service_Center
             // tblPartsInventory
             // 
             this.tblPartsInventory.AutoSize = true;
-            this.tblPartsInventory.BackColor = System.Drawing.Color.Gainsboro;
+            this.tblPartsInventory.BackColor = System.Drawing.Color.NavajoWhite;
             this.tblPartsInventory.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
             this.tblPartsInventory.ColumnCount = 6;
             this.tblPartsInventory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
@@ -1060,78 +1015,78 @@ namespace CarCare_Service_Center
             this.tblPartsInventory.MaximumSize = new System.Drawing.Size(948, 0);
             this.tblPartsInventory.Name = "tblPartsInventory";
             this.tblPartsInventory.RowCount = 1;
-            this.tblPartsInventory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 88F));
-            this.tblPartsInventory.Size = new System.Drawing.Size(948, 94);
+            this.tblPartsInventory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 97F));
+            this.tblPartsInventory.Size = new System.Drawing.Size(948, 103);
             this.tblPartsInventory.TabIndex = 12;
             // 
             // label9
             // 
-            this.label9.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label9.BackColor = System.Drawing.Color.Moccasin;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(797, 3);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(145, 88);
+            this.label9.Size = new System.Drawing.Size(145, 97);
             this.label9.TabIndex = 1;
             this.label9.Text = "Status";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label23
             // 
-            this.label23.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label23.BackColor = System.Drawing.Color.Moccasin;
             this.label23.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label23.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.Location = new System.Drawing.Point(6, 3);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(105, 88);
+            this.label23.Size = new System.Drawing.Size(105, 97);
             this.label23.TabIndex = 0;
             this.label23.Text = "Part ID";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label24
             // 
-            this.label24.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label24.BackColor = System.Drawing.Color.Moccasin;
             this.label24.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label24.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.Location = new System.Drawing.Point(120, 3);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(160, 88);
+            this.label24.Size = new System.Drawing.Size(160, 97);
             this.label24.TabIndex = 0;
             this.label24.Text = "Part Type";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label25
             // 
-            this.label25.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label25.BackColor = System.Drawing.Color.Moccasin;
             this.label25.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label25.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.Location = new System.Drawing.Point(289, 3);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(272, 88);
+            this.label25.Size = new System.Drawing.Size(272, 97);
             this.label25.TabIndex = 0;
             this.label25.Text = "Part Name";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label26
             // 
-            this.label26.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label26.BackColor = System.Drawing.Color.Moccasin;
             this.label26.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label26.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.Location = new System.Drawing.Point(570, 3);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(114, 88);
+            this.label26.Size = new System.Drawing.Size(114, 97);
             this.label26.TabIndex = 0;
             this.label26.Text = "Price";
             this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label27
             // 
-            this.label27.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label27.BackColor = System.Drawing.Color.Moccasin;
             this.label27.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label27.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.Location = new System.Drawing.Point(693, 3);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(95, 88);
+            this.label27.Size = new System.Drawing.Size(95, 97);
             this.label27.TabIndex = 0;
             this.label27.Text = "Stock";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1193,11 +1148,11 @@ namespace CarCare_Service_Center
             this.PartsRequests.AutoScroll = true;
             this.PartsRequests.Controls.Add(this.pnlPartsRequests);
             this.PartsRequests.Controls.Add(this.label29);
-            this.PartsRequests.Location = new System.Drawing.Point(4, 31);
+            this.PartsRequests.Location = new System.Drawing.Point(4, 33);
             this.PartsRequests.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PartsRequests.Name = "PartsRequests";
             this.PartsRequests.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.PartsRequests.Size = new System.Drawing.Size(1082, 701);
+            this.PartsRequests.Size = new System.Drawing.Size(1082, 699);
             this.PartsRequests.TabIndex = 1;
             this.PartsRequests.Text = "Requests";
             this.PartsRequests.UseVisualStyleBackColor = true;
@@ -1226,11 +1181,11 @@ namespace CarCare_Service_Center
             // PartsLog
             // 
             this.PartsLog.Controls.Add(this.label35);
-            this.PartsLog.Location = new System.Drawing.Point(4, 31);
+            this.PartsLog.Location = new System.Drawing.Point(4, 33);
             this.PartsLog.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PartsLog.Name = "PartsLog";
             this.PartsLog.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.PartsLog.Size = new System.Drawing.Size(1082, 701);
+            this.PartsLog.Size = new System.Drawing.Size(1082, 699);
             this.PartsLog.TabIndex = 2;
             this.PartsLog.Text = "Log";
             this.PartsLog.UseVisualStyleBackColor = true;
@@ -1248,6 +1203,7 @@ namespace CarCare_Service_Center
             // 
             // Profile
             // 
+            this.Profile.Controls.Add(this.btnLogout);
             this.Profile.Location = new System.Drawing.Point(84, 4);
             this.Profile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Profile.Name = "Profile";
@@ -1260,6 +1216,19 @@ namespace CarCare_Service_Center
             // 
             this.tmClock.Interval = 1000;
             this.tmClock.Tick += new System.EventHandler(this.tmClock_Tick);
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLogout.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.Location = new System.Drawing.Point(921, 39);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(122, 51);
+            this.btnLogout.TabIndex = 2;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // frmReceptionistMain
             // 
@@ -1290,15 +1259,15 @@ namespace CarCare_Service_Center
             this.tabAppointment.ResumeLayout(false);
             this.AppointmentRequest.ResumeLayout(false);
             this.AppointmentRequest.PerformLayout();
-            this.tblAppointmentRequests.ResumeLayout(false);
-            this.tblAppointmentRequests.PerformLayout();
+            this.tlpAppointmentRequests.ResumeLayout(false);
+            this.tlpAppointmentRequests.PerformLayout();
             this.AppointmentUpcoming.ResumeLayout(false);
             this.AppointmentUpcoming.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
+            this.tlpUpcomingAppointments.ResumeLayout(false);
+            this.tlpUpcomingAppointments.PerformLayout();
             this.AppointmentLog.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.tlpAppointmentLog.ResumeLayout(false);
+            this.tlpAppointmentLog.PerformLayout();
             this.Parts.ResumeLayout(false);
             this.tabParts.ResumeLayout(false);
             this.PartsInventory.ResumeLayout(false);
@@ -1307,6 +1276,7 @@ namespace CarCare_Service_Center
             this.PartsRequests.ResumeLayout(false);
             this.PartsRequests.PerformLayout();
             this.PartsLog.ResumeLayout(false);
+            this.Profile.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1321,11 +1291,10 @@ namespace CarCare_Service_Center
         private System.Windows.Forms.TabPage Profile;
         private System.Windows.Forms.ComboBox cmbCustomerAccounts;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.TextBox txtSearchCustomer;
         private System.Windows.Forms.Button btnAccountRequests;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblClock;
-        private System.Windows.Forms.Label lblLogout;
         private System.Windows.Forms.ListBox lstLog;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -1368,7 +1337,7 @@ namespace CarCare_Service_Center
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox cmbApmtReqSort;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtSearchAppointmentRequests;
         private System.Windows.Forms.TabPage AppointmentUpcoming;
         private System.Windows.Forms.TabPage AppointmentLog;
         private System.Windows.Forms.Timer tmClock;
@@ -1376,22 +1345,15 @@ namespace CarCare_Service_Center
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtSearchUpcomingAppointments;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Button btnAccountDetails;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tlpAppointmentLog;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.Label label50;
         private System.Windows.Forms.Label lblAptID;
         private System.Windows.Forms.Label lblAptTime;
         private System.Windows.Forms.Label lblAptUsername;
@@ -1400,6 +1362,12 @@ namespace CarCare_Service_Center
         private System.Windows.Forms.Button btnPurchase;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel pnlPartsRequests;
-        public System.Windows.Forms.TableLayoutPanel tblAppointmentRequests;
+        public System.Windows.Forms.TableLayoutPanel tlpAppointmentRequests;
+        public System.Windows.Forms.TableLayoutPanel tlpUpcomingAppointments;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button btnLogout;
     }
 }
