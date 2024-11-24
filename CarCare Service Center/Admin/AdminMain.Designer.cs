@@ -30,13 +30,13 @@ namespace CarCare_Service_Center
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdminMain));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabAdmin = new System.Windows.Forms.TabControl();
             this.tabHome = new System.Windows.Forms.TabPage();
             this.crtHomeRating = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -166,7 +166,6 @@ namespace CarCare_Service_Center
             this.tlpStaffSalaryReportData = new System.Windows.Forms.TableLayoutPanel();
             this.lblStaffSalaryReport = new System.Windows.Forms.Label();
             this.tabProfile = new System.Windows.Forms.TabPage();
-            this.btnLogout = new System.Windows.Forms.Button();
             this.lblAdminEmail = new System.Windows.Forms.Label();
             this.lblAdminName = new System.Windows.Forms.Label();
             this.lblAdminID = new System.Windows.Forms.Label();
@@ -177,6 +176,9 @@ namespace CarCare_Service_Center
             this.label44 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
             this.label66 = new System.Windows.Forms.Label();
+            this.lblHome = new System.Windows.Forms.Label();
+            this.lblLogout = new System.Windows.Forms.Label();
+            this.lblReload = new System.Windows.Forms.Label();
             this.tabAdmin.SuspendLayout();
             this.tabHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.crtHomeRating)).BeginInit();
@@ -222,7 +224,7 @@ namespace CarCare_Service_Center
             this.tabAdmin.Controls.Add(this.tabProfile);
             this.tabAdmin.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabAdmin.ItemSize = new System.Drawing.Size(50, 80);
-            this.tabAdmin.Location = new System.Drawing.Point(1, 1);
+            this.tabAdmin.Location = new System.Drawing.Point(1, 32);
             this.tabAdmin.Margin = new System.Windows.Forms.Padding(2);
             this.tabAdmin.Multiline = true;
             this.tabAdmin.Name = "tabAdmin";
@@ -260,24 +262,24 @@ namespace CarCare_Service_Center
             // 
             // crtHomeRating
             // 
-            chartArea1.Name = "ChartArea1";
-            this.crtHomeRating.ChartAreas.Add(chartArea1);
-            legend1.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            legend1.IsTextAutoFit = false;
-            legend1.Name = "Legend1";
-            this.crtHomeRating.Legends.Add(legend1);
+            chartArea7.Name = "ChartArea1";
+            this.crtHomeRating.ChartAreas.Add(chartArea7);
+            legend7.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            legend7.IsTextAutoFit = false;
+            legend7.Name = "Legend1";
+            this.crtHomeRating.Legends.Add(legend7);
             this.crtHomeRating.Location = new System.Drawing.Point(507, 328);
             this.crtHomeRating.Margin = new System.Windows.Forms.Padding(2);
             this.crtHomeRating.Name = "crtHomeRating";
             this.crtHomeRating.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series1.IsXValueIndexed = true;
-            series1.Legend = "Legend1";
-            series1.LegendText = "Chart";
-            series1.Name = "SeriesRating";
-            this.crtHomeRating.Series.Add(series1);
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series7.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series7.IsXValueIndexed = true;
+            series7.Legend = "Legend1";
+            series7.LegendText = "Chart";
+            series7.Name = "SeriesRating";
+            this.crtHomeRating.Series.Add(series7);
             this.crtHomeRating.Size = new System.Drawing.Size(392, 216);
             this.crtHomeRating.TabIndex = 42;
             this.crtHomeRating.Text = "chartRating";
@@ -493,7 +495,7 @@ namespace CarCare_Service_Center
             this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.03226F));
             this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.96774F));
             this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
-            this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 182F));
+            this.tlpStaffAccountData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 183F));
             this.tlpStaffAccountData.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tlpStaffAccountData.Location = new System.Drawing.Point(15, 2);
             this.tlpStaffAccountData.Margin = new System.Windows.Forms.Padding(2);
@@ -669,7 +671,7 @@ namespace CarCare_Service_Center
             this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.9434F));
             this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.0566F));
             this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 298F));
-            this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
+            this.tlpServiceSortButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 159F));
             this.tlpServiceSortButtons.Controls.Add(this.btnServiceSortType, 2, 0);
             this.tlpServiceSortButtons.Controls.Add(this.btnServiceSortID, 0, 0);
             this.tlpServiceSortButtons.Controls.Add(this.btnServiceSortName, 1, 0);
@@ -685,7 +687,7 @@ namespace CarCare_Service_Center
             // 
             this.btnServiceSortType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnServiceSortType.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnServiceSortType.Location = new System.Drawing.Point(407, 2);
+            this.btnServiceSortType.Location = new System.Drawing.Point(406, 2);
             this.btnServiceSortType.Margin = new System.Windows.Forms.Padding(2);
             this.btnServiceSortType.Name = "btnServiceSortType";
             this.btnServiceSortType.Size = new System.Drawing.Size(294, 44);
@@ -714,7 +716,7 @@ namespace CarCare_Service_Center
             this.btnServiceSortName.Location = new System.Drawing.Point(127, 2);
             this.btnServiceSortName.Margin = new System.Windows.Forms.Padding(2);
             this.btnServiceSortName.Name = "btnServiceSortName";
-            this.btnServiceSortName.Size = new System.Drawing.Size(276, 44);
+            this.btnServiceSortName.Size = new System.Drawing.Size(275, 44);
             this.btnServiceSortName.TabIndex = 21;
             this.btnServiceSortName.Text = "Name";
             this.btnServiceSortName.UseVisualStyleBackColor = true;
@@ -749,7 +751,7 @@ namespace CarCare_Service_Center
             this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.67384F));
             this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.32616F));
             this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 298F));
-            this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
+            this.tlpServiceData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 159F));
             this.tlpServiceData.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tlpServiceData.Location = new System.Drawing.Point(20, 2);
             this.tlpServiceData.Margin = new System.Windows.Forms.Padding(2);
@@ -840,7 +842,7 @@ namespace CarCare_Service_Center
             this.tlpFeedbackSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.35831F));
             this.tlpFeedbackSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 178F));
             this.tlpFeedbackSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
-            this.tlpFeedbackSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tlpFeedbackSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 131F));
             this.tlpFeedbackSortButton.Controls.Add(this.btnFeedbackSortComment, 4, 0);
             this.tlpFeedbackSortButton.Controls.Add(this.btnFeedbackSortRating, 3, 0);
             this.tlpFeedbackSortButton.Controls.Add(this.btnFeedbackSortDate, 2, 0);
@@ -859,10 +861,10 @@ namespace CarCare_Service_Center
             // 
             this.btnFeedbackSortComment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnFeedbackSortComment.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFeedbackSortComment.Location = new System.Drawing.Point(603, 2);
+            this.btnFeedbackSortComment.Location = new System.Drawing.Point(602, 2);
             this.btnFeedbackSortComment.Margin = new System.Windows.Forms.Padding(2);
             this.btnFeedbackSortComment.Name = "btnFeedbackSortComment";
-            this.btnFeedbackSortComment.Size = new System.Drawing.Size(127, 44);
+            this.btnFeedbackSortComment.Size = new System.Drawing.Size(128, 44);
             this.btnFeedbackSortComment.TabIndex = 23;
             this.btnFeedbackSortComment.Text = "Comment";
             this.btnFeedbackSortComment.UseVisualStyleBackColor = true;
@@ -872,7 +874,7 @@ namespace CarCare_Service_Center
             // 
             this.btnFeedbackSortRating.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnFeedbackSortRating.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFeedbackSortRating.Location = new System.Drawing.Point(498, 2);
+            this.btnFeedbackSortRating.Location = new System.Drawing.Point(497, 2);
             this.btnFeedbackSortRating.Margin = new System.Windows.Forms.Padding(2);
             this.btnFeedbackSortRating.Name = "btnFeedbackSortRating";
             this.btnFeedbackSortRating.Size = new System.Drawing.Size(101, 44);
@@ -885,7 +887,7 @@ namespace CarCare_Service_Center
             // 
             this.btnFeedbackSortDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnFeedbackSortDate.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFeedbackSortDate.Location = new System.Drawing.Point(320, 2);
+            this.btnFeedbackSortDate.Location = new System.Drawing.Point(319, 2);
             this.btnFeedbackSortDate.Margin = new System.Windows.Forms.Padding(2);
             this.btnFeedbackSortDate.Name = "btnFeedbackSortDate";
             this.btnFeedbackSortDate.Size = new System.Drawing.Size(174, 44);
@@ -901,7 +903,7 @@ namespace CarCare_Service_Center
             this.btnFeedbackSortID.Location = new System.Drawing.Point(2, 2);
             this.btnFeedbackSortID.Margin = new System.Windows.Forms.Padding(2);
             this.btnFeedbackSortID.Name = "btnFeedbackSortID";
-            this.btnFeedbackSortID.Size = new System.Drawing.Size(119, 44);
+            this.btnFeedbackSortID.Size = new System.Drawing.Size(118, 44);
             this.btnFeedbackSortID.TabIndex = 20;
             this.btnFeedbackSortID.Text = "SOID";
             this.btnFeedbackSortID.UseVisualStyleBackColor = true;
@@ -911,7 +913,7 @@ namespace CarCare_Service_Center
             // 
             this.btnFeedbackSortName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnFeedbackSortName.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFeedbackSortName.Location = new System.Drawing.Point(125, 2);
+            this.btnFeedbackSortName.Location = new System.Drawing.Point(124, 2);
             this.btnFeedbackSortName.Margin = new System.Windows.Forms.Padding(2);
             this.btnFeedbackSortName.Name = "btnFeedbackSortName";
             this.btnFeedbackSortName.Size = new System.Drawing.Size(191, 44);
@@ -943,7 +945,7 @@ namespace CarCare_Service_Center
             this.tlpFeedbackData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 173F));
             this.tlpFeedbackData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.tlpFeedbackData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107F));
-            this.tlpFeedbackData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 143F));
+            this.tlpFeedbackData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 145F));
             this.tlpFeedbackData.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tlpFeedbackData.Location = new System.Drawing.Point(0, 2);
             this.tlpFeedbackData.Margin = new System.Windows.Forms.Padding(2);
@@ -1026,24 +1028,24 @@ namespace CarCare_Service_Center
             // crtFeedbackRating
             // 
             this.crtFeedbackRating.BackColor = System.Drawing.Color.Transparent;
-            chartArea2.Name = "ChartArea1";
-            this.crtFeedbackRating.ChartAreas.Add(chartArea2);
-            legend2.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            legend2.IsTextAutoFit = false;
-            legend2.Name = "Legend1";
-            this.crtFeedbackRating.Legends.Add(legend2);
+            chartArea8.Name = "ChartArea1";
+            this.crtFeedbackRating.ChartAreas.Add(chartArea8);
+            legend8.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            legend8.IsTextAutoFit = false;
+            legend8.Name = "Legend1";
+            this.crtFeedbackRating.Legends.Add(legend8);
             this.crtFeedbackRating.Location = new System.Drawing.Point(2, 2);
             this.crtFeedbackRating.Margin = new System.Windows.Forms.Padding(2);
             this.crtFeedbackRating.Name = "crtFeedbackRating";
             this.crtFeedbackRating.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series2.IsXValueIndexed = true;
-            series2.Legend = "Legend1";
-            series2.LegendText = "Chart";
-            series2.Name = "SeriesRating";
-            this.crtFeedbackRating.Series.Add(series2);
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series8.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series8.IsXValueIndexed = true;
+            series8.Legend = "Legend1";
+            series8.LegendText = "Chart";
+            series8.Name = "SeriesRating";
+            this.crtFeedbackRating.Series.Add(series8);
             this.crtFeedbackRating.Size = new System.Drawing.Size(471, 216);
             this.crtFeedbackRating.TabIndex = 43;
             // 
@@ -1120,7 +1122,7 @@ namespace CarCare_Service_Center
             this.tlpSalaryBtnSort.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.87901F));
             this.tlpSalaryBtnSort.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
             this.tlpSalaryBtnSort.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
-            this.tlpSalaryBtnSort.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tlpSalaryBtnSort.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 131F));
             this.tlpSalaryBtnSort.Controls.Add(this.btnSalarySortBaseSalary, 3, 0);
             this.tlpSalaryBtnSort.Controls.Add(this.btnSalarySortRole, 2, 0);
             this.tlpSalaryBtnSort.Controls.Add(this.btnSalarySortID, 0, 0);
@@ -1137,7 +1139,7 @@ namespace CarCare_Service_Center
             // 
             this.btnSalarySortBaseSalary.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSalarySortBaseSalary.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalarySortBaseSalary.Location = new System.Drawing.Point(586, 2);
+            this.btnSalarySortBaseSalary.Location = new System.Drawing.Point(585, 2);
             this.btnSalarySortBaseSalary.Margin = new System.Windows.Forms.Padding(2);
             this.btnSalarySortBaseSalary.Name = "btnSalarySortBaseSalary";
             this.btnSalarySortBaseSalary.Size = new System.Drawing.Size(151, 44);
@@ -1150,7 +1152,7 @@ namespace CarCare_Service_Center
             // 
             this.btnSalarySortRole.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSalarySortRole.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalarySortRole.Location = new System.Drawing.Point(417, 2);
+            this.btnSalarySortRole.Location = new System.Drawing.Point(416, 2);
             this.btnSalarySortRole.Margin = new System.Windows.Forms.Padding(2);
             this.btnSalarySortRole.Name = "btnSalarySortRole";
             this.btnSalarySortRole.Size = new System.Drawing.Size(165, 44);
@@ -1166,7 +1168,7 @@ namespace CarCare_Service_Center
             this.btnSalarySortID.Location = new System.Drawing.Point(2, 2);
             this.btnSalarySortID.Margin = new System.Windows.Forms.Padding(2);
             this.btnSalarySortID.Name = "btnSalarySortID";
-            this.btnSalarySortID.Size = new System.Drawing.Size(146, 44);
+            this.btnSalarySortID.Size = new System.Drawing.Size(145, 44);
             this.btnSalarySortID.TabIndex = 20;
             this.btnSalarySortID.Text = "ID";
             this.btnSalarySortID.UseVisualStyleBackColor = true;
@@ -1176,7 +1178,7 @@ namespace CarCare_Service_Center
             // 
             this.btnSalarySortName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSalarySortName.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalarySortName.Location = new System.Drawing.Point(152, 2);
+            this.btnSalarySortName.Location = new System.Drawing.Point(151, 2);
             this.btnSalarySortName.Margin = new System.Windows.Forms.Padding(2);
             this.btnSalarySortName.Name = "btnSalarySortName";
             this.btnSalarySortName.Size = new System.Drawing.Size(261, 44);
@@ -1203,7 +1205,7 @@ namespace CarCare_Service_Center
             this.tlpSalaryData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.68515F));
             this.tlpSalaryData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
             this.tlpSalaryData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
-            this.tlpSalaryData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.tlpSalaryData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
             this.tlpSalaryData.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tlpSalaryData.Location = new System.Drawing.Point(15, 2);
             this.tlpSalaryData.Margin = new System.Windows.Forms.Padding(2);
@@ -1576,7 +1578,7 @@ namespace CarCare_Service_Center
             this.tlpServiceReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.73786F));
             this.tlpServiceReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.26214F));
             this.tlpServiceReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 295F));
-            this.tlpServiceReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 161F));
+            this.tlpServiceReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
             this.tlpServiceReportSortButton.Controls.Add(this.btnServiceReportSortPrice, 2, 0);
             this.tlpServiceReportSortButton.Controls.Add(this.btnServiceReportSortSOID, 0, 0);
             this.tlpServiceReportSortButton.Controls.Add(this.btnServiceReportSortDate, 1, 0);
@@ -1593,7 +1595,7 @@ namespace CarCare_Service_Center
             // 
             this.btnServiceReportSortPrice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnServiceReportSortPrice.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnServiceReportSortPrice.Location = new System.Drawing.Point(356, 2);
+            this.btnServiceReportSortPrice.Location = new System.Drawing.Point(355, 2);
             this.btnServiceReportSortPrice.Margin = new System.Windows.Forms.Padding(2);
             this.btnServiceReportSortPrice.Name = "btnServiceReportSortPrice";
             this.btnServiceReportSortPrice.Size = new System.Drawing.Size(291, 44);
@@ -1608,7 +1610,7 @@ namespace CarCare_Service_Center
             this.btnServiceReportSortSOID.Location = new System.Drawing.Point(2, 2);
             this.btnServiceReportSortSOID.Margin = new System.Windows.Forms.Padding(2);
             this.btnServiceReportSortSOID.Name = "btnServiceReportSortSOID";
-            this.btnServiceReportSortSOID.Size = new System.Drawing.Size(98, 44);
+            this.btnServiceReportSortSOID.Size = new System.Drawing.Size(97, 44);
             this.btnServiceReportSortSOID.TabIndex = 20;
             this.btnServiceReportSortSOID.Text = "SOID";
             this.btnServiceReportSortSOID.UseVisualStyleBackColor = true;
@@ -1617,7 +1619,7 @@ namespace CarCare_Service_Center
             // 
             this.btnServiceReportSortDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnServiceReportSortDate.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnServiceReportSortDate.Location = new System.Drawing.Point(104, 2);
+            this.btnServiceReportSortDate.Location = new System.Drawing.Point(103, 2);
             this.btnServiceReportSortDate.Margin = new System.Windows.Forms.Padding(2);
             this.btnServiceReportSortDate.Name = "btnServiceReportSortDate";
             this.btnServiceReportSortDate.Size = new System.Drawing.Size(248, 44);
@@ -1644,7 +1646,7 @@ namespace CarCare_Service_Center
             this.tlpServiceReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.71486F));
             this.tlpServiceReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.28514F));
             this.tlpServiceReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 295F));
-            this.tlpServiceReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 215F));
+            this.tlpServiceReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 219F));
             this.tlpServiceReportData.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tlpServiceReportData.Location = new System.Drawing.Point(11, 2);
             this.tlpServiceReportData.Margin = new System.Windows.Forms.Padding(2);
@@ -1685,7 +1687,7 @@ namespace CarCare_Service_Center
             this.tlpCostAndExpensesSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.73786F));
             this.tlpCostAndExpensesSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.26214F));
             this.tlpCostAndExpensesSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
-            this.tlpCostAndExpensesSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 176F));
+            this.tlpCostAndExpensesSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 177F));
             this.tlpCostAndExpensesSortButton.Controls.Add(this.button5, 2, 0);
             this.tlpCostAndExpensesSortButton.Controls.Add(this.button6, 0, 0);
             this.tlpCostAndExpensesSortButton.Controls.Add(this.button7, 1, 0);
@@ -1702,7 +1704,7 @@ namespace CarCare_Service_Center
             // 
             this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button5.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(467, 2);
+            this.button5.Location = new System.Drawing.Point(466, 2);
             this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(165, 44);
@@ -1729,7 +1731,7 @@ namespace CarCare_Service_Center
             this.button7.Location = new System.Drawing.Point(135, 2);
             this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(328, 44);
+            this.button7.Size = new System.Drawing.Size(327, 44);
             this.button7.TabIndex = 21;
             this.button7.Text = "btnCaEDate";
             this.button7.UseVisualStyleBackColor = true;
@@ -1753,7 +1755,7 @@ namespace CarCare_Service_Center
             this.tlpCostAndExpensesData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.71486F));
             this.tlpCostAndExpensesData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.28514F));
             this.tlpCostAndExpensesData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 166F));
-            this.tlpCostAndExpensesData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 230F));
+            this.tlpCostAndExpensesData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 234F));
             this.tlpCostAndExpensesData.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tlpCostAndExpensesData.Location = new System.Drawing.Point(11, 2);
             this.tlpCostAndExpensesData.Margin = new System.Windows.Forms.Padding(2);
@@ -1817,7 +1819,7 @@ namespace CarCare_Service_Center
             this.tlpStaffSalaryReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.73786F));
             this.tlpStaffSalaryReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.26214F));
             this.tlpStaffSalaryReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 152F));
-            this.tlpStaffSalaryReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 176F));
+            this.tlpStaffSalaryReportSortButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 177F));
             this.tlpStaffSalaryReportSortButton.Controls.Add(this.btnSSRPrice, 2, 0);
             this.tlpStaffSalaryReportSortButton.Controls.Add(this.btnSSRID, 0, 0);
             this.tlpStaffSalaryReportSortButton.Controls.Add(this.btnSSRName, 1, 0);
@@ -1834,7 +1836,7 @@ namespace CarCare_Service_Center
             // 
             this.btnSSRPrice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSSRPrice.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSSRPrice.Location = new System.Drawing.Point(484, 2);
+            this.btnSSRPrice.Location = new System.Drawing.Point(483, 2);
             this.btnSSRPrice.Margin = new System.Windows.Forms.Padding(2);
             this.btnSSRPrice.Name = "btnSSRPrice";
             this.btnSSRPrice.Size = new System.Drawing.Size(148, 44);
@@ -1863,7 +1865,7 @@ namespace CarCare_Service_Center
             this.btnSSRName.Location = new System.Drawing.Point(140, 2);
             this.btnSSRName.Margin = new System.Windows.Forms.Padding(2);
             this.btnSSRName.Name = "btnSSRName";
-            this.btnSSRName.Size = new System.Drawing.Size(340, 44);
+            this.btnSSRName.Size = new System.Drawing.Size(339, 44);
             this.btnSSRName.TabIndex = 21;
             this.btnSSRName.Text = "Name";
             this.btnSSRName.UseVisualStyleBackColor = true;
@@ -1887,7 +1889,7 @@ namespace CarCare_Service_Center
             this.tlpStaffSalaryReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.71486F));
             this.tlpStaffSalaryReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.28514F));
             this.tlpStaffSalaryReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 176F));
-            this.tlpStaffSalaryReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 154F));
+            this.tlpStaffSalaryReportData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
             this.tlpStaffSalaryReportData.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tlpStaffSalaryReportData.Location = new System.Drawing.Point(14, 2);
             this.tlpStaffSalaryReportData.Margin = new System.Windows.Forms.Padding(2);
@@ -1910,7 +1912,6 @@ namespace CarCare_Service_Center
             // 
             // tabProfile
             // 
-            this.tabProfile.Controls.Add(this.btnLogout);
             this.tabProfile.Controls.Add(this.lblAdminEmail);
             this.tabProfile.Controls.Add(this.lblAdminName);
             this.tabProfile.Controls.Add(this.lblAdminID);
@@ -1928,19 +1929,6 @@ namespace CarCare_Service_Center
             this.tabProfile.TabIndex = 5;
             this.tabProfile.Text = "Profile";
             this.tabProfile.UseVisualStyleBackColor = true;
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLogout.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.Location = new System.Drawing.Point(810, 18);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(122, 51);
-            this.btnLogout.TabIndex = 23;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // lblAdminEmail
             // 
@@ -2042,12 +2030,48 @@ namespace CarCare_Service_Center
             this.label66.TabIndex = 13;
             this.label66.Text = "Profile";
             // 
+            // lblHome
+            // 
+            this.lblHome.AutoSize = true;
+            this.lblHome.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHome.Location = new System.Drawing.Point(877, 4);
+            this.lblHome.Name = "lblHome";
+            this.lblHome.Size = new System.Drawing.Size(35, 24);
+            this.lblHome.TabIndex = 45;
+            this.lblHome.Text = "🏠";
+            this.lblHome.Click += new System.EventHandler(this.lblHome_Click);
+            // 
+            // lblLogout
+            // 
+            this.lblLogout.AutoSize = true;
+            this.lblLogout.Font = new System.Drawing.Font("Comic Sans MS", 8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLogout.Location = new System.Drawing.Point(1011, 5);
+            this.lblLogout.Name = "lblLogout";
+            this.lblLogout.Size = new System.Drawing.Size(58, 23);
+            this.lblLogout.TabIndex = 44;
+            this.lblLogout.Text = "Logout";
+            this.lblLogout.Click += new System.EventHandler(this.lblLogout_Click);
+            // 
+            // lblReload
+            // 
+            this.lblReload.AutoSize = true;
+            this.lblReload.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReload.Location = new System.Drawing.Point(949, -1);
+            this.lblReload.Name = "lblReload";
+            this.lblReload.Size = new System.Drawing.Size(35, 33);
+            this.lblReload.TabIndex = 43;
+            this.lblReload.Text = "↻";
+            this.lblReload.Click += new System.EventHandler(this.lblReload_Click);
+            // 
             // frmAdminMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1084, 620);
+            this.ClientSize = new System.Drawing.Size(1084, 655);
+            this.Controls.Add(this.lblHome);
             this.Controls.Add(this.tabAdmin);
+            this.Controls.Add(this.lblLogout);
+            this.Controls.Add(this.lblReload);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmAdminMain";
             this.Text = "CarCare Service Centre - Admin";
@@ -2102,6 +2126,7 @@ namespace CarCare_Service_Center
             this.tabProfile.ResumeLayout(false);
             this.tabProfile.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -2246,6 +2271,8 @@ namespace CarCare_Service_Center
         public ComboBox cmbServiceType;
         private Label lblStaffSalaryTotal;
         private Label label27;
-        private Button btnLogout;
+        private Label lblHome;
+        private Label lblLogout;
+        private Label lblReload;
     }
 }

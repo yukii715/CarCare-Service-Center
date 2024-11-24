@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
@@ -19,88 +20,77 @@ using static CarCare_Service_Center.Appointment;
 
 namespace CarCare_Service_Center
 {
-    public partial class PartsPurchase : Form
+    public partial class frmPartsPurchase : Form
     {
-        private List<Parts> parts;
-        private string partID;
-        private int quantity;
-        private decimal price;
-        private string supplier;
-        public PartsPurchase()
+        private Parts Part;
+        private frmPartDetails frmPartDetails;
+        public frmPartsPurchase(Parts part, frmPartDetails frmPartDetails)
         {
             InitializeComponent();
-
-            string query = "SELECT DISTINCT PartType FROM Parts";
-            Database.LoadIntoComboBox(cmbPartType, query, "PartType");
-
-            query = "SELECT * FROM Parts";
-            parts = Database.FetchData<Parts>(query);
-
-            PropertyInfo partType = typeof(Parts).GetProperty("PartType");
-            PropertyInfo partName = typeof(Parts).GetProperty("PartName");
-            ComboBoxSetting.SetUpDependentComboBox<Parts>(cmbPartType, cmbPartName, parts, partType, partName);
+            Part = part;
+            this.frmPartDetails = frmPartDetails;
+            Text = $"Purchase {Part.PartName}";
+            lblTotalPrice.Text = string.Empty ;
+            FormClosed += Form_Closed;
         }
-
-        private void btnPurchase_Click(object sender, EventArgs e)
+        private void frmPartsPurchase_Load(object sender, EventArgs e)
         {
-            foreach (var part in parts)
-            {
-                if (cmbPartName.Text == part.PartName)
-                {
-                    partID = part.PartID;
-                    break;
-                }
-            }
-            Parts.Purchases purchases = new Parts.Purchases
-            {
-                PartID = partID,
-                UnitPrice = price,
-                Quantity = quantity,
-                Supplier = supplier,
-                DateTime = DateTime.Now
-            };
-            purchases.Add();
-            MessageBox.Show("Purchase Successful");
-            Close();
+            lblPartID.Text = Part.PartID;
+            lblPartType.Text = Part.PartType;
+            lblPartName.Text = Part.PartName;
         }
-
         private void txt_TextChanged(object sender, EventArgs e)
         {
-            string selectedPart = cmbPartName.Text;
-            string selectedPartType = cmbPartType.Text;
-            supplier = txtSupplier.Text;
-            if (string.IsNullOrEmpty(selectedPart) || string.IsNullOrWhiteSpace(selectedPart) ||
-                string.IsNullOrEmpty(selectedPartType) || string.IsNullOrWhiteSpace(selectedPartType) ||
-                string.IsNullOrEmpty(supplier) || string.IsNullOrWhiteSpace(supplier) ||
-                string.IsNullOrEmpty(txtQuantity.Text) || string.IsNullOrWhiteSpace(txtQuantity.Text) ||
-                string.IsNullOrEmpty(txtUnitPrice.Text) || string.IsNullOrWhiteSpace(txtUnitPrice.Text))
+            if (int.TryParse(txtQuantity.Text, out int quantity) && Decimal.TryParse(txtUnitPrice.Text, out Decimal unit_price))
             {
-                btnPurchase.Enabled = false;
-                lblWarning.Visible = true;
-                lblWarning.Text = "Fields cannot be empty";
+                lblTotalPrice.Text = (quantity * unit_price).ToString();
             }
             else
-            {
-                if (int.TryParse(txtQuantity.Text, out quantity) &&
-                decimal.TryParse(txtUnitPrice.Text, out price))
-                {
-                    lblPrice.Text = (quantity * price).ToString();
-                    btnPurchase.Enabled = true;
-                    lblWarning.Visible = false;
-                }
-                else
-                {
-                    lblWarning.Visible = true;
-                    lblWarning.Text = "Invalid format for quantity";
-                    btnPurchase.Enabled = false;
-                    lblPrice.Text = "";
-                }
-            }
+                lblTotalPrice.Text = string.Empty;
         }
+        private void btnPurchase_Click(object sender, EventArgs e)
+        {
+            if (Validation.IsLengthInvalid(txtSupplier.Text, 1, 50))
+            {
+                MessageBox.Show("Please enter a Supplier Name within 50 characters", "Invalid Supplier Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!int.TryParse(txtQuantity.Text, out int quantity))
+            {
+                MessageBox.Show("Please enter a valid value", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!Decimal.TryParse(txtUnitPrice.Text, out Decimal unit_price))
+            {
+                MessageBox.Show("Please enter a valid value", "Invalid UnitPrice", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            Parts.Purchases newPurchase = new Parts.Purchases
+            {
+                PartID = Part.PartID,
+                UnitPrice = unit_price,
+                Quantity = quantity,
+                Supplier = txtSupplier.Text,
+                DateTime = DateTime.Now
+            };
+
+            newPurchase.Add();
+            Part.Stock += quantity;
+            Part.UpdateStock();
+            Part.ChangeStatus("Sufficient");
+
+            Close();
+            MessageBox.Show("Successfully Purchase!");
+        }
         private void btnBack_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void Form_Closed(object sender, EventArgs e)
+        {
+            frmPartDetails.LoadDetails(Part);
         }
     }
 }

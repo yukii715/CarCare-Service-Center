@@ -16,23 +16,32 @@ using ControlSetting;
 using Functions;
 using Users;
 using static CarCare_Service_Center.Appointment;
+using static CarCare_Service_Center.Services.ServiceOrder;
 using static Users.Mechanic;
 
 namespace CarCare_Service_Center
 {
     public partial class frmMechanicMain : Form
     {
-        private List<Label> progressNotes = new List<Label>();
-        private List<Label> progressServiceNames = new List<Label>();
+        private DateTime sessionStartTime;
+        private List<Label> LabelProgressService = new List<Label>();
+        private List<Label> LabelNote= new List<Label>();
+        private List<Label> LabelService = new List<Label>();
         private Mechanic mechanic;
         private List<MechanicTasks> mechanic_task;
         private List<Appointment> appointments;
+        private List<Appointment> checkedin_appointment;
         private List<User> users;
         private List<Appointment.Services> appointment_service;
         private List<Services> services;
         private List<MechanicTasks> ServiceProgress;
         private List<Services> ServiceInProgress = new List<Services>();
         private List<Appointment.Services> CustomerService;
+        private List<Services.ServiceOrder> service_order;
+        private List<Services.ServiceOrder.ServiceEntry> service_entries;
+        private Dictionary<Control, Point> controlsBelowtlpServiceProgress= new Dictionary<Control, Point>();
+        private bool StartTask = false;
+
         public frmMechanicMain(Mechanic mec)
         {
             InitializeComponent();
@@ -40,9 +49,7 @@ namespace CarCare_Service_Center
             sessionStartTime = DateTime.Now;
             timer1.Start();
         }
-        private DateTime sessionStartTime;
-
-
+        
         private void timer1_Tick(object sender, EventArgs e)
         {
             lbltime.Text = DateTime.Now.ToString("HH:mm:ss");
@@ -57,33 +64,40 @@ namespace CarCare_Service_Center
         }
 
 
-        public void updateProfile(string name, string mail)
-        {
-            nameProfileChange.Text = name;
-            mailProfileChange.Text = mail;
-        }
-
-        private void btnRequest_Click(object sender, EventArgs e)
-        {
-            Request requestform = new Request(mechanic);
-            requestform.ShowDialog();
-        }
-
-        private void btnShortages_Click(object sender, EventArgs e)
-        {
-            Shortages shortagesform = new Shortages();
-            shortagesform.ShowDialog();
-        }
-
         private void frmMechanicMain_Load(object sender, EventArgs e)
         {
             tabMechanic.DrawItem += Draw_Item.tabControlAdjustment;
+            lblBottomMargin.Text = string.Empty;
+            controlsBelowtlpServiceProgress.Clear();
+
+            foreach (Control control in pnlServiceProgress.Controls)
+            {
+                if (control.Top > tlpServiceProgress.Bottom) // Check if the control is below the TableLayoutPanel
+                {
+                    controlsBelowtlpServiceProgress[control] = control.Location;
+                }
+            }
+
+            LoadMechanicTasks();
+            ServiceProgress_load();
+
+            string query = "SELECT DISTINCT ServiceType FROM Services";
+            Database.LoadIntoComboBox(cmbServiceType, query, "ServiceType");
+
+            HightLightLabelEvent(lblHome);
+            HightLightLabelEvent(lblReload);
+            HightLightLabelEvent(lblLogout);
+        }
+
+        private void LoadMechanicTasks()
+        {
+            string query_Appointments = "SELECT * FROM Appointments WHERE Status = 'Accepted'";
+            appointments = Database.FetchData<Appointment>(query_Appointments);
+            appointments = appointments.OrderBy(a => a.AppointmentDateTime).ToList();
 
             string query_MechanicTasks = "SELECT * FROM MechanicTasks WHERE InProgress IS NULL AND UserID = " + $"'{mechanic.UserID}'";
             mechanic_task = Database.FetchData<MechanicTasks>(query_MechanicTasks);
-
-            string query_Appointments = "SELECT * FROM Appointments WHERE Status = 'Accepted'";
-            appointments = Database.FetchData<Appointment>(query_Appointments);
+            mechanic_task = mechanic_task.OrderBy(task => appointments.FindIndex(a => a.AppointmentID == task.AppointmentID)).ToList();
 
             string query_Users = "SELECT * FROM Users WHERE IsDeleted = 0";
             users = Database.FetchData<User>(query_Users);
@@ -93,23 +107,12 @@ namespace CarCare_Service_Center
 
             string query_Services = "SELECT * FROM Services";
             services = Database.FetchData<Services>(query_Services);
-            LoadMechanicTasks();
 
-            string query_ServiceProgress = "SELECT * FROM MechanicTasks WHERE InProgress = 1 AND UserID = " + $"'{mechanic.UserID}'";
-            ServiceProgress = Database.FetchData<MechanicTasks>(query_ServiceProgress);
-            ServiceProgress_load();
-
-            string query = "SELECT DISTINCT ServiceType FROM Services";
-            Database.LoadIntoComboBox(cmbServiceType, query, "ServiceType");
-        }
-
-        private void LoadMechanicTasks()
-        {
             for (int i = 0; i < mechanic_task.Count; i++)
             {
-                int rowheight = 29 * appointment_service.FindAll(apts => apts.AppointmentID == mechanic_task[i].AppointmentID).Count;
+                float rowheight = 39f * appointment_service.FindAll(apts => apts.AppointmentID == mechanic_task[i].AppointmentID).Count;
                 tlpServiceTask.RowStyles.Add(new RowStyle(SizeType.Absolute, rowheight));
-                tlpServiceTask.Height += rowheight + 5;
+                tlpServiceTask.Height += (int)rowheight + 2;
 
                 Label NOTE = new Label();
                 NOTE.Text = (i + 1).ToString();
@@ -143,129 +146,192 @@ namespace CarCare_Service_Center
                 ServiceTime.TextAlign = ContentAlignment.MiddleLeft;
             }
             tlpServiceTask.RowCount = mechanic_task.Count + 1;
+            tlpServiceTask.Height += 2;
         }
 
         private void ServiceProgress_load()
         {
+            string query = "SELECT * FROM Appointments WHERE Status = 'CheckedIn'";
+            checkedin_appointment = Database.FetchData<Appointment>(query);
+
+            query = "SELECT * FROM MechanicTasks WHERE InProgress = 1 AND UserID = " + $"'{mechanic.UserID}'";
+            ServiceProgress = Database.FetchData<MechanicTasks>(query);
+
             if (ServiceProgress.Count == 0)
                 return;
+
+            query = "SELECT * FROM ServiceOrder WHERE AppointmentID = " + $"'{ServiceProgress[0].AppointmentID}'";
+            service_order = Database.FetchData<Services.ServiceOrder>(query);
+
+            query = "SELECT * FROM ServiceEntry WHERE ServiceOrderID = " + $"'{service_order[0].ServiceOrderID}'";
+            service_entries = Database.FetchData<Services.ServiceOrder.ServiceEntry>(query);
+
             lblAppointmentId.Text = ServiceProgress[0].AppointmentID;
             lblAppointmentId.Dock = DockStyle.Fill;
             lblAppointmentId.TextAlign = ContentAlignment.MiddleLeft;
 
-            lblUserId.Text = appointments.Find(a => a.AppointmentID == ServiceProgress[0].AppointmentID).UserID;
-            lblUserId.Dock = DockStyle.Fill;
-            lblUserId.TextAlign = ContentAlignment.MiddleLeft;
+            lblClientID.Text = checkedin_appointment[0].UserID;
+            lblClientID.Dock = DockStyle.Fill;
+            lblClientID.TextAlign = ContentAlignment.MiddleLeft;
 
-            lblProgressName.Text = users.Find(u => u.UserID == appointments.Find(a => a.AppointmentID == ServiceProgress[0].AppointmentID).UserID).Username;
-            lblProgressName.Dock = DockStyle.Fill;
-            lblProgressName.TextAlign = ContentAlignment.MiddleLeft;
+            lblClientName.Text = users.Find(u => u.UserID == checkedin_appointment[0].UserID).Username;
+            lblClientName.Dock = DockStyle.Fill;
+            lblClientName.TextAlign = ContentAlignment.MiddleLeft;
 
-            lblProgressPlateNumber.Text = appointments.Find(a => a.AppointmentID == ServiceProgress[0].AppointmentID).VehicleNumber;
+            lblProgressPlateNumber.Text = checkedin_appointment[0].VehicleNumber;
             lblProgressPlateNumber.Dock = DockStyle.Fill;
             lblProgressPlateNumber.TextAlign = ContentAlignment.MiddleLeft;
 
-            string query_CustomerService = "SELECT * FROM AppointmentServices WHERE AppointmentID = " + $"'{lblAppointmentId.Text}'";
-            CustomerService = Database.FetchData<Appointment.Services>(query_CustomerService);
+            query = "SELECT * FROM AppointmentServices WHERE AppointmentID = " + $"'{lblAppointmentId.Text}'";
+            CustomerService = Database.FetchData<Appointment.Services>(query);
+
+            LoadServiceInProgress();
+        }
+        public void LoadServiceInProgress()
+        {
+            LabelNote.Clear();
+            LabelService.Clear();
+            LabelProgressService.Clear();
+            tlpServiceProgress.SuspendLayout();
+            TableLayoutPanelSetting.RemoveControlsExceptFirstRow(tlpServiceProgress);
+
+            foreach (var ctrl in controlsBelowtlpServiceProgress)
+            {
+                Control control = ctrl.Key;
+                control.Location = ctrl.Value; // Restore the original location
+                pnlServiceProgress.Controls.Add(control); 
+            }
 
             for (int i = 0; i < CustomerService.Count; i++)
-
             {
+                foreach (Control ctrl in pnlServiceProgress.Controls)
+                {
+                    if (ctrl.Top > tlpServiceProgress.Bottom)
+                    {
+                        ctrl.Top += 25;
+                    }
+                }
+
                 Label ProgressNote = new Label();
-                ProgressNote.Text = (i + 1).ToString();
+                if (service_entries[i].IsCompleted == true)
+                    ProgressNote.Text = $"{i + 1}*";
+                else
+                    ProgressNote.Text = (i + 1).ToString();
                 tlpServiceProgress.Controls.Add(ProgressNote, 0, i + 1);
                 ProgressNote.Dock = DockStyle.Fill;
                 ProgressNote.TextAlign = ContentAlignment.MiddleLeft;
+                LabelProgressService.Add(ProgressNote);
+                LabelNote.Add(ProgressNote);
 
                 Label ProgressServiceName = new Label();
-                ProgressServiceName.Text = services.Find(s => s.ServiceID == CustomerService[i].ServiceID).ServiceName;
+                ProgressServiceName.Text = services.Find(s => s.ServiceID == CustomerService[i].ServiceID).ServiceName.Trim();
                 tlpServiceProgress.Controls.Add(ProgressServiceName, 1, i + 1);
                 ProgressServiceName.Dock = DockStyle.Fill;
                 ProgressServiceName.TextAlign = ContentAlignment.MiddleLeft;
-
-                progressNotes.Add(ProgressNote);
-                progressServiceNames.Add(ProgressServiceName);
-
-
-                ProgressNote.MouseEnter += (s, ev) =>
-                {
-                    ProgressNote.BackColor = Color.Ivory;
-                    ProgressServiceName.BackColor = Color.Ivory;
-                };
-                ProgressNote.MouseLeave += (s, ev) =>
-                {
-
-                    if (ProgressNote.BackColor != Color.PapayaWhip)
-                    {
-                        ProgressNote.BackColor = Color.Transparent;
-                        ProgressServiceName.BackColor = Color.Transparent;
-                    }
-                };
-                ProgressNote.MouseDown += (s, ev) =>
-                {
-                    ProgressNote.BackColor = Color.PeachPuff;
-                    ProgressServiceName.BackColor = Color.PeachPuff;
-                };
-
-                ProgressNote.MouseUp += (s, ev) =>
-                {
-                    ProgressNote.BackColor = Color.Transparent;
-                    ProgressServiceName.BackColor = Color.Transparent;
-                };
-
-
-                ProgressServiceName.MouseEnter += (s, ev) =>
-                {
-
-                    ProgressNote.BackColor = Color.Ivory;
-                    ProgressServiceName.BackColor = Color.Ivory;
-
-                };
-
-                ProgressServiceName.MouseLeave += (s, ev) =>
-                {
-                    if (ProgressServiceName.BackColor != Color.PapayaWhip)
-                    {
-                        ProgressNote.BackColor = Color.Transparent;
-                        ProgressServiceName.BackColor = Color.Transparent;
-                    }
-
-                };
-                ProgressServiceName.MouseDown += (s, ev) =>
-                {
-                    ProgressNote.BackColor = Color.PeachPuff;
-                    ProgressServiceName.BackColor = Color.PeachPuff;
-                };
-
-                ProgressServiceName.MouseUp += (s, ev) =>
-                {
-                    ProgressNote.BackColor = Color.Transparent;
-                    ProgressServiceName.BackColor = Color.Transparent;
-                };
+                LabelProgressService.Add(ProgressServiceName);
+                LabelService.Add(ProgressServiceName);
             }
-            tlpServiceProgress.RowCount = CustomerService.Count;
+            if (StartTask == true)
+            {
+                foreach (Label Label in LabelProgressService)
+                {
+                    int index = LabelProgressService.IndexOf(Label);
+
+                    void SetLabelBackColor(Color color)
+                    {
+                        LabelNote[index / 2].BackColor = color;
+                        LabelService[index / 2].BackColor = color;
+                    }
+                    void HightLightLabelEvent(Label label)
+                    {
+                        label.MouseEnter += (s, ev) => SetLabelBackColor(Color.Ivory);
+                        label.MouseLeave += (s, ev) =>
+                        {
+                            if (label.BackColor != Color.PapayaWhip)
+                                SetLabelBackColor(Color.Transparent);
+                        };
+                        label.MouseDown += (s, ev) =>
+                        {
+                            LabelProgressService.ForEach(lbl => lbl.BackColor = Color.Transparent);
+                            SetLabelBackColor(Color.PeachPuff);
+                        };
+                        label.MouseUp += (s, ev) =>
+                        {
+                            if (service_entries[index / 2].IsCompleted == true)
+                            {
+                                MessageBox.Show("This service already done, no further change allowed", "Service Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+                            }
+                            SetLabelBackColor(Color.LemonChiffon);
+                            frmServiceInProgress frmServiceInProgress = new frmServiceInProgress();
+                            frmServiceInProgress.mechanicMain = this;
+                            frmServiceInProgress.serviceEntry = service_entries[index / 2];
+                            frmServiceInProgress.Text = $"{lblClientName.Text}'s Service {index / 2 + 1}: {ServiceInProgress[index / 2].ServiceName}";
+                            frmServiceInProgress.ShowDialog();
+                        };
+                    }
+                    HightLightLabelEvent(Label);
+                }
+            }
+            tlpServiceProgress.ResumeLayout();
+            tlpServiceProgress.PerformLayout();
         }
-        private void btnStartTask_Click_1(object sender, EventArgs e)
+
+        private void btnStartTask_Click(object sender, EventArgs e)
         {
+            StartTask = true;
             if (ServiceProgress.Count == 0)
             {
                 MessageBox.Show("No Service is assigned to you now", "Invalid Action", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
+            ServiceInProgress.Clear();
+
             grbAddService.Visible = true;
             lblRemark.Visible = true;
             txtRemark.Visible = true;
             btnEndTask.Visible = true;
             btnStartTask.Visible = false;
 
-            foreach (var progressNote in progressNotes)
+            foreach (Label Label in LabelProgressService)
             {
-                progressNote.Click += (s, _) => OpenProgressForm(progressNote.Text);
-            }
+                int index = LabelProgressService.IndexOf(Label);
 
-            foreach (var progressServiceName in progressServiceNames)
-            {
-                progressServiceName.Click += (s, _) => OpenProgressForm(progressServiceName.Text);
+                void SetLabelBackColor(Color color)
+                {
+                    LabelNote[index / 2].BackColor = color;
+                    LabelService[index / 2].BackColor = color;
+                }
+                void HightLightLabelEvent(Label label)
+                {
+                    label.MouseEnter += (s, ev) => SetLabelBackColor(Color.Ivory);
+                    label.MouseLeave += (s, ev) =>
+                    {
+                        if (label.BackColor != Color.PapayaWhip)
+                            SetLabelBackColor(Color.Transparent);
+                    };
+                    label.MouseDown += (s, ev) =>
+                    {
+                        LabelProgressService.ForEach(lbl => lbl.BackColor = Color.Transparent);
+                        SetLabelBackColor(Color.PeachPuff);
+                    };
+                    label.MouseUp += (s, ev) =>
+                    {
+                        if (service_entries[index / 2].IsCompleted == true)
+                        {
+                            MessageBox.Show("This service already done, no further change allowed", "Service Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        SetLabelBackColor(Color.LemonChiffon);
+                        frmServiceInProgress frmServiceInProgress = new frmServiceInProgress();
+                        frmServiceInProgress.mechanicMain = this;
+                        frmServiceInProgress.serviceEntry = service_entries[index / 2];
+                        frmServiceInProgress.Text = $"{lblClientName.Text}'s Service {index/2 + 1}: {ServiceInProgress[index/2].ServiceName}";
+                        frmServiceInProgress.ShowDialog();
+                    };
+                }
+                HightLightLabelEvent(Label);
             }
 
             appointment_service.FindAll(apts => apts.AppointmentID == ServiceProgress[0].AppointmentID).ForEach(service => ServiceInProgress.Add(services.Find(s => s.ServiceID == service.ServiceID)));
@@ -273,139 +339,168 @@ namespace CarCare_Service_Center
             PropertyInfo service_type = typeof(Services).GetProperty("ServiceType");
             PropertyInfo service_name = typeof(Services).GetProperty("ServiceName");
             ComboBoxSetting.SetUpDependentComboBox<Services>(cmbServiceType, cmbService, services, service_type, service_name, ServiceInProgress);
-
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (cmbService.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please Select a Service！", "Invalid Action", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var service = new Appointment.Services
             {
                 AppointmentID = lblAppointmentId.Text,
-                ServiceID = services.Find(s => s.ServiceName == cmbService.Text).ServiceID,
+                ServiceID = services.Find(s => s.ServiceType == cmbServiceType.Text && s.ServiceName == cmbService.Text).ServiceID,
             };
 
             CustomerService.Add(service);
-
+            ServiceInProgress.Add(services.Find(s => s.ServiceID == service.ServiceID));
+            
             int count = CustomerService.Count;
-
+            
             Label ProgressNote = new Label();
             ProgressNote.Text = count.ToString();
             tlpServiceProgress.Controls.Add(ProgressNote, 0, count);
             ProgressNote.Dock = DockStyle.Fill;
             ProgressNote.TextAlign = ContentAlignment.MiddleLeft;
+            LabelProgressService.Add(ProgressNote);
 
             Label ProgressServiceName = new Label();
-            ProgressServiceName.Text = services.Find(s => s.ServiceID == CustomerService[count - 1].ServiceID).ServiceName;
+            ProgressServiceName.Text = ServiceInProgress[count - 1].ServiceName.Trim();
             tlpServiceProgress.Controls.Add(ProgressServiceName, 1, count);
             ProgressServiceName.Dock = DockStyle.Fill;
             ProgressServiceName.TextAlign = ContentAlignment.MiddleLeft;
+            LabelProgressService.Add(ProgressServiceName);
 
-            ProgressNote.MouseEnter += (s, ev) =>
+            void SetLabelBackColor(Color color)
             {
-
-                ProgressNote.BackColor = Color.Ivory;
-                ProgressServiceName.BackColor = Color.Ivory;
-            };
-
-
-            ProgressNote.MouseLeave += (s, ev) =>
+                ProgressNote.BackColor = color;
+                ProgressServiceName.BackColor = color;
+            }
+            void HightLightLabelEvent(Label label)
             {
-                if (ProgressNote.BackColor != Color.PapayaWhip)
+                label.MouseEnter += (s, ev) => SetLabelBackColor(Color.Ivory);
+                label.MouseLeave += (s, ev) =>
                 {
-                    ProgressNote.BackColor = Color.Transparent;
-                    ProgressServiceName.BackColor = Color.Transparent;
-                }
-            };
-            ProgressNote.MouseDown += (s, ev) =>
-            {
-                ProgressNote.BackColor = Color.PeachPuff;
-                ProgressServiceName.BackColor = Color.PeachPuff;
-            };
-
-
-            ProgressNote.MouseUp += (s, ev) =>
-            {
-                ProgressNote.BackColor = Color.Transparent;
-                ProgressServiceName.BackColor = Color.Transparent;
-            };
-
-
-            ProgressServiceName.MouseEnter += (s, ev) =>
-            {
-                ProgressNote.BackColor = Color.Ivory;
-                ProgressServiceName.BackColor = Color.Ivory;
-            };
-
-            ProgressServiceName.MouseLeave += (s, ev) =>
-            {
-                if (ProgressServiceName.BackColor != Color.PapayaWhip)
+                    if (label.BackColor != Color.PapayaWhip)
+                        SetLabelBackColor(Color.Transparent);
+                };
+                label.MouseDown += (s, ev) =>
                 {
-                    ProgressNote.BackColor = Color.Transparent;
-                    ProgressServiceName.BackColor = Color.Transparent;
-                }
-            };
-            ProgressServiceName.MouseDown += (s, ev) =>
-            {
-                ProgressNote.BackColor = Color.PeachPuff;
-                ProgressServiceName.BackColor = Color.PeachPuff;
-            };
+                    LabelProgressService.ForEach(lbl => lbl.BackColor = Color.Transparent);
+                    SetLabelBackColor(Color.PeachPuff);
+                };
+                label.MouseUp += (s, ev) =>
+                {
+                    SetLabelBackColor(Color.LemonChiffon);
+                    
+                };
+            }
+            HightLightLabelEvent(ProgressNote);
+            HightLightLabelEvent(ProgressServiceName);
+            
 
+            //tlpServiceProgress.RowCount = count;
 
-            ProgressServiceName.MouseUp += (s, ev) =>
-            {
-                ProgressNote.BackColor = Color.Transparent;
-                ProgressServiceName.BackColor = Color.Transparent;
-            };
-
-
-            ProgressNote.Click += (s, _) => OpenProgressForm(ProgressNote.Text);
-            ProgressServiceName.Click += (s, _) => OpenProgressForm(ProgressServiceName.Text);
-
-
-            tlpServiceProgress.RowCount = count;
-
-            foreach (Control ctrl in panelServiceProgress.Controls)
+            foreach (Control ctrl in pnlServiceProgress.Controls)
             {
                 if (ctrl.Top > tlpServiceProgress.Bottom)
                 {
-                    ctrl.Top += tlpServiceProgress.GetRowHeights()[0];
+                    ctrl.Top += 25;
                 }
             }
-            if (cmbService.Items.Count == 0)
-            {
-                cmbService.Enabled = false;
-            }
 
-
-            else
-            {
-                MessageBox.Show("Please Select Service Type and Service！");
-            }
-        }
-        private void OpenProgressForm(string selectedService)
-        {
-            Progress progressfrm = new Progress();
-            progressfrm.AppointmentId = lblAppointmentId.Text;
-            progressfrm.UserId = lblUserId.Text;
-            progressfrm.UserName = lblProgressName.Text;
-            progressfrm.PlateNumber = lblProgressPlateNumber.Text;
-            progressfrm.ShowDialog();
+            cmbServiceType.SelectedIndex = -1;
         }
 
 
         private void btnEndTask_Click(object sender, EventArgs e)
         {
+            foreach(var serviceEntry in service_entries)
+            {
+                if (serviceEntry.IsCompleted == false)
+                {
+                    MessageBox.Show("Haven't recorded all services yet, please record all services customer used first", "Information Missing",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            DialogResult result = MessageBox.Show(
+            "Are you sure this service oeder is completed? No further changes can be made after confirmation.",
+            "End task Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
+            if (result == DialogResult.Yes)
+            {
+                //StartTask = false;
+                Close();
+            }
         }
 
+        //
+        // Inventory
+        //
         public void BackToTab3()
         {
             tabMechanic.SelectedIndex = 3;
         }
+        private void btnRequest_Click(object sender, EventArgs e)
+        {
+            Request requestform = new Request(mechanic);
+            requestform.ShowDialog();
+        }
+
+        private void btnShortages_Click(object sender, EventArgs e)
+        {
+            Shortages shortagesform = new Shortages();
+            shortagesform.ShowDialog();
+        }
+
         //
         // Profile
         //
-        private void btnLogout_Click(object sender, EventArgs e)
+
+        //
+        // Top
+        //
+        private void HightLightLabelEvent(Label label)
         {
+            label.MouseEnter += (s, ev) => label.ForeColor = Color.Violet;
+            label.MouseLeave += (s, ev) =>
+            {
+                if (label.ForeColor != Color.Blue)
+                    label.ForeColor = SystemColors.ControlText;
+            };
+            label.MouseDown += (s, ev) => label.ForeColor = Color.Blue;
+        }
+        private void lblHome_Click(object sender, EventArgs e)
+        {
+            lblHome.ForeColor = SystemColors.ControlText;
+            tabMechanic.SelectedIndex = 0;
+        }
+
+        private void lblReload_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+            "Are you sure you want to reload the application? Unsaved changes will be lost.",
+            "Reload Application", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                lblReload.ForeColor = SystemColors.ControlText;
+
+                int currentTabIndex = tabMechanic.SelectedIndex;
+
+                Controls.Clear();
+                InitializeComponent();
+                frmMechanicMain_Load(sender, e);
+                tabMechanic.SelectedIndex = currentTabIndex;
+            }
+        }
+
+        private void lblLogout_Click(object sender, EventArgs e)
+        {
+            lblLogout.ForeColor = SystemColors.ControlText;
             frmLogoutConfirmation frmLogoutConfirmation = new frmLogoutConfirmation(this);
             frmLogoutConfirmation.ShowDialog();
         }

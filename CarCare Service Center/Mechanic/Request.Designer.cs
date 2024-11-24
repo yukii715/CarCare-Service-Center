@@ -45,7 +45,7 @@ namespace CarCare_Service_Center
             this.lblInventoryRequest.Font = new System.Drawing.Font("Comic Sans MS", 28F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInventoryRequest.Location = new System.Drawing.Point(-20, 0);
             this.lblInventoryRequest.Name = "lblInventoryRequest";
-            this.lblInventoryRequest.Size = new System.Drawing.Size(795, 85);
+            this.lblInventoryRequest.Size = new System.Drawing.Size(795, 76);
             this.lblInventoryRequest.TabIndex = 3;
             this.lblInventoryRequest.Text = "Inventory Request";
             this.lblInventoryRequest.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -54,19 +54,19 @@ namespace CarCare_Service_Center
             // 
             this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDescription.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescription.Location = new System.Drawing.Point(79, 293);
+            this.txtDescription.Location = new System.Drawing.Point(79, 264);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(554, 261);
+            this.txtDescription.Size = new System.Drawing.Size(554, 235);
             this.txtDescription.TabIndex = 7;
             // 
             // btnRequestRequest
             // 
             this.btnRequestRequest.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRequestRequest.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRequestRequest.Location = new System.Drawing.Point(407, 571);
+            this.btnRequestRequest.Location = new System.Drawing.Point(407, 514);
             this.btnRequestRequest.Name = "btnRequestRequest";
-            this.btnRequestRequest.Size = new System.Drawing.Size(144, 53);
+            this.btnRequestRequest.Size = new System.Drawing.Size(144, 48);
             this.btnRequestRequest.TabIndex = 9;
             this.btnRequestRequest.Text = "Request";
             this.btnRequestRequest.UseVisualStyleBackColor = true;
@@ -76,9 +76,9 @@ namespace CarCare_Service_Center
             // 
             this.btnRequestBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRequestBack.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRequestBack.Location = new System.Drawing.Point(167, 571);
+            this.btnRequestBack.Location = new System.Drawing.Point(167, 514);
             this.btnRequestBack.Name = "btnRequestBack";
-            this.btnRequestBack.Size = new System.Drawing.Size(143, 53);
+            this.btnRequestBack.Size = new System.Drawing.Size(143, 48);
             this.btnRequestBack.TabIndex = 10;
             this.btnRequestBack.Text = "Back";
             this.btnRequestBack.UseVisualStyleBackColor = true;
@@ -90,7 +90,7 @@ namespace CarCare_Service_Center
             this.cmbPartType.FormattingEnabled = true;
             this.cmbPartType.Items.AddRange(new object[] {
             "New"});
-            this.cmbPartType.Location = new System.Drawing.Point(271, 115);
+            this.cmbPartType.Location = new System.Drawing.Point(271, 104);
             this.cmbPartType.Name = "cmbPartType";
             this.cmbPartType.Size = new System.Drawing.Size(296, 41);
             this.cmbPartType.TabIndex = 11;
@@ -98,27 +98,27 @@ namespace CarCare_Service_Center
             // lblRequestPartType
             // 
             this.lblRequestPartType.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequestPartType.Location = new System.Drawing.Point(73, 115);
+            this.lblRequestPartType.Location = new System.Drawing.Point(73, 104);
             this.lblRequestPartType.Name = "lblRequestPartType";
-            this.lblRequestPartType.Size = new System.Drawing.Size(181, 38);
+            this.lblRequestPartType.Size = new System.Drawing.Size(181, 34);
             this.lblRequestPartType.TabIndex = 13;
             this.lblRequestPartType.Text = "Part Type :";
             // 
             // lblRequestPartName
             // 
             this.lblRequestPartName.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequestPartName.Location = new System.Drawing.Point(73, 184);
+            this.lblRequestPartName.Location = new System.Drawing.Point(73, 166);
             this.lblRequestPartName.Name = "lblRequestPartName";
-            this.lblRequestPartName.Size = new System.Drawing.Size(168, 38);
+            this.lblRequestPartName.Size = new System.Drawing.Size(168, 34);
             this.lblRequestPartName.TabIndex = 14;
             this.lblRequestPartName.Text = "Part Name : ";
             // 
             // lblRequestDescription
             // 
             this.lblRequestDescription.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequestDescription.Location = new System.Drawing.Point(73, 252);
+            this.lblRequestDescription.Location = new System.Drawing.Point(73, 227);
             this.lblRequestDescription.Name = "lblRequestDescription";
-            this.lblRequestDescription.Size = new System.Drawing.Size(224, 38);
+            this.lblRequestDescription.Size = new System.Drawing.Size(224, 34);
             this.lblRequestDescription.TabIndex = 15;
             this.lblRequestDescription.Text = "Description";
             // 
@@ -126,17 +126,17 @@ namespace CarCare_Service_Center
             // 
             this.txtboxPartName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtboxPartName.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtboxPartName.Location = new System.Drawing.Point(271, 184);
+            this.txtboxPartName.Location = new System.Drawing.Point(271, 166);
             this.txtboxPartName.Name = "txtboxPartName";
             this.txtboxPartName.Size = new System.Drawing.Size(296, 40);
             this.txtboxPartName.TabIndex = 16;
             // 
             // Request
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(724, 661);
+            this.ClientSize = new System.Drawing.Size(724, 595);
             this.Controls.Add(this.txtboxPartName);
             this.Controls.Add(this.lblRequestDescription);
             this.Controls.Add(this.lblRequestPartName);
@@ -148,6 +148,7 @@ namespace CarCare_Service_Center
             this.Controls.Add(this.lblInventoryRequest);
             this.Name = "Request";
             this.Text = "Request";
+            this.Load += new System.EventHandler(this.Request_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

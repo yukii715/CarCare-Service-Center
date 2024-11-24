@@ -15,6 +15,8 @@ using Users;
 using static CarCare_Service_Center.frmReceptionistMain;
 using System.Diagnostics.Eventing.Reader;
 using System.Collections;
+using System.Reflection;
+using static Users.Mechanic;
 
 namespace CarCare_Service_Center
 {
@@ -25,36 +27,47 @@ namespace CarCare_Service_Center
         private List<User> mechanics;
         private List<Appointment> appointment_requests;
         private List<Appointment> upcoming_appointment;
+        private List<Appointment> checkedin_appointment;
         private List<Appointment> appointment_log;
+        private List<Services.ServiceOrder> service_order;
+        private List<Services.ServiceOrder.ServiceEntry> service_entry;
         private List<Parts> parts;
         private List<Parts.Requests> partsRequests;
+        private List<Parts.Purchases> partsPurchase;
         private List<Label> LabelAppointmentRequests = new List<Label>();
         private List<Label> LabelUpcomingAppointment = new List<Label>();
+        private List<Label> LabelCheckedInAppointment = new List<Label>();
         private List<Label> LabelAppointmentLog = new List<Label>();
+        private List<Label> LabelPartsInventory = new List<Label>();
 
         public frmReceptionistMain(Receptionist rec)
         {
             InitializeComponent();
             tmClock.Start();
-            lblWelcome.Text = "Welcome " + rec.Username.ToString();
-            lblOverview.Text = DateTime.Now.ToString("MMMM") + " Overview";
             receptionist = rec;
-            Place_Holder.SetPlaceHolder(txtSearchCustomer, "Search");
-            Place_Holder.SetPlaceHolder(txtSearchAppointmentRequests, "Search");
-            Place_Holder.SetPlaceHolder(txtSearchUpcomingAppointments, "Search");
         }
 
 
         private void frmReceptionistMain_Load(object sender, EventArgs e)
         {
             tabReceptionist.DrawItem += Draw_Item.tabControlAdjustment;
+            Place_Holder.SetPlaceHolder(txtSearchCustomer, "Search");
+            Place_Holder.SetPlaceHolder(txtSearchAppointmentRequests, "Search");
+            Place_Holder.SetPlaceHolder(txtSearchUpcomingAppointments, "Search");
+            lblWelcome.Text = "Welcome " + receptionist.Username.ToString();
+            lblOverview.Text = DateTime.Now.ToString("MMMM") + " Overview";
 
             // Loading each table
             LoadCustomerAccounts();
             LoadAppointmentRequests();
             LoadUpcomingAppointments();
+            LoadCheckedInAppointments();
             LoadPartsInventory();
             LoadPartsRequests();
+            LoadPartsPurchaseLog();
+            HightLightLabelEvent(lblHome);
+            HightLightLabelEvent(lblReload);
+            HightLightLabelEvent(lblLogout);
         }
 
         private void tmClock_Tick(object sender, EventArgs e)
@@ -72,28 +85,6 @@ namespace CarCare_Service_Center
         {
             CustomerDetails openForm = new CustomerDetails();
             openForm.Show();
-        }
-
-        public void ClearTable(TableLayoutPanel table)
-        {
-            int columnCount = table.ColumnCount;
-            int rowCount = table.RowCount;
-
-            for (int i = rowCount - 1; i > 1; i--)
-            {
-                int j = 0;
-                while (j <= columnCount)
-                {
-                    Control selectedCell = table.GetControlFromPosition(j, i);
-                    if (selectedCell != null)
-                    {
-                        table.Controls.Remove(selectedCell);
-                        selectedCell.Dispose();
-                    }
-                    j++;
-                }
-            }
-
         }
 
         public void LoadCustomerAccounts()
@@ -124,6 +115,9 @@ namespace CarCare_Service_Center
 
         public void LoadAppointmentRequests()
         {
+            tlpAppointmentRequests.SuspendLayout();
+            TableLayoutPanelSetting.RemoveControlsExceptFirstRow(tlpAppointmentRequests);
+
             string query = "SELECT * FROM Appointments WHERE Status = 'Pending' ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
             appointment_requests = Database.FetchData<Appointment>(query);
             for (int i = 0; i < appointment_requests.Count; i++)
@@ -163,6 +157,7 @@ namespace CarCare_Service_Center
                 vehicleNumber.Dock = DockStyle.Fill;
                 vehicleNumber.TextAlign = ContentAlignment.MiddleCenter;
                 LabelAppointmentRequests.Add(vehicleNumber);
+
                 void SetLabelBackColor(Color color)
                 {
                     appointmentID.BackColor = color;
@@ -170,6 +165,7 @@ namespace CarCare_Service_Center
                     customerName.BackColor = color;
                     vehicleNumber.BackColor = color;
                 }
+
                 void HightLightLabelEvent(Label label)
                 {
                     label.MouseEnter += (s, ev) => SetLabelBackColor(Color.PapayaWhip);
@@ -195,11 +191,16 @@ namespace CarCare_Service_Center
                 HightLightLabelEvent(customerName);
                 HightLightLabelEvent(vehicleNumber);
             }
+            tlpAppointmentRequests.ResumeLayout();
+            tlpAppointmentRequests.PerformLayout();
         }
         public void LoadUpcomingAppointments()
         {
+            tlpUpcomingAppointments.SuspendLayout();
+            TableLayoutPanelSetting.RemoveControlsExceptFirstRow(tlpUpcomingAppointments);
+
             string query = "SELECT * FROM Appointments WHERE Status = 'Accepted' ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
-            upcoming_appointment= Database.FetchData<Appointment>(query);
+            upcoming_appointment = Database.FetchData<Appointment>(query);
             for (int i = 0; i < upcoming_appointment.Count; i++)
             {
                 int index = i;
@@ -237,6 +238,7 @@ namespace CarCare_Service_Center
                 vehicleNumber.Dock = DockStyle.Fill;
                 vehicleNumber.TextAlign = ContentAlignment.MiddleCenter;
                 LabelUpcomingAppointment.Add(vehicleNumber);
+
                 void SetLabelBackColor(Color color)
                 {
                     appointmentID.BackColor = color;
@@ -260,6 +262,93 @@ namespace CarCare_Service_Center
                     label.MouseUp += (s, ev) =>
                     {
                         SetLabelBackColor(Color.LemonChiffon);
+                        frmCheckInCustomer frmCheckInCustomer = new frmCheckInCustomer(upcoming_appointment[index], this);
+                        frmCheckInCustomer.ShowDialog();
+                    };
+                }
+                HightLightLabelEvent(appointmentID);
+                HightLightLabelEvent(DateTime);
+                HightLightLabelEvent(customerName);
+                HightLightLabelEvent(vehicleNumber);
+            }
+            tlpUpcomingAppointments.ResumeLayout();
+            tlpUpcomingAppointments.PerformLayout();
+        }
+        public void LoadCheckedInAppointments()
+        {
+            tlpAppointmentCheckouts.SuspendLayout();
+            TableLayoutPanelSetting.RemoveControlsExceptFirstRow(tlpAppointmentCheckouts);
+
+            string query = "SELECT * FROM Appointments WHERE Status = 'CheckedIn' ORDER BY AppointmentDateTime";
+            checkedin_appointment = Database.FetchData<Appointment>(query);
+
+            query = "SELECT * FROM ServiceOrder";
+            service_order = Database.FetchData<Services.ServiceOrder>(query);
+
+            HashSet<string> appointmentIds = new HashSet<string>(checkedin_appointment.Select(a => a.AppointmentID));
+            service_order.RemoveAll(order => !appointmentIds.Contains(order.AppointmentID));
+
+            for (int i = 0; i < checkedin_appointment.Count; i++)
+            { 
+                int index = i;
+
+                Label appointmentID = new Label();
+                appointmentID.Text = checkedin_appointment[i].AppointmentID;
+                appointmentID.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpAppointmentCheckouts.Controls.Add(appointmentID, 0, i + 1);
+                appointmentID.Dock = DockStyle.Fill;
+                appointmentID.TextAlign = ContentAlignment.MiddleCenter;
+                LabelCheckedInAppointment.Add(appointmentID);
+
+                Label DateTime = new Label();
+                DateTime check_in = service_order.Find(o => o.AppointmentID == checkedin_appointment[i].AppointmentID).ArrivalDateTime;
+                DateTime.Text = $"{check_in.ToString("dd-MM-yyyy")}\n{check_in.ToString("hh:mm tt")}";
+                DateTime.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpAppointmentCheckouts.Controls.Add(DateTime, 1, i + 1);
+                DateTime.Dock = DockStyle.Fill;
+                DateTime.TextAlign = ContentAlignment.MiddleCenter;
+                DateTime.AutoSize = true;
+                LabelCheckedInAppointment.Add(DateTime);
+
+                Label customerName = new Label();
+                customerName.Text = users.Find(c => c.UserID == checkedin_appointment[i].UserID).Username;
+                customerName.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpAppointmentCheckouts.Controls.Add(customerName, 2, i + 1);
+                customerName.Dock = DockStyle.Fill;
+                customerName.TextAlign = ContentAlignment.MiddleLeft;
+                LabelCheckedInAppointment.Add(customerName);
+
+                Label vehicleNumber = new Label();
+                vehicleNumber.Text = checkedin_appointment[i].VehicleNumber;
+                vehicleNumber.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpAppointmentCheckouts.Controls.Add(vehicleNumber, 3, i + 1);
+                vehicleNumber.Dock = DockStyle.Fill;
+                vehicleNumber.TextAlign = ContentAlignment.MiddleCenter;
+                LabelCheckedInAppointment.Add(vehicleNumber);
+
+                void SetLabelBackColor(Color color)
+                {
+                    appointmentID.BackColor = color;
+                    DateTime.BackColor = color;
+                    customerName.BackColor = color;
+                    vehicleNumber.BackColor = color;
+                }
+                void HightLightLabelEvent(Label label)
+                {
+                    label.MouseEnter += (s, ev) => SetLabelBackColor(Color.PapayaWhip);
+                    label.MouseLeave += (s, ev) =>
+                    {
+                        if (label.BackColor != Color.LemonChiffon)
+                            SetLabelBackColor(Color.Transparent);
+                    };
+                    label.MouseDown += (s, ev) =>
+                    {
+                        LabelCheckedInAppointment.ForEach(lbl => lbl.BackColor = Color.Transparent);
+                        SetLabelBackColor(Color.PeachPuff);
+                    };
+                    label.MouseUp += (s, ev) =>
+                    {
+                        SetLabelBackColor(Color.LemonChiffon);
                         
                     };
                 }
@@ -268,50 +357,110 @@ namespace CarCare_Service_Center
                 HightLightLabelEvent(customerName);
                 HightLightLabelEvent(vehicleNumber);
             }
+            tlpAppointmentCheckouts.ResumeLayout();
+            tlpAppointmentCheckouts.PerformLayout();
         }
 
         public void LoadPartsInventory()
         {
+            tlpPartsInventory.SuspendLayout();
+            TableLayoutPanelSetting.RemoveControlsExceptFirstRow(tlpPartsInventory);
+
             string query = "SELECT * FROM Parts";
             parts = Database.FetchData<Parts>(query);
             for (int i = 0; i < parts.Count; i++)
             {
+                int index = i;
+
                 Label partID = new Label();
-                partID.Text = parts[i].PartID;
-                tblPartsInventory.Controls.Add(partID, 0, i + 1);
+                partID.Text = parts[i].PartID.Trim();
+                partID.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpPartsInventory.Controls.Add(partID, 0, i + 1);
                 partID.Dock = DockStyle.Fill;
-                partID.TextAlign = ContentAlignment.MiddleLeft;
+                partID.TextAlign = ContentAlignment.MiddleCenter;
+                LabelPartsInventory.Add(partID);
 
                 Label partType = new Label();
-                partType.Text = parts[i].PartType;
-                tblPartsInventory.Controls.Add(partType, 1, i + 1);
+                partType.Text = parts[i].PartType.Trim();
+                partType.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpPartsInventory.Controls.Add(partType, 1, i + 1);
                 partType.Dock = DockStyle.Fill;
                 partType.TextAlign = ContentAlignment.MiddleLeft;
+                partType.AutoEllipsis = true;
+                LabelPartsInventory.Add(partType);
 
                 Label partName = new Label();
-                partName.Text = parts[i].PartName;
-                tblPartsInventory.Controls.Add(partName, 2, i + 1);
+                partName.Text = parts[i].PartName.Trim();
+                partName.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpPartsInventory.Controls.Add(partName, 2, i + 1);
                 partName.Dock = DockStyle.Fill;
                 partName.TextAlign = ContentAlignment.MiddleLeft;
+                partName.AutoEllipsis = true;
+                LabelPartsInventory.Add(partName);
 
                 Label partPrice = new Label();
-                partPrice.Text = parts[i].SellPrice.ToString();
-                tblPartsInventory.Controls.Add(partPrice, 3, i + 1);
+                partPrice.Text = parts[i].SellPrice.ToString().Trim();
+                partPrice.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpPartsInventory.Controls.Add(partPrice, 3, i + 1);
                 partPrice.Dock = DockStyle.Fill;
                 partPrice.TextAlign = ContentAlignment.MiddleCenter;
+                LabelPartsInventory.Add(partPrice);
 
                 Label partStock = new Label();
-                partStock.Text = parts[i].Stock.ToString();
-                tblPartsInventory.Controls.Add(partStock, 4, i + 1);
+                partStock.Text = parts[i].Stock.ToString().Trim();
+                partStock.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpPartsInventory.Controls.Add(partStock, 4, i + 1);
                 partStock.Dock = DockStyle.Fill;
                 partStock.TextAlign = ContentAlignment.MiddleCenter;
+                LabelPartsInventory.Add(partStock);
 
                 Label partStatus = new Label();
-                partStatus.Text = parts[i].Status;
-                tblPartsInventory.Controls.Add(partStatus, 5, i + 1);
+                partStatus.Text = parts[i].Status.Trim();
+                partStatus.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpPartsInventory.Controls.Add(partStatus, 5, i + 1);
                 partStatus.Dock = DockStyle.Fill;
                 partStatus.TextAlign = ContentAlignment.MiddleCenter;
+                LabelPartsInventory.Add(partStatus);
+
+                void SetLabelBackColor(Color color)
+                {
+                    partID.BackColor = color;
+                    partType.BackColor = color;
+                    partName.BackColor = color;
+                    partPrice.BackColor = color;
+                    partStock.BackColor = color;
+                    partStatus.BackColor = color;
+                }
+
+                void HightLightLabelEvent(Label label)
+                {
+                    label.MouseEnter += (s, ev) => SetLabelBackColor(Color.PapayaWhip);
+                    label.MouseLeave += (s, ev) =>
+                    {
+                        if (label.BackColor != Color.LemonChiffon)
+                            SetLabelBackColor(Color.Transparent);
+                    };
+                    label.MouseDown += (s, ev) =>
+                    {
+                        LabelPartsInventory.ForEach(lbl => lbl.BackColor = Color.Transparent);
+                        SetLabelBackColor(Color.PeachPuff);
+                    };
+                    label.MouseUp += (s, ev) =>
+                    {
+                        SetLabelBackColor(Color.LemonChiffon);
+                        frmPartDetails frmPartDetails = new frmPartDetails(parts[index], this);
+                        frmPartDetails.ShowDialog();
+                    };
+                }
+                HightLightLabelEvent(partID);
+                HightLightLabelEvent(partType);
+                HightLightLabelEvent(partName);
+                HightLightLabelEvent(partPrice);
+                HightLightLabelEvent(partStock);
+                HightLightLabelEvent(partStatus);
             }
+            tlpPartsInventory.ResumeLayout();
+            tlpPartsInventory.PerformLayout();
         }
         public void LoadPartsRequests()
         {
@@ -323,11 +472,23 @@ namespace CarCare_Service_Center
             query = "SELECT * FROM PartsRequests WHERE IsApproved IS NULL";
             partsRequests = Database.FetchData<Parts.Requests>(query);
 
+            if (partsRequests.Count == 0)
+            {
+                Label message = new Label
+                {
+                    Text = "No Request",
+                    Font = new Font("Comic Sans MS", 16F, FontStyle.Regular),
+                    Location = new Point(0,0),
+                    AutoSize = true
+                };
+                pnlPartsRequests.Controls.Add(message);
+            }
+
             int offset = 0;
 
             for (int i = 0; i < partsRequests.Count; i++)
             {
-                PartsRequestControl requestDetails = new PartsRequestControl();
+                PartsRequestControl requestDetails = new PartsRequestControl(partsRequests[i], this);
                 pnlPartsRequests.Controls.Add(requestDetails);
                 requestDetails.Location = new Point(0, 0 + offset);
                 foreach (Control ctl in requestDetails.Controls)
@@ -343,9 +504,15 @@ namespace CarCare_Service_Center
                             $"\n\n{partsRequests[i].UserID}";
                         ctl.Enabled = false;
                     }
+                    else if (ctl.Name.StartsWith("lblRequestDateTime"))
+                    {
+                        ctl.Text = $"{partsRequests[i].DateTime.ToString("yyyy-MM-dd")}" +
+                            $"\n\n{partsRequests[i].DateTime.ToString("hh:mm tt")}";
+                        ctl.Enabled = false;
+                    }
                     else if (ctl.Name.StartsWith("lblPartName"))
                     {
-                        ctl.Text = partsRequests[i].PartName;
+                        ctl.Text = partsRequests[i].PartName.Trim();
                         ctl.Enabled = false;
                     }
                     else if (ctl.Name.StartsWith("lblPartType"))
@@ -359,20 +526,116 @@ namespace CarCare_Service_Center
                         ctl.Enabled = false;
                     }
                 }
-                offset = offset + 222;
+                offset = offset + requestDetails.Height - 1;
             }
         }
 
-        private void btnPurchase_Click(object sender, EventArgs e)
+        public void LoadPartsPurchaseLog()
         {
-            PartsPurchase openform = new PartsPurchase();
-            openform.ShowDialog();
+            tlpPartsPurchase.SuspendLayout();
+            TableLayoutPanelSetting.RemoveControlsExceptFirstRow(tlpPartsPurchase);
+
+            string query = "SELECT * FROM PartsPurchase";
+            partsPurchase = Database.FetchData<Parts.Purchases>(query);
+            partsPurchase = partsPurchase.OrderBy(p => p.DateTime).ToList();
+
+            for (int i = 0; i < partsPurchase.Count; i++)
+            {
+                tlpPartsPurchase.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
+
+                Label partID = new Label();
+                partID.Text = partsPurchase[i].PartID.Trim();
+                partID.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpPartsPurchase.Controls.Add(partID, 0, i + 1);
+                partID.Dock = DockStyle.Fill;
+                partID.TextAlign = ContentAlignment.MiddleCenter;
+
+                Label partName = new Label();
+                partName.Text = parts.Find(p => p.PartID == partsPurchase[i].PartID).PartName.Trim();
+                partName.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpPartsPurchase.Controls.Add(partName, 1, i + 1);
+                partName.Dock = DockStyle.Fill;
+                partName.TextAlign = ContentAlignment.MiddleLeft;
+                partName.AutoEllipsis = true;
+
+                Label DateTime = new Label();
+                DateTime.Text = partsPurchase[i].DateTime.ToString("yyyy-MM-dd\nhh:mm tt");
+                DateTime.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpPartsPurchase.Controls.Add(DateTime, 2, i + 1);
+                DateTime.Dock = DockStyle.Fill;
+                DateTime.TextAlign = ContentAlignment.MiddleCenter;
+
+                Label UnitPrice = new Label();
+                UnitPrice.Text = partsPurchase[i].UnitPrice.ToString();
+                UnitPrice.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpPartsPurchase.Controls.Add(UnitPrice, 3, i + 1);
+                UnitPrice.Dock = DockStyle.Fill;
+                UnitPrice.TextAlign = ContentAlignment.MiddleCenter;
+
+                Label Quantity = new Label();
+                Quantity.Text = partsPurchase[i].Quantity.ToString();
+                Quantity.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpPartsPurchase.Controls.Add(Quantity, 4, i + 1);
+                Quantity.Dock = DockStyle.Fill;
+                Quantity.TextAlign = ContentAlignment.MiddleCenter;
+
+                Label Supplier = new Label();
+                Supplier.Text = partsPurchase[i].Supplier.Trim();
+                Supplier.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpPartsPurchase.Controls.Add(Supplier, 5, i + 1);
+                Supplier.Dock = DockStyle.Fill;
+                Supplier.TextAlign = ContentAlignment.MiddleLeft;
+                Supplier.AutoEllipsis = true;
+            }
+            tlpPartsPurchase.ResumeLayout();
+            tlpPartsPurchase.PerformLayout();
         }
+
         //
         // Profile
         //
-        private void btnLogout_Click(object sender, EventArgs e)
+
+        //
+        // Top
+        //
+        private void HightLightLabelEvent(Label label)
         {
+            label.MouseEnter += (s, ev) => label.ForeColor = Color.Violet;
+            label.MouseLeave += (s, ev) =>
+            {
+                if (label.ForeColor != Color.Blue)
+                    label.ForeColor = SystemColors.ControlText;
+            };
+            label.MouseDown += (s, ev) => label.ForeColor = Color.Blue;
+        }
+        private void lblHome_Click(object sender, EventArgs e)
+        {
+            lblHome.ForeColor = SystemColors.ControlText;
+            tabReceptionist.SelectedIndex = 0;
+        }
+
+        private void lblReload_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+            "Are you sure you want to reload the application? Unsaved changes will be lost.",
+            "Reload Application", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                lblReload.ForeColor = SystemColors.ControlText;
+
+                int currentTabIndex = tabReceptionist.SelectedIndex;
+
+                Controls.Clear();
+                InitializeComponent();
+                frmReceptionistMain_Load(sender, e);
+                tabReceptionist.SelectedIndex = currentTabIndex;
+            }
+        }
+
+        private void lblLogout_Click(object sender, EventArgs e)
+        {
+            lblLogout.ForeColor = SystemColors.ControlText;
             frmLogoutConfirmation frmLogoutConfirmation = new frmLogoutConfirmation(this);
             frmLogoutConfirmation.ShowDialog();
         }

@@ -142,5 +142,13 @@ namespace CarCare_Service_Center
                 e.SuppressKeyPress = true;
             }
         }
+        private void txtUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogin_Click(sender, e);
+                e.SuppressKeyPress = true;
+            }
+        }
     }
 }

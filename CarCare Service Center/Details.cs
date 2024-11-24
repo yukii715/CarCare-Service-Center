@@ -15,6 +15,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.IO.Ports;
 using Users;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Security.Cryptography;
 
 namespace CarCare_Service_Center
 {
@@ -183,7 +184,7 @@ namespace CarCare_Service_Center
         {
             public string ServiceOrderID { get; set; }
             public string Username { get; set; }
-            public string ApointmentID { get; set; }
+            public string AppointmentID { get; set; }
             public DateTime ArrivalDateTime { get; set; }
             public DateTime StartDateTime {  get; set; }
             public DateTime EndDateTime { get; set; }
@@ -207,6 +208,24 @@ namespace CarCare_Service_Center
                 }
                 return ServiceOrderID;
             }
+            public void Add()
+            {
+                string query = "INSERT INTO ServiceOrder (ServiceOrderID, AppointmentID, ArrivalDateTime) VALUES (@ServiceOrderID, @AppointmentID, @ArrivalDateTime)";
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Add parameters to avoid SQL injection
+                    command.Parameters.AddWithValue("@ServiceOrderID", ServiceOrderID);
+                    command.Parameters.AddWithValue("@AppointmentID", AppointmentID);
+                    command.Parameters.AddWithValue("@ArrivalDateTime", ArrivalDateTime);
+
+                    connection.Open();
+
+                    // Execute the command
+                    command.ExecuteNonQuery();
+                }
+            }
             public class ServiceEntry
             {
                 public string ServiceEntryID { get; set; }
@@ -215,6 +234,7 @@ namespace CarCare_Service_Center
                 public Decimal Price { get; set; }
                 public string InitialStatus { get; set; }
                 public string CompletionStatus { get; set; }
+                public bool IsCompleted { get; set; }
                 public string GenerateServiceEntryID()
                 {
                     string query = "SELECT COUNT(*) FROM ServiceEntry WHERE ServiceOrderID = @ServiceOrderID";
@@ -222,11 +242,51 @@ namespace CarCare_Service_Center
                     using (SqlConnection connection = new SqlConnection(Program.connectionString))
                     {
                         SqlCommand command = new SqlCommand(query, connection);
+
+                        // Add parameters to avoid SQL injection
+                        command.Parameters.AddWithValue("@ServiceOrderID", ServiceOrderID);
+
                         connection.Open();
+
                         int count = (int)command.ExecuteScalar();
-                        ServiceEntryID = string.Concat(ServiceOrderID.Substring(ServiceOrderID.Length - 8).Reverse()) + (count + 1).ToString("D2"); // Zero-padded to 7 digits
+                        ServiceEntryID = string.Concat(ServiceOrderID.Substring(ServiceOrderID.Length - 8).Reverse()) + (count + 1).ToString("D2"); // Zero-padded to 2 digits
                     }
                     return ServiceEntryID;
+                }
+                public void Add()
+                {
+                    string query = "INSERT INTO ServiceEntry (ServiceEntryID, ServiceOrderID, ServiceID, IsCompleted) " +
+                        "VALUES (@ServiceEntryID, @ServiceOrderID, @ServiceID, 0)";
+                    using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                    {
+                        SqlCommand command = new SqlCommand(query, connection);
+
+                        // Add parameters to avoid SQL injection
+                        command.Parameters.AddWithValue("@ServiceEntryID", ServiceEntryID);
+                        command.Parameters.AddWithValue("@ServiceOrderID", ServiceOrderID);
+                        command.Parameters.AddWithValue("@ServiceID", ServiceID);
+
+                        connection.Open();
+
+                        // Execute the command
+                        command.ExecuteNonQuery();
+                    }
+                }
+                public void ServiceDone()
+                {
+                    string query = "UPDATE ServiceEntry SET InitialStatus = @InitialStatus, CompletionStatus = @CompletionStatus, SET IsCompleted = 1 " +
+                        "WHERE ServiceEntryID = @ServiceEntryID";
+                    using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                    {
+                        SqlCommand command = new SqlCommand(query, connection);
+                        command.Parameters.AddWithValue("@InitialStatus", InitialStatus);
+                        command.Parameters.AddWithValue("@CompletionStatus", CompletionStatus);
+                        command.Parameters.AddWithValue("@ServiceEntryID", ServiceEntryID);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+                    }
                 }
                 public class ServiceParts
                 {
@@ -390,8 +450,8 @@ namespace CarCare_Service_Center
         }
         public void Add()
         {
-            string query = "INSERT INTO Parts (PartID, PartType, PartName, Stock, Status) VALUES " +
-                "(@PartID, @PartType, @PartName, 0, 'New')";
+            string query = "INSERT INTO Parts (PartID, PartType, PartName, Stock, SellPrice, Status) VALUES " +
+                "(@PartID, @PartType, @PartName, 0, 0, 'New')";
             using (SqlConnection connection = new SqlConnection(Program.connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
@@ -404,6 +464,34 @@ namespace CarCare_Service_Center
                 connection.Open();
 
                 // Execute the command
+                command.ExecuteNonQuery();
+            }
+        }
+        public void UpdateStock()
+        {
+            string query = "UPDATE Parts SET Stock = @Stock WHERE PartID = @PartID";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@PartID", PartID);
+                command.Parameters.AddWithValue("@Stock", Stock);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
+        }
+        public void UpdatePrice(Decimal price)
+        {
+            string query = "UPDATE Parts SET SellPrice = @SellPrice WHERE PartID = @PartID";
+            using (SqlConnection connection = new SqlConnection(Program.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@PartID", PartID);
+                command.Parameters.AddWithValue("@SellPrice", price);
+
+                connection.Open();
+
                 command.ExecuteNonQuery();
             }
         }
@@ -430,7 +518,7 @@ namespace CarCare_Service_Center
             public string Supplier {  get; set; }
             public void Add()
             {
-                string query = "INSERT INTO Parts (PartID, DateTime, UnitPrice, Quantity, Supplier) VALUES " +
+                string query = "INSERT INTO PartsPurchase (PartID, DateTime, UnitPrice, Quantity, Supplier) VALUES " +
                     "(@PartID, @DateTime, @UnitPrice, @Quantity, @Supplier)";
                 using (SqlConnection connection = new SqlConnection(Program.connectionString))
                 {
@@ -499,6 +587,32 @@ namespace CarCare_Service_Center
                     connection.Open();
 
                     // Execute the command without returning any results
+                    command.ExecuteNonQuery();
+                }
+            }
+            public void Approve()
+            {
+                string query = "UPDATE PartsRequests SET IsApproved = 1 WHERE RequestID = @RequestID";
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@RequestID", RequestID);
+
+                    connection.Open();
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            public void Reject()
+            {
+                string query = "UPDATE PartsRequests SET IsApproved = 0 WHERE RequestID = @RequestID";
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@RequestID", RequestID);
+
+                    connection.Open();
+
                     command.ExecuteNonQuery();
                 }
             }

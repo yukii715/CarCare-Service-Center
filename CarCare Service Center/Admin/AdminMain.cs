@@ -38,13 +38,8 @@ namespace CarCare_Service_Center
 
         public frmAdminMain(Admin ad)
         {
-            // Profile details
             InitializeComponent();
             admin = ad;
-            lblAdminID.Text = admin.UserID;
-            lblAdminName.Text = admin.Username;
-            lblAdminEmail.Text = admin.Email;
-            lblWelcome.Text = "Welcome Back, " + admin.Username;
         }
 
         // to adjust controls into the tlp with the correct properties
@@ -106,14 +101,7 @@ namespace CarCare_Service_Center
             service = Database.FetchData<Services>(query);
             service = service.OrderBy(u => u.ServiceID).ToList();
 
-            // Method 1 to show available services in comboBox
-            //for(int i = 0; i < service.Count; i++)
-            //{
-            //    if (!cmbServiceType.Items.Contains(service[i].ServiceType))
-            //    {
-            //        cmbServiceType.Items.Add(service[i].ServiceType);
-            //    }
-            //}
+            cmbServiceType.Items.Clear();
 
             query = "SELECT DISTINCT ServiceType FROM Services";
             Database.LoadIntoComboBox(cmbServiceType, query, "ServiceType");
@@ -160,7 +148,7 @@ namespace CarCare_Service_Center
         private void LoadServiceOrder()
         {
             LoadAppointment();
-            string query = "SELECT * FROM ServiceOrder;";
+            string query = "SELECT * FROM ServiceOrder Where CollectionDateTime IS NOT NULL";
             serviceOrders = Database.FetchData<ServiceOrder>(query);
             serviceOrders = serviceOrders.OrderBy(s => s.ServiceOrderID).ToList();
 
@@ -168,7 +156,7 @@ namespace CarCare_Service_Center
             for (int i = 0; i < serviceOrders.Count; i++)
             {
                 // Find the corresponding User based on AppointmentID
-                var appointmentItem = appointments.Find(a => a.AppointmentID == serviceOrders[i].ApointmentID);
+                var appointmentItem = appointments.Find(a => a.AppointmentID == serviceOrders[i].AppointmentID);
                 serviceOrders[i].Username = users.Find(u => u.UserID == appointmentItem.UserID).Username;
                 show_controlinTlpFeedback(serviceOrders[i], ref rowinsert);
             }
@@ -466,6 +454,11 @@ namespace CarCare_Service_Center
             Place_Holder.SetPlaceHolder(txtServiceSearch, "Search");
             Place_Holder.SetPlaceHolder(txtSalarySearch, "Search");
 
+            lblAdminID.Text = admin.UserID;
+            lblAdminName.Text = admin.Username;
+            lblAdminEmail.Text = admin.Email;
+            lblWelcome.Text = "Welcome Back, " + admin.Username;
+
             LoadServices();
             LoadUser();
             LoadStaffSalary();
@@ -476,6 +469,10 @@ namespace CarCare_Service_Center
             SetupYearMonthComboBox(cmbSalaryYear, cmbSalaryMonth);
             SetupYearMonthComboBox(cmbFeedbackYear, cmbFeedbackMonth);
             SetupYearMonthComboBox(cmbReportYear, cmbReportMonth);
+
+            HightLightLabelEvent(lblHome);
+            HightLightLabelEvent(lblReload);
+            HightLightLabelEvent(lblLogout);
         }
 
 
@@ -772,7 +769,7 @@ namespace CarCare_Service_Center
         private void btnServiceAdd_Click(object sender, EventArgs e)
         {
             ServiceInsertion formServiceInsertion = new ServiceInsertion(this);
-            formServiceInsertion.Show();
+            formServiceInsertion.ShowDialog();
         }
 
 
@@ -1176,8 +1173,48 @@ namespace CarCare_Service_Center
         //
         // Profile
         //
-        private void btnLogout_Click(object sender, EventArgs e)
+
+        //
+        // Top
+        //
+        private void HightLightLabelEvent(Label label)
         {
+            label.MouseEnter += (s, ev) => label.ForeColor = Color.Violet;
+            label.MouseLeave += (s, ev) =>
+            {
+                if (label.ForeColor != Color.Blue)
+                    label.ForeColor = SystemColors.ControlText;
+            };
+            label.MouseDown += (s, ev) => label.ForeColor = Color.Blue;
+        }
+        private void lblHome_Click(object sender, EventArgs e)
+        {
+            lblHome.ForeColor = SystemColors.ControlText;
+            tabAdmin.SelectedIndex = 0;
+        }
+
+        private void lblReload_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+            "Are you sure you want to reload the application? Unsaved changes will be lost.",
+            "Reload Application", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                lblReload.ForeColor = SystemColors.ControlText;
+
+                int currentTabIndex = tabAdmin.SelectedIndex;
+
+                Controls.Clear();
+                InitializeComponent();
+                frmAdminMain_Load(sender, e);
+                tabAdmin.SelectedIndex = currentTabIndex;
+            }
+        }
+
+        private void lblLogout_Click(object sender, EventArgs e)
+        {
+            lblLogout.ForeColor = SystemColors.ControlText;
             frmLogoutConfirmation frmLogoutConfirmation = new frmLogoutConfirmation(this);
             frmLogoutConfirmation.ShowDialog();
         }

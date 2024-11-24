@@ -13,19 +13,20 @@ namespace CarCare_Service_Center
 {
     public partial class PartsRequestControl : UserControl
     {
-        public PartsRequestControl()
+        private Parts.Requests Requests;
+        private frmReceptionistMain frmReceptionistMain;
+        public PartsRequestControl(Parts.Requests requests, frmReceptionistMain frmReceptionistMain)
         {
             InitializeComponent();
+            Requests = requests;
+            this.frmReceptionistMain = frmReceptionistMain;
         }
 
         private void PartsRequestControl_MouseClick(object sender, MouseEventArgs e)
         {
-            string requestID = lblPartRequestID.Text;
-            string partName = lblPartName.Text;
-            string partType = lblPartType.Text;
-
-            PartsRequest openform = new PartsRequest(requestID, partName, partType);
+            PartsRequest openform = new PartsRequest(Requests, frmReceptionistMain);
             openform.ShowDialog();
         }
+        
     }
 }

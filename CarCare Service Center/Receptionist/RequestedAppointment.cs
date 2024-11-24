@@ -118,22 +118,8 @@ namespace CarCare_Service_Center
         }
         private void Form_Closed(object sender, EventArgs e)
         {
-            var controlsToRemove = new List<Control>();
-
-            foreach (Control ctrl in frmReceptionistMain.tlpAppointmentRequests.Controls)
-            {
-                if (ctrl.Name != "lblAptID" && ctrl.Name != "lblAptTime" && ctrl.Name != "lblAptUsername" && ctrl.Name != "lblAptVehicleNum")
-                {
-                    controlsToRemove.Add(ctrl);
-                }
-            }
-
-            // Now remove controls from pnlMyAppointment
-            foreach (var ctrl in controlsToRemove)
-            {
-                frmReceptionistMain.tlpAppointmentRequests.Controls.Remove(ctrl);
-            }
             frmReceptionistMain.LoadAppointmentRequests();
+            frmReceptionistMain.LoadUpcomingAppointments();
         }
     }
 }

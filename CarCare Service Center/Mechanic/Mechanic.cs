@@ -43,6 +43,32 @@ namespace Users
                     command.ExecuteNonQuery();
                 }
             }
+            public void StartProgress()
+            {
+                string query = "UPDATE MechanicTasks SET InProgress = 1 WHERE AppointmentID = @AppointmentID";
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@AppointmentID", AppointmentID);
+
+                    connection.Open();
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            public void EndTask()
+            {
+                string query = "UPDATE MechanicTaks SET InProgress = 0 WHERE AppointmentID = @AppointmentID";
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@AppointmentID", AppointmentID);
+
+                    connection.Open();
+
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

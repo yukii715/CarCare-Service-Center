@@ -14,6 +14,7 @@ using System.Runtime.ConstrainedExecution;
 using System.Reflection;
 using System.Globalization;
 using System.Diagnostics;
+using static Users.Mechanic;
 
 namespace CarCare_Service_Center
 {
@@ -21,10 +22,12 @@ namespace CarCare_Service_Center
     {
         private List<Services> services;
         private List<Services> selected_services = new List<Services>();
-        private List<Appointment> appointments;
+        private List<Appointment> pending_appointments;
+        private List<Appointment> accepted_appointments;
         private List<Appointment> late_appointments;
         private List<Appointment> cancelled_appointments;
         private List<Appointment> rejected_appointments;
+        private List<Appointment> completed_appointments;
         private List<Services.ServiceOrder> my_order;
         private List<Services.ServiceOrder.ServiceEntry> my_order_entries;
         private List<Services.ServiceOrder.ServiceEntry.ServiceParts> ServiceParts;
@@ -34,9 +37,6 @@ namespace CarCare_Service_Center
         {
             InitializeComponent();
             customer = cus;
-            Place_Holder.SetPlaceHolder(txtSearch, "Search...");
-            ComboBoxSetting.SetupYearMonthDayComboBoxes(cmbAptYear, cmbAptMonth, cmbAptDay);
-            ComboBoxSetting.SetupHourMinuteComboBoxes(cmbAptHour, cmbAptMinute);
         }
 
         public void switch_tab(int tab_index)
@@ -47,6 +47,12 @@ namespace CarCare_Service_Center
         private void frmCustomerMain_Load(object sender, EventArgs e)
         {
             tabCustomer.DrawItem += Draw_Item.tabControlAdjustment;
+            Place_Holder.SetPlaceHolder(txtSearch, "Search...");
+            ComboBoxSetting.SetupYearMonthDayComboBoxes(cmbAptYear, cmbAptMonth, cmbAptDay);
+            ComboBoxSetting.SetupHourMinuteComboBoxes(cmbAptHour, cmbAptMinute);
+            lblUserID.Text = customer.UserID;
+            lblUserName.Text = customer.Username;
+            lblEmail.Text = customer.Email;
 
             int search_row = 0;
 
@@ -69,6 +75,9 @@ namespace CarCare_Service_Center
             SetupComboBoxPlaceHolder();
             SetupInitialServiceSelection();
             LoadAppointment();
+            HightLightLabelEvent(lblHome);
+            HightLightLabelEvent(lblReload);
+            HightLightLabelEvent(lblLogout);
         }
 
         private void AddServiceTypeIntoComboBox(ComboBox cmb)
@@ -261,6 +270,9 @@ namespace CarCare_Service_Center
 
             cmbServiceName.SelectedIndexChanged += (s, eArgs) =>
             {
+                if (cmbServiceName.SelectedIndex == -1)
+                    return;
+
                 // Retrieve the selected type and name
                 string selectedType = cmbServiceType.SelectedItem.ToString();
                 string selectedName = cmbServiceName.SelectedItem.ToString();
@@ -481,125 +493,75 @@ namespace CarCare_Service_Center
         //
         public void LoadAppointment()
         {
-            LoadMyAppointment();
+            LoadPendingAppointment();
+            LoadAcceptedAppointment();
             LoadRejectedAppointment();
             LoadLateAppointment();
             LoadCancelledAppointment();
         }
-        private void LoadMyAppointment()
+        private void LoadPendingAppointment()
         {
             int my_appointment_row = 0;
 
-            string find_cus_appointment = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}' AND Status IN ('Pending', 'Accepted') ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
-            appointments = Database.FetchData<Appointment>(find_cus_appointment);
+            string find_cus_appointment = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}' AND Status = 'Pending' ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
+            pending_appointments = Database.FetchData<Appointment>(find_cus_appointment);
 
-            for (int i = 0; i < appointments.Count; i++)
+            for (int i = 0; i < pending_appointments.Count; i++)
             {
-                showMyAppointment(ref i, ref my_appointment_row);
+                showMyAppointment(pending_appointments, Color.Green, ref i, ref my_appointment_row);
             }
         }
-        private void showMyAppointment(ref int i, ref int row)
+        private void LoadAcceptedAppointment()
         {
-            int start_X = 25;
-            int start_Y = 130;
+            int my_appointment_row = pending_appointments.Count;
 
-            Panel panel = new Panel
+            string find_cus_appointment = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}' AND Status = 'Accepted' ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
+            accepted_appointments = Database.FetchData<Appointment>(find_cus_appointment);
+
+            for (int i = 0; i < accepted_appointments.Count; i++)
             {
-                Font = new Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Regular),
-                Location = new Point(start_X, start_Y + 190 * row),
-                Size = new Size(630, 155),
-                BackColor = Color.Moccasin,
-                BorderStyle = BorderStyle.FixedSingle,
-            };
-            pnlMyAppointment.Controls.Add(panel);
-
-            Label BottomMargin = new Label
-            {
-                Location = new Point(start_X,  start_Y + 155 + 190 * row)
-            };
-            pnlMyAppointment.Controls.Add(BottomMargin);
-
-            Label ID = new Label
-            {
-                Text = appointments[i].AppointmentID,
-                Location = new Point(6, 10),
-                AutoSize = true
-            };
-            panel.Controls.Add(ID);
-
-            Label Date = new Label
-            {
-                Text = "Date: " + appointments[i].AppointmentDateTime.ToString("yyyy-MM-dd dddd"),
-                Location = new Point(6, 30),
-                AutoSize = true
-            };
-            panel.Controls.Add(Date);
-
-            Label Time = new Label
-            {
-                Text = "Time: " + appointments[i].AppointmentDateTime.ToString("hh:mm tt"),
-                Location = new Point(6, 50),
-                AutoSize = true
-            };
-            panel.Controls.Add(Time);
-
-            Button Details = new Button
-            {
-                Text = "Details",
-                Location = new Point(500, 100),
-                Size = new Size(105,30),
-                FlatStyle = FlatStyle.Popup,
-                Tag = appointments[i]
-            };
-            panel.Controls.Add(Details);
-
-            row++;
-
-            Details.Click += (s, e) =>
-            {
-                Appointment appointment = (Appointment)Details.Tag;
-                frmAppointmentDetails frmAppointmentDetails = new frmAppointmentDetails(appointment, this);
-                frmAppointmentDetails.ShowDialog();
-            };
+                showMyAppointment(accepted_appointments, Color.Green, ref i, ref my_appointment_row);
+            }
         }
+
         private void LoadRejectedAppointment()
         {
-            int my_appointment_row = appointments.Count;
+            int my_appointment_row = pending_appointments.Count + accepted_appointments.Count;
 
             string find_rejected_appointment = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}' AND Status = 'Rejected' ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
             rejected_appointments = Database.FetchData<Appointment>(find_rejected_appointment);
 
             for (int i = 0; i < rejected_appointments.Count; i++)
             {
-                showRejectedLateCancelledAppointment(rejected_appointments, ref i, ref my_appointment_row);
+                showMyAppointment(rejected_appointments, Color.Red, ref i, ref my_appointment_row);
             }
         }
         private void LoadLateAppointment()
         {
-            int my_appointment_row = appointments.Count + rejected_appointments.Count;
+            int my_appointment_row = pending_appointments.Count + accepted_appointments.Count + rejected_appointments.Count;
 
             string find_late_appointment = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}' AND Status = 'Late' ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
             late_appointments = Database.FetchData<Appointment>(find_late_appointment);
 
             for (int i = 0; i < late_appointments.Count; i++)
             {
-                showRejectedLateCancelledAppointment(late_appointments, ref i, ref my_appointment_row);
+                showMyAppointment(late_appointments, Color.Red, ref i, ref my_appointment_row);
             }
         }
         private void LoadCancelledAppointment()
         {
-            int my_appointment_row = appointments.Count + rejected_appointments.Count +late_appointments.Count;
+            int my_appointment_row = pending_appointments.Count + accepted_appointments.Count + rejected_appointments.Count +late_appointments.Count;
 
             string find_cancelled_appointment = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}' AND Status = 'Cancelled' ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
             cancelled_appointments = Database.FetchData<Appointment>(find_cancelled_appointment);
 
             for (int i = 0; i < cancelled_appointments.Count; i++)
             {
-                showRejectedLateCancelledAppointment(cancelled_appointments, ref i, ref my_appointment_row);
+                showMyAppointment(cancelled_appointments, Color.Red, ref i, ref my_appointment_row);
             }
         }
         
-        private void showRejectedLateCancelledAppointment(List<Appointment> target_list, ref int i, ref int row)
+        private void showMyAppointment(List<Appointment> target_list, Color color, ref int i, ref int row)
         {
             int start_X = 25;
             int start_Y = 130;
@@ -623,7 +585,7 @@ namespace CarCare_Service_Center
             Label Message = new Label
             {
                 Text = "*" + target_list[i].Status,
-                ForeColor = Color.Red,
+                ForeColor = color,
                 Location = new Point(6, 10),
                 AutoSize = true
             };
@@ -679,15 +641,21 @@ namespace CarCare_Service_Center
         {
             int my_appointment_row = 0;
 
-            string find_History = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}' AND Status IN ('Pending', 'Accepted') ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
-            appointments = Database.FetchData<Appointment>(find_History);
+            string find_Order = "SELECT * FROM ServiceOrder";
+            my_order = Database.FetchData<Services.ServiceOrder>(find_Order);
 
-            for (int i = 0; i < appointments.Count; i++)
+            string find_completed_appointments = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}' AND Status = 'Completed' ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
+            completed_appointments = Database.FetchData<Appointment>(find_completed_appointments);
+
+            HashSet<string> appointmentIds = new HashSet<string>(completed_appointments.Select(a => a.AppointmentID));
+            my_order.RemoveAll(order => !appointmentIds.Contains(order.AppointmentID));
+
+            for (int i = 0; i < my_order.Count; i++)
             {
-                showHistory(ref i, ref my_appointment_row);
+                showHistory(i, ref my_appointment_row);
             }
         }
-        private void showHistory(ref int i, ref int row)
+        private void showHistory(int i, ref int row)
         {
             int start_X = 25;
             int start_Y = 130;
@@ -710,7 +678,7 @@ namespace CarCare_Service_Center
 
             Label ID = new Label
             {
-                Text = appointments[i].AppointmentID,
+                Text = my_order[i].AppointmentID,
                 Location = new Point(6, 10),
                 AutoSize = true
             };
@@ -718,7 +686,7 @@ namespace CarCare_Service_Center
 
             Label Date = new Label
             {
-                Text = "Date: " + appointments[i].AppointmentDateTime.ToString("yyyy-MM-dd dddd"),
+                Text = "Date: " + completed_appointments.Find(a => a.AppointmentID == my_order[i].AppointmentID).AppointmentDateTime.ToString("yyyy-MM-dd dddd"),
                 Location = new Point(6, 30),
                 AutoSize = true
             };
@@ -726,7 +694,7 @@ namespace CarCare_Service_Center
 
             Label Time = new Label
             {
-                Text = "Time: " + appointments[i].AppointmentDateTime.ToString("hh:ss tt"),
+                Text = "Time: " + completed_appointments.Find(a => a.AppointmentID == my_order[i].AppointmentID).AppointmentDateTime.ToString("hh:ss tt"),
                 Location = new Point(6, 50),
                 AutoSize = true
             };
@@ -738,7 +706,7 @@ namespace CarCare_Service_Center
                 Location = new Point(500, 100),
                 Size = new Size(105, 30),
                 FlatStyle = FlatStyle.Popup,
-                Tag = appointments[i]
+                Tag = my_order[i]
             };
             panel.Controls.Add(Details);
 
@@ -754,10 +722,52 @@ namespace CarCare_Service_Center
         //
         // Profile
         //
-        private void btnLogout_Click(object sender, EventArgs e)
+
+        //
+        // Top
+        //
+        private void HightLightLabelEvent(Label label)
         {
+            label.MouseEnter += (s, ev) => label.ForeColor = Color.Violet;
+            label.MouseLeave += (s, ev) =>
+            {
+                if (label.ForeColor != Color.Blue)
+                    label.ForeColor = SystemColors.ControlText;
+            };
+            label.MouseDown += (s, ev) => label.ForeColor = Color.Blue;
+        }
+
+        private void lblHome_Click(object sender, EventArgs e)
+        {
+            lblHome.ForeColor = SystemColors.ControlText;
+            switch_tab(0);
+        }
+
+        private void lblReload_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+            "Are you sure you want to reload the application? Unsaved changes will be lost.",
+            "Reload Application", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                lblReload.ForeColor = SystemColors.ControlText;
+
+                int currentTabIndex = tabCustomer.SelectedIndex;
+
+                Controls.Clear();
+                InitializeComponent();
+                frmCustomerMain_Load(sender, e);
+                switch_tab(currentTabIndex);
+            }
+        }
+
+        private void lblLogout_Click(object sender, EventArgs e)
+        {
+            lblLogout.ForeColor = SystemColors.ControlText;
             frmLogoutConfirmation frmLogoutConfirmation = new frmLogoutConfirmation(this);
             frmLogoutConfirmation.ShowDialog();
         }
     }
 }
+ 

@@ -257,7 +257,6 @@ namespace CarCare_Service_Center
             this.txtBriefing.Size = new System.Drawing.Size(391, 175);
             this.txtBriefing.TabIndex = 21;
             this.txtBriefing.TabStop = false;
-            this.txtBriefing.Text = "\r\n";
             // 
             // btnImage
             // 

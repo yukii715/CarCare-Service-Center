@@ -26,9 +26,11 @@ namespace CarCare_Service_Center
             cmbPartType.SelectedIndexChanged += cmbPartType_SelectedIndexChanged;
             this.mechanic = mechanic;
         }
-
-
-
+        private void Request_Load(object sender, EventArgs e)
+        {
+            string query = "SELECT DISTINCT PartType FROM Parts";
+            Database.LoadIntoComboBox(cmbPartType, query, "PartType");
+        }
         private void btnRequestRequest_Click(object sender, EventArgs e)
         {
 
@@ -89,7 +91,5 @@ namespace CarCare_Service_Center
                 this.Close();
             }
         }
-
-
     }
 }

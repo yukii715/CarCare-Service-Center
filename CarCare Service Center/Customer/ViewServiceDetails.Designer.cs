@@ -41,6 +41,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +58,7 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.lblEstimatedTime);
             this.panel1.Controls.Add(this.lblServiceName);
             this.panel1.Controls.Add(this.lblServiceType);
@@ -78,7 +80,7 @@
             // 
             this.lblEstimatedTime.AutoSize = true;
             this.lblEstimatedTime.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstimatedTime.Location = new System.Drawing.Point(213, 300);
+            this.lblEstimatedTime.Location = new System.Drawing.Point(213, 323);
             this.lblEstimatedTime.Name = "lblEstimatedTime";
             this.lblEstimatedTime.Size = new System.Drawing.Size(0, 28);
             this.lblEstimatedTime.TabIndex = 11;
@@ -136,7 +138,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(38, 300);
+            this.label5.Location = new System.Drawing.Point(38, 323);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(162, 28);
             this.label5.TabIndex = 5;
@@ -186,6 +188,16 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Service Type:";
             // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Comic Sans MS", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Red;
+            this.label6.Location = new System.Drawing.Point(39, 263);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(120, 48);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "*Only labor cost included";
+            // 
             // frmViewServiceDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -216,5 +228,6 @@
         private System.Windows.Forms.Label lblServiceType;
         private System.Windows.Forms.Label lblServiceID;
         private System.Windows.Forms.Label lblEstimatedTime;
+        private System.Windows.Forms.Label label6;
     }
 }

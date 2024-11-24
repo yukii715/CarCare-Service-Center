@@ -83,6 +83,12 @@
     <Compile Include="Admin\ServiceInsertion.Designer.cs">
       <DependentUpon>ServiceInsertion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Receptionist\PartDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receptionist\PartDetails.Designer.cs">
+      <DependentUpon>PartDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Receptionist\CheckInCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,12 +180,6 @@
     </Compile>
     <Compile Include="Customer\HistoryDetails.Designer.cs">
       <DependentUpon>HistoryDetails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mechanic\Progress.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mechanic\Progress.Designer.cs">
-      <DependentUpon>Progress.cs</DependentUpon>
     </Compile>
     <Compile Include="Receptionist\PartsRequest.cs">
       <SubType>Form</SubType>
@@ -316,6 +316,12 @@
     <Compile Include="Receptionist\RequestedAppointment.Designer.cs">
       <DependentUpon>RequestedAppointment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mechanic\ServiceInProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mechanic\ServiceInProgress.Designer.cs">
+      <DependentUpon>ServiceInProgress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs" />
     <EmbeddedResource Include="Admin\ServiceInsertion.resx">
       <DependentUpon>ServiceInsertion.cs</DependentUpon>
@@ -328,6 +334,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChangeUsername.resx">
       <DependentUpon>ChangeUsername.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanic\Request.resx">
+      <DependentUpon>Request.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanic\ServiceInProgress.resx">
+      <DependentUpon>ServiceInProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receptionist\PartDetails.resx">
+      <DependentUpon>PartDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Receptionist\CheckInCustomer.resx">
       <DependentUpon>CheckInCustomer.cs</DependentUpon>
@@ -394,6 +409,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Receptionist\MechanicAvailability.resx">
       <DependentUpon>MechanicAvailability.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receptionist\PartsPurchase.resx">
+      <DependentUpon>PartsPurchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receptionist\PartsRequest.resx">
+      <DependentUpon>PartsRequest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Receptionist\PartsRequestControl.resx">
       <DependentUpon>PartsRequestControl.cs</DependentUpon>

@@ -185,6 +185,7 @@ namespace ControlSetting
             primaryComboBox.SelectedIndexChanged += (sender, e) =>
             {
                 // Clear previous items in the dependent ComboBox
+                dependentComboBox.SelectedIndex = -1;
                 dependentComboBox.Items.Clear();
 
                 foreach (var item in TargetList)
@@ -209,6 +210,33 @@ namespace ControlSetting
                     }
                 }
             };
+        }
+    }
+    public class TableLayoutPanelSetting
+    {
+        public static void RemoveControlsExceptFirstRow(TableLayoutPanel tableLayoutPanel)
+        {
+            for (int i = tableLayoutPanel.Controls.Count - 1; i >= 0; i--)
+            {
+                Control ctrl = tableLayoutPanel.Controls[i];
+                TableLayoutPanelCellPosition position = tableLayoutPanel.GetCellPosition(ctrl);
+
+                // Only remove controls that are not in the first row
+                if (position.Row > 0)
+                {
+                    // Temporarily hide the control before removing
+                    ctrl.Visible = false;
+
+                    // Remove the control from the layout
+                    tableLayoutPanel.Controls.RemoveAt(i);
+                }
+            }
+
+            // Clear unused row styles to optimize the table layout
+            for (int row = tableLayoutPanel.RowCount - 1; row > 0; row--)
+            {
+                tableLayoutPanel.RowStyles.RemoveAt(row);
+            }
         }
     }
 } 
