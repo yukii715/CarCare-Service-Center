@@ -36,7 +36,7 @@ namespace CarCare_Service_Center
             {
                 if (i > 0)
                 {
-                    foreach (Control ctrl in panel1.Controls)
+                    foreach (Control ctrl in Controls)
                     {
                         if (ctrl.Top > tlpPrice.Bottom)
                         {
@@ -48,7 +48,7 @@ namespace CarCare_Service_Center
                 Label lblPrice = new Label
                 {
                     Text = $"RM {servicePrices[i].Price.ToString()}",
-                    Font = new Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Regular),
+                    Font = new Font("Comic Sans MS", 10F, FontStyle.Regular),
                     Dock = DockStyle.Fill,
                     TextAlign = ContentAlignment.MiddleLeft
                 };
@@ -56,8 +56,8 @@ namespace CarCare_Service_Center
 
                 Label lblPriceDescription = new Label
                 {
-                    Text = $"({servicePrices[i].Description})",
-                    Font = new Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Regular),
+                    Text = $"({servicePrices[i].Description.Trim()})",
+                    Font = new Font("Comic Sans MS", 10F, FontStyle.Regular),
                     Dock = DockStyle.Fill,
                     TextAlign = ContentAlignment.MiddleLeft
                 };
@@ -71,7 +71,7 @@ namespace CarCare_Service_Center
                 {
                     Location = new Point(0, lblDescription.Bottom + 50),
                 };
-                panel1.Controls.Add(Bottom);
+                Controls.Add(Bottom);
             }
         }
 

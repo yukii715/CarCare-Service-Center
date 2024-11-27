@@ -28,8 +28,9 @@ namespace CarCare_Service_Center
         private List<Appointment> appointment_requests;
         private List<Appointment> upcoming_appointment;
         private List<Appointment> checkedin_appointment;
-        private List<Appointment> appointment_log;
+        private List<Appointment> completed_appointment;
         private List<Services.ServiceOrder> service_order;
+        private List<Services.ServiceOrder> completed_service_order;
         private List<Services.ServiceOrder.ServiceEntry> service_entry;
         private List<Parts> parts;
         private List<Parts.Requests> partsRequests;
@@ -56,12 +57,22 @@ namespace CarCare_Service_Center
             Place_Holder.SetPlaceHolder(txtSearchUpcomingAppointments, "Search");
             lblWelcome.Text = "Welcome " + receptionist.Username.ToString();
             lblOverview.Text = DateTime.Now.ToString("MMMM") + " Overview";
+            lblUserID.Text = receptionist.UserID;
+
+            string query = "SELECT * FROM Users WHERE IsDeleted = 0";
+            users = Database.FetchData<User>(query);
+
+            receptionist.Username = users.Find(u => u.UserID == receptionist.UserID).Username;
+            receptionist.Email = users.Find(u => u.UserID == receptionist.UserID).Email;
+            lblUserName.Text = receptionist.Username;
+            lblEmail.Text = receptionist.Email;
 
             // Loading each table
             LoadCustomerAccounts();
             LoadAppointmentRequests();
             LoadUpcomingAppointments();
             LoadCheckedInAppointments();
+            LoadAppointmentLog();
             LoadPartsInventory();
             LoadPartsRequests();
             LoadPartsPurchaseLog();
@@ -349,7 +360,13 @@ namespace CarCare_Service_Center
                     label.MouseUp += (s, ev) =>
                     {
                         SetLabelBackColor(Color.LemonChiffon);
-                        
+                        if (service_order[index].EndDateTime == null)
+                        {
+                            MessageBox.Show("This service haven't end", "Invalid Action", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        frmCheckoutCustomer frmCheckoutCustomer = new frmCheckoutCustomer(service_order[index], this);
+                        frmCheckoutCustomer.ShowDialog();
                     };
                 }
                 HightLightLabelEvent(appointmentID);
@@ -359,6 +376,93 @@ namespace CarCare_Service_Center
             }
             tlpAppointmentCheckouts.ResumeLayout();
             tlpAppointmentCheckouts.PerformLayout();
+        }
+        public void LoadAppointmentLog()
+        {
+            tlpAppointmentLog.SuspendLayout();
+            TableLayoutPanelSetting.RemoveControlsExceptFirstRow(tlpAppointmentLog);
+
+            string query = "SELECT * FROM Appointments WHERE Status = 'Completed' ORDER BY AppointmentDateTime";
+            completed_appointment = Database.FetchData<Appointment>(query);
+
+            query = "SELECT * FROM ServiceOrder";
+            completed_service_order = Database.FetchData<Services.ServiceOrder>(query);
+
+            HashSet<string> appointmentIds = new HashSet<string>(completed_appointment.Select(a => a.AppointmentID));
+            completed_service_order.RemoveAll(order => !appointmentIds.Contains(order.AppointmentID));
+
+            for (int i = 0; i < completed_appointment.Count; i++)
+            {
+                int index = i;
+
+                Label appointmentID = new Label();
+                appointmentID.Text = completed_appointment[i].AppointmentID;
+                appointmentID.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpAppointmentLog.Controls.Add(appointmentID, 0, i + 1);
+                appointmentID.Dock = DockStyle.Fill;
+                appointmentID.TextAlign = ContentAlignment.MiddleCenter;
+                LabelAppointmentLog.Add(appointmentID);
+
+                Label DateTime = new Label();
+                DateTime check_in = completed_service_order.Find(o => o.AppointmentID == completed_appointment[i].AppointmentID).ArrivalDateTime;
+                DateTime.Text = $"{check_in.ToString("dd-MM-yyyy")}\n{check_in.ToString("hh:mm tt")}";
+                DateTime.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpAppointmentLog.Controls.Add(DateTime, 1, i + 1);
+                DateTime.Dock = DockStyle.Fill;
+                DateTime.TextAlign = ContentAlignment.MiddleCenter;
+                DateTime.AutoSize = true;
+                LabelAppointmentLog.Add(DateTime);
+
+                Label customerName = new Label();
+                customerName.Text = users.Find(c => c.UserID == completed_appointment[i].UserID).Username;
+                customerName.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpAppointmentLog.Controls.Add(customerName, 2, i + 1);
+                customerName.Dock = DockStyle.Fill;
+                customerName.TextAlign = ContentAlignment.MiddleLeft;
+                LabelAppointmentLog.Add(customerName);
+
+                Label TotalPrice = new Label();
+                TotalPrice.Text = $"RM {completed_service_order.Find(c => c.AppointmentID == completed_appointment[i].AppointmentID).TotalPrice}";
+                TotalPrice.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular);
+                tlpAppointmentLog.Controls.Add(TotalPrice, 3, i + 1);
+                TotalPrice.Dock = DockStyle.Fill;
+                TotalPrice.TextAlign = ContentAlignment.MiddleLeft;
+                LabelAppointmentLog.Add(TotalPrice);
+
+                void SetLabelBackColor(Color color)
+                {
+                    appointmentID.BackColor = color;
+                    DateTime.BackColor = color;
+                    customerName.BackColor = color;
+                    TotalPrice.BackColor = color;
+                }
+                void HightLightLabelEvent(Label label)
+                {
+                    label.MouseEnter += (s, ev) => SetLabelBackColor(Color.PapayaWhip);
+                    label.MouseLeave += (s, ev) =>
+                    {
+                        if (label.BackColor != Color.LemonChiffon)
+                            SetLabelBackColor(Color.Transparent);
+                    };
+                    label.MouseDown += (s, ev) =>
+                    {
+                        LabelAppointmentLog.ForEach(lbl => lbl.BackColor = Color.Transparent);
+                        SetLabelBackColor(Color.PeachPuff);
+                    };
+                    label.MouseUp += (s, ev) =>
+                    {
+                        SetLabelBackColor(Color.LemonChiffon);
+                        frmOrderDetails orderDetails = new frmOrderDetails(completed_service_order[index]);
+                        orderDetails.ShowDialog();
+                    };
+                }
+                HightLightLabelEvent(appointmentID);
+                HightLightLabelEvent(DateTime);
+                HightLightLabelEvent(customerName);
+                HightLightLabelEvent(TotalPrice);
+            }
+            tlpAppointmentLog.ResumeLayout();
+            tlpAppointmentLog.PerformLayout();
         }
 
         public void LoadPartsInventory()
@@ -594,6 +698,23 @@ namespace CarCare_Service_Center
         //
         // Profile
         //
+        private void btnChangeUserName_Click(object sender, EventArgs e)
+        {
+            frmChangeUserName frmChangeUserName = new frmChangeUserName(receptionist);
+            frmChangeUserName.ShowDialog();
+        }
+
+        private void btnChangeEmail_Click(object sender, EventArgs e)
+        {
+            frmChangeEmail frmChangeEmail = new frmChangeEmail(receptionist);
+            frmChangeEmail.ShowDialog();
+        }
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            frmChangePassword frmChangePassword = new frmChangePassword(receptionist);
+            frmChangePassword.ShowDialog();
+        }
 
         //
         // Top

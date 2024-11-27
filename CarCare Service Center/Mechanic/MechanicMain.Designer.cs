@@ -30,12 +30,12 @@ namespace CarCare_Service_Center
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint25 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 12D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint26 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 21D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint27 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(3D, 10D);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint10 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 12D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint11 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 21D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint12 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(3D, 10D);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMechanicMain));
             this.tabMechanic = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -86,21 +86,20 @@ namespace CarCare_Service_Center
             this.btnRequest = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.roleProfileChange = new System.Windows.Forms.Label();
-            this.mailProfileChange = new System.Windows.Forms.Label();
-            this.idProfileChange = new System.Windows.Forms.Label();
-            this.nameProfileChange = new System.Windows.Forms.Label();
-            this.btnProfile = new System.Windows.Forms.Button();
-            this.roleProfile = new System.Windows.Forms.Label();
-            this.mailProfile = new System.Windows.Forms.Label();
-            this.idProfile = new System.Windows.Forms.Label();
-            this.nameProfile = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblHome = new System.Windows.Forms.Label();
             this.lblLogout = new System.Windows.Forms.Label();
             this.lblReload = new System.Windows.Forms.Label();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.lblUserName = new System.Windows.Forms.Label();
+            this.lblUserID = new System.Windows.Forms.Label();
+            this.btnChangePassword = new System.Windows.Forms.Button();
+            this.btnChangeEmail = new System.Windows.Forms.Button();
+            this.btnChangeUserName = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.tabMechanic.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -114,7 +113,6 @@ namespace CarCare_Service_Center
             this.tlpProgress.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMechanic
@@ -149,7 +147,7 @@ namespace CarCare_Service_Center
             this.tabPage1.Location = new System.Drawing.Point(84, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1092, 696);
+            this.tabPage1.Size = new System.Drawing.Size(1092, 721);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Home";
             // 
@@ -206,20 +204,20 @@ namespace CarCare_Service_Center
             this.chart1.BorderlineColor = System.Drawing.Color.Black;
             this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
             this.chart1.BorderlineWidth = 3;
-            chartArea9.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea9);
-            legend9.Name = "Legend1";
-            this.chart1.Legends.Add(legend9);
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
             this.chart1.Location = new System.Drawing.Point(6, 314);
             this.chart1.Name = "chart1";
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            series9.Points.Add(dataPoint25);
-            series9.Points.Add(dataPoint26);
-            series9.Points.Add(dataPoint27);
-            this.chart1.Series.Add(series9);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            series4.Points.Add(dataPoint10);
+            series4.Points.Add(dataPoint11);
+            series4.Points.Add(dataPoint12);
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(1016, 367);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
@@ -252,7 +250,7 @@ namespace CarCare_Service_Center
             this.tabPage2.Location = new System.Drawing.Point(84, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1092, 696);
+            this.tabPage2.Size = new System.Drawing.Size(1092, 721);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Service Task";
             // 
@@ -274,8 +272,8 @@ namespace CarCare_Service_Center
             this.tlpServiceTask.Location = new System.Drawing.Point(30, 93);
             this.tlpServiceTask.Name = "tlpServiceTask";
             this.tlpServiceTask.RowCount = 1;
-            this.tlpServiceTask.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tlpServiceTask.Size = new System.Drawing.Size(1012, 100);
+            this.tlpServiceTask.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 114F));
+            this.tlpServiceTask.Size = new System.Drawing.Size(1012, 117);
             this.tlpServiceTask.TabIndex = 10;
             // 
             // lblServicetaskNote
@@ -283,7 +281,7 @@ namespace CarCare_Service_Center
             this.lblServicetaskNote.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblServicetaskNote.Location = new System.Drawing.Point(6, 3);
             this.lblServicetaskNote.Name = "lblServicetaskNote";
-            this.lblServicetaskNote.Size = new System.Drawing.Size(63, 94);
+            this.lblServicetaskNote.Size = new System.Drawing.Size(63, 114);
             this.lblServicetaskNote.TabIndex = 0;
             this.lblServicetaskNote.Text = "NO";
             this.lblServicetaskNote.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -293,7 +291,7 @@ namespace CarCare_Service_Center
             this.lblServicetaskCusName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblServicetaskCusName.Location = new System.Drawing.Point(78, 3);
             this.lblServicetaskCusName.Name = "lblServicetaskCusName";
-            this.lblServicetaskCusName.Size = new System.Drawing.Size(192, 94);
+            this.lblServicetaskCusName.Size = new System.Drawing.Size(192, 114);
             this.lblServicetaskCusName.TabIndex = 1;
             this.lblServicetaskCusName.Text = "NAME";
             this.lblServicetaskCusName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -303,7 +301,7 @@ namespace CarCare_Service_Center
             this.lblServicetaskService.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblServicetaskService.Location = new System.Drawing.Point(279, 3);
             this.lblServicetaskService.Name = "lblServicetaskService";
-            this.lblServicetaskService.Size = new System.Drawing.Size(451, 94);
+            this.lblServicetaskService.Size = new System.Drawing.Size(451, 114);
             this.lblServicetaskService.TabIndex = 2;
             this.lblServicetaskService.Text = "SERVICE";
             this.lblServicetaskService.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -313,7 +311,7 @@ namespace CarCare_Service_Center
             this.lblServicetaskDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblServicetaskDate.Location = new System.Drawing.Point(739, 3);
             this.lblServicetaskDate.Name = "lblServicetaskDate";
-            this.lblServicetaskDate.Size = new System.Drawing.Size(172, 94);
+            this.lblServicetaskDate.Size = new System.Drawing.Size(172, 114);
             this.lblServicetaskDate.TabIndex = 3;
             this.lblServicetaskDate.Text = "DATE";
             this.lblServicetaskDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -323,7 +321,7 @@ namespace CarCare_Service_Center
             this.lblServiceTaskTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblServiceTaskTime.Location = new System.Drawing.Point(920, 3);
             this.lblServiceTaskTime.Name = "lblServiceTaskTime";
-            this.lblServiceTaskTime.Size = new System.Drawing.Size(86, 94);
+            this.lblServiceTaskTime.Size = new System.Drawing.Size(86, 114);
             this.lblServiceTaskTime.TabIndex = 4;
             this.lblServiceTaskTime.Text = "TIME";
             this.lblServiceTaskTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -503,8 +501,8 @@ namespace CarCare_Service_Center
             this.tlpServiceProgress.MaximumSize = new System.Drawing.Size(1002, 0);
             this.tlpServiceProgress.Name = "tlpServiceProgress";
             this.tlpServiceProgress.RowCount = 1;
-            this.tlpServiceProgress.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tlpServiceProgress.Size = new System.Drawing.Size(1002, 64);
+            this.tlpServiceProgress.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.tlpServiceProgress.Size = new System.Drawing.Size(1002, 68);
             this.tlpServiceProgress.TabIndex = 15;
             // 
             // lblProgressNote
@@ -513,7 +511,7 @@ namespace CarCare_Service_Center
             this.lblProgressNote.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblProgressNote.Location = new System.Drawing.Point(5, 2);
             this.lblProgressNote.Name = "lblProgressNote";
-            this.lblProgressNote.Size = new System.Drawing.Size(77, 60);
+            this.lblProgressNote.Size = new System.Drawing.Size(77, 64);
             this.lblProgressNote.TabIndex = 6;
             this.lblProgressNote.Text = "NO";
             this.lblProgressNote.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -524,7 +522,7 @@ namespace CarCare_Service_Center
             this.lblProgressService.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblProgressService.Location = new System.Drawing.Point(90, 2);
             this.lblProgressService.Name = "lblProgressService";
-            this.lblProgressService.Size = new System.Drawing.Size(907, 60);
+            this.lblProgressService.Size = new System.Drawing.Size(907, 64);
             this.lblProgressService.TabIndex = 5;
             this.lblProgressService.Text = "SERVICE";
             this.lblProgressService.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -643,7 +641,7 @@ namespace CarCare_Service_Center
             this.tabPage4.Controls.Add(this.label8);
             this.tabPage4.Location = new System.Drawing.Point(84, 4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1092, 732);
+            this.tabPage4.Size = new System.Drawing.Size(1092, 721);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Inventory ";
             // 
@@ -682,135 +680,21 @@ namespace CarCare_Service_Center
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.PapayaWhip;
-            this.tabPage5.Controls.Add(this.pictureBox3);
-            this.tabPage5.Controls.Add(this.roleProfileChange);
-            this.tabPage5.Controls.Add(this.mailProfileChange);
-            this.tabPage5.Controls.Add(this.idProfileChange);
-            this.tabPage5.Controls.Add(this.nameProfileChange);
-            this.tabPage5.Controls.Add(this.btnProfile);
-            this.tabPage5.Controls.Add(this.roleProfile);
-            this.tabPage5.Controls.Add(this.mailProfile);
-            this.tabPage5.Controls.Add(this.idProfile);
-            this.tabPage5.Controls.Add(this.nameProfile);
-            this.tabPage5.Controls.Add(this.label7);
+            this.tabPage5.Controls.Add(this.lblEmail);
+            this.tabPage5.Controls.Add(this.lblUserName);
+            this.tabPage5.Controls.Add(this.lblUserID);
+            this.tabPage5.Controls.Add(this.btnChangePassword);
+            this.tabPage5.Controls.Add(this.btnChangeEmail);
+            this.tabPage5.Controls.Add(this.btnChangeUserName);
+            this.tabPage5.Controls.Add(this.label13);
+            this.tabPage5.Controls.Add(this.label14);
+            this.tabPage5.Controls.Add(this.label15);
+            this.tabPage5.Controls.Add(this.label16);
             this.tabPage5.Location = new System.Drawing.Point(84, 4);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1092, 696);
+            this.tabPage5.Size = new System.Drawing.Size(1092, 721);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Profile";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox3.ErrorImage = null;
-            this.pictureBox3.InitialImage = null;
-            this.pictureBox3.Location = new System.Drawing.Point(256, 478);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(152, 131);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 15;
-            this.pictureBox3.TabStop = false;
-            // 
-            // roleProfileChange
-            // 
-            this.roleProfileChange.AutoSize = true;
-            this.roleProfileChange.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roleProfileChange.Location = new System.Drawing.Point(430, 353);
-            this.roleProfileChange.Name = "roleProfileChange";
-            this.roleProfileChange.Size = new System.Drawing.Size(229, 60);
-            this.roleProfileChange.TabIndex = 13;
-            this.roleProfileChange.Text = "Mechanic";
-            // 
-            // mailProfileChange
-            // 
-            this.mailProfileChange.AutoSize = true;
-            this.mailProfileChange.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mailProfileChange.Location = new System.Drawing.Point(430, 274);
-            this.mailProfileChange.Name = "mailProfileChange";
-            this.mailProfileChange.Size = new System.Drawing.Size(372, 60);
-            this.mailProfileChange.TabIndex = 12;
-            this.mailProfileChange.Text = "ming@mail.com";
-            // 
-            // idProfileChange
-            // 
-            this.idProfileChange.AutoSize = true;
-            this.idProfileChange.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.idProfileChange.Location = new System.Drawing.Point(430, 202);
-            this.idProfileChange.Name = "idProfileChange";
-            this.idProfileChange.Size = new System.Drawing.Size(181, 60);
-            this.idProfileChange.TabIndex = 11;
-            this.idProfileChange.Text = "020202";
-            // 
-            // nameProfileChange
-            // 
-            this.nameProfileChange.AutoSize = true;
-            this.nameProfileChange.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameProfileChange.Location = new System.Drawing.Point(430, 129);
-            this.nameProfileChange.Name = "nameProfileChange";
-            this.nameProfileChange.Size = new System.Drawing.Size(343, 60);
-            this.nameProfileChange.TabIndex = 10;
-            this.nameProfileChange.Text = "Liew Jun Ming";
-            // 
-            // btnProfile
-            // 
-            this.btnProfile.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProfile.Location = new System.Drawing.Point(422, 478);
-            this.btnProfile.Name = "btnProfile";
-            this.btnProfile.Size = new System.Drawing.Size(303, 131);
-            this.btnProfile.TabIndex = 8;
-            this.btnProfile.Text = "Edit Profile";
-            this.btnProfile.UseVisualStyleBackColor = true;
-            // 
-            // roleProfile
-            // 
-            this.roleProfile.AutoSize = true;
-            this.roleProfile.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roleProfile.Location = new System.Drawing.Point(261, 353);
-            this.roleProfile.Name = "roleProfile";
-            this.roleProfile.Size = new System.Drawing.Size(163, 60);
-            this.roleProfile.TabIndex = 7;
-            this.roleProfile.Text = "Role : ";
-            // 
-            // mailProfile
-            // 
-            this.mailProfile.AutoSize = true;
-            this.mailProfile.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mailProfile.Location = new System.Drawing.Point(262, 274);
-            this.mailProfile.Name = "mailProfile";
-            this.mailProfile.Size = new System.Drawing.Size(162, 60);
-            this.mailProfile.TabIndex = 6;
-            this.mailProfile.Text = "Mail : ";
-            // 
-            // idProfile
-            // 
-            this.idProfile.AutoSize = true;
-            this.idProfile.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.idProfile.Location = new System.Drawing.Point(302, 202);
-            this.idProfile.Name = "idProfile";
-            this.idProfile.Size = new System.Drawing.Size(107, 60);
-            this.idProfile.TabIndex = 5;
-            this.idProfile.Text = "ID :";
-            // 
-            // nameProfile
-            // 
-            this.nameProfile.AutoSize = true;
-            this.nameProfile.Font = new System.Drawing.Font("Times New Roman", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameProfile.Location = new System.Drawing.Point(236, 129);
-            this.nameProfile.Name = "nameProfile";
-            this.nameProfile.Size = new System.Drawing.Size(189, 60);
-            this.nameProfile.TabIndex = 4;
-            this.nameProfile.Text = "Name : ";
-            // 
-            // label7
-            // 
-            this.label7.Font = new System.Drawing.Font("Comic Sans MS", 28F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(80, -4);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(912, 110);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "Profile";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timer1
             // 
@@ -850,6 +734,112 @@ namespace CarCare_Service_Center
             this.lblReload.Text = "↻";
             this.lblReload.Click += new System.EventHandler(this.lblReload_Click);
             // 
+            // lblEmail
+            // 
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.Location = new System.Drawing.Point(386, 312);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(105, 34);
+            this.lblEmail.TabIndex = 42;
+            this.lblEmail.Text = "[Email]";
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.Location = new System.Drawing.Point(386, 238);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(167, 34);
+            this.lblUserName.TabIndex = 41;
+            this.lblUserName.Text = "[Username]";
+            // 
+            // lblUserID
+            // 
+            this.lblUserID.AutoSize = true;
+            this.lblUserID.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserID.Location = new System.Drawing.Point(386, 164);
+            this.lblUserID.Name = "lblUserID";
+            this.lblUserID.Size = new System.Drawing.Size(122, 34);
+            this.lblUserID.TabIndex = 40;
+            this.lblUserID.Text = "[UserID]";
+            // 
+            // btnChangePassword
+            // 
+            this.btnChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnChangePassword.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangePassword.Location = new System.Drawing.Point(737, 520);
+            this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.Size = new System.Drawing.Size(208, 52);
+            this.btnChangePassword.TabIndex = 39;
+            this.btnChangePassword.Text = "Change Password";
+            this.btnChangePassword.UseVisualStyleBackColor = true;
+            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
+            // 
+            // btnChangeEmail
+            // 
+            this.btnChangeEmail.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnChangeEmail.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeEmail.Location = new System.Drawing.Point(424, 520);
+            this.btnChangeEmail.Name = "btnChangeEmail";
+            this.btnChangeEmail.Size = new System.Drawing.Size(208, 52);
+            this.btnChangeEmail.TabIndex = 38;
+            this.btnChangeEmail.Text = "Change Email";
+            this.btnChangeEmail.UseVisualStyleBackColor = true;
+            this.btnChangeEmail.Click += new System.EventHandler(this.btnChangeEmail_Click);
+            // 
+            // btnChangeUserName
+            // 
+            this.btnChangeUserName.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnChangeUserName.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeUserName.Location = new System.Drawing.Point(111, 520);
+            this.btnChangeUserName.Name = "btnChangeUserName";
+            this.btnChangeUserName.Size = new System.Drawing.Size(208, 52);
+            this.btnChangeUserName.TabIndex = 37;
+            this.btnChangeUserName.Text = "Change User Name";
+            this.btnChangeUserName.UseVisualStyleBackColor = true;
+            this.btnChangeUserName.Click += new System.EventHandler(this.btnChangeUserName_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(175, 312);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(96, 34);
+            this.label13.TabIndex = 36;
+            this.label13.Text = "Email:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(175, 238);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(171, 34);
+            this.label14.TabIndex = 35;
+            this.label14.Text = "User Name:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Lucida Sans Unicode", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(175, 164);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(113, 34);
+            this.label15.TabIndex = 34;
+            this.label15.Text = "UserID:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Ink Free", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(465, 25);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(148, 54);
+            this.label16.TabIndex = 33;
+            this.label16.Text = "Profile";
+            // 
             // frmMechanicMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -882,7 +872,6 @@ namespace CarCare_Service_Center
             this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -906,17 +895,6 @@ namespace CarCare_Service_Center
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblCurrenttime;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label idProfileChange;
-        private System.Windows.Forms.Label nameProfileChange;
-        private System.Windows.Forms.Button btnProfile;
-        private System.Windows.Forms.Label roleProfile;
-        private System.Windows.Forms.Label mailProfile;
-        private System.Windows.Forms.Label idProfile;
-        private System.Windows.Forms.Label nameProfile;
-        private System.Windows.Forms.Label roleProfileChange;
-        private System.Windows.Forms.Label mailProfileChange;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnShortages;
         private System.Windows.Forms.Button btnRequest;
@@ -954,5 +932,15 @@ namespace CarCare_Service_Center
         private System.Windows.Forms.Label lblHome;
         private System.Windows.Forms.Label lblLogout;
         private System.Windows.Forms.Label lblReload;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label lblUserName;
+        private System.Windows.Forms.Label lblUserID;
+        private System.Windows.Forms.Button btnChangePassword;
+        private System.Windows.Forms.Button btnChangeEmail;
+        private System.Windows.Forms.Button btnChangeUserName;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
     }
 }

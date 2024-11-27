@@ -1,6 +1,7 @@
-﻿namespace CarCare_Service_Center
+﻿
+namespace CarCare_Service_Center
 {
-    partial class frmChangeUsername
+    partial class frmChangeUserName
     {
         /// <summary>
         /// Required designer variable.
@@ -34,23 +35,24 @@
             this.lblOldUsername = new System.Windows.Forms.Label();
             this.btnDone = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.lblChangeUsernameValidation = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblUsername
             // 
             this.lblUsername.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(164, 47);
+            this.lblUsername.Location = new System.Drawing.Point(164, 42);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(156, 47);
+            this.lblUsername.Size = new System.Drawing.Size(156, 42);
             this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "User Name :";
             // 
             // lblNewUsername
             // 
             this.lblNewUsername.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNewUsername.Location = new System.Drawing.Point(109, 115);
+            this.lblNewUsername.Location = new System.Drawing.Point(109, 104);
             this.lblNewUsername.Name = "lblNewUsername";
-            this.lblNewUsername.Size = new System.Drawing.Size(211, 47);
+            this.lblNewUsername.Size = new System.Drawing.Size(211, 42);
             this.lblNewUsername.TabIndex = 1;
             this.lblNewUsername.Text = "New User Name :";
             // 
@@ -58,55 +60,68 @@
             // 
             this.txtboxNewUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtboxNewUserName.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtboxNewUserName.Location = new System.Drawing.Point(345, 115);
+            this.txtboxNewUserName.Location = new System.Drawing.Point(345, 104);
             this.txtboxNewUserName.Multiline = true;
             this.txtboxNewUserName.Name = "txtboxNewUserName";
-            this.txtboxNewUserName.Size = new System.Drawing.Size(348, 34);
+            this.txtboxNewUserName.Size = new System.Drawing.Size(348, 31);
             this.txtboxNewUserName.TabIndex = 2;
+            this.txtboxNewUserName.TextChanged += new System.EventHandler(this.txtboxNewUserName_TextChanged);
             // 
             // lblOldUsername
             // 
             this.lblOldUsername.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOldUsername.Location = new System.Drawing.Point(339, 47);
+            this.lblOldUsername.Location = new System.Drawing.Point(339, 42);
             this.lblOldUsername.Name = "lblOldUsername";
-            this.lblOldUsername.Size = new System.Drawing.Size(521, 47);
+            this.lblOldUsername.Size = new System.Drawing.Size(422, 42);
             this.lblOldUsername.TabIndex = 3;
-            this.lblOldUsername.Text = "Liew JUN Ming";
             // 
             // btnDone
             // 
             this.btnDone.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDone.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDone.Location = new System.Drawing.Point(198, 211);
+            this.btnDone.Location = new System.Drawing.Point(198, 190);
             this.btnDone.Name = "btnDone";
-            this.btnDone.Size = new System.Drawing.Size(122, 48);
+            this.btnDone.Size = new System.Drawing.Size(122, 43);
             this.btnDone.TabIndex = 4;
             this.btnDone.Text = "Done";
             this.btnDone.UseVisualStyleBackColor = true;
+            this.btnDone.Click += new System.EventHandler(this.btnDone_Click_1);
             // 
             // btnBack
             // 
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBack.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Location = new System.Drawing.Point(410, 211);
+            this.btnBack.Location = new System.Drawing.Point(410, 190);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(122, 48);
+            this.btnBack.Size = new System.Drawing.Size(122, 43);
             this.btnBack.TabIndex = 5;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click_1);
             // 
-            // txtNewUserName
+            // lblChangeUsernameValidation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.lblChangeUsernameValidation.AutoSize = true;
+            this.lblChangeUsernameValidation.Font = new System.Drawing.Font("Comic Sans MS", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChangeUsernameValidation.Location = new System.Drawing.Point(341, 137);
+            this.lblChangeUsernameValidation.Name = "lblChangeUsernameValidation";
+            this.lblChangeUsernameValidation.Size = new System.Drawing.Size(139, 23);
+            this.lblChangeUsernameValidation.TabIndex = 12;
+            this.lblChangeUsernameValidation.Text = "*3-20 characters";
+            // 
+            // frmChangeUserName
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(773, 309);
+            this.ClientSize = new System.Drawing.Size(773, 278);
+            this.Controls.Add(this.lblChangeUsernameValidation);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnDone);
             this.Controls.Add(this.lblOldUsername);
             this.Controls.Add(this.txtboxNewUserName);
             this.Controls.Add(this.lblNewUsername);
             this.Controls.Add(this.lblUsername);
-            this.Name = "txtNewUserName";
+            this.Name = "frmChangeUserName";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -121,5 +136,6 @@
         private System.Windows.Forms.Label lblOldUsername;
         private System.Windows.Forms.Button btnDone;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Label lblChangeUsernameValidation;
     }
 }

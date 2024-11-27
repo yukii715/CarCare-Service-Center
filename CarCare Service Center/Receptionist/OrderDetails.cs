@@ -8,41 +8,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Users;
+using static CarCare_Service_Center.Services.ServiceOrder.ServiceEntry;
 using static CarCare_Service_Center.Services.ServiceOrder;
+using static CarCare_Service_Center.Services;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Users;
+using System.Diagnostics;
 
 namespace CarCare_Service_Center
 {
-    public partial class frmCheckoutCustomer : Form
+    public partial class frmOrderDetails : Form
     {
-        private Services.ServiceOrder serviceOrder;
-        private frmReceptionistMain receptionistMain;
-        private List<Appointment> appointments; 
+        private ServiceOrder serviceOrder;
+        private List<Appointment> appointments;
         private List<User> users;
         private List<Services> services;
-        private List<Services.ServicePrice> servicePrice;
+        private List<ServicePrice> servicePrice;
         private List<ServiceEntry> serviceEntries;
-        private List<ServiceEntry.ServiceParts> serviceParts;
+        private List<ServiceParts> serviceParts;
         private List<Parts> parts;
         private List<Control> controls = new List<Control>();
-        private List<ComboBox> comboBox = new List<ComboBox>();
-        private Decimal total_price = 0;
-        public frmCheckoutCustomer(Services.ServiceOrder order, frmReceptionistMain frmReceptionistMain)
+        public frmOrderDetails(ServiceOrder serviceOrder)
         {
             InitializeComponent();
             lblButtomMargin.Text = string.Empty;
-
-            Timer timer = new Timer();
-            timer.Interval = 1000; // 1 second
-            timer.Tick += Timer_Tick; // Subscribe to the Tick event
-            timer.Start(); // Start the timer
-
-            serviceOrder = order;
-            receptionistMain = frmReceptionistMain;
+            this.serviceOrder = serviceOrder;
         }
-        private void frmCheckoutCustomer_Load(object sender, EventArgs e)
+
+        private void frmOrderDetails_Load(object sender, EventArgs e)
         {
-            string query = "SELECT * FROM Appointments WHERE Status = 'CheckedIn'";
+            string query = "SELECT * FROM Appointments WHERE Status = 'Completed'";
             appointments = Database.FetchData<Appointment>(query);
 
             query = "SELECT * FROM Users";
@@ -50,12 +45,15 @@ namespace CarCare_Service_Center
 
             lblUserID.Text = appointments.Find(a => a.AppointmentID == serviceOrder.AppointmentID).UserID;
             lblUsername.Text = users.Find(u => u.UserID == lblUserID.Text).Username;
-            lblDate.Text = DateTime.Now.ToString("dd MMMM yyyy");
             lblArrivalDateTime.Text = serviceOrder.ArrivalDateTime.ToString("yyyy-MM-dd hh:mm:ss tt");
             lblStartDateTime.Text = serviceOrder.StartDateTime?.ToString("yyyy-MM-dd hh:mm:ss tt");
             lblEndDateTime.Text = serviceOrder.EndDateTime?.ToString("yyyy-MM-dd hh:mm:ss tt");
+            lblCollectionDateTime.Text = serviceOrder.CollectionDateTime.ToString("yyyy-MM-dd hh:mm:ss tt");
             lblVehicleNumber.Text = appointments.Find(a => a.AppointmentID == serviceOrder.AppointmentID).VehicleNumber;
-            txtRemark.Text = serviceOrder.Remark;
+            lblTotalPrice.Text = $"RM {serviceOrder.TotalPrice}";
+            lblRating.Text = serviceOrder.Rating == 0 ? "No Rating yet" : serviceOrder.Rating.ToString();
+            txtFeebBack.Text = serviceOrder?.Feedback ?? "No FeebBack yet";
+            txtFeebBack.TabStop = false;
 
             LoadServicesBill();
         }
@@ -98,16 +96,14 @@ namespace CarCare_Service_Center
             ServicesBill.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40));
             ServicesBill.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 24));
             ServicesBill.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18));
-
             int row_height = 30;
             int total_row = -1;
 
             for (int i = 0; i < serviceEntries.Count; i++)
             {
-                int index = i;
                 total_row++;
-                List<ServiceEntry.ServiceParts> parts_used = serviceParts.FindAll(s => s.ServiceEntryID == serviceEntries[i].ServiceEntryID);
-                List<Services.ServicePrice> servicePrices = servicePrice.FindAll(s => s.ServiceID == serviceEntries[i].ServiceID);
+                List<ServiceParts> parts_used = serviceParts.FindAll(s => s.ServiceEntryID == serviceEntries[i].ServiceEntryID);
+                List<ServicePrice> servicePrices = servicePrice.FindAll(s => s.ServiceID == serviceEntries[i].ServiceID);
                 ServicesBill.RowStyles.Add(new RowStyle(SizeType.Absolute, row_height - 1));
 
                 Label ServiceEntryID = new Label
@@ -128,45 +124,23 @@ namespace CarCare_Service_Center
                 };
                 ServicesBill.Controls.Add(ServiceName, 1, total_row);
 
-                ComboBox Type = new ComboBox
+                Label Mode = new Label
                 {
+                    Text = serviceEntries[i].Mode,
                     Font = new Font("Comic Sans MS", 10F, FontStyle.Regular),
                     Dock = DockStyle.Fill,
-                    DropDownStyle = ComboBoxStyle.DropDownList
+                    TextAlign = ContentAlignment.MiddleCenter
                 };
-                ServicesBill.Controls.Add(Type, 2, total_row);
-                comboBox.Add(Type);
+                ServicesBill.Controls.Add(Mode, 2, total_row);
 
                 Label labourFee = new Label
                 {
+                    Text = $"RM {servicePrices.Find(p => p.Description == serviceEntries[i].Mode).Price}",
                     Font = new Font("Comic Sans MS", 10F, FontStyle.Regular),
                     Dock = DockStyle.Fill,
                     TextAlign = ContentAlignment.MiddleLeft
                 };
                 ServicesBill.Controls.Add(labourFee, 3, total_row);
-
-                servicePrices.ForEach(s => Type.Items.Add(s.Description));
-
-                string previousSelectedType = null; 
-
-                Type.SelectedIndexChanged += (s, e) =>
-                {
-                    string selected_type = Type.Text;
-
-                    if (previousSelectedType != null)
-                    {
-                        Decimal previousPrice = servicePrices.Find(p => p.Description == previousSelectedType).Price;
-                        total_price -= previousPrice; // Subtract the price of the previously selected type
-                    }
-
-                    Decimal price = servicePrices.Find(p => p.Description == selected_type).Price;
-                    labourFee.Text = $"RM {price}";
-                    total_price += price;
-                    lblTotalPrice.Text = $"RM {total_price}";
-
-                    serviceEntries[index].Mode = selected_type;
-                    previousSelectedType = selected_type;
-                };
 
                 for (int j = 0; j < parts_used.Count; j++)
                 {
@@ -188,7 +162,7 @@ namespace CarCare_Service_Center
                         Text = "x" + parts_used[j].Quantity.ToString(),
                         Font = new Font("Comic Sans MS", 10F, FontStyle.Regular),
                         Dock = DockStyle.Fill,
-                        TextAlign = ContentAlignment.MiddleLeft
+                        TextAlign = ContentAlignment.MiddleCenter
                     };
                     ServicesBill.Controls.Add(Quantity, 2, total_row);
 
@@ -200,7 +174,6 @@ namespace CarCare_Service_Center
                         TextAlign = ContentAlignment.MiddleLeft
                     };
                     ServicesBill.Controls.Add(TotalCost, 3, total_row);
-                    total_price += parts_used[j].TotalCost;
 
                     ServicesBill.Height += row_height * parts_count;
                     ServicesBill.RowCount += parts_count;
@@ -214,45 +187,11 @@ namespace CarCare_Service_Center
                 ServicesBill.RowCount++;
             }
             ServicesBill.Height++;
-            lblTotalPrice.Text = $"RM {total_price}";
-        }
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            // Update the label with the current time, precise to the second
-            lblTime.Text = DateTime.Now.ToString("HH:mm:ss"); // Format: Hours:Minutes:Seconds
-        }
-        private void btnCheckOut_Click(object sender, EventArgs e)
-        {
-            if (comboBox.Any(cmb => cmb.SelectedIndex == -1))
-            {
-                MessageBox.Show("Please select the service mode to complete the checkout", "Information Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            DialogResult result = MessageBox.Show(
-            "Are you sure to checkout this order? Make sure all information is correct.",
-            "Checkout", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-            if (result == DialogResult.Yes)
-            {
-                serviceOrder.CollectionDateTime = DateTime.Now;
-                serviceOrder.TotalPrice = total_price;
-                serviceOrder.CheackOut();
-                appointments.Find(a => a.AppointmentID == serviceOrder.AppointmentID).UpdateStatus("Completed");
-                serviceEntries.ForEach(entry => entry.SetMode());
-                Close();
-            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             Close();
         }
-        private void Form_Closed(object sender, EventArgs e)
-        {
-            receptionistMain.LoadCheckedInAppointments();
-            receptionistMain.LoadAppointmentLog();
-        }
-
-
     }
 }

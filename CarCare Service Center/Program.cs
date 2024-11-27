@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Functions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +18,27 @@ namespace CarCare_Service_Center
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            UpdateAppointmentStatuses();
+
             Application.Run(new frmLogin());
+        }
+
+        static void UpdateAppointmentStatuses()
+        {
+            DateTime today = DateTime.Today;
+
+            // Fetch all appointments
+            string query = "SELECT * FROM Appointments";
+            var appointments = Database.FetchData<Appointment>(query);
+
+            foreach (var appointment in appointments)
+            {
+                if (appointment.AppointmentDateTime < today && appointment.Status != "Completed")
+                {
+                    appointment.UpdateStatus("Late");
+                }
+            }
         }
     }
 }

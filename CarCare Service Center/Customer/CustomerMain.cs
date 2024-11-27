@@ -15,11 +15,13 @@ using System.Reflection;
 using System.Globalization;
 using System.Diagnostics;
 using static Users.Mechanic;
+using System.Runtime.InteropServices;
 
 namespace CarCare_Service_Center
 {
     public partial class frmCustomerMain : Form
     {
+        private List<User> users;
         private List<Services> services;
         private List<Services> selected_services = new List<Services>();
         private List<Appointment> pending_appointments;
@@ -51,13 +53,19 @@ namespace CarCare_Service_Center
             ComboBoxSetting.SetupYearMonthDayComboBoxes(cmbAptYear, cmbAptMonth, cmbAptDay);
             ComboBoxSetting.SetupHourMinuteComboBoxes(cmbAptHour, cmbAptMinute);
             lblUserID.Text = customer.UserID;
-            lblUserName.Text = customer.Username;
-            lblEmail.Text = customer.Email;
 
             int search_row = 0;
 
-            string find_services = "SELECT * FROM Services WHERE IsDeleted = 0";
-            services = Database.FetchData<Services>(find_services);
+            string query = "SELECT * FROM Users WHERE UserID = " + $"'{customer.UserID}'";
+            users = Database.FetchData<User>(query);
+            customer.Username = users[0].Username;
+            customer.Email = users[0].Email;
+
+            lblUserName.Text = customer.Username;
+            lblEmail.Text = customer.Email;
+
+            query = "SELECT * FROM Services WHERE IsDeleted = 0";
+            services = Database.FetchData<Services>(query);
 
             for (int i = 0; i < services.Count; i++)
             {
@@ -75,6 +83,7 @@ namespace CarCare_Service_Center
             SetupComboBoxPlaceHolder();
             SetupInitialServiceSelection();
             LoadAppointment();
+            LoadHistory();
             HightLightLabelEvent(lblHome);
             HightLightLabelEvent(lblReload);
             HightLightLabelEvent(lblLogout);
@@ -609,7 +618,7 @@ namespace CarCare_Service_Center
 
             Label Time = new Label
             {
-                Text = "Time: " + target_list[i].AppointmentDateTime.ToString("hh:ss tt"),
+                Text = "Time: " + target_list[i].AppointmentDateTime.ToString("hh:mm tt"),
                 Location = new Point(6, 70),
                 AutoSize = true
             };
@@ -641,7 +650,7 @@ namespace CarCare_Service_Center
         {
             int my_appointment_row = 0;
 
-            string find_Order = "SELECT * FROM ServiceOrder";
+            string find_Order = "SELECT * FROM ServiceOrder ORDER BY ArrivalDateTime";
             my_order = Database.FetchData<Services.ServiceOrder>(find_Order);
 
             string find_completed_appointments = "SELECT * FROM Appointments WHERE UserID = " + $"'{customer.UserID}' AND Status = 'Completed' ORDER BY CAST(RIGHT(AppointmentID, 8) AS INT)";
@@ -668,13 +677,13 @@ namespace CarCare_Service_Center
                 BackColor = Color.Moccasin,
                 BorderStyle = BorderStyle.FixedSingle,
             };
-            pnlMyAppointment.Controls.Add(panel);
+            pnlHistory.Controls.Add(panel);
 
             Label BottomMargin = new Label
             {
                 Location = new Point(start_X, start_Y + 155 + 190 * row)
             };
-            pnlMyAppointment.Controls.Add(BottomMargin);
+            pnlHistory.Controls.Add(BottomMargin);
 
             Label ID = new Label
             {
@@ -686,7 +695,7 @@ namespace CarCare_Service_Center
 
             Label Date = new Label
             {
-                Text = "Date: " + completed_appointments.Find(a => a.AppointmentID == my_order[i].AppointmentID).AppointmentDateTime.ToString("yyyy-MM-dd dddd"),
+                Text = "Date: " + my_order[i].ArrivalDateTime.ToString("yyyy-MM-dd dddd"),
                 Location = new Point(6, 30),
                 AutoSize = true
             };
@@ -694,11 +703,19 @@ namespace CarCare_Service_Center
 
             Label Time = new Label
             {
-                Text = "Time: " + completed_appointments.Find(a => a.AppointmentID == my_order[i].AppointmentID).AppointmentDateTime.ToString("hh:ss tt"),
+                Text = "Time: " + my_order[i].ArrivalDateTime.ToString("hh:mm tt"),
                 Location = new Point(6, 50),
                 AutoSize = true
             };
             panel.Controls.Add(Time);
+
+            Label TotalPrice = new Label
+            {
+                Text = "Total Price: RM " + my_order[i].TotalPrice.ToString(),
+                Location = new Point(6, 70),
+                AutoSize = true
+            };
+            panel.Controls.Add(TotalPrice);
 
             Button Details = new Button
             {
@@ -706,7 +723,6 @@ namespace CarCare_Service_Center
                 Location = new Point(500, 100),
                 Size = new Size(105, 30),
                 FlatStyle = FlatStyle.Popup,
-                Tag = my_order[i]
             };
             panel.Controls.Add(Details);
 
@@ -714,14 +730,30 @@ namespace CarCare_Service_Center
 
             Details.Click += (s, e) =>
             {
-                Appointment appointment = (Appointment)Details.Tag;
-                frmAppointmentDetails frmAppointmentDetails = new frmAppointmentDetails(appointment, this);
-                frmAppointmentDetails.ShowDialog();
+                frmHistoryDetails frmHistoryDetails = new frmHistoryDetails(my_order[i]);
+                frmHistoryDetails.ShowDialog();
             };
         }
         //
         // Profile
         //
+        private void btnChangeUserName_Click(object sender, EventArgs e)
+        {
+            frmChangeUserName frmChangeUserName = new frmChangeUserName(customer);
+            frmChangeUserName.ShowDialog();
+        }
+
+        private void btnChangeEmail_Click(object sender, EventArgs e)
+        {
+            frmChangeEmail frmChangeEmail = new frmChangeEmail(customer);
+            frmChangeEmail.ShowDialog();
+        } 
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            frmChangePassword frmChangePassword = new frmChangePassword(customer);
+            frmChangePassword.ShowDialog();
+        }
 
         //
         // Top
@@ -768,6 +800,8 @@ namespace CarCare_Service_Center
             frmLogoutConfirmation frmLogoutConfirmation = new frmLogoutConfirmation(this);
             frmLogoutConfirmation.ShowDialog();
         }
+
+        
     }
 }
  

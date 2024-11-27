@@ -142,7 +142,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(104, 364);
+            this.label5.Location = new System.Drawing.Point(67, 364);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(121, 30);
             this.label5.TabIndex = 31;
@@ -161,20 +161,21 @@
             // 
             // tlpPartUsed
             // 
-            this.tlpPartUsed.ColumnCount = 6;
-            this.tlpPartUsed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.47472F));
-            this.tlpPartUsed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.7917F));
-            this.tlpPartUsed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.7917F));
-            this.tlpPartUsed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.47174F));
-            this.tlpPartUsed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.47014F));
-            this.tlpPartUsed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
+            this.tlpPartUsed.ColumnCount = 7;
+            this.tlpPartUsed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.9589F));
+            this.tlpPartUsed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.14677F));
+            this.tlpPartUsed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.58513F));
+            this.tlpPartUsed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.31237F));
+            this.tlpPartUsed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.014675F));
+            this.tlpPartUsed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tlpPartUsed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tlpPartUsed.Controls.Add(this.btnPartAdd, 0, 1);
-            this.tlpPartUsed.Location = new System.Drawing.Point(251, 364);
+            this.tlpPartUsed.Location = new System.Drawing.Point(214, 364);
             this.tlpPartUsed.Name = "tlpPartUsed";
             this.tlpPartUsed.RowCount = 2;
             this.tlpPartUsed.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tlpPartUsed.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tlpPartUsed.Size = new System.Drawing.Size(1072, 99);
+            this.tlpPartUsed.Size = new System.Drawing.Size(1205, 99);
             this.tlpPartUsed.TabIndex = 33;
             // 
             // btnPartAdd
@@ -184,7 +185,7 @@
             this.btnPartAdd.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPartAdd.Location = new System.Drawing.Point(3, 53);
             this.btnPartAdd.Name = "btnPartAdd";
-            this.btnPartAdd.Size = new System.Drawing.Size(122, 44);
+            this.btnPartAdd.Size = new System.Drawing.Size(104, 44);
             this.btnPartAdd.TabIndex = 0;
             this.btnPartAdd.Text = "Add";
             this.btnPartAdd.UseVisualStyleBackColor = true;
@@ -229,7 +230,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1409, 713);
+            this.ClientSize = new System.Drawing.Size(1492, 713);
             this.Controls.Add(this.lblBottomMargin);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnDone);

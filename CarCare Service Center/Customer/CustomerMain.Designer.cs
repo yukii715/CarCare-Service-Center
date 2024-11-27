@@ -33,8 +33,8 @@ namespace CarCare_Service_Center
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustomerMain));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tabCustomer = new System.Windows.Forms.TabControl();
             this.HomeTab = new System.Windows.Forms.TabPage();
             this.cmbYear = new System.Windows.Forms.ComboBox();
@@ -217,10 +217,10 @@ namespace CarCare_Service_Center
             // crtServiceUsed
             // 
             this.crtServiceUsed.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea1.Name = "ChartArea1";
-            this.crtServiceUsed.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.crtServiceUsed.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.crtServiceUsed.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.crtServiceUsed.Legends.Add(legend3);
             this.crtServiceUsed.Location = new System.Drawing.Point(100, 327);
             this.crtServiceUsed.Name = "crtServiceUsed";
             this.crtServiceUsed.Size = new System.Drawing.Size(440, 324);
@@ -712,6 +712,7 @@ namespace CarCare_Service_Center
             this.btnChangePassword.TabIndex = 29;
             this.btnChangePassword.Text = "Change Password";
             this.btnChangePassword.UseVisualStyleBackColor = true;
+            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
             // btnChangeEmail
             // 
@@ -723,6 +724,7 @@ namespace CarCare_Service_Center
             this.btnChangeEmail.TabIndex = 28;
             this.btnChangeEmail.Text = "Change Email";
             this.btnChangeEmail.UseVisualStyleBackColor = true;
+            this.btnChangeEmail.Click += new System.EventHandler(this.btnChangeEmail_Click);
             // 
             // btnChangeUserName
             // 
@@ -734,6 +736,7 @@ namespace CarCare_Service_Center
             this.btnChangeUserName.TabIndex = 27;
             this.btnChangeUserName.Text = "Change User Name";
             this.btnChangeUserName.UseVisualStyleBackColor = true;
+            this.btnChangeUserName.Click += new System.EventHandler(this.btnChangeUserName_Click);
             // 
             // label13
             // 

@@ -36,11 +36,9 @@ namespace CarCare_Service_Center
         private List<Services> services;
         private List<MechanicTasks> ServiceProgress;
         private List<Services> ServiceInProgress = new List<Services>();
-        private List<Appointment.Services> CustomerService;
         private List<Services.ServiceOrder> service_order;
-        private List<Services.ServiceOrder.ServiceEntry> service_entries;
+        private List<ServiceEntry> service_entries;
         private Dictionary<Control, Point> controlsBelowtlpServiceProgress= new Dictionary<Control, Point>();
-        private bool StartTask = false;
 
         public frmMechanicMain(Mechanic mec)
         {
@@ -66,8 +64,17 @@ namespace CarCare_Service_Center
 
         private void frmMechanicMain_Load(object sender, EventArgs e)
         {
+            string query_Users = "SELECT * FROM Users WHERE IsDeleted = 0";
+            users = Database.FetchData<User>(query_Users);
+
             tabMechanic.DrawItem += Draw_Item.tabControlAdjustment;
             lblBottomMargin.Text = string.Empty;
+            lblUserID.Text = mechanic.UserID;
+
+            mechanic.Username = users.Find(u => u.UserID == mechanic.UserID).Username;
+            mechanic.Email = users.Find(u => u.UserID == mechanic.UserID).Email;
+            lblUserName.Text = mechanic.Username;
+            lblEmail.Text = mechanic.Email;
             controlsBelowtlpServiceProgress.Clear();
 
             foreach (Control control in pnlServiceProgress.Controls)
@@ -98,9 +105,6 @@ namespace CarCare_Service_Center
             string query_MechanicTasks = "SELECT * FROM MechanicTasks WHERE InProgress IS NULL AND UserID = " + $"'{mechanic.UserID}'";
             mechanic_task = Database.FetchData<MechanicTasks>(query_MechanicTasks);
             mechanic_task = mechanic_task.OrderBy(task => appointments.FindIndex(a => a.AppointmentID == task.AppointmentID)).ToList();
-
-            string query_Users = "SELECT * FROM Users WHERE IsDeleted = 0";
-            users = Database.FetchData<User>(query_Users);
 
             string query_AppointmentServices = "SELECT * FROM AppointmentServices";
             appointment_service = Database.FetchData<Appointment.Services>(query_AppointmentServices);
@@ -164,7 +168,7 @@ namespace CarCare_Service_Center
             service_order = Database.FetchData<Services.ServiceOrder>(query);
 
             query = "SELECT * FROM ServiceEntry WHERE ServiceOrderID = " + $"'{service_order[0].ServiceOrderID}'";
-            service_entries = Database.FetchData<Services.ServiceOrder.ServiceEntry>(query);
+            service_entries = Database.FetchData<ServiceEntry>(query);
 
             lblAppointmentId.Text = ServiceProgress[0].AppointmentID;
             lblAppointmentId.Dock = DockStyle.Fill;
@@ -182,9 +186,6 @@ namespace CarCare_Service_Center
             lblProgressPlateNumber.Dock = DockStyle.Fill;
             lblProgressPlateNumber.TextAlign = ContentAlignment.MiddleLeft;
 
-            query = "SELECT * FROM AppointmentServices WHERE AppointmentID = " + $"'{lblAppointmentId.Text}'";
-            CustomerService = Database.FetchData<Appointment.Services>(query);
-
             LoadServiceInProgress();
         }
         public void LoadServiceInProgress()
@@ -195,6 +196,14 @@ namespace CarCare_Service_Center
             tlpServiceProgress.SuspendLayout();
             TableLayoutPanelSetting.RemoveControlsExceptFirstRow(tlpServiceProgress);
 
+            foreach (Control control in pnlServiceProgress.Controls)
+            {
+                if (control.Top > tlpServiceProgress.Bottom) // Check if the control is below the TableLayoutPanel
+                {
+                    pnlServiceProgress.Controls.Remove(control);
+                }
+            }
+
             foreach (var ctrl in controlsBelowtlpServiceProgress)
             {
                 Control control = ctrl.Key;
@@ -202,7 +211,7 @@ namespace CarCare_Service_Center
                 pnlServiceProgress.Controls.Add(control); 
             }
 
-            for (int i = 0; i < CustomerService.Count; i++)
+            for (int i = 0; i < service_entries.Count; i++)
             {
                 foreach (Control ctrl in pnlServiceProgress.Controls)
                 {
@@ -224,15 +233,24 @@ namespace CarCare_Service_Center
                 LabelNote.Add(ProgressNote);
 
                 Label ProgressServiceName = new Label();
-                ProgressServiceName.Text = services.Find(s => s.ServiceID == CustomerService[i].ServiceID).ServiceName.Trim();
+                ProgressServiceName.Text = services.Find(s => s.ServiceID == service_entries[i].ServiceID).ServiceName.Trim();
                 tlpServiceProgress.Controls.Add(ProgressServiceName, 1, i + 1);
                 ProgressServiceName.Dock = DockStyle.Fill;
                 ProgressServiceName.TextAlign = ContentAlignment.MiddleLeft;
                 LabelProgressService.Add(ProgressServiceName);
                 LabelService.Add(ProgressServiceName);
             }
-            if (StartTask == true)
+            if (service_order[0].StartDateTime != null)
             {
+                ServiceInProgress.Clear();
+                service_entries.ForEach(entry => ServiceInProgress.Add(services.Find(s => s.ServiceID == entry.ServiceID)));
+
+                grbAddService.Visible = true;
+                lblRemark.Visible = true;
+                txtRemark.Visible = true;
+                btnEndTask.Visible = true;
+                btnStartTask.Visible = false;
+
                 foreach (Label Label in LabelProgressService)
                 {
                     int index = LabelProgressService.IndexOf(Label);
@@ -275,16 +293,22 @@ namespace CarCare_Service_Center
             }
             tlpServiceProgress.ResumeLayout();
             tlpServiceProgress.PerformLayout();
+
+            PropertyInfo service_type = typeof(Services).GetProperty("ServiceType");
+            PropertyInfo service_name = typeof(Services).GetProperty("ServiceName");
+            ComboBoxSetting.SetUpDependentComboBox<Services>(cmbServiceType, cmbService, services, service_type, service_name, ServiceInProgress);
         }
 
         private void btnStartTask_Click(object sender, EventArgs e)
         {
-            StartTask = true;
             if (ServiceProgress.Count == 0)
             {
                 MessageBox.Show("No Service is assigned to you now", "Invalid Action", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
+            service_order[0].StartDateTime = DateTime.Now;
+            service_order[0].Start();
 
             ServiceInProgress.Clear();
 
@@ -348,16 +372,18 @@ namespace CarCare_Service_Center
                 return;
             }
 
-            var service = new Appointment.Services
+            var newServiceEntry = new ServiceEntry
             {
-                AppointmentID = lblAppointmentId.Text,
-                ServiceID = services.Find(s => s.ServiceType == cmbServiceType.Text && s.ServiceName == cmbService.Text).ServiceID,
+                ServiceOrderID = service_order[0].ServiceOrderID,
+                ServiceID = services.Find(s => s.ServiceType == cmbServiceType.Text && s.ServiceName == cmbService.Text).ServiceID
             };
+            newServiceEntry.ServiceEntryID = newServiceEntry.GenerateServiceEntryID();
+            newServiceEntry.Add();
 
-            CustomerService.Add(service);
-            ServiceInProgress.Add(services.Find(s => s.ServiceID == service.ServiceID));
+            service_entries.Add(newServiceEntry);
+            ServiceInProgress.Add(services.Find(s => s.ServiceID == newServiceEntry.ServiceID));
             
-            int count = CustomerService.Count;
+            int count = service_entries.Count;
             
             Label ProgressNote = new Label();
             ProgressNote.Text = count.ToString();
@@ -393,8 +419,17 @@ namespace CarCare_Service_Center
                 };
                 label.MouseUp += (s, ev) =>
                 {
+                    if (service_entries[count - 1].IsCompleted == true)
+                    {
+                        MessageBox.Show("This service already done, no further change allowed", "Service Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
                     SetLabelBackColor(Color.LemonChiffon);
-                    
+                    frmServiceInProgress frmServiceInProgress = new frmServiceInProgress();
+                    frmServiceInProgress.mechanicMain = this;
+                    frmServiceInProgress.serviceEntry = service_entries[count - 1];
+                    frmServiceInProgress.Text = $"{lblClientName.Text}'s Service {count}: {ServiceInProgress[count - 1].ServiceName}";
+                    frmServiceInProgress.ShowDialog();
                 };
             }
             HightLightLabelEvent(ProgressNote);
@@ -432,8 +467,17 @@ namespace CarCare_Service_Center
 
             if (result == DialogResult.Yes)
             {
-                //StartTask = false;
-                Close();
+                service_order[0].EndDateTime = DateTime.Now;
+                service_order[0].Remark = txtRemark.Text;
+                service_order[0].End();
+                ServiceProgress.Find(task => task.AppointmentID == service_order[0].AppointmentID).EndTask();
+
+                int currentTabIndex = tabMechanic.SelectedIndex;
+
+                Controls.Clear();
+                InitializeComponent();
+                frmMechanicMain_Load(sender, e);
+                tabMechanic.SelectedIndex = currentTabIndex;
             }
         }
 
@@ -459,6 +503,23 @@ namespace CarCare_Service_Center
         //
         // Profile
         //
+        private void btnChangeUserName_Click(object sender, EventArgs e)
+        {
+            frmChangeUserName frmChangeUserName = new frmChangeUserName(mechanic);
+            frmChangeUserName.ShowDialog();
+        }
+
+        private void btnChangeEmail_Click(object sender, EventArgs e)
+        {
+            frmChangeEmail frmChangeEmail = new frmChangeEmail(mechanic);
+            frmChangeEmail.ShowDialog();
+        }
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            frmChangePassword frmChangePassword = new frmChangePassword(mechanic);
+            frmChangePassword.ShowDialog();
+        }
 
         //
         // Top

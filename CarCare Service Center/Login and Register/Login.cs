@@ -129,9 +129,9 @@ namespace CarCare_Service_Center
                     }
                 }
                 else
-                    MessageBox.Show("Incorrect password, please try again");
+                    MessageBox.Show("Incorrect password, please try again","Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else
-                MessageBox.Show("Username doesn't exist");
+                MessageBox.Show("Username doesn't exist", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)

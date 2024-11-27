@@ -10,7 +10,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static CarCare_Service_Center.Services.ServiceOrder;
+using static CarCare_Service_Center.Services.ServiceOrder.ServiceEntry;
 
 namespace CarCare_Service_Center
 {
@@ -21,6 +21,7 @@ namespace CarCare_Service_Center
         private List<Services> services;
         private List<Parts> parts;
         private List<Parts> part_used = new List<Parts>();
+        private List<ServiceParts> serviceParts = new List<ServiceParts>();
         public frmServiceInProgress()
         {
             InitializeComponent();
@@ -33,10 +34,10 @@ namespace CarCare_Service_Center
             services = Database.FetchData<Services>(query);
 
             lblServiceID.Text = serviceEntry.ServiceID;
-            lblServiceType.Text = services[0].ServiceType;
-            lblServiceName.Text = services[0].ServiceName;
+            lblServiceType.Text = services[0].ServiceType.Trim();
+            lblServiceName.Text = services[0].ServiceName.Trim();
 
-            SetupPartUsedComboBox(0);
+            SetupPartUsedComboBox(0);   
             FormClosed += Form_Closed;
         }
 
@@ -80,10 +81,23 @@ namespace CarCare_Service_Center
             };
             tlpPartUsed.Controls.Add(Stock, 4, rowIndex);
 
+            ComboBox cmbQuantity = new ComboBox();
+            cmbQuantity.Dock = DockStyle.Fill;
+            cmbQuantity.Font = new Font("Comic Sans MS", 10F, FontStyle.Regular);
+            cmbQuantity.DropDownStyle = ComboBoxStyle.DropDownList;
+            tlpPartUsed.Controls.Add(cmbQuantity, 5, rowIndex);
+
+            cmbPartType.SelectedIndexChanged += (s, eArgs) =>
+            {
+                cmbQuantity.Items.Clear();  
+                lblPartID.Text = string.Empty;
+                Stock.Text = string.Empty;
+            };
+
             cmbPartName.SelectedIndexChanged += (s, eArgs) =>
             {
-                cmbPartType.Enabled = false;
-                cmbPartName.Enabled = false;
+                if (cmbPartName.SelectedIndex == -1)
+                    return;
 
                 // Retrieve the selected type and name
                 string selectedType = cmbPartType.SelectedItem.ToString();
@@ -94,7 +108,33 @@ namespace CarCare_Service_Center
                 lblPartID.Text = part.PartID;
                 Stock.Text = part.Stock.ToString();
 
+                for (int i = 1; i <= part.Stock; i++)
+                {
+                    cmbQuantity.Items.Add(i);
+                }
+            };
+
+            cmbQuantity.SelectedIndexChanged += (s, eArgs) =>
+            {
+                cmbPartType.Enabled = false;
+                cmbPartName.Enabled = false;
+                cmbQuantity.Enabled = false;
+
+                if (tlpPartUsed.GetControlFromPosition(6, rowIndex) is Button btn)
+                {
+                    btn.Enabled = false;
+                }
+
+                var part = parts.Find(p => p.PartID == lblPartID.Text);
+                var service_part = new ServiceParts
+                {
+                    ServiceEntryID = serviceEntry.ServiceEntryID,
+                    PartID = lblPartID.Text,
+                    Quantity = (int)cmbQuantity.SelectedItem,
+                };
+                service_part.TotalCost = part.SellPrice * service_part.Quantity;
                 part_used.Add(part);
+                serviceParts.Add(service_part);
             };
         }
 
@@ -104,12 +144,28 @@ namespace CarCare_Service_Center
         {
             var cmbPartType = tlpPartUsed.GetControlFromPosition(1, rowCount - 2) as ComboBox;
             var cmbPartName = tlpPartUsed.GetControlFromPosition(2, rowCount - 2) as ComboBox;
+            var cmbQuantity = tlpPartUsed.GetControlFromPosition(5, rowCount - 2) as ComboBox;
 
-            bool isValid = cmbPartType?.SelectedItem != null && cmbPartName?.SelectedItem != null;
+            bool isValid = (cmbPartType?.SelectedItem != null && cmbPartName?.SelectedItem != null && cmbQuantity?.SelectedItem != null) ||
+                (cmbPartType?.SelectedItem == null && cmbPartName?.SelectedItem == null && cmbQuantity?.SelectedItem == null);
 
             if (!isValid)
             {
-                string message = cmbPartType?.SelectedItem == null ? "Please select a Part Type" : "Please select a Part Name";
+                string message = string.Empty;
+
+                if (cmbPartType?.SelectedItem == null)
+                {
+                    message = "Please select a Part Type.";
+                }
+                else if (cmbPartName?.SelectedItem == null)
+                {
+                    message = "Please select a Part Name.";
+                }
+                else if (cmbQuantity?.SelectedItem == null)
+                {
+                    message = "Please select a Quantity.";
+                }
+
                 MessageBox.Show(message, "Invalid Action", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
@@ -148,7 +204,7 @@ namespace CarCare_Service_Center
                 Dock = DockStyle.Fill,
                 Font = new Font("Comic Sans MS", 10F, FontStyle.Regular)
             };
-            tlpPartUsed.Controls.Add(btnRemove, 5, rowIndex);
+            tlpPartUsed.Controls.Add(btnRemove, 6, rowIndex);
             btnRemove.Click += btnRemove_Click;
 
             btnDone.Top += (int)rowheight;
@@ -167,8 +223,8 @@ namespace CarCare_Service_Center
                 {
                     if (control is Label lbl && lbl.Text != null)
                     {
-                        var service = part_used.Find(p => p.PartID == lbl.Text);
-                        part_used.Remove(service);
+                        var part = part_used.Find(p => p.PartID == lbl.Text);
+                        part_used.Remove(part);
                     }
                     tlpPartUsed.Controls.Remove(control);
                     control.Dispose();
@@ -200,6 +256,8 @@ namespace CarCare_Service_Center
                 MessageBox.Show(message, "Information Missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (!IsLastComboBoxValid())
+                return;
 
             DialogResult result = MessageBox.Show(
             "Are you sure this service is completed? No further changes can be made after confirmation.",
@@ -212,12 +270,12 @@ namespace CarCare_Service_Center
                 serviceEntry.CompletionStatus = txtCompletionStatus.Text;
                 serviceEntry.ServiceDone();
 
-                foreach (var part in part_used)
+                foreach(var part in serviceParts)
                 {
-                    var servicePart = new Services.ServiceOrder.ServiceEntry.ServiceParts
-                    {
-
-                    };
+                    part.Add();
+                    var Part = parts.Find(p => p.PartID ==  part.PartID);
+                    Part.Stock -= part.Quantity;
+                    Part.UpdateStock();
                 }
 
                 Close();

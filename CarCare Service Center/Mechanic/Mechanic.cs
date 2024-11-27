@@ -58,7 +58,7 @@ namespace Users
             }
             public void EndTask()
             {
-                string query = "UPDATE MechanicTaks SET InProgress = 0 WHERE AppointmentID = @AppointmentID";
+                string query = "UPDATE MechanicTasks SET InProgress = 0 WHERE AppointmentID = @AppointmentID";
                 using (SqlConnection connection = new SqlConnection(Program.connectionString))
                 {
                     SqlCommand command = new SqlCommand(query, connection);

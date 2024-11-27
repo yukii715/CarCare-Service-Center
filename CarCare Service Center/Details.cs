@@ -186,8 +186,8 @@ namespace CarCare_Service_Center
             public string Username { get; set; }
             public string AppointmentID { get; set; }
             public DateTime ArrivalDateTime { get; set; }
-            public DateTime StartDateTime {  get; set; }
-            public DateTime EndDateTime { get; set; }
+            public DateTime? StartDateTime {  get; set; }
+            public DateTime? EndDateTime { get; set; }
             public DateTime CollectionDateTime { get; set; }
             public string Remark { get; set; }
             public Decimal TotalPrice { get; set; }
@@ -226,12 +226,72 @@ namespace CarCare_Service_Center
                     command.ExecuteNonQuery();
                 }
             }
+            public void Start()
+            {
+                string query = "UPDATE ServiceOrder SET StartDateTime = @StartDateTime WHERE ServiceOrderID = @ServiceOrderID";
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@StartDateTime", StartDateTime);
+                    command.Parameters.AddWithValue("@ServiceOrderID", ServiceOrderID);
+
+                    connection.Open();
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            public void End()
+            {
+                string query = "UPDATE ServiceOrder SET EndDateTime = @EndDateTime, Remark = @Remark WHERE ServiceOrderID = @ServiceOrderID";
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@EndDateTime", EndDateTime);
+                    command.Parameters.AddWithValue("@Remark", Remark);
+                    command.Parameters.AddWithValue("@ServiceOrderID", ServiceOrderID);
+
+                    connection.Open();
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            public void CheackOut()
+            {
+                string query = "UPDATE ServiceOrder SET CollectionDateTime = @CollectionDateTime, TotalPrice = @TotalPrice WHERE ServiceOrderID = @ServiceOrderID";
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@CollectionDateTime", CollectionDateTime);
+                    command.Parameters.AddWithValue("@TotalPrice", TotalPrice);
+                    command.Parameters.AddWithValue("@ServiceOrderID", ServiceOrderID);
+
+                    connection.Open();
+
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            public void Rate()
+            {
+                string query = "UPDATE ServiceOrder SET Rating = @Rating, Feedback = @Feedback WHERE ServiceOrderID = @ServiceOrderID";
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Rating", Rating);
+                    command.Parameters.AddWithValue("@Feedback", Feedback);
+                    command.Parameters.AddWithValue("@ServiceOrderID", ServiceOrderID);
+
+                    connection.Open();
+
+                    command.ExecuteNonQuery();
+                }
+            }
             public class ServiceEntry
             {
                 public string ServiceEntryID { get; set; }
                 public string ServiceOrderID { get; set; }
                 public string ServiceID { get; set; }
-                public Decimal Price { get; set; }
+                public string Mode { get; set; }
                 public string InitialStatus { get; set; }
                 public string CompletionStatus { get; set; }
                 public bool IsCompleted { get; set; }
@@ -274,7 +334,7 @@ namespace CarCare_Service_Center
                 }
                 public void ServiceDone()
                 {
-                    string query = "UPDATE ServiceEntry SET InitialStatus = @InitialStatus, CompletionStatus = @CompletionStatus, SET IsCompleted = 1 " +
+                    string query = "UPDATE ServiceEntry SET InitialStatus = @InitialStatus, CompletionStatus = @CompletionStatus, IsCompleted = 1 " +
                         "WHERE ServiceEntryID = @ServiceEntryID";
                     using (SqlConnection connection = new SqlConnection(Program.connectionString))
                     {
@@ -288,12 +348,46 @@ namespace CarCare_Service_Center
                         command.ExecuteNonQuery();
                     }
                 }
+                public void SetMode()
+                {
+                    string query = "UPDATE ServiceEntry SET Mode = @Mode WHERE ServiceEntryID = @ServiceEntryID";
+                    using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                    {
+                        SqlCommand command = new SqlCommand(query, connection);
+                        command.Parameters.AddWithValue("@Mode", Mode);
+                        command.Parameters.AddWithValue("@ServiceEntryID", ServiceEntryID);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+                    }
+                }
                 public class ServiceParts
                 {
                     public string ServiceEntryID { get; set; }
                     public string PartID { get; set; }
                     public int Quantity { get; set; }
-                    public float TotalCost { get; set; }
+                    public Decimal TotalCost { get; set; }
+                    public void Add()
+                    {
+                        string query = "INSERT INTO ServiceParts (ServiceEntryID, PartID, Quantity, TotalCost) " +
+                            "VALUES (@ServiceEntryID, @PartID, @Quantity, @TotalCost)";
+                        using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                        {
+                            SqlCommand command = new SqlCommand(query, connection);
+
+                            // Add parameters to avoid SQL injection
+                            command.Parameters.AddWithValue("@ServiceEntryID", ServiceEntryID);
+                            command.Parameters.AddWithValue("@PartID", PartID);
+                            command.Parameters.AddWithValue("@Quantity", Quantity);
+                            command.Parameters.AddWithValue("@TotalCost", TotalCost);
+
+                            connection.Open();
+
+                            // Execute the command
+                            command.ExecuteNonQuery();
+                        }
+                    }
                 }
             }
         }

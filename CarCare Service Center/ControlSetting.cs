@@ -174,7 +174,7 @@ namespace ControlSetting
             {
                 hourComboBox.Items.Add(hour);
             }
-            for (int minute = 0; minute <= 60; minute += 5)
+            for (int minute = 0; minute < 60; minute += 5)
             {
                 minuteComboBox.Items.Add(minute.ToString("D2"));
             }

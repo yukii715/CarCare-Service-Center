@@ -455,6 +455,12 @@ namespace CarCare_Service_Center
             Place_Holder.SetPlaceHolder(txtSalarySearch, "Search");
 
             lblAdminID.Text = admin.UserID;
+
+            string query = "SELECT * FROM Users WHERE IsDeleted = 0";
+            users = Database.FetchData<User>(query);
+
+            admin.Username = users.Find(u => u.UserID == admin.UserID).Username;
+            admin.Email = users.Find(u => u.UserID == admin.UserID).Email;
             lblAdminName.Text = admin.Username;
             lblAdminEmail.Text = admin.Email;
             lblWelcome.Text = "Welcome Back, " + admin.Username;
@@ -1173,6 +1179,23 @@ namespace CarCare_Service_Center
         //
         // Profile
         //
+        private void btnChangeUserName_Click(object sender, EventArgs e)
+        {
+            frmChangeUserName frmChangeUserName = new frmChangeUserName(admin);
+            frmChangeUserName.ShowDialog();
+        }
+
+        private void btnChangeEmail_Click(object sender, EventArgs e)
+        {
+            frmChangeEmail frmChangeEmail = new frmChangeEmail(admin);
+            frmChangeEmail.ShowDialog();
+        }
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            frmChangePassword frmChangePassword = new frmChangePassword(admin);
+            frmChangePassword.ShowDialog();
+        }
 
         //
         // Top
