@@ -162,9 +162,8 @@ namespace CarCare_Service_Center
             this.lblServices.Font = new System.Drawing.Font("Comic Sans MS", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblServices.Location = new System.Drawing.Point(412, 297);
             this.lblServices.Name = "lblServices";
-            this.lblServices.Size = new System.Drawing.Size(50, 40);
+            this.lblServices.Size = new System.Drawing.Size(0, 40);
             this.lblServices.TabIndex = 64;
-            this.lblServices.Text = "lbl";
             // 
             // lblPrice
             // 
@@ -189,7 +188,7 @@ namespace CarCare_Service_Center
             // btnBack
             // 
             this.btnBack.Font = new System.Drawing.Font("Comic Sans MS", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Location = new System.Drawing.Point(271, 831);
+            this.btnBack.Location = new System.Drawing.Point(271, 866);
             this.btnBack.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(160, 58);
@@ -203,7 +202,7 @@ namespace CarCare_Service_Center
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(834, 864);
+            this.ClientSize = new System.Drawing.Size(868, 864);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.lblRating);
             this.Controls.Add(this.lblPrice);

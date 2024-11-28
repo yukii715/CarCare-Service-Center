@@ -60,6 +60,11 @@ namespace CarCare_Service_Center
                 lblError.Visible = true;
                 lblError.Text = "Please enter a valid amount for Salary!";
             }
+            else if(Salary < 0)
+            {
+                lblError.Visible = true;
+                lblError.Text = "Please enter a valid amount for Salary!";
+            }
             else
             {
                 Admin.edit_staff_salary(staffID, Salary);

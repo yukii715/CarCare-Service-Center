@@ -20,7 +20,6 @@ namespace CarCare_Service_Center
     {
         private ServiceOrder serviceOrder;
         private List<ServiceOrder.ServiceEntry> serviceEntries;
-        private List<string> serviceNames;
         private List<Services> services;
         public FeedbackDetails(ServiceOrder so)
         {
@@ -40,29 +39,26 @@ namespace CarCare_Service_Center
 
             query = "SELECT * FROM Services;";
             services = Database.FetchData<Services>(query);
-            services = services.OrderBy(u => u.ServiceID).ToList();
+            services = services.OrderBy(s => s.ServiceID).ToList();
 
 
             for (int i = 0; i < serviceEntries.Count; i++)
             {
-                serviceNames[i] = services.Find(s => s.ServiceID == serviceEntries[i].ServiceID).ServiceName;
-                lblServices.Text += $"'{i + 1}'" + $"'{serviceNames[i]}'" + "\n";
-                foreach (Control ctrl in this.Controls)
-                {
-                    if (ctrl.Top > lblServices.Top)
-                    {
-                        ctrl.Top += lblServices.Height;
-                    }
-                }
+                string serviceName = services.Find(s => s.ServiceID == serviceEntries[i].ServiceID).ServiceName;
+                lblServices.Text += $"{i + 1}. " + serviceName.Trim() + "\n";
             };
+
+            foreach (Control ctrl in this.Controls)
+            {
+                if (ctrl.Top > lblServices.Top)
+                {
+                    ctrl.Top += lblServices.Height;
+                }
+            }
             lblPrice.Text = serviceOrder.TotalPrice.ToString("C2").Trim();
             lblRating.Text = serviceOrder.Rating.ToString();
             lblComment.Text = serviceOrder.Feedback.ToString();
 
-
-
-
-            var serviceEntry =
             btnBack.Location = new System.Drawing.Point(150, lblComment.Bottom + 50);  // Position below the label
         }
 

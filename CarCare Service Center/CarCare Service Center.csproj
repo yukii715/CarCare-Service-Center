@@ -89,6 +89,12 @@
     <Compile Include="Customer\Rating.Designer.cs">
       <DependentUpon>Rating.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\PartPurchasedDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\PartPurchasedDetails.Designer.cs">
+      <DependentUpon>PartPurchasedDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Receptionist\OrderDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -335,6 +341,9 @@
       <DependentUpon>ServiceInProgress.cs</DependentUpon>
     </Compile>
     <Compile Include="Users.cs" />
+    <EmbeddedResource Include="Admin\FeedbackDetails.resx">
+      <DependentUpon>FeedbackDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin\ServiceInsertion.resx">
       <DependentUpon>ServiceInsertion.cs</DependentUpon>
     </EmbeddedResource>
@@ -355,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Customer\Rating.resx">
       <DependentUpon>Rating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\PartPurchasedDetails.resx">
+      <DependentUpon>PartPurchasedDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Receptionist\OrderDetails.resx">
       <DependentUpon>OrderDetails.cs</DependentUpon>

@@ -45,6 +45,8 @@ namespace CarCare_Service_Center
                 MessageBox.Show("Invalid Email");
             else if (!int.TryParse(txtSalary.Text, out int salary))
                 MessageBox.Show("Invalid Salary");
+            else if (salary < 0)
+                MessageBox.Show("Invalid Salary");
             else
             {
                 User.Add(userid, username, email, password, role);

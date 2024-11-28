@@ -28,12 +28,14 @@ namespace CarCare_Service_Center
     {
         // to initialize object
         private Admin admin;
-        private List<User> users = new List<User>();
-        private List<User.StaffSalary> staffsalary = new List<User.StaffSalary>();
-        private List<Services> service = new List<Services>();
-        private List<ServiceOrder> serviceOrders = new List<ServiceOrder>();
-        private List<Appointment> appointments = new List<Appointment>();
-        private List<User.StaffSalary.Payroll> payroll = new List<User.StaffSalary.Payroll>();
+        private List<User> users;
+        private List<User> customers;
+        private List<User.StaffSalary> staffsalary;
+        private List<Services> service;
+        private List<ServiceOrder> serviceOrders;
+        private List<Appointment> appointments;
+        private List<User.StaffSalary.Payroll> payroll;
+        private List<Parts.Purchases> part_purchase;
 
 
         public frmAdminMain(Admin ad)
@@ -41,6 +43,7 @@ namespace CarCare_Service_Center
             InitializeComponent();
             admin = ad;
         }
+
 
         // to adjust controls into the tlp with the correct properties
         private void ctrlPropertiesinTlp(Object sender)
@@ -64,14 +67,6 @@ namespace CarCare_Service_Center
         }
 
 
-        public void LoadServiceEntry()
-        {
-            string query = "SELECT * FROM ServiceEntry WHERE Role IN ('Receptionist', 'Mechanic') AND IsDeleted = 0;";
-            users = Database.FetchData<User>(query);
-            users = users.OrderBy(u => u.UserID).ToList();
-        }
-
-
         public void LoadUser()
         {
             string query = "SELECT * FROM Users WHERE Role IN ('Receptionist', 'Mechanic') AND IsDeleted = 0;";
@@ -82,8 +77,7 @@ namespace CarCare_Service_Center
 
             for (int i = 0; i < users.Count; i++)
             {
-                var userSalary = staffsalary.Find(s => s.UserID == users[i].UserID);
-                users[i].Salary = staffsalary[i].Salary;
+                users[i].Salary = staffsalary.Find(s => s.UserID == users[i].UserID).Salary;
             }
 
 
@@ -95,6 +89,14 @@ namespace CarCare_Service_Center
         }
 
 
+        public void LoadStaffSalary()
+        {
+            string query = "SELECT * From StaffSalary;";
+            staffsalary = Database.FetchData<User.StaffSalary>(query);
+            staffsalary = staffsalary.OrderBy(s => s.UserID).ToList();
+        }
+
+
         public void LoadServices()
         {
             string query = "SELECT * FROM Services WHERE IsDeleted = 0;";
@@ -102,8 +104,9 @@ namespace CarCare_Service_Center
             service = service.OrderBy(u => u.ServiceID).ToList();
 
             cmbServiceType.Items.Clear();
+            cmbServiceType.Items.Add("All");
 
-            query = "SELECT DISTINCT ServiceType FROM Services";
+            query = "SELECT DISTINCT ServiceType FROM Services WHERE IsDeleted = 0;";
             Database.LoadIntoComboBox(cmbServiceType, query, "ServiceType");
 
             int rowinsert = -1;
@@ -114,11 +117,11 @@ namespace CarCare_Service_Center
         }
 
 
-        public void LoadStaffSalary()
+        public void LoadPartPurchased()
         {
-            string query = "SELECT * From StaffSalary;";
-            staffsalary = Database.FetchData<User.StaffSalary>(query);
-            staffsalary = staffsalary.OrderBy(s => s.UserID).ToList();
+            string query = "SELECT * FROM PartsPurchase;";
+            part_purchase = Database.FetchData<Parts.Purchases>(query);
+            part_purchase = part_purchase.OrderBy(u => u.PartID).ToList();
         }
 
 
@@ -145,6 +148,7 @@ namespace CarCare_Service_Center
             }
         }
 
+
         private void LoadServiceOrder()
         {
             LoadAppointment();
@@ -152,12 +156,15 @@ namespace CarCare_Service_Center
             serviceOrders = Database.FetchData<ServiceOrder>(query);
             serviceOrders = serviceOrders.OrderBy(s => s.ServiceOrderID).ToList();
 
+            query = "SELECT * FROM Users;";
+            customers = Database.FetchData<User>(query);
+
             int rowinsert = -1;
             for (int i = 0; i < serviceOrders.Count; i++)
             {
                 // Find the corresponding User based on AppointmentID
                 var appointmentItem = appointments.Find(a => a.AppointmentID == serviceOrders[i].AppointmentID);
-                serviceOrders[i].Username = users.Find(u => u.UserID == appointmentItem.UserID).Username;
+                serviceOrders[i].Username = customers.Find(u => u.UserID == appointmentItem.UserID).Username;
                 show_controlinTlpFeedback(serviceOrders[i], ref rowinsert);
             }
         }
@@ -169,6 +176,7 @@ namespace CarCare_Service_Center
             appointments = Database.FetchData<Appointment>(query);
             appointments = appointments.OrderBy(a => a.AppointmentID).ToList();
         }
+
 
         // to show the Staff data in tlpStaffAccountData
         private void show_controlinTlpStaffAccount(User user, ref int rowinsert)
@@ -212,6 +220,7 @@ namespace CarCare_Service_Center
         }
 
 
+
         // to show the Service data in tlpServiceData
         private void show_controlinTlpService(Services service, ref int rowinsert)
         {
@@ -252,6 +261,7 @@ namespace CarCare_Service_Center
         }
 
 
+
         // to show the Feedback data in tlpFeedbackData
         private void show_controlinTlpFeedback(ServiceOrder serviceOrder, ref int rowinsert)
         {
@@ -274,7 +284,7 @@ namespace CarCare_Service_Center
 
             Label date = new Label
             {
-                Text = serviceOrder.ArrivalDateTime.ToString("yyyy").Trim()
+                Text = serviceOrder.ArrivalDateTime.ToString("d").Trim()
             };
             ctrlPropertiesinTlp(date);
             tlpFeedbackData.Controls.Add(date, 2, rowinsert);
@@ -315,6 +325,7 @@ namespace CarCare_Service_Center
 
             tlpFeedbackData.RowCount++;
         }
+
 
 
         // to show the Staff Salary data that hasnt been paid in tlpSalaryData
@@ -370,6 +381,47 @@ namespace CarCare_Service_Center
             tlpSalaryData.RowCount++;
         }
 
+
+
+        // to show the Service Report data in tlpServiceReportData
+        public void show_controlinTlpServiceReportData(Services.ServiceOrder service_order, ref int rowinsert)
+        {
+            rowinsert++;
+            Label SOID = new Label
+            {
+                Text = service_order.ServiceOrderID.Trim()
+            };
+            ctrlPropertiesinTlp(SOID);
+            tlpServiceReportData.Controls.Add(SOID, 0, rowinsert);
+
+
+
+            Label Date = new Label
+            {
+                Text = service_order.ArrivalDateTime.ToString("yyyy-MM-dd").Trim()
+            };
+            ctrlPropertiesinTlp(Date);
+            tlpServiceReportData.Controls.Add(Date, 1, rowinsert);
+
+
+            Label ServicePrice = new Label
+            {
+                Text = service_order.TotalPrice.ToString().Trim()
+            };
+            ctrlPropertiesinTlp(ServicePrice);
+            tlpServiceReportData.Controls.Add(ServicePrice, 2, rowinsert);
+
+
+            System.Windows.Forms.Button btnServiceOrderDetail = new System.Windows.Forms.Button();
+            ctrlPropertiesinTlp(btnServiceOrderDetail);
+            btnServiceOrderDetail.Tag = service_order;
+            btnServiceOrderDetail.Click += btnServiceReportDetail_Click;
+            tlpServiceReportData.Controls.Add(btnServiceOrderDetail, 3, rowinsert);
+
+            tlpServiceReportData.RowCount++;
+        }
+
+
         // to show the Staff Salary Report data in tlpStaffSalaryReportData
         private void show_controlinTlpStaffSalaryReport(User.StaffSalary.Payroll payroll, ref int rowinsert)
         {
@@ -411,6 +463,44 @@ namespace CarCare_Service_Center
         }
 
 
+        // to show the Cost and Expenses Report data in tlpCostAndExpensesData
+        private void show_controlinTlpCaEData(Parts.Purchases part_purchase, ref int rowinsert)
+        {
+            rowinsert++;
+            Label CaEID = new Label
+            {
+                Text = part_purchase.PartID.Trim()
+            };
+            ctrlPropertiesinTlp(CaEID);
+            tlpCaEData.Controls.Add(CaEID, 0, rowinsert);
+
+
+            Label Date = new Label
+            {
+                Text = part_purchase.DateTime.ToString("yyyy-MM-dd").Trim()
+            };
+            ctrlPropertiesinTlp(Date);
+            tlpCaEData.Controls.Add(Date, 1, rowinsert);
+
+
+            Label Price = new Label
+            {
+                Text = (part_purchase.UnitPrice * part_purchase.Quantity).ToString().Trim()
+            };
+            ctrlPropertiesinTlp(Price);
+            tlpCaEData.Controls.Add(Price, 2, rowinsert);
+
+
+            System.Windows.Forms.Button btnCaEDetail = new System.Windows.Forms.Button();
+            ctrlPropertiesinTlp(btnCaEDetail);
+            btnCaEDetail.Tag = part_purchase;
+            btnCaEDetail.Click += btnCaEDetail_Click;
+            tlpCaEData.Controls.Add(btnCaEDetail, 3, rowinsert);
+
+            tlpCaEData.RowCount++;
+        }
+
+
         // To provide month and Year selection for comboBox dealing with date
         private void SetupYearMonthComboBox(ComboBox cmbYear, ComboBox cmbMonth)
         {
@@ -430,6 +520,7 @@ namespace CarCare_Service_Center
             void UpdateMonthComboBox()
             {
                 cmbMonth.Items.Clear();
+                cmbMonth.Enabled = true;
 
                 if (cmbYear.SelectedItem != null)
                 {
@@ -443,6 +534,7 @@ namespace CarCare_Service_Center
                 }
             }
         }
+
 
 
         // to enter the data from server when the form load
@@ -465,11 +557,14 @@ namespace CarCare_Service_Center
             lblAdminEmail.Text = admin.Email;
             lblWelcome.Text = "Welcome Back, " + admin.Username;
 
+
+            LoadAppointment();
             LoadServices();
             LoadUser();
             LoadStaffSalary();
             LoadPayroll();
             LoadServiceOrder();
+            LoadPartPurchased();
 
             SetupYearMonthComboBox(cmbHomeYear, cmbHomeMonth);
             SetupYearMonthComboBox(cmbSalaryYear, cmbSalaryMonth);
@@ -479,6 +574,58 @@ namespace CarCare_Service_Center
             HightLightLabelEvent(lblHome);
             HightLightLabelEvent(lblReload);
             HightLightLabelEvent(lblLogout);
+        }
+
+        // Top
+        // TOp
+        // Top
+        // Top
+        // Top
+
+        private void HightLightLabelEvent(Label label)
+        {
+            label.MouseEnter += (s, ev) => label.ForeColor = Color.Violet;
+            label.MouseLeave += (s, ev) =>
+            {
+                if (label.ForeColor != Color.Blue)
+                    label.ForeColor = SystemColors.ControlText;
+            };
+            label.MouseDown += (s, ev) => label.ForeColor = Color.Blue;
+        }
+
+
+        private void lblHome_Click(object sender, EventArgs e)
+        {
+            lblHome.ForeColor = SystemColors.ControlText;
+            tabAdmin.SelectedIndex = 0;
+        }
+
+
+        private void lblReload_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+            "Are you sure you want to reload the application? Unsaved changes will be lost.",
+            "Reload Application", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                lblReload.ForeColor = SystemColors.ControlText;
+
+                int currentTabIndex = tabAdmin.SelectedIndex;
+
+                Controls.Clear();
+                InitializeComponent();
+                frmAdminMain_Load(sender, e);
+                tabAdmin.SelectedIndex = currentTabIndex;
+            }
+        }
+
+
+        private void lblLogout_Click(object sender, EventArgs e)
+        {
+            lblLogout.ForeColor = SystemColors.ControlText;
+            frmLogoutConfirmation frmLogoutConfirmation = new frmLogoutConfirmation(this);
+            frmLogoutConfirmation.ShowDialog();
         }
 
 
@@ -498,8 +645,6 @@ namespace CarCare_Service_Center
             lblMoneySpent.Text = "RM -";
             lblHomeProfit.Text = "RM -";
             series.Points.Clear();
-            cmbHomeMonth.Enabled = true;
-
         }
 
 
@@ -518,35 +663,62 @@ namespace CarCare_Service_Center
             }
 
             string year = cmbHomeYear.SelectedItem.ToString().Trim();
-            string month = cmbHomeMonth.SelectedItem.ToString().Trim();
+            DateTime m = DateTime.ParseExact(cmbHomeMonth.SelectedItem.ToString().Trim(), "MMMM", CultureInfo.InvariantCulture);
+            string month = m.ToString("MM");
 
-            Series series = crtHomeRating.Series[0];
+            Dictionary<int, int> ratings = new Dictionary<int, int>
+            {
+                { 5, 0 },
+                { 4, 0 },
+                { 3, 0 },
+                { 2, 0 },
+                { 1, 0 },
+            };
 
-            decimal moneyEarn = 5000.00m;
-            decimal moneySpent = 5000.00m;
-            decimal profit = moneyEarn - moneySpent;
+
+            for (int i = 0; i < serviceOrders.Count; i++)
+            {
+                if (serviceOrders[i].ArrivalDateTime.Year.ToString() == year &&
+                    serviceOrders[i].ArrivalDateTime.Month.ToString() == month
+                    && ratings.ContainsKey(serviceOrders[i].Rating))
+                {
+                    ratings[serviceOrders[i].Rating]++;
+                }
+                continue;
+            }
+
+            Series feedbackSeries = crtHomeRating.Series[0];
+            feedbackSeries.Points.Clear();
+
             int ratingNumber = 5;
-
-
-            lblMoneyEarn.Text = "RM" + moneyEarn.ToString().Trim();
-            lblMoneySpent.Text = "RM" + moneySpent.ToString().Trim();
-            lblHomeProfit.Text = "RM" + profit.ToString().Trim();
-            btnHomeProfitDetail.Enabled = true;
-            btnHomeRatingDetail.Enabled = true;
-
+            int totalRatingCount = 0;
 
             for (int i = 0; i < 5; i++)
             {
-                int ratingStar = 10;
-                series.Points.AddY(ratingStar);
-                series.Points[i].LegendText = ratingNumber.ToString().Trim() + " Star";
-                series.Points[i].IsValueShownAsLabel = true;
+                int ratingStarCount = ratings[ratingNumber];
+                feedbackSeries.Points.AddY(ratingStarCount);
+                feedbackSeries.Points[i].LegendText = ratingNumber.ToString().Trim() + " Star";
+                //feedbackSeries.Points[i].IsValueShownAsLabel = true;
+                totalRatingCount += ratingStarCount;
                 ratingNumber--;
             }
 
-            btnHomeSearch.Enabled = false;
 
+            decimal moneyEarn =  filter_moneyEarn(month, year);
+            decimal moneySpent = filter_moneySpent(month, year);
+            decimal profit = moneyEarn - moneySpent;
+
+
+            lblMoneyEarn.Text = moneyEarn.ToString("C2").Trim();
+            lblMoneySpent.Text = moneySpent.ToString("C2").Trim();
+            lblHomeProfit.Text = profit.ToString("C2").Trim();
+
+
+            btnHomeProfitDetail.Enabled = true;
+            btnHomeRatingDetail.Enabled = true;
+            btnHomeSearch.Enabled = false;
         }
+
 
         private void btnHomeProfitDetail_Click(object sender, EventArgs e)
         {
@@ -556,6 +728,7 @@ namespace CarCare_Service_Center
             btnReportSearch_Click(sender, e);
         }
 
+
         private void btnHomeRatingDetail_Click(object sender, EventArgs e)
         {
             tabAdmin.SelectedIndex = 3;
@@ -564,12 +737,66 @@ namespace CarCare_Service_Center
             btnFeedbackSearch_Click(sender, e);
         }
 
+
+        private decimal filter_moneyEarn(string month, string year)
+        {
+            decimal RevenuePerMonth = 0;
+
+            for (int i = 0; i < serviceOrders.Count; i++)
+            {
+                if (serviceOrders[i].ArrivalDateTime.ToString("yyyy") == year && serviceOrders[i].ArrivalDateTime.ToString("MM") == month)
+                {
+                    RevenuePerMonth += serviceOrders[i].TotalPrice;
+                }
+            }
+            return RevenuePerMonth;
+        }
+
+
+        private decimal filter_moneySpent(string month, string year)
+        {
+            decimal moneySpentPerMonth = 0;
+
+            for (int i = 0; i < payroll.Count; i++)
+            {
+                if (payroll[i].Year == year && payroll[i].Month == month)
+                {
+                    moneySpentPerMonth += payroll[i].Amount;
+                }
+            }
+
+            for (int i = 0; i < part_purchase.Count; i++)
+            {
+                if (part_purchase[i].DateTime.ToString("yyyy") == year && part_purchase[i].DateTime.ToString("MM") == month)
+                {
+                    moneySpentPerMonth += (part_purchase[i].UnitPrice * (decimal) part_purchase[i].Quantity);
+                }
+            }
+            return moneySpentPerMonth;
+        }
+
+
         // Tab Staff
         // Tab Staff
         // Tab Staff
         // Tab Staff
         // Tab Staff
         // Tab Staff
+
+        private void cmbRoleSelection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnStaffSearch_Click(sender, e);
+        }
+
+
+        private void txtStaffSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnStaffSearch_Click(sender, e);
+            }
+        }
+
 
         private void btnStaffSearch_Click(object sender, EventArgs e)
         {
@@ -636,7 +863,6 @@ namespace CarCare_Service_Center
         }
 
 
-        // Button click event to sort by UserID
         private void btnSortStaffID_Click(object sender, EventArgs e)
         {
             // Sort users by UserID
@@ -645,7 +871,6 @@ namespace CarCare_Service_Center
         }
 
 
-        // Button click event to sort by Username
         private void btnSortStaffName_Click(object sender, EventArgs e)
         {
             // Sort users by Username
@@ -668,6 +893,7 @@ namespace CarCare_Service_Center
             formStaffInsertion.Show();
         }
 
+
         // Tab Service
         // Tab Service
         // Tab Service
@@ -677,11 +903,27 @@ namespace CarCare_Service_Center
         // Tab Service
         // Tab Service
 
+
+        private void txtServiceSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnServiceSearch_Click(sender, e);
+            }
+        }
+
+
+        private void cmbServiceType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnServiceSearch_Click(sender, e);
+        }
+
+
         // To filter the Result based on Search
         private void btnServiceSearch_Click(object sender, EventArgs e)
         {
             string service_type = null;
-            if (cmbServiceType.SelectedItem != null)
+            if (cmbServiceType.SelectedItem != null && cmbServiceType.SelectedItem != "All")
             {
                 service_type = cmbServiceType.SelectedItem.ToString().Trim();
             }
@@ -772,6 +1014,7 @@ namespace CarCare_Service_Center
             formServiceDetails.Show();
         }
 
+
         private void btnServiceAdd_Click(object sender, EventArgs e)
         {
             ServiceInsertion formServiceInsertion = new ServiceInsertion(this);
@@ -785,18 +1028,6 @@ namespace CarCare_Service_Center
         // Tab Feedback
         // Tab Feedback
         // Tab Feedback
-
-        private void cmbFeedbackYear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmbFeedbackMonth.Enabled = true;
-            btnFeedbackSearch.Enabled = true;
-        }
-
-
-        private void cmbFeedbackMonth_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btnFeedbackSearch.Enabled = true;
-        }
 
 
         private void btnFeedbackSearch_Click(object sender, EventArgs e)
@@ -818,7 +1049,7 @@ namespace CarCare_Service_Center
             string month = m.ToString("MM");
             string year = cmbFeedbackYear.SelectedItem.ToString();
 
-            filter_datainServiceOrder(month, year);
+            filter_datainFeedback(month, year);
         }
 
 
@@ -872,11 +1103,11 @@ namespace CarCare_Service_Center
         {
             ServiceOrder selectedServiceOrder = (ServiceOrder)(sender as Button).Tag;
             FeedbackDetails formFeedbackDetails = new FeedbackDetails(selectedServiceOrder);
-            formFeedbackDetails.Show();
+            formFeedbackDetails.ShowDialog();
         }
 
 
-        private void filter_datainServiceOrder(string month, string year)
+        private void filter_datainFeedback(string month, string year)
         {
             Dictionary<int, int> ratings = new Dictionary<int, int>
             {
@@ -919,7 +1150,7 @@ namespace CarCare_Service_Center
                 int ratingStarCount = ratings[ratingNumber];
                 feedbackSeries.Points.AddY(ratingStarCount);
                 feedbackSeries.Points[i].LegendText = ratingNumber.ToString().Trim() + " Star:  " + ratingStarCount.ToString().Trim();
-                feedbackSeries.Points[i].IsValueShownAsLabel = true;
+                //feedbackSeries.Points[i].IsValueShownAsLabel = true;
                 totalRatingCount += ratingStarCount;
                 ratingNumber--;
             }
@@ -927,7 +1158,6 @@ namespace CarCare_Service_Center
             lblFeedbackTotal.Text = "Total: " + totalRatingCount.ToString().Trim();
             pnlFeedbackData.Visible = true;
             tlpFeedbackSortButton.Visible = true;
-            btnFeedbackSearch.Enabled = false;
         }
 
 
@@ -936,12 +1166,6 @@ namespace CarCare_Service_Center
         // Tab Salaries Record
         // Tab Salaries Record
         // Tab Salaries Record
-
-        private void cmbSalaryYear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmbSalaryMonth.Enabled = true;
-        }
-
 
         private void cmbSalaryMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1032,6 +1256,7 @@ namespace CarCare_Service_Center
             tlpSalaryData.Controls.Clear();
             tlpSalaryData.RowCount = 1;
 
+
             int rowInsert = -1;
             for (int i = 0; i < users.Count; i++)
             {
@@ -1092,8 +1317,106 @@ namespace CarCare_Service_Center
         // Tab Reports
         // Tab Reports
 
+        private void btnReportSearch_Click(object sender, EventArgs e)
+        {
+            // Check if items are selected in both cmbReportMonth and cmReportYear
+            if (cmbReportMonth.SelectedItem == null && cmbReportYear.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a year and a month before Searching", "Generating Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (cmbReportMonth.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a month before Generating", "Generating Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-        private void filter_datainStaffSalaryReport(string month, string year)
+            // check all inputs
+            DateTime m = DateTime.ParseExact(cmbReportMonth.Text, "MMMM", CultureInfo.InvariantCulture);
+            string month = m.ToString("MM");
+            string year = cmbReportYear.SelectedItem.ToString();
+
+
+            decimal Revenue = filter_datainServiceReport(month, year);
+            decimal Salary_cost = filter_datainStaffSalaryReport(month, year);
+            decimal CaE_cost = filter_datainCaEReport(month, year);
+            decimal Total_cost = Salary_cost + CaE_cost;
+            decimal Final_profit = Revenue - Total_cost;
+
+
+            lblReportCost.Text = Total_cost.ToString("C2");
+            lblReportProfit.Text = Final_profit.ToString("C2");
+            lblReportFinalProfit.Text = Final_profit.ToString("C2");
+        }
+
+
+        private decimal filter_datainServiceReport(string month, string year)
+        {
+            decimal RevenuePerMonth = 0;
+            int no_of_service = 0;
+
+
+            // Service Report
+            // clear the data from tlpServiceReportData
+            tlpServiceReportData.Controls.Clear();
+            tlpServiceReportData.RowCount = 1;
+
+            int rowInsert = -1;
+            for (int i = 0; i < serviceOrders.Count; i++)
+            {
+                if (serviceOrders[i].ArrivalDateTime.ToString("yyyy") == year && serviceOrders[i].ArrivalDateTime.ToString("MM") == month)
+                {
+                    RevenuePerMonth += serviceOrders[i].TotalPrice;
+                    no_of_service++;
+                    show_controlinTlpServiceReportData(serviceOrders[i], ref rowInsert);
+                }
+            }
+
+            tlpServiceReportSortButton.Visible = true;
+            pnlServiceReport.Visible = true;
+
+            lblReportNumOfService.Text = no_of_service.ToString();
+            lblReportRevenue.Text = RevenuePerMonth.ToString("C2");
+            lblReportServiceRevenue.Text = RevenuePerMonth.ToString("C2");
+            lblServiceRevenueTotal.Text = RevenuePerMonth.ToString("C2");
+
+            return RevenuePerMonth;
+        }
+
+
+        private decimal filter_datainCaEReport(string month, string year)
+        {
+            decimal PartCostPerMonth = 0;
+
+
+            // Service Report
+            // clear the data from tlpServiceReportData
+            tlpCaEData.Controls.Clear();
+            tlpCaEData.RowCount = 1;
+
+            int rowInsert = -1;
+            for (int i = 0; i < part_purchase.Count; i++)
+            {
+                if (part_purchase[i].DateTime.ToString("yyyy") == year && part_purchase[i].DateTime.ToString("MM") == month)
+                {
+                    PartCostPerMonth += (part_purchase[i].UnitPrice * part_purchase[i].Quantity);
+                    show_controlinTlpCaEData(part_purchase[i], ref rowInsert);
+                }
+            }
+
+
+            lblReportCostAndExpenses.Text = PartCostPerMonth.ToString("C2");
+            lblCaETotal.Text = PartCostPerMonth.ToString("C2");
+
+            tlpCostAndExpensesSortButton.Visible = true;
+            tlpCaEData.Visible = true;
+            pnlCaE.Visible = true;
+
+            return PartCostPerMonth;
+        }
+
+
+        private decimal filter_datainStaffSalaryReport(string month, string year)
         {
             int SalaryPerMonth = 0;
 
@@ -1117,35 +1440,49 @@ namespace CarCare_Service_Center
             lblReportStaffSalaryCost.Text = SalaryPerMonth.ToString("C2");
             tlpStaffSalaryReportSortButton.Visible = true;
             pnlStaffSalaryReport.Visible = true;
+            return SalaryPerMonth;
         }
 
 
-        private void cmbReportYear_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnServiceReportSortSOID_Click(object sender, EventArgs e)
         {
-            cmbReportMonth.Enabled = true;
+            serviceOrders = serviceOrders.OrderBy(s => s.ServiceOrderID).ToList();
+            btnReportSearch_Click(sender, e);
         }
 
 
-        private void btnReportSearch_Click(object sender, EventArgs e)
+        private void btnServiceReportSortDate_Click(object sender, EventArgs e)
         {
-            // Check if items are selected in both cmbReportMonth and cmReportYear
-            if (cmbReportMonth.SelectedItem == null && cmbReportYear.SelectedItem == null)
-            {
-                MessageBox.Show("Please select a year and a month before Searching", "Generating Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            else if (cmbReportMonth.SelectedItem == null)
-            {
-                MessageBox.Show("Please select a month before Generating", "Generating Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            serviceOrders = serviceOrders.OrderByDescending(s => s.ArrivalDateTime).ToList();
+            btnReportSearch_Click(sender, e);
+        }
 
-            // check all inputs
-            DateTime m = DateTime.ParseExact(cmbReportMonth.Text, "MMMM", CultureInfo.InvariantCulture);
-            string month = m.ToString("MM");
-            string year = cmbReportYear.SelectedItem.ToString();
 
-            filter_datainStaffSalaryReport(month, year);
+        private void btnServiceReportSortPrice_Click(object sender, EventArgs e)
+        {
+            serviceOrders = serviceOrders.OrderBy(s => s.TotalPrice).ToList();
+            btnReportSearch_Click(sender, e);
+        }
+
+
+        private void btnCaEID_Click(object sender, EventArgs e)
+        {
+            part_purchase = part_purchase.OrderBy(pp => pp.PartID).ToList();
+            btnReportSearch_Click(sender, e);
+        }
+
+
+        private void btnCaEDate_Click(object sender, EventArgs e)
+        {
+            part_purchase = part_purchase.OrderBy(pp => pp.DateTime).ToList();
+            btnReportSearch_Click(sender, e);
+        }
+
+
+        private void btnCaEPrice_Click(object sender, EventArgs e)
+        {
+            part_purchase = part_purchase.OrderByDescending(pp => (pp.UnitPrice * pp.Quantity)).ToList();
+            btnReportSearch_Click(sender, e);
         }
 
 
@@ -1170,15 +1507,44 @@ namespace CarCare_Service_Center
         }
 
 
+        private void btnServiceReportDetail_Click(object sender, EventArgs e)
+        {
+            ServiceOrder serviceOrder = (ServiceOrder)(sender as Button).Tag;
+            frmOrderDetails frmOrderDetails = new frmOrderDetails(serviceOrder);
+            frmOrderDetails.Show();
+        }
+
+        private void btnCaEDetail_Click(object sender, EventArgs e)
+        {
+            Parts.Purchases purchases = (Parts.Purchases)(sender as Button).Tag;
+            PartPurchasedDetails partPuchaseDetail = new PartPurchasedDetails(purchases);
+            partPuchaseDetail.Show();
+        }
+
+
+
         private void btnStaffSalaryDetail_Click(Object sender, EventArgs e)
         {
             User.StaffSalary.Payroll payroll = (User.StaffSalary.Payroll)(sender as Button).Tag;
             StaffSalaryDetails details = new StaffSalaryDetails(payroll);
             details.Show();
         }
-        //
+
+
+
+
+
+
+
+
+
         // Profile
-        //
+        // Profile
+        // Profile
+        // Profile
+        // Profile
+
+
         private void btnChangeUserName_Click(object sender, EventArgs e)
         {
             frmChangeUserName frmChangeUserName = new frmChangeUserName(admin);
@@ -1195,51 +1561,6 @@ namespace CarCare_Service_Center
         {
             frmChangePassword frmChangePassword = new frmChangePassword(admin);
             frmChangePassword.ShowDialog();
-        }
-
-        //
-        // Top
-        //
-        private void HightLightLabelEvent(Label label)
-        {
-            label.MouseEnter += (s, ev) => label.ForeColor = Color.Violet;
-            label.MouseLeave += (s, ev) =>
-            {
-                if (label.ForeColor != Color.Blue)
-                    label.ForeColor = SystemColors.ControlText;
-            };
-            label.MouseDown += (s, ev) => label.ForeColor = Color.Blue;
-        }
-        private void lblHome_Click(object sender, EventArgs e)
-        {
-            lblHome.ForeColor = SystemColors.ControlText;
-            tabAdmin.SelectedIndex = 0;
-        }
-
-        private void lblReload_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show(
-            "Are you sure you want to reload the application? Unsaved changes will be lost.",
-            "Reload Application", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if (result == DialogResult.Yes)
-            {
-                lblReload.ForeColor = SystemColors.ControlText;
-
-                int currentTabIndex = tabAdmin.SelectedIndex;
-
-                Controls.Clear();
-                InitializeComponent();
-                frmAdminMain_Load(sender, e);
-                tabAdmin.SelectedIndex = currentTabIndex;
-            }
-        }
-
-        private void lblLogout_Click(object sender, EventArgs e)
-        {
-            lblLogout.ForeColor = SystemColors.ControlText;
-            frmLogoutConfirmation frmLogoutConfirmation = new frmLogoutConfirmation(this);
-            frmLogoutConfirmation.ShowDialog();
         }
     }
 
